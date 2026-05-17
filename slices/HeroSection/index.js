@@ -23,13 +23,13 @@ const HeroSection = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className=" min-h-screen w-full bg-[#040516] flex flex-col  justify-center gap-6 px-20  text-white"
+      className=" min-h-screen w-full bg-[#04050F] flex flex-col  justify-center gap-6 px-6 lg:px-15  text-white"
     >
-      <div className="flex flex-col lg:flex-row gap-6 ">
-        <div className="w-[46%]">
+      <div className="flex flex-col lg:flex-row gap-10 ">
+        <div className="lg:w-[46%]">
           {/* Left Side */}
           <div className="flex flex-col gap-4">
-            <div className="max-w-4xl text-[67px] font-medium leading-[1.1]">
+            <div className="max-w-4xl text-5xl lg:text-[67px] font-medium leading-[1.1]">
               <PrismicRichText
                 field={slice.primary.heading}
                 components={{
@@ -40,7 +40,7 @@ const HeroSection = ({ slice }) => {
               />
             </div>
 
-            <div className="max-w-2xl text-lg">
+            <div className="max-w-2xl text-balance lg:text-lg">
               <PrismicRichText field={slice.primary.description} />
             </div>
           </div>
@@ -57,37 +57,37 @@ const HeroSection = ({ slice }) => {
             />
           </div>
           <div className="flex mt-10 flex-col w-full gap-4">
-            <div className="flex w-[90%]">
+            <div className="flex items-center lg:w-[90%]">
               <div className="flex w-full gap-2">
-                <img className="w-5.5" src="/calender.svg" />
+                <img className="w-4 lg:w-5.5" src="/calender.svg" />
                 <PrismicNextLink
-                  className="text-[18.5px]"
+                  className="text-xs md:text-sm lg:text-[18.5px]"
                   field={slice.primary.date}
                 />
               </div>
-              <div className="flex w-full gap-2 text-[18.5px]">
-                <img className="w-5.5" src="clock.svg" />
+              <div className="flex w-full gap-2 text-xs md:text-sm lg:text-[18.5px]">
+                <img className="w-4 lg:w-5.5" src="clock.svg" />
                 <p>{slice.primary.time}</p>
               </div>
             </div>
             <div className="flex gap-2">
-              <img className="w-4.5" src="/Location pin.svg" />
+              <img className="w-3.5 lg:w-4.5" src="/Location pin.svg" />
               <PrismicNextLink
-                className="text-[18.5px]"
+                className="text-xs md:text-sm lg:text-[18.5px]"
                 field={slice.primary.location}
               />
             </div>
           </div>
         </div>
         {/* Video section below */}
-        <div className="flex-1 flex items-center justify-center">
-          <div className="w-full">
+        <div className="flex-1 flex items-center rounded-2xl justify-center">
+          <div className="w-full rounded-2xl ">
             {showVideo ? (
               <VideoPlayer />
             ) : (
               <PrismicNextImage
                 field={slice.primary.image_or_video}
-                className="w-full aspect-video object-cover"
+                className="w-full aspect-video rounded-2xl object-cover"
               />
             )}
           </div>

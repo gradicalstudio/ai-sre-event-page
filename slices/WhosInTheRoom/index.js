@@ -1,3 +1,6 @@
+import InfoCard from "@/components/InfoCard";
+import { PrismicRichText } from "@prismicio/react";
+
 /**
  * @typedef {import("@prismicio/client").Content.WhosInTheRoomSlice} WhosInTheRoomSlice
  * @typedef {import("@prismicio/react").SliceComponentProps<WhosInTheRoomSlice>} WhosInTheRoomProps
@@ -8,15 +11,27 @@ const WhosInTheRoom = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="bg-[#040516] px-8 lg:px-20 py-16"
     >
-      Placeholder component for whos_in_the_room (variation: {slice.variation})
-      slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use your own AI agent with the Prismic CLI
-       * 📚 Docs: https://prismic.io/docs/ai#create-slices
-       */}
+      {/* Heading with arrow placeholder */}
+      <div className="flex items-center gap-2 md:gap-3 lg:gap-6 mb-10">
+        {/* Arrow */}
+        <img
+          src="/arrow.svg"
+          alt=""
+          className="w-3 md:w-4 lg:w-6 object-contain "
+        />
+        <div className="text-white text-3xl lg:text-5xl font-normal">
+          <PrismicRichText field={slice.primary.heading} />
+        </div>
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {slice.primary.info_group.map((item, index) => (
+          <InfoCard key={index} item={item} index={index} />
+        ))}
+      </div>
     </section>
   );
 };
