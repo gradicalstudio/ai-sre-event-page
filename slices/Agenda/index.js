@@ -13,25 +13,37 @@ const Agenda = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="bg-[#040516] lg:p-20 relative"
     >
-      <div className="lg:p-15 absolute left-0 top-0 bg-green-400 w-fit"></div>
-      <div className="lg:p-15 absolute right-0 top-0 bg-green-400 w-fit"></div>
-      <div className="lg:p-15 absolute right-0 bottom-0 bg-green-400 w-fit"></div>
-      <div className="lg:p-15 absolute left-0 bottom-0 bg-green-400 w-fit"></div>
-   
-      
-      <div className=" lg:px-20">
-        <div className="border-2 lg:p-15 border-red-500">
-          {/* Heading */}
-          <div className="text-white text-sm lg:text-4xl font-normal mb-12">
-            <PrismicRichText field={slice.primary.heading} />
-          </div>
+      <div>
+        {/* First row */}
+        <div className="flex w-full">
+           <div className="w-[15%] h-10 lg:h-35 border-r border-b border-white/10 "></div>
+          <div className="w-full"></div>
+          <div className="w-[15%] h-10 lg:h-35 border-l border-b border-white/10 "></div>
+        </div>
+        <div className="flex w-full">
+          {/* second row */}
+          <div className="w-[15%]"></div>
+          <div className="w-full ">
+            <div className="border border-white/10 -mt-px -mx-px xl:mx-[-0.5] mb-[-0.5px] lg:p-10">
+              {/* Heading */}
+              <div className="text-white text-3xl lg:text-4xl pl-2 pt-2 font-normal mb-12">
+                <PrismicRichText field={slice.primary.heading} />
+              </div>
 
-          {/* Agenda Items */}
-          <div>
-            {slice.primary.blocks.map((item, index) => (
-              <AgendaItem key={index} item={item} />
-            ))}
+              {/* Agenda Items */}
+              <div>
+                {slice.primary.blocks.map((item, index) => (
+                  <AgendaItem key={index} item={item} />
+                ))}
+              </div>
+            </div>
           </div>
+          <div className="w-[15%]"></div>
+        </div>
+        <div className="flex w-full">
+          <div className="w-[15%] h-10 lg:h-35 border-t border-r border-white/10  "></div>
+          <div className="w-full"></div>
+          <div className="w-[15%] h-10 lg:h-35 border-t border-l border-white/10"></div>
         </div>
       </div>
     </section>
