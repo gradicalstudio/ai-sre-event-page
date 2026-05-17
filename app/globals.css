@@ -4,7 +4,9 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
+body {
+  background-color: #040516;
+}
 /* Hide Scrollbar */
 
 .scrollbar-none::-webkit-scrollbar {
