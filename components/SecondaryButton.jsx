@@ -1,23 +1,24 @@
-const PrimaryButton = ({ buttonText, onClick }) => {
+const SecondaryButton = ({ buttonText, onClick }) => {
   return (
     <button
       onClick={onClick}
       className="
         rounded-full
-        bg-[#45C7F0]
+         border-2
+        border-white
+        bg-transparent
         px-10
         py-3
         text-lg
         font-semibold
-        text-black
-
+        text-white
         transition-all
         duration-250
 
-        hover:bg-white
-        hover:text-black
+        hover:border-[#00C8FF]
+       
         hover:cursor-pointer
-        hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]
+       hover:shadow-[0_0_20px_rgba(0,200,255,0.35)]
       "
     >
       {buttonText}
@@ -25,4 +26,4 @@ const PrimaryButton = ({ buttonText, onClick }) => {
   );
 };
 
-export default PrimaryButton;
+export default SecondaryButton;
