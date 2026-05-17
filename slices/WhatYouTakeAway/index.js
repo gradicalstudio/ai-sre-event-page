@@ -9,6 +9,7 @@ import { PrismicNextImage } from "@prismicio/next";
 const WhatYouTakeAway = ({ slice }) => {
   return (
     <section
+      id="for-attendees"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="bg-[#04050F] px-8 lg:px-20 py-16 lg:py-24"

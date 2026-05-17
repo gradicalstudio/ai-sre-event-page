@@ -9,6 +9,7 @@ import { PrismicRichText } from "@prismicio/react";
 const FaQ = ({ slice }) => {
   return (
     <section
+      id="faq"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="relative bg-[#04050F] overflow-hidden px-18 lg:px-20 py-16  lg:py-44"

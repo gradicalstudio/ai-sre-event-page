@@ -90,6 +90,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
   return (
     <section
+    
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}

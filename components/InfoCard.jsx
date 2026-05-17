@@ -1,12 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
 export default function InfoCard({ item, index }) {
   const lineRef = useRef(null);
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      gsap.set(lineRef.current, { scaleX: 1 });
+    } else {
+      gsap.set(lineRef.current, { scaleX: 0 });
+    }
+  }, []);
 
   const handleMouseEnter = () => {
+    if (window.innerWidth < 1024) return;
     gsap.killTweensOf(lineRef.current);
     gsap.to(lineRef.current, {
       scaleX: 1,
@@ -16,6 +24,7 @@ export default function InfoCard({ item, index }) {
   };
 
   const handleMouseLeave = () => {
+    if (window.innerWidth < 1024) return;
     gsap.killTweensOf(lineRef.current);
     gsap.to(lineRef.current, {
       scaleX: 0,
@@ -26,7 +35,7 @@ export default function InfoCard({ item, index }) {
 
   return (
     <div
-      className="relative flex flex-col gap-4 pt-4 cursor-default group"
+      className="relative flex flex-col gap-4 pt-6 cursor-default group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -36,16 +45,16 @@ export default function InfoCard({ item, index }) {
       {/* Orange fill line */}
       <div
         ref={lineRef}
-        className="absolute top-0 left-0 w-full h-px bg-orange-500 origin-left scale-x-0"
+        className="absolute top-0 left-0 w-full h-px bg-orange-500 origin-left"
       />
 
       {/* Number - sits ON the line */}
-      <span className="absolute -top-3.5 left-0 text-white/90 text-sm bg-[#040516] pr-2 opacity-0 lg:opacity-0 lg:group-hover:opacity-100 opacity-100 transition-opacity duration-300">
+      <span className="absolute -top-3 left-0 text-white/90 text-sm bg-[#04050F] pr-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      {/* Info text - starts from left, no gap */}
-      <p className="text-white/40 text-lg lg:text-xl leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+      {/* Info text */}
+      <p className="text-white lg:text-white/40 text-lg lg:text-xl leading-relaxed lg:group-hover:text-white/90 transition-colors duration-300">
         {item.info}
       </p>
     </div>

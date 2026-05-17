@@ -112,6 +112,7 @@ const StageFormats = ({ slice }) => {
 
   return (
     <section
+      id="stage-formats"
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
