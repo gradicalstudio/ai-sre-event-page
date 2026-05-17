@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
 /* Hide Scrollbar */
 
 .scrollbar-none::-webkit-scrollbar {
@@ -10,6 +15,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -19,12 +25,10 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  /* Forces the text color to stay white */
   -webkit-text-fill-color: white !important;
-
-  /* Delays the browser's default background override indefinitely */
   transition: background-color 5000s ease-in-out 0s;
 }
+
 /* Dark Select */
 
 select {
