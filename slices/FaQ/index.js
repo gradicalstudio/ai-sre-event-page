@@ -11,7 +11,7 @@ const FaQ = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative bg-[#04050F] px-18 lg:px-20 py-16 lg:py-44"
+      className="relative bg-[#04050F] overflow-hidden px-18 lg:px-20 py-16  lg:py-44"
     >
       {/* Left gradient SVG */}
       <img
