@@ -1,8 +1,8 @@
 {
-  "id": "what_you_take_away",
+  "id": "fa_q",
   "type": "SharedSlice",
-  "name": "WhatYouTakeAway",
-  "description": "WhatYouTakeAway",
+  "name": "FaQ",
+  "description": "FaQ",
   "variations": [
     {
       "id": "default",
@@ -21,20 +21,12 @@
             "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
-        "blocks": {
+        "faq": {
           "type": "Group",
           "config": {
-            "label": "Blocks",
+            "label": "FAQ",
             "repeat": true,
             "fields": {
-              "icon": {
-                "type": "Image",
-                "config": {
-                  "label": "Icon",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              },
               "title": {
                 "type": "Text",
                 "config": {
@@ -42,10 +34,10 @@
                   "placeholder": ""
                 }
               },
-              "short_description": {
+              "description": {
                 "type": "Text",
                 "config": {
-                  "label": "Short description",
+                  "label": "Description",
                   "placeholder": ""
                 }
               }

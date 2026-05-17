@@ -70,6 +70,9 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomePageDocumentDataSlicesSlice =
+  | FaQSlice
+  | SpeakerTakeawaySlice
+  | StageFormatsSlice
   | WhatYouTakeAwaySlice
   | SpeakersOfBangaloreEditionSlice
   | PartnersSlice
@@ -281,6 +284,83 @@ type AgendaSliceVariation = AgendaSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type AgendaSlice = prismic.SharedSlice<"agenda", AgendaSliceVariation>;
+
+/**
+ * Item in *FaQ → Default → Primary → FAQ*
+ */
+export interface FaQSliceDefaultPrimaryFaqItem {
+  /**
+   * Title field in *FaQ → Default → Primary → FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fa_q.default.primary.faq[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *FaQ → Default → Primary → FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fa_q.default.primary.faq[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *FaQ → Default → Primary*
+ */
+export interface FaQSliceDefaultPrimary {
+  /**
+   * Heading field in *FaQ → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fa_q.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * FAQ field in *FaQ → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fa_q.default.primary.faq[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  faq: prismic.GroupField<Simplify<FaQSliceDefaultPrimaryFaqItem>>;
+}
+
+/**
+ * Default variation for FaQ Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaQSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FaQSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FaQ*
+ */
+type FaQSliceVariation = FaQSliceDefault;
+
+/**
+ * FaQ Shared Slice
+ *
+ * - **API ID**: `fa_q`
+ * - **Description**: FaQ
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaQSlice = prismic.SharedSlice<"fa_q", FaQSliceVariation>;
 
 /**
  * Primary content in *Form → Default → Primary*
@@ -576,6 +656,51 @@ export type SectorsRepresentedSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *SpeakerTakeaway → Default → Primary*
+ */
+export interface SpeakerTakeawaySliceDefaultPrimary {
+  /**
+   * Heading field in *SpeakerTakeaway → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Default variation for SpeakerTakeaway Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SpeakerTakeawaySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SpeakerTakeawaySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SpeakerTakeaway*
+ */
+type SpeakerTakeawaySliceVariation = SpeakerTakeawaySliceDefault;
+
+/**
+ * SpeakerTakeaway Shared Slice
+ *
+ * - **API ID**: `speaker_takeaway`
+ * - **Description**: SpeakerTakeaway
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SpeakerTakeawaySlice = prismic.SharedSlice<
+  "speaker_takeaway",
+  SpeakerTakeawaySliceVariation
+>;
+
+/**
  * Item in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
  */
 export interface SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem {
@@ -686,9 +811,161 @@ export type SpeakersOfBangaloreEditionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *StageFormats → Default → Primary → Blocks*
+ */
+export interface StageFormatsSliceDefaultPrimaryBlocksItem {
+  /**
+   * Icon field in *StageFormats → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.blocks[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Red block text field in *StageFormats → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.blocks[].red_block_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  red_block_text: prismic.KeyTextField;
+
+  /**
+   * Title field in *StageFormats → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.blocks[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *StageFormats → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.blocks[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *StageFormats → Default → Primary*
+ */
+export interface StageFormatsSliceDefaultPrimary {
+  /**
+   * Stage format field in *StageFormats → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.stage_format
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  stage_format: prismic.KeyTextField;
+
+  /**
+   * Heading field in *StageFormats → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Short description field in *StageFormats → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.short_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  short_description: prismic.RichTextField;
+
+  /**
+   * Blocks field in *StageFormats → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stage_formats.default.primary.blocks[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  blocks: prismic.GroupField<
+    Simplify<StageFormatsSliceDefaultPrimaryBlocksItem>
+  >;
+}
+
+/**
+ * Default variation for StageFormats Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StageFormatsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StageFormatsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StageFormats*
+ */
+type StageFormatsSliceVariation = StageFormatsSliceDefault;
+
+/**
+ * StageFormats Shared Slice
+ *
+ * - **API ID**: `stage_formats`
+ * - **Description**: StageFormats
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type StageFormatsSlice = prismic.SharedSlice<
+  "stage_formats",
+  StageFormatsSliceVariation
+>;
+
+/**
  * Item in *WhatYouTakeAway → Default → Primary → Blocks*
  */
-export interface WhatYouTakeAwaySliceDefaultPrimaryBlocksItem {}
+export interface WhatYouTakeAwaySliceDefaultPrimaryBlocksItem {
+  /**
+   * Icon field in *WhatYouTakeAway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: what_you_take_away.default.primary.blocks[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Title field in *WhatYouTakeAway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: what_you_take_away.default.primary.blocks[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Short description field in *WhatYouTakeAway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: what_you_take_away.default.primary.blocks[].short_description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  short_description: prismic.KeyTextField;
+}
 
 /**
  * Primary content in *WhatYouTakeAway → Default → Primary*
@@ -884,6 +1161,11 @@ declare module "@prismicio/client" {
       AgendaSliceDefaultPrimary,
       AgendaSliceVariation,
       AgendaSliceDefault,
+      FaQSlice,
+      FaQSliceDefaultPrimaryFaqItem,
+      FaQSliceDefaultPrimary,
+      FaQSliceVariation,
+      FaQSliceDefault,
       FormSlice,
       FormSliceDefaultPrimary,
       FormSliceVariation,
@@ -902,11 +1184,20 @@ declare module "@prismicio/client" {
       SectorsRepresentedSliceDefaultPrimary,
       SectorsRepresentedSliceVariation,
       SectorsRepresentedSliceDefault,
+      SpeakerTakeawaySlice,
+      SpeakerTakeawaySliceDefaultPrimary,
+      SpeakerTakeawaySliceVariation,
+      SpeakerTakeawaySliceDefault,
       SpeakersOfBangaloreEditionSlice,
       SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem,
       SpeakersOfBangaloreEditionSliceDefaultPrimary,
       SpeakersOfBangaloreEditionSliceVariation,
       SpeakersOfBangaloreEditionSliceDefault,
+      StageFormatsSlice,
+      StageFormatsSliceDefaultPrimaryBlocksItem,
+      StageFormatsSliceDefaultPrimary,
+      StageFormatsSliceVariation,
+      StageFormatsSliceDefault,
       WhatYouTakeAwaySlice,
       WhatYouTakeAwaySliceDefaultPrimaryBlocksItem,
       WhatYouTakeAwaySliceDefaultPrimary,

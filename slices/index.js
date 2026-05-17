@@ -4,13 +4,16 @@ import dynamic from "next/dynamic";
 
 export const components = {
   agenda: dynamic(() => import("./Agenda")),
+  fa_q: dynamic(() => import("./FaQ")),
   form: dynamic(() => import("./Form")),
   hero_section: dynamic(() => import("./HeroSection")),
   partners: dynamic(() => import("./Participants")),
   sectors_represented: dynamic(() => import("./SectorsRepresented")),
+  speaker_takeaway: dynamic(() => import("./SpeakerTakeaway")),
   speakers_of_bangalore_edition: dynamic(
     () => import("./SpeakersOfBangaloreEdition"),
   ),
+  stage_formats: dynamic(() => import("./StageFormats")),
   what_you_take_away: dynamic(() => import("./WhatYouTakeAway")),
   whos_in_the_room: dynamic(() => import("./WhosInTheRoom")),
   why_this_event: dynamic(() => import("./WhyThisEvent")),

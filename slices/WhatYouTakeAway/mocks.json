@@ -19,7 +19,50 @@
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
-						"value": []
+						"value": [
+							[
+								"icon",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+										"width": 4272,
+										"height": 2848
+									},
+									"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+									"width": 4272,
+									"height": 2848,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "party",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "blue",
+									"type": "Text"
+								}
+							],
+							[
+								"short_description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "all",
+									"type": "Text"
+								}
+							]
+						]
 					}
 				]
 			}

@@ -65,8 +65,8 @@
 							[
 								"linkedin",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "09d7139d-93a1-4ee8-8c7a-8c70ff225cb4",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "http://twitter.com",

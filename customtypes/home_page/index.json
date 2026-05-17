@@ -11,6 +11,15 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "fa_q": {
+              "type": "SharedSlice"
+            },
+            "speaker_takeaway": {
+              "type": "SharedSlice"
+            },
+            "stage_formats": {
+              "type": "SharedSlice"
+            },
             "what_you_take_away": {
               "type": "SharedSlice"
             },
