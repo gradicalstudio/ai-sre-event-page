@@ -11,7 +11,7 @@ const WhosInTheRoom = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-[#040516] px-8 lg:px-20 py-16"
+      className="bg-[#04050F] px-8 lg:px-20 py-16"
     >
       {/* Heading with arrow placeholder */}
       <div className="flex items-center gap-2 md:gap-3 lg:gap-6 mb-10">
