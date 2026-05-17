@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "footer": {
+              "type": "SharedSlice"
+            },
             "fa_q": {
               "type": "SharedSlice"
             },
@@ -42,9 +45,6 @@
               "type": "SharedSlice"
             },
             "hero_section": {
-              "type": "SharedSlice"
-            },
-            "form": {
               "type": "SharedSlice"
             }
           }

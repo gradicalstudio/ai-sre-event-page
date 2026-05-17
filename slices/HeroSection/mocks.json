@@ -9,7 +9,7 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Garden"
+							"text": "According"
 						}
 					}
 				]
@@ -40,8 +40,8 @@
 				"type": "Text"
 			},
 			"location": {
-				"__TYPE__": "LinkContent",
 				"key": "40528b32-4d10-458b-8651-0df66bd730d5",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://google.com",

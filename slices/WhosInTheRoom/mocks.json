@@ -20,6 +20,17 @@
 						]
 					}
 				]
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur sunt sint deserunt magna officia sunt aute excepteur incididunt."
+						}
+					}
+				]
 			}
 		},
 		"items": []

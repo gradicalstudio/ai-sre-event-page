@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 export const components = {
   agenda: dynamic(() => import("./Agenda")),
   fa_q: dynamic(() => import("./FaQ")),
-  form: dynamic(() => import("./Form")),
+  footer: dynamic(() => import("./Footer")),
   hero_section: dynamic(() => import("./HeroSection")),
   partners: dynamic(() => import("./Participants")),
   sectors_represented: dynamic(() => import("./SectorsRepresented")),

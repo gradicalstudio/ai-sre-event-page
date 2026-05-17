@@ -1,8 +1,8 @@
 {
-  "id": "hero_section",
+  "id": "footer",
   "type": "SharedSlice",
-  "name": "HeroSection",
-  "description": "HeroSection",
+  "name": "Footer",
+  "description": "Footer",
   "variations": [
     {
       "id": "default",
@@ -12,22 +12,12 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "heading": {
-          "type": "StructuredText",
+        "logos": {
+          "type": "Image",
           "config": {
-            "label": "Heading",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "heading1,strong,em,heading2"
-          }
-        },
-        "description": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Description",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "label": "Logos",
+            "constraint": {},
+            "thumbnails": []
           }
         },
         "date": {
@@ -41,13 +31,6 @@
             "repeat": false
           }
         },
-        "time": {
-          "type": "Text",
-          "config": {
-            "label": "Time",
-            "placeholder": ""
-          }
-        },
         "location": {
           "type": "Link",
           "config": {
@@ -57,6 +40,26 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "time": {
+          "type": "Link",
+          "config": {
+            "label": "Time",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "description_with_link": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description with link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         }
       },
