@@ -1,0 +1,54 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Garden"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Est ut pariatur adipisicing ipsum dolor ipsum id. Aliqua cillum enim aliquip enim deserunt ullamco id voluptate non."
+						}
+					}
+				]
+			},
+			"date": {
+				"key": "4b0be841-c1fe-4ebd-b4f9-177aab1553f5",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "country"
+				}
+			},
+			"time": {
+				"__TYPE__": "FieldContent",
+				"value": "mainly",
+				"type": "Text"
+			},
+			"location": {
+				"__TYPE__": "LinkContent",
+				"key": "40528b32-4d10-458b-8651-0df66bd730d5",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "ability"
+				}
+			}
+		},
+		"items": []
+	}
+]

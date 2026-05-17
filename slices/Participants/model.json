@@ -1,0 +1,36 @@
+{
+  "id": "partners",
+  "type": "SharedSlice",
+  "name": "Participants",
+  "description": "Partners",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "companies": {
+          "type": "Group",
+          "config": {
+            "label": "Companies",
+            "repeat": true,
+            "fields": {
+              "logo": {
+                "type": "Image",
+                "config": {
+                  "label": "Logo",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "sectors_represented",
+  "type": "SharedSlice",
+  "name": "SectorsRepresented",
+  "description": "SectorsRepresented",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "marquee": {
+          "type": "Group",
+          "config": {
+            "label": "Marquee",
+            "repeat": true,
+            "fields": {
+              "partners": {
+                "type": "Text",
+                "config": {
+                  "label": "Partners",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "agenda",
+  "type": "SharedSlice",
+  "name": "Agenda",
+  "description": "Agenda",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "blocks": {
+          "type": "Group",
+          "config": {
+            "label": "Blocks",
+            "repeat": true,
+            "fields": {
+              "time": {
+                "type": "Text",
+                "config": {
+                  "label": "Time",
+                  "placeholder": ""
+                }
+              },
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,heading3,heading2"
+                }
+              },
+              "short_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Short description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em"
+                }
+              },
+              "speaker": {
+                "type": "Image",
+                "config": {
+                  "label": "Speaker",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "speaker_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Speaker name",
+                  "placeholder": ""
+                }
+              },
+              "speaker_two": {
+                "type": "Image",
+                "config": {
+                  "label": "Speaker two",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "speaker_two_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Speaker two name",
+                  "placeholder": ""
+                }
+              },
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

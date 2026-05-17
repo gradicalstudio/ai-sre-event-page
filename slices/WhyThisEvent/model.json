@@ -1,0 +1,28 @@
+{
+  "id": "why_this_event",
+  "type": "SharedSlice",
+  "name": "WhyThisEvent",
+  "description": "WhyThisEvent",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,strong,em"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "whos_in_the_room",
+  "type": "SharedSlice",
+  "name": "WhosInTheRoom",
+  "description": "WhosInTheRoom",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "info_group": {
+          "type": "Group",
+          "config": {
+            "label": "Info group",
+            "repeat": true,
+            "fields": {
+              "info": {
+                "type": "Text",
+                "config": {
+                  "label": "Info",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

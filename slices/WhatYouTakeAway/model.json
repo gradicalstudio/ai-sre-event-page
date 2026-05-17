@@ -1,0 +1,36 @@
+{
+  "id": "what_you_take_away",
+  "type": "SharedSlice",
+  "name": "WhatYouTakeAway",
+  "description": "WhatYouTakeAway",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "blocks": {
+          "type": "Group",
+          "config": {
+            "label": "Blocks",
+            "repeat": true,
+            "fields": {}
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
