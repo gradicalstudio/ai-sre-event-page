@@ -69,111 +69,8 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-/**
- * Content for Footer documents
- */
-interface FooterDocumentData {
-  /**
-   * Logos field in *Footer*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.logos
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  logos: prismic.ImageField<never>;
-
-  /**
-   * Date field in *Footer*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  date: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-  /**
-   * Date in text field in *Footer*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.date_in_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  date_in_text: prismic.KeyTextField;
-
-  /**
-   * Location field in *Footer*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.location
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  location: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Location in text field in *Footer*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.location_in_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  location_in_text: prismic.KeyTextField;
-
-  /**
-   * Time field in *Footer*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.time
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  time: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-  /**
-   * Time in text field in *Footer*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: footer.time_in_text
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  time_in_text: prismic.KeyTextField;
-}
-
-/**
- * Footer document from Prismic
- *
- * - **API ID**: `footer`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type FooterDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<FooterDocumentData>,
-    "footer",
-    Lang
-  >;
-
 type HomePageDocumentDataSlicesSlice =
+  | FooterSlice
   | FaQSlice
   | SpeakerTakeawaySlice
   | StageFormatsSlice
@@ -184,8 +81,7 @@ type HomePageDocumentDataSlicesSlice =
   | WhyThisEventSlice
   | WhosInTheRoomSlice
   | SectorsRepresentedSlice
-  | HeroSectionSlice
-  | FormSlice;
+  | HeroSectionSlice;
 
 /**
  * Content for Home Page documents
@@ -250,7 +146,7 @@ export type HomePageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = FooterDocument | HomePageDocument;
+export type AllDocumentTypes = HomePageDocument;
 
 /**
  * Item in *Agenda → Default → Primary → Blocks*
@@ -467,72 +363,92 @@ type FaQSliceVariation = FaQSliceDefault;
 export type FaQSlice = prismic.SharedSlice<"fa_q", FaQSliceVariation>;
 
 /**
- * Primary content in *Form → Default → Primary*
+ * Primary content in *Footer → Default → Primary*
  */
-export interface FormSliceDefaultPrimary {
+export interface FooterSliceDefaultPrimary {
   /**
-   * Heading field in *Form → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: form.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  heading: prismic.RichTextField;
-
-  /**
-   * Image field in *Form → Default → Primary*
+   * Logos field in *Footer → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: form.default.primary.image
+   * - **API ID Path**: footer.default.primary.logos
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  image: prismic.ImageField<never>;
+  logos: prismic.ImageField<never>;
 
   /**
-   * CTA Button field in *Form → Default → Primary*
+   * Date field in *Footer → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: form.default.primary.cta_button
+   * - **API ID Path**: footer.default.primary.date
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  cta_button: prismic.LinkField<
+  date: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Location field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.location
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  location: prismic.LinkField<
     string,
     string,
     unknown,
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Time field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.time
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  time: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Description with link field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.default.primary.description_with_link
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description_with_link: prismic.RichTextField;
 }
 
 /**
- * Default variation for Form Slice
+ * Default variation for Footer Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type FormSliceDefault = prismic.SharedSliceVariation<
+export type FooterSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<FormSliceDefaultPrimary>,
+  Simplify<FooterSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *Form*
+ * Slice variation for *Footer*
  */
-type FormSliceVariation = FormSliceDefault;
+type FooterSliceVariation = FooterSliceDefault;
 
 /**
- * Form Shared Slice
+ * Footer Shared Slice
  *
- * - **API ID**: `form`
- * - **Description**: Form
+ * - **API ID**: `footer`
+ * - **Description**: Footer
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type FormSlice = prismic.SharedSlice<"form", FormSliceVariation>;
+export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
 
 /**
  * Primary content in *HeroSection → Default → Primary*
@@ -1148,6 +1064,16 @@ export interface WhosInTheRoomSliceDefaultPrimaryInfoGroupItem {
  */
 export interface WhosInTheRoomSliceDefaultPrimary {
   /**
+   * Heading field in *WhosInTheRoom → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: whos_in_the_room.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
    * Info group field in *WhosInTheRoom → Default → Primary*
    *
    * - **Field Type**: Group
@@ -1256,8 +1182,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      FooterDocument,
-      FooterDocumentData,
       HomePageDocument,
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
@@ -1272,10 +1196,10 @@ declare module "@prismicio/client" {
       FaQSliceDefaultPrimary,
       FaQSliceVariation,
       FaQSliceDefault,
-      FormSlice,
-      FormSliceDefaultPrimary,
-      FormSliceVariation,
-      FormSliceDefault,
+      FooterSlice,
+      FooterSliceDefaultPrimary,
+      FooterSliceVariation,
+      FooterSliceDefault,
       HeroSectionSlice,
       HeroSectionSliceDefaultPrimary,
       HeroSectionSliceVariation,
