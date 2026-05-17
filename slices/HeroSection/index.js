@@ -107,6 +107,16 @@ const HeroSection = ({ slice }) => {
         isOpen={isInviteOpen}
         onClose={() => setIsInviteOpen(false)}
       />
+      <div className="relative w-full h-[440px] overflow-hidden">
+        {/* Blue glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#04050F] to-[#3FD9FB] to-[#04050F] blur-[120px] " />
+
+        {/* Dot texture */}
+        <img
+          src="/gradient.svg"
+          className="absolute inset-0 w-full h-full object-cover opacity-100 "
+        />
+      </div>
     </section>
   );
 };
