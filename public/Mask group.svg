@@ -1,0 +1,30 @@
+<svg width="634" height="202" viewBox="0 0 634 202" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_7091_922" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-145" y="-10" width="465" height="223">
+<mask id="mask1_7091_922" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-145" y="-51" width="779" height="280">
+<rect x="633.205" y="228.685" width="777.986" height="279.467" transform="rotate(-180 633.205 228.685)" fill="url(#paint0_linear_7091_922)" stroke="#42D3F5" stroke-width="0.434132"/>
+</mask>
+<g mask="url(#mask1_7091_922)">
+<path d="M319.242 156.988L213.479 156.988C209.852 156.988 206.911 154.047 206.911 150.42L206.911 83.9108M206.911 83.9108L176.464 83.9108M206.911 83.9108L308.002 83.9108M-31.8055 83.9108L76.5919 83.9108M-31.8055 83.9108L-147.51 83.9107M-31.8055 83.9108L-31.8055 49.1992M-31.8055 14.4877L-31.8055 49.1992M76.5919 83.9108L76.5919 124.843C76.5919 128.47 73.6514 131.411 70.0241 131.411L2.77517 131.411C-0.852142 131.411 -3.79266 134.351 -3.79266 137.979L-3.79267 156.988M76.5919 83.9108L132.616 83.9108M-3.79267 212.404L-3.79267 156.988M176.464 83.9108L132.616 83.9108M176.464 83.9108L176.464 60.1608M272.073 14.4878L272.073 29.8431C272.073 33.4704 269.132 36.4109 265.505 36.4109L183.031 36.4109C179.404 36.4109 176.464 39.3514 176.464 42.9787L176.464 60.1608M-3.79267 156.988L-74.5645 156.988C-78.1918 156.988 -81.1323 154.047 -81.1323 150.42L-81.1323 120.927C-81.1323 117.3 -84.0728 114.36 -87.7002 114.36L-170.043 114.36M132.616 83.9108L132.616 208.142M-31.8055 49.1992L37.1379 49.1992C40.7652 49.1992 43.7057 46.2587 43.7057 42.6314L43.7057 19.3596M176.464 60.1608L109.953 60.1608C106.326 60.1608 103.385 57.2203 103.385 53.593L103.385 -9.87112" stroke="#42D3F5" stroke-width="1.37151"/>
+<circle cx="262.336" cy="83.9844" r="1.88804" transform="rotate(-180 262.336 83.9844)" fill="#A662EF" stroke="#42D3F5" stroke-width="0.505218"/>
+<circle cx="214.703" cy="36.3515" r="1.88804" transform="rotate(-180 214.703 36.3515)" fill="#EF62EA" stroke="#42D3F5" stroke-width="0.505218"/>
+<circle cx="226.289" cy="36.3515" r="1.88804" transform="rotate(-180 226.289 36.3515)" fill="#EF62EA" stroke="#42D3F5" stroke-width="0.505218"/>
+<circle cx="46.4687" cy="83.9844" r="1.88804" transform="rotate(-180 46.4687 83.9844)" fill="#A662EF" stroke="#42D3F5" stroke-width="0.505218"/>
+</g>
+</mask>
+<g mask="url(#mask0_7091_922)">
+<g filter="url(#filter0_f_7091_922)">
+<ellipse cx="541" cy="35" rx="321" ry="321" transform="rotate(-180 541 35)" fill="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_7091_922" x="-41.1037" y="-547.104" width="1164.21" height="1164.21" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="130.552" result="effect1_foregroundBlur_7091_922"/>
+</filter>
+<linearGradient id="paint0_linear_7091_922" x1="1022.63" y1="228.902" x2="1022.63" y2="508.804" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D9D9D9"/>
+<stop offset="1" stop-color="#737373" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

@@ -19,17 +19,23 @@ const Partners = ({ slice }) => {
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
+  // Reset the array on re-render to avoid duplicating refs
+  cellsRef.current = [];
+
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. Filter out any null elements from the ref array
+      const validCells = cellsRef.current.filter(Boolean);
+
       // Initial states
       gsap.set(gridRef.current, {
         opacity: 0,
         scale: 0.96,
       });
 
-      gsap.set(cellsRef.current, {
+      gsap.set(validCells, {
         opacity: 0,
-        y: 30,
+        y: 20, // Reduced from 30 for a tighter mobile feel
       });
 
       gsap.set(cornersRef.current, {
@@ -41,7 +47,7 @@ const Partners = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 80%", // Triggers slightly earlier on mobile scroll
           once: true,
         },
       });
@@ -49,51 +55,55 @@ const Partners = ({ slice }) => {
       tl.to(gridRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 0.6, // Snappier duration
         ease: "power3.out",
       })
         .to(
-          cellsRef.current,
+          validCells,
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            stagger: 0.08,
+            duration: 0.5,
+            stagger: 0.05, // Snappier stagger rate
             ease: "power3.out",
           },
-          "-=0.5",
+          "-=0.4",
         )
         .to(
           cornersRef.current,
           {
             opacity: 1,
             scale: 1,
-            duration: 0.35,
-            stagger: 0.05,
-            ease: "back.out(2)",
+            duration: 0.3,
+            stagger: 0.04,
+            ease: "back.out(1.5)",
           },
-          "-=0.4",
+          "-=0.3",
         );
 
-      // Strong single glass reflection
-      cellsRef.current.forEach((cell, index) => {
+      // Glass reflection loop (Optimized)
+      validCells.forEach((cell, index) => {
         // Skip title cell
         if (!cell || index === 0) return;
+
+        // PERFORMANCE CHECK: Skip heavy reflection effects on slow/mobile devices
+        if (window.matchMedia("(max-width: 768px)").matches) {
+          return;
+        }
 
         cell.style.position = "relative";
         cell.style.overflow = "hidden";
 
         const reflection = document.createElement("div");
-
         reflection.className = `
-          absolute top-[-40%] left-[-220%]
+          absolute top-[-40%] left-[-150%]
           h-[240%] w-[45%]
           rotate-[25deg]
           bg-gradient-to-r
           from-transparent
-          via-white/35
+          via-white/25
           to-transparent
-          blur-xl
+          blur-md
           pointer-events-none
           z-30
           mix-blend-screen
@@ -103,7 +113,9 @@ const Partners = ({ slice }) => {
         cell.appendChild(reflection);
 
         const animateReflection = () => {
-          const distance = window.innerWidth * (0.7 + Math.random() * 0.5);
+          // Use parent container width instead of window.innerWidth for accurate translation
+          const cellWidth = cell.offsetWidth;
+          const distance = cellWidth * 3;
 
           gsap.fromTo(
             reflection,
@@ -114,22 +126,16 @@ const Partners = ({ slice }) => {
             {
               x: distance,
               opacity: 1,
-              duration: 1.6 + Math.random() * 0.7,
+              duration: 1.2 + Math.random() * 0.5,
               ease: "power2.inOut",
-
               onComplete: () => {
-                gsap.set(reflection, {
-                  x: 0,
-                  opacity: 0,
-                });
-
-                gsap.delayedCall(Math.random() * 5 + 1, animateReflection);
+                gsap.set(reflection, { x: 0, opacity: 0 });
+                gsap.delayedCall(Math.random() * 6 + 2, animateReflection);
               },
             },
           );
         };
 
-        // Random initial timing
         gsap.delayedCall(1 + Math.random() * 4, animateReflection);
       });
     }, sectionRef);
@@ -151,7 +157,7 @@ const Partners = ({ slice }) => {
             {/* Title Cell */}
             <div
               ref={(el) => {
-                cellsRef.current[0] = el;
+                if (el) cellsRef.current.push(el);
               }}
               className="
                 font-mono
@@ -161,14 +167,7 @@ const Partners = ({ slice }) => {
                 px-4
               "
             >
-              <h2
-                className="
-                  text-left uppercase text-[#ff5c35]
-                  text-[10px] leading-[1.3]
-                  tracking-[0.22em]
-                  md:text-[16px]
-                "
-              >
+              <h2 className="text-left uppercase text-[#ff5c35] text-[10px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                 Companies
                 <br />
                 Participating
@@ -180,7 +179,7 @@ const Partners = ({ slice }) => {
               <div
                 key={`top-${index}`}
                 ref={(el) => {
-                  cellsRef.current[index + 1] = el;
+                  if (el) cellsRef.current.push(el);
                 }}
                 className="
                   flex min-h-[90px] md:min-h-[110px]
@@ -194,13 +193,7 @@ const Partners = ({ slice }) => {
                 <PrismicNextLink field={item.link}>
                   <PrismicNextImage
                     field={item.logo}
-                    className="
-                      h-auto w-[95px]
-                      object-contain opacity-90
-                      transition-opacity duration-300
-                      hover:opacity-100
-                      md:w-[150px]
-                    "
+                    className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
                   />
                 </PrismicNextLink>
               </div>
@@ -211,7 +204,7 @@ const Partners = ({ slice }) => {
               <div
                 key={`bottom-${index}`}
                 ref={(el) => {
-                  cellsRef.current[index + 4] = el;
+                  if (el) cellsRef.current.push(el);
                 }}
                 className="
                   flex min-h-[90px] md:min-h-[110px]
@@ -225,13 +218,7 @@ const Partners = ({ slice }) => {
                 <PrismicNextLink field={item.link}>
                   <PrismicNextImage
                     field={item.logo}
-                    className="
-                      h-auto w-[95px]
-                      object-contain opacity-90
-                      transition-opacity duration-300
-                      hover:opacity-100
-                      md:w-[150px]
-                    "
+                    className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
                   />
                 </PrismicNextLink>
               </div>
@@ -240,7 +227,6 @@ const Partners = ({ slice }) => {
         </div>
 
         {/* Corner Decorations */}
-
         {/* TOP LEFT */}
         <img
           ref={(el) => {
