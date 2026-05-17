@@ -58,6 +58,23 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "image_or_video": {
+          "type": "Image",
+          "config": {
+            "label": "Image or Video",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "video_toggle": {
+          "type": "Boolean",
+          "config": {
+            "label": "Video Toggle",
+            "placeholder_false": "Image",
+            "placeholder_true": "Video",
+            "default_value": false
+          }
         }
       },
       "items": {}

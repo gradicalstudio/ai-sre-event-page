@@ -509,6 +509,27 @@ export interface HeroSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Image or Video field in *HeroSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.default.primary.image_or_video
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_or_video: prismic.ImageField<never>;
+
+  /**
+   * Video Toggle field in *HeroSection → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: hero_section.default.primary.video_toggle
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  video_toggle: prismic.BooleanField;
 }
 
 /**
