@@ -1,0 +1,73 @@
+{
+  "format": "custom",
+  "id": "footer",
+  "label": "Footer",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logos": {
+        "type": "Image",
+        "config": {
+          "label": "Logos",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "date": {
+        "type": "Link",
+        "config": {
+          "label": "Date",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "date_in_text": {
+        "type": "Text",
+        "config": {
+          "label": "Date in text",
+          "placeholder": ""
+        }
+      },
+      "location": {
+        "type": "Link",
+        "config": {
+          "label": "Location",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "location_in_text": {
+        "type": "Text",
+        "config": {
+          "label": "Location in text",
+          "placeholder": ""
+        }
+      },
+      "time": {
+        "type": "Link",
+        "config": {
+          "label": "Time",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "time_in_text": {
+        "type": "Text",
+        "config": {
+          "label": "Time in text",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}
