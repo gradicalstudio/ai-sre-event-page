@@ -4,7 +4,7 @@ const PrimaryButton = ({ buttonText, onClick }) => {
       onClick={onClick}
       className="
         rounded-full
-        bg-[#45C7F0]
+        bg-white
         px-10
         py-3
         text-lg
@@ -14,10 +14,10 @@ const PrimaryButton = ({ buttonText, onClick }) => {
         transition-all
         duration-250
 
-        hover:bg-white
-        hover:text-black
+        hover:bg-[#45C7F0]
+        hover:text-white
         hover:cursor-pointer
-        hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]
+    hover:shadow-[0_0_15px_rgba(69,199,240,0.45)]
       "
     >
       {buttonText}

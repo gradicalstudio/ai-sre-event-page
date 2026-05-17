@@ -20,6 +20,45 @@
             "allowTargetBlank": true,
             "multi": "heading2,strong,em"
           }
+        },
+        "event_features": {
+          "type": "Group",
+          "config": {
+            "label": "Event Features",
+            "repeat": true,
+            "fields": {
+              "heading": {
+                "type": "Text",
+                "config": {
+                  "label": "Heading",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "Text",
+                "config": {
+                  "label": "description",
+                  "placeholder": ""
+                }
+              },
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "icon_shadow": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon Shadow",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

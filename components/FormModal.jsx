@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRef } from "react";
+import gsap from "gsap";
 
 const FORM_CONFIG = {
   speaker: {
@@ -17,6 +19,8 @@ const FORM_CONFIG = {
 };
 
 export default function FormModal({ isOpen, onClose, type }) {
+  const modalRef = useRef(null);
+  const overlayRef = useRef(null);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -53,6 +57,38 @@ export default function FormModal({ isOpen, onClose, type }) {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", handleKeyDown);
     };
+  }, [isOpen]);
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      overlayRef.current,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power2.out",
+      },
+    ).fromTo(
+      modalRef.current,
+      {
+        opacity: 0,
+        y: 40,
+        scale: 0.94,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.2,
+        ease: "power4.out",
+      },
+      "-=0.1",
+    );
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -246,6 +282,7 @@ export default function FormModal({ isOpen, onClose, type }) {
 
   return (
     <div
+      ref={overlayRef}
       className="
         fixed
         inset-0
@@ -260,6 +297,7 @@ export default function FormModal({ isOpen, onClose, type }) {
       onClick={handleClose}
     >
       <div
+        ref={modalRef}
         className="
           relative
           w-full
