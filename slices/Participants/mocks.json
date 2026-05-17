@@ -12,7 +12,6 @@
 							[
 								"logo",
 								{
-									"__TYPE__": "ImageContent",
 									"origin": {
 										"id": "main",
 										"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
@@ -31,7 +30,21 @@
 										"background": "transparent"
 									},
 									"alt": "neighborhood",
+									"credits": null,
+									"__TYPE__": "ImageContent",
 									"thumbnails": {}
+								}
+							],
+							[
+								"link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "07a904eb-61be-4871-8d36-2c8496f59fb1",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "stood"
+									}
 								}
 							]
 						]

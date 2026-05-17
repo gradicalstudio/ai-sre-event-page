@@ -575,6 +575,16 @@ export interface PartnersSliceDefaultPrimaryCompaniesItem {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   logo: prismic.ImageField<never>;
+
+  /**
+   * Link field in *Participants → Default → Primary → Companies*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partners.default.primary.companies[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -1138,6 +1148,51 @@ export type WhosInTheRoomSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *WhyThisEvent → Default → Primary → Event Features*
+ */
+export interface WhyThisEventSliceDefaultPrimaryEventFeaturesItem {
+  /**
+   * Heading field in *WhyThisEvent → Default → Primary → Event Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_this_event.default.primary.event_features[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * description field in *WhyThisEvent → Default → Primary → Event Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_this_event.default.primary.event_features[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Icon field in *WhyThisEvent → Default → Primary → Event Features*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_this_event.default.primary.event_features[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Icon Shadow field in *WhyThisEvent → Default → Primary → Event Features*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_this_event.default.primary.event_features[].icon_shadow
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon_shadow: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *WhyThisEvent → Default → Primary*
  */
 export interface WhyThisEventSliceDefaultPrimary {
@@ -1150,6 +1205,18 @@ export interface WhyThisEventSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField;
+
+  /**
+   * Event Features field in *WhyThisEvent → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: why_this_event.default.primary.event_features[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  event_features: prismic.GroupField<
+    Simplify<WhyThisEventSliceDefaultPrimaryEventFeaturesItem>
+  >;
 }
 
 /**
@@ -1260,6 +1327,7 @@ declare module "@prismicio/client" {
       WhosInTheRoomSliceVariation,
       WhosInTheRoomSliceDefault,
       WhyThisEventSlice,
+      WhyThisEventSliceDefaultPrimaryEventFeaturesItem,
       WhyThisEventSliceDefaultPrimary,
       WhyThisEventSliceVariation,
       WhyThisEventSliceDefault,
