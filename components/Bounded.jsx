@@ -6,8 +6,10 @@ const Bounded = ({ children, className = "", innerClassName = "" }) => {
       <div
         className={`
           mx-auto w-full
-          max-w-[1000px]
-          2xl:max-w-[1320px]
+       max-w-[1000px]
+xl:max-w-[1280px]
+2xl:max-w-[1440px]
+          
           px-6 md:px-6 lg:px-8
           py-10 md:py-14 lg:py-30
           ${innerClassName}

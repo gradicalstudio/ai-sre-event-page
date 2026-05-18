@@ -24,11 +24,11 @@ const HeroSection = ({ slice }) => {
 
   return (
     <>
-      <Bounded innerClassName="pt-10 md:pt-10 lg:pt-30 xl:pt-40 pb-10  ">
+      <Bounded innerClassName="pt-30 md:pt-30 lg:pt-30 xl:pt-40 pb-10  ">
         <section
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
-          className="min-h-screen w-full bg-[#04050F] flex flex-col  gap-6 text-white"
+          className="min-h-screen w-full bg-[#04050F] flex flex-col gap-6 text-white"
         >
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Left Side */}
@@ -144,18 +144,19 @@ const HeroSection = ({ slice }) => {
             onClose={() => setIsInviteOpen(false)}
           />
         </section>
-      </Bounded>
-      <div className="inset-x-0 xl:-mt-110 h-30 xl:h-70 overflow-hidden blur-2xl">
-        <div className="absolute z-999 h-65 top-0 w-full">
-          <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
-        </div>
+        <div className="inset-x-0  -mt-30 lg:mt-0 h-30 xl:h-70 overflow-hidden blur-2xl">
+          <div className="absolute z-999 h-65 top-0 w-full">
+            <img
+              className="w-full h-full object-cover"
+              src="/bg-gradient.svg"
+            />
+          </div>
 
-        {/* <div className="absolute h-137.5 -top-35 w-full">
+          {/* <div className="absolute h-137.5 -top-35 w-full">
           <img className="w-full h-full object-cover" src="/toplayer.svg" />
         </div> */}
-      </div>
-
-      {/* Bottom Gradient */}
+        </div>
+      </Bounded>
     </>
   );
 };

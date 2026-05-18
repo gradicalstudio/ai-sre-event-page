@@ -26,7 +26,7 @@ export default function Navbar() {
               <img
                 src="/new logo.svg"
                 alt="Logo"
-                className="h-auto w-30 xl:w-35 object-contain"
+                className="h-auto w-30 xl:w-50 object-contain"
               />
             </a>
 

@@ -3,6 +3,7 @@
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --breakpoint-3xl: 1600px;
 }
 body {
   background-color: #04050f;
@@ -20,6 +21,7 @@ html {
 #faq {
   scroll-margin-top: -50px;
 }
+
 
 .scrollbar-none::-webkit-scrollbar {
   display: none;
