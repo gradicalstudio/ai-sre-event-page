@@ -26,7 +26,7 @@ const SectorsRepresented = ({ slice }) => {
 
         {/* RIGHT — Marquee */}
         <div className="relative w-full lg:flex-1 min-w-0 overflow-hidden">
-          <Marquee speed={60} gradient={false} className="overflow-hidden">
+          <Marquee speed={105} gradient={false} className="overflow-hidden">
             {slice.primary.marquee.map((item, index) => (
               <span key={index} className="flex items-center gap-4 px-4">
                 <span className="text-white/80 text-[18px] lg:text-[24.26px] whitespace-nowrap    leading-none">

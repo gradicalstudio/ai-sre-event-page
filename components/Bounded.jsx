@@ -8,10 +8,8 @@ const Bounded = ({ children, className = "", innerClassName = "" }) => {
           mx-auto w-full
        max-w-[1000px]
 xl:max-w-[1280px]
-2xl:max-w-[1440px]
-          
-          px-6 md:px-6 lg:px-15
-          py-10 md:py-14 lg:py-30
+2xl:max-w-[1440px] px-6 md:px-6 lg:px-14
+          pb-10 md:pb-17 lg:pb-35
           ${innerClassName}
         `}
       >
