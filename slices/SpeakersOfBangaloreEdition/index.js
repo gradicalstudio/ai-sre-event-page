@@ -80,7 +80,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           max-w-[1000px]
           2xl:max-w-[1320px]
           px-6 md:px-6 lg:px-8
-          py-10 md:py-14 lg:py-30  overflow-hidden  text-white"
+          py-10 md:py-14 lg:py-30 mt-0 lg:-mt-40  overflow-hidden  text-white"
     >
       {/* LEFT SVG */}
 
@@ -88,11 +88,12 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
         src="/Mask group.svg"
         alt=""
         className=" 
+        hidden lg:block
           left-pattern
           pointer-events-none absolute opacity-60
-          left-[-20px] top-[0px] w-[260px]
+          left-[0px] top-[0px] w-[260px]
           md:left-[-90px] md:top-[-10px] md:w-[420px]
-          lg:left-[-60px] lg:top-[75px] lg:w-[820px]
+          lg:left-[60px] lg:top-[75px] lg:w-[620px]
         "
       />
 
@@ -103,10 +104,11 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
         alt=""
         className="
           right-pattern
+          hidden lg:block
           pointer-events-none absolute opacity-60
-          right-[-150px] top-[10px] w-[260px]
+          right-[60px] top-[10px] w-[260px]
           md:right-[-220px] md:top-[-20px] md:w-[420px]
-          lg:right-[-310px] lg:top-[80px] lg:w-[620px]
+          lg:right-[-190px] lg:top-[80px] lg:w-[620px]
         "
       />
 
