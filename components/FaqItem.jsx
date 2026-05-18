@@ -1,81 +1,61 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
-export default function FaqItem({ item, defaultOpen = false }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+export default function FaqItem({ item, isOpen, onToggle }) {
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
-    if (defaultOpen) {
-      gsap.set(contentRef.current, {
-        display: "block",
-        height: "auto",
-        opacity: 1,
-      });
-      gsap.set(chevronRef.current, {
-        rotation: 180,
-      });
+    if (isFirstRender.current) {
+      // Set initial state without animation
+      if (isOpen) {
+        gsap.set(contentRef.current, { display: "block", height: "auto", opacity: 1 });
+        gsap.set(chevronRef.current, { rotation: 180 });
+      } else {
+        gsap.set(contentRef.current, { display: "none" });
+        gsap.set(chevronRef.current, { rotation: 0 });
+      }
+      isFirstRender.current = false;
+      return;
     }
-  }, []);
 
-  const handleToggle = () => {
-    const content = contentRef.current;
-
-    if (!isOpen) {
-      gsap.set(content, { display: "block", height: 0, opacity: 0 });
-      gsap.to(content, {
-        height: "auto",
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-      gsap.to(chevronRef.current, {
-        rotation: 180,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+    // Animate on subsequent changes
+    if (isOpen) {
+      gsap.set(contentRef.current, { display: "block", height: 0, opacity: 0 });
+      gsap.to(contentRef.current, { height: "auto", opacity: 1, duration: 0.4, ease: "power2.out" });
+      gsap.to(chevronRef.current, { rotation: 180, duration: 0.3, ease: "power2.out" });
     } else {
-      gsap.to(content, {
+      gsap.to(contentRef.current, {
         height: 0,
         opacity: 0,
         duration: 0.3,
         ease: "power2.in",
-        onComplete: () => gsap.set(content, { display: "none" }),
+        onComplete: () => gsap.set(contentRef.current, { display: "none" }),
       });
-      gsap.to(chevronRef.current, {
-        rotation: 0,
-        duration: 0.3,
-        ease: "power2.in",
-      });
+      gsap.to(chevronRef.current, { rotation: 0, duration: 0.3, ease: "power2.in" });
     }
-
-    setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   return (
     <div
       className="border-t border-white/15 py-8 cursor-pointer"
-      onClick={handleToggle}
+      onClick={onToggle}
     >
       <div className="flex items-start justify-between gap-8">
-        {/* Left — Title + Description */}
         <div className="flex-1">
-          {/* Title */}
           <p className="text-white font-medium text-[16px] lg:text-[24px]">
             {item.title}
           </p>
-
-          {/* Expandable description */}
-          <div ref={contentRef} className="hidden overflow-hidden">
+          <div ref={contentRef} className="overflow-hidden">
             <p className="text-white/60 text-sm lg:text-[18px] leading-relaxed mt-3">
               {item.description}
             </p>
           </div>
         </div>
 
-        {/* Right — Chevron (visual only) */}
         <div className="shrink-0 mt-1">
           <svg
             ref={chevronRef}

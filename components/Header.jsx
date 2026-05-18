@@ -22,7 +22,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#" className="shrink-0">
             <img
-              src="/logo.svg"
+              src="/new logo.svg"
               alt="Logo"
               className="h-10 w-auto object-contain"
             />
@@ -43,7 +43,24 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <button className="rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-colors duration-200 hover:bg-white/90">
+            <button
+              className="  rounded-full
+        bg-white
+        px-10
+        py-3
+        text-lg
+        font-semibold
+        text-black
+
+        transition-all
+        duration-250
+
+        hover:bg-[#45C7F0]
+        hover:text-white
+        hover:cursor-pointer
+  
+      "
+            >
               CTA
             </button>
           </div>

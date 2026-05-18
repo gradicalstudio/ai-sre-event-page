@@ -5,12 +5,21 @@ import { gsap } from "gsap";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 
-export default function AgendaItem({ item }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function AgendaItem({ item,defaultOpen=false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
   useEffect(() => {
-    gsap.set(chevronRef.current, { rotation: 180 });
+    if (defaultOpen) {
+      gsap.set(contentRef.current, {
+        display: "block",
+        height: "auto",
+        opacity: 1,
+      });
+      gsap.set(chevronRef.current, { rotation: 0 });
+    } else {
+      gsap.set(chevronRef.current, { rotation: 180 });
+    }
   }, []);
 
   const hasDescription =
