@@ -707,6 +707,41 @@ export type SectorsRepresentedSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *SpeakerTakeaway → Default → Primary → Blocks*
+ */
+export interface SpeakerTakeawaySliceDefaultPrimaryBlocksItem {
+  /**
+   * icon field in *SpeakerTakeaway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.blocks[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Heading field in *SpeakerTakeaway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.blocks[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * description field in *SpeakerTakeaway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.blocks[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *SpeakerTakeaway → Default → Primary*
  */
 export interface SpeakerTakeawaySliceDefaultPrimary {
@@ -719,6 +754,18 @@ export interface SpeakerTakeawaySliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField;
+
+  /**
+   * Blocks field in *SpeakerTakeaway → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.blocks[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  blocks: prismic.GroupField<
+    Simplify<SpeakerTakeawaySliceDefaultPrimaryBlocksItem>
+  >;
 }
 
 /**
@@ -1303,6 +1350,7 @@ declare module "@prismicio/client" {
       SectorsRepresentedSliceVariation,
       SectorsRepresentedSliceDefault,
       SpeakerTakeawaySlice,
+      SpeakerTakeawaySliceDefaultPrimaryBlocksItem,
       SpeakerTakeawaySliceDefaultPrimary,
       SpeakerTakeawaySliceVariation,
       SpeakerTakeawaySliceDefault,

@@ -12,7 +12,7 @@ const Agenda = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       id="agenda"
-      className="bg-[#04050F] lg:p-20 md:my-15 relative"
+      className="relative bg-[#04050F] px-6 md:px-8 lg:px-20 py-16 md:py-20 lg:py-24"
     >
       <div>
         {/* First row */}
