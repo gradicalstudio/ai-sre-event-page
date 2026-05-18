@@ -113,7 +113,7 @@ const StageFormats = ({ slice }) => {
   }, []);
 
   return (
-    <Bounded className="bg-[#04050F] text-white overflow-hidden md:px-80">
+    <Bounded className="bg-[#04050F] text-white overflow-hidden ">
       <section
         id="stage-formats"
         ref={sectionRef}
@@ -136,7 +136,7 @@ const StageFormats = ({ slice }) => {
                   ref={arrowRef}
                   src="/arrow.svg"
                   alt=""
-                  className="w-4 md:w-5 lg:w-10 object-contain flex-shrink-0"
+                  className="w-4 md:w-5 lg:w-6 object-contain flex-shrink-0"
                 />
 
                 {/* Heading */}
@@ -155,7 +155,7 @@ const StageFormats = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-3xl md:text-5xl leading-[1.2] lg:leading-[0.95] font-medium">
+                        <p className="text-3xl md:text-6xl leading-[1.2] lg:leading-[0.95] font-medium">
                           {children}
                         </p>
                       ),
@@ -238,7 +238,7 @@ const StageFormats = ({ slice }) => {
                   <PrismicNextImage
                     field={item.icon}
                     fallbackAlt=""
-                    className="w-8 h-8 object-contain"
+                    className="w-10 h-10 object-contain"
                   />
                 </div>
 

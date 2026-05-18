@@ -19,23 +19,28 @@ const SectorsRepresented = ({ slice }) => {
         {/* LEFT — Fixed heading */}
         <div className="flex items-center gap-3 shrink-0">
           <img className="w-3 md:w-4 lg:w-6 object-contain" src="/arrow.svg" />
-          <div className="text-white text-3xl md:text-5xl lg:text-4xl font-medium ">
+          <div className="text-white text-3xl md:text-5xl lg:text-6xl font-medium ">
             <PrismicRichText field={slice.primary.heading} />
           </div>
         </div>
 
         {/* RIGHT — Marquee */}
-        <div className="w-full lg:flex-1 overflow-hidden md:px-9">
-          <Marquee speed={60} gradient={false}>
+        <div className="relative w-full lg:flex-1 min-w-0 overflow-hidden">
+          <Marquee speed={60} gradient={false} className="overflow-hidden">
             {slice.primary.marquee.map((item, index) => (
               <span key={index} className="flex items-center gap-4 px-4">
-                <span className="text-white/50 text-[18px] lg:text-2xl whitespace-nowrap">
+                <span className="text-white/80 text-[18px] lg:text-3xl whitespace-nowrap    leading-none">
                   {item.partners}
                 </span>
-                <span className="text-orange-500 text-xs">▪</span>
+                <img className="w-1 lg:w-2 object-contain" src="/bullet.svg" />
               </span>
             ))}
           </Marquee>
+          {/* LEFT FADE */}
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-24 lg:w-32 bg-gradient-to-r from-[#04050F] to-transparent z-10" />
+
+          {/* RIGHT FADE */}
+          <div className="pointer-events-none absolute top-0 right-0 h-full w-24 lg:w-32 bg-gradient-to-l from-[#04050F] to-transparent z-10" />
         </div>
       </section>
     </Bounded>
