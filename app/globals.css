@@ -45,3 +45,12 @@ select option {
   background-color: #040516;
   color: white;
 }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
