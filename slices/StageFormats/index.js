@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FormModal from "@/components/FormModal";
 import Bounded from "@/components/Bounded";
+import PrimaryButton from "@/components/PrimaryButton";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
@@ -112,7 +113,7 @@ const StageFormats = ({ slice }) => {
   }, []);
 
   return (
-    <Bounded className="bg-[#04050F] text-white overflow-hidden">
+    <Bounded className="bg-[#04050F] text-white overflow-hidden md:px-80">
       <section
         id="stage-formats"
         ref={sectionRef}
@@ -177,12 +178,10 @@ const StageFormats = ({ slice }) => {
                     ),
                   }}
                 />
-                <button
+                <PrimaryButton
+                  buttonText="Interested to Speak"
                   onClick={() => setIsSpeakerOpen(true)}
-                  className="bg-[#57D9FF] text-black px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(87,217,255,0.3)]"
-                >
-                  Interested to Speak
-                </button>
+                />
               </div>
             </div>
           </div>

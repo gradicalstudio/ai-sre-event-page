@@ -17,7 +17,7 @@ const PrimaryButton = ({ buttonText, onClick }) => {
         hover:bg-[#45C7F0]
         hover:text-white
         hover:cursor-pointer
-    hover:shadow-[0_0_15px_rgba(69,199,240,0.45)]
+  
       "
     >
       {buttonText}
