@@ -19,7 +19,7 @@ const SectorsRepresented = ({ slice }) => {
         {/* LEFT — Fixed heading */}
         <div className="flex items-center gap-3 shrink-0">
           <img className="w-3 md:w-4 lg:w-6 object-contain" src="/arrow.svg" />
-          <div className="text-white text-3xl md:text-5xl lg:text-6xl  font-medium ">
+          <div className="text-white text-3xl md:text-[38px] lg:text-[38px]  font-medium ">
             <PrismicRichText field={slice.primary.heading} />
           </div>
         </div>
@@ -29,7 +29,7 @@ const SectorsRepresented = ({ slice }) => {
           <Marquee speed={60} gradient={false} className="overflow-hidden">
             {slice.primary.marquee.map((item, index) => (
               <span key={index} className="flex items-center gap-4 px-4">
-                <span className="text-white/80 text-[18px] lg:text-3xl whitespace-nowrap    leading-none">
+                <span className="text-white/80 text-[18px] lg:text-[24.26px] whitespace-nowrap    leading-none">
                   {item.partners}
                 </span>
                 <img className="w-1 lg:w-2 object-contain" src="/bullet.svg" />

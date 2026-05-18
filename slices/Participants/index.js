@@ -20,15 +20,12 @@ const Partners = ({ slice }) => {
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
-  // Reset the array on re-render to avoid duplicating refs
   cellsRef.current = [];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Filter out any null elements from the ref array
       const validCells = cellsRef.current.filter(Boolean);
 
-      // Initial states
       gsap.set(gridRef.current, {
         opacity: 0,
         scale: 0.96,
@@ -36,7 +33,7 @@ const Partners = ({ slice }) => {
 
       gsap.set(validCells, {
         opacity: 0,
-        y: 20, // Reduced from 30 for a tighter mobile feel
+        y: 20,
       });
 
       gsap.set(cornersRef.current, {
@@ -44,11 +41,10 @@ const Partners = ({ slice }) => {
         scale: 0.7,
       });
 
-      // Entrance animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%", // Triggers slightly earlier on mobile scroll
+          start: "top 80%",
           once: true,
         },
       });
@@ -56,7 +52,7 @@ const Partners = ({ slice }) => {
       tl.to(gridRef.current, {
         opacity: 1,
         scale: 1,
-        duration: 0.6, // Snappier duration
+        duration: 0.6,
         ease: "power3.out",
       })
         .to(
@@ -65,7 +61,7 @@ const Partners = ({ slice }) => {
             opacity: 1,
             y: 0,
             duration: 0.5,
-            stagger: 0.05, // Snappier stagger rate
+            stagger: 0.05,
             ease: "power3.out",
           },
           "-=0.4",
@@ -82,20 +78,15 @@ const Partners = ({ slice }) => {
           "-=0.3",
         );
 
-      // Glass reflection loop (Optimized)
+      // Glass reflection loop
       validCells.forEach((cell, index) => {
-        // Skip title cell
         if (!cell || index === 0) return;
-
-        // PERFORMANCE CHECK: Skip heavy reflection effects on slow/mobile devices
-        if (window.matchMedia("(max-width: 768px)").matches) {
-          return;
-        }
 
         cell.style.position = "relative";
         cell.style.overflow = "hidden";
 
         const reflection = document.createElement("div");
+
         reflection.className = `
           absolute top-[-40%] left-[-150%]
           h-[240%] w-[45%]
@@ -114,7 +105,6 @@ const Partners = ({ slice }) => {
         cell.appendChild(reflection);
 
         const animateReflection = () => {
-          // Use parent container width instead of window.innerWidth for accurate translation
           const cellWidth = cell.offsetWidth;
           const distance = cellWidth * 3;
 
@@ -131,6 +121,7 @@ const Partners = ({ slice }) => {
               ease: "power2.inOut",
               onComplete: () => {
                 gsap.set(reflection, { x: 0, opacity: 0 });
+
                 gsap.delayedCall(Math.random() * 6 + 2, animateReflection);
               },
             },
@@ -144,15 +135,17 @@ const Partners = ({ slice }) => {
     return () => ctx.revert();
   }, []);
 
+  const bottomCompanies = slice.primary.companies?.slice(3, 7) || [];
+
   return (
     <Bounded className="bg-[#04050F] overflow-hidden">
       <section
         ref={sectionRef}
-        className="bg-[#04050F]  overflow-hidden"
+        className="bg-[#04050F] overflow-hidden"
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
       >
-        <div ref={gridRef} className="group relative ">
+        <div ref={gridRef} className="group relative">
           {/* Main Border */}
           <div className="border border-white/20">
             <div className="grid grid-cols-2 md:grid-cols-4">
@@ -162,12 +155,12 @@ const Partners = ({ slice }) => {
                   if (el) cellsRef.current.push(el);
                 }}
                 className="
-                font-mono
-                flex min-h-[90px] md:min-h-[110px]
-                items-center justify-center
-                border-b border-r border-white/20
-                px-4
-              "
+                  font-mono
+                  flex min-h-[90px] md:min-h-[110px]
+                  items-center justify-center
+                  border-b border-r border-white/20
+                  px-4
+                "
               >
                 <h2 className="text-left uppercase text-[#ff5c35] text-[10px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                   Companies
@@ -184,13 +177,12 @@ const Partners = ({ slice }) => {
                     if (el) cellsRef.current.push(el);
                   }}
                   className="
-                  flex min-h-[90px] md:min-h-[110px]
-                  items-center justify-center
-                  border-b border-r border-white/20
-                  px-4 md:px-6
-                  even:border-r-0 md:even:border-r
-                  last:border-r-0
-                "
+                    flex min-h-[90px] md:min-h-[110px]
+                    items-center justify-center
+                    border-b border-r border-white/20
+                    px-4 md:px-6
+                    md:[&:nth-child(4)]:border-r-0
+                  "
                 >
                   <PrismicNextLink field={item.link}>
                     <PrismicNextImage
@@ -202,20 +194,26 @@ const Partners = ({ slice }) => {
               ))}
 
               {/* Bottom Row */}
-              {slice.primary.companies?.slice(3, 7).map((item, index) => (
+              {bottomCompanies.map((item, index) => (
                 <div
                   key={`bottom-${index}`}
                   ref={(el) => {
                     if (el) cellsRef.current.push(el);
                   }}
-                  className="
-                  flex min-h-[90px] md:min-h-[110px]
-                  items-center justify-center
-                  border-r border-white/20
-                  px-4 md:px-6
-                  even:border-r-0 md:even:border-r
-                  last:border-r-0
-                "
+                  className={`
+                    flex min-h-[90px] md:min-h-[110px]
+                    items-center justify-center
+                    border-r border-white/20
+                    px-4 md:px-6
+                    md:[&:last-child]:border-r-0
+
+                    ${
+                      index === bottomCompanies.length - 1 &&
+                      bottomCompanies.length % 2 !== 0
+                        ? "border-r-0"
+                        : ""
+                    }
+                  `}
                 >
                   <PrismicNextLink field={item.link}>
                     <PrismicNextImage
@@ -228,7 +226,6 @@ const Partners = ({ slice }) => {
             </div>
           </div>
 
-          {/* Corner Decorations */}
           {/* TOP LEFT */}
           <img
             ref={(el) => {

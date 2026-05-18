@@ -136,7 +136,7 @@ const WhyThisEvent = ({ slice }) => {
                   ),
 
                   heading2: ({ children }) => (
-                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl lg:text-6xl">
+                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl lg:text-[50px]">
                       {children}
                     </h2>
                   ),
@@ -159,13 +159,15 @@ const WhyThisEvent = ({ slice }) => {
                 ref={(el) => {
                   cardsRef.current[index] = el;
                 }}
-                className="
-                relative
-                py-6
-                opacity-0
-                md:py-10
-                md:pr-10
-              "
+                className={`
+  relative
+  py-6
+  opacity-0
+  md:py-10
+  md:pr-10
+  ${index === 1 ? "md:-ml-10 lg:-ml-16" : ""}
+  ${index === 2 ? "md:-ml-20 lg:-ml-32" : ""}
+`}
               >
                 {/* Icon + Connected Lines */}
                 <div className="relative mb-8 h-[120px] w-[120px] md:mb-10 md:h-[140px] md:w-[140px]">
@@ -264,12 +266,12 @@ const WhyThisEvent = ({ slice }) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="mb-4 max-w-[280px] text-2xl font-medium leading-[1] md:mb-5 md:text-3xl">
+                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] md:mb-5 md:text-[22px]">
                   {item.heading}
                 </h3>
 
                 {/* Description */}
-                <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-lg">
+                <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-[16px]">
                   {item.description}
                 </p>
               </div>

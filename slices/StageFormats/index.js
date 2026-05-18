@@ -31,7 +31,7 @@ const StageFormats = ({ slice }) => {
       gsap.set(cardsRef.current, {
         opacity: 0,
         y: 80,
-        x: 45,
+
         scale: 0.92,
       });
 
@@ -55,7 +55,7 @@ const StageFormats = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 78%",
+          start: "top 90%",
           once: true,
         },
       });
@@ -99,10 +99,10 @@ const StageFormats = ({ slice }) => {
           {
             opacity: 1,
             y: 0,
-            x: 0,
+
             scale: 1,
-            duration: 0.3,
-            stagger: 0.1,
+            duration: 0.45,
+            stagger: 0.04,
             ease: "power3.out",
           },
           "-=0.5",
@@ -155,7 +155,7 @@ const StageFormats = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-3xl md:text-6xl leading-[1.2] lg:leading-[0.95] font-medium">
+                        <p className="text-3xl md:text-[55px] leading-[1.2] ">
                           {children}
                         </p>
                       ),
@@ -172,7 +172,7 @@ const StageFormats = ({ slice }) => {
                   field={slice.primary.short_description}
                   components={{
                     paragraph: ({ children }) => (
-                      <p className="text-white/60 text-base lg:text-lg leading-relaxed mb-10">
+                      <p className="text-white/60 text-base lg:text-[16.61px] leading-relaxed mb-10">
                         {children}
                       </p>
                     ),
@@ -250,12 +250,12 @@ const StageFormats = ({ slice }) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-medium mb-5 relative z-10">
+                <h3 className="text-[22px] font-medium mb-5 relative z-10">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <div className="text-white text-lg relative z-10">
+                <div className="text-white text-[16px] relative z-10">
                   <p>{item.description}</p>
                 </div>
               </div>
