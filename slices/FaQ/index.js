@@ -1,4 +1,5 @@
 "use client";
+
 import FaqItem from "@/components/FaqItem";
 import { useState } from "react";
 import { PrismicRichText } from "@prismicio/react";
@@ -8,43 +9,80 @@ import { PrismicRichText } from "@prismicio/react";
  * @typedef {import("@prismicio/react").SliceComponentProps<FaQSlice>} FaQProps
  * @type {import("react").FC<FaQProps>}
  */
+
 const FaQ = ({ slice }) => {
   const [openIndex, setOpenIndex] = useState(0);
+
   return (
     <section
       id="faq"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative bg-[#04050F] overflow-hidden px-12 lg:px-20 py-16 lg:py-44"
+      className="
+        relative
+        bg-[#04050F]
+        px-12 lg:px-20
+        py-16 lg:py-44
+        z-10
+      "
     >
-      {/* Left gradient SVG */}
+      {/* Left Gradient */}
       <img
         src="/left side.svg"
-        className="absolute -left-5 top-1/2 -translate-y-1/2 pointer-events-none z-0 select-none w-[130px] lg:w-auto"
+        alt=""
+        className="
+          absolute
+          -left-30 lg:-left-24
+          top-1/2
+          -translate-y-1/2
+          pointer-events-none
+         z-[100]
+          select-none
+           md:  w-[320px]
+  md:h-[800px]
+      h-[700px]
+      w-[120px]
+      
+          opacity-90
+        "
         style={{
-          maskImage: "linear-gradient(to right, black 1%, transparent 100%)",
+          maskImage: "linear-gradient(to right, black 10%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, black 1%, transparent 100%)",
+            "linear-gradient(to right, black 10%, transparent 100%)",
         }}
       />
 
-      {/* Right gradient SVG */}
+      {/* Right Gradient */}
       <img
         src="/rightside.svg"
-        className="absolute -right-5 top-1/2 -translate-y-1/2 pointer-events-none z-0 select-none w-[130px] lg:w-auto"
+        alt=""
+        className="
+          absolute
+          -right-16 lg:-right-24
+          top-1/2
+          -translate-y-1/2
+          pointer-events-none
+          z-[100]
+          select-none
+            md:w-[320px]
+  md:h-[800px]
+          opacity-90
+        "
         style={{
-          maskImage: "linear-gradient(to left, black 1%, transparent 100%)",
+          maskImage: "linear-gradient(to left, black 10%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to left, black 1%, transparent 100%)",
+            "linear-gradient(to left, black 10%, transparent 100%)",
         }}
       />
 
-      {/* Content above gradients */}
+      {/* Content */}
       <div className="relative z-10 lg:px-20">
+        {/* Heading */}
         <div className="text-white font-medium text-3xl lg:text-[38px] mb-10 lg:mb-16">
           <PrismicRichText field={slice.primary.heading} />
         </div>
 
+        {/* FAQ Items */}
         <div>
           {slice.primary.faq.map((item, index) => (
             <FaqItem
