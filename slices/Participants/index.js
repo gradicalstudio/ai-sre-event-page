@@ -138,76 +138,75 @@ const Partners = ({ slice }) => {
   const bottomCompanies = slice.primary.companies?.slice(3, 7) || [];
 
   return (
-    <Bounded>
-      <section
-        className="bg-[#04050F] mx-auto w-full
+    <section
+      className="bg-[#04050F] mx-auto w-full
           max-w-[1000px]
           2xl:max-w-[1320px]
           px-3 md:px-6 lg:px-8
-          pb-10 pt-10 md:pt-0 md:pb-14 lg:pb-30"
+          py-10 md:pb-14 lg:pb-30"
+    >
+      <section
+        ref={sectionRef}
+        className="bg-[#04050F] overflow-hidden"
+        data-slice-type={slice.slice_type}
+        data-slice-variation={slice.variation}
       >
-        <section
-          ref={sectionRef}
-          className="bg-[#04050F] overflow-hidden"
-          data-slice-type={slice.slice_type}
-          data-slice-variation={slice.variation}
-        >
-          <div ref={gridRef} className="group relative">
-            {/* Main Border */}
-            <div className="border border-white/20">
-              <div className="grid grid-cols-2 md:grid-cols-4">
-                {/* Title Cell */}
-                <div
-                  ref={(el) => {
-                    if (el) cellsRef.current.push(el);
-                  }}
-                  className="
+        <div ref={gridRef} className="group relative">
+          {/* Main Border */}
+          <div className="border border-white/20">
+            <div className="grid grid-cols-2 md:grid-cols-4">
+              {/* Title Cell */}
+              <div
+                ref={(el) => {
+                  if (el) cellsRef.current.push(el);
+                }}
+                className="
                   font-mono
                   flex min-h-[90px] md:min-h-[110px]
                   items-center justify-center
                   border-b border-r border-white/20
                   px-4
                 "
-                >
-                  <h2 className="text-left uppercase text-[#ff5c35] text-[10px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                    Companies
-                    <br />
-                    Participating
-                  </h2>
-                </div>
+              >
+                <h2 className="text-left uppercase text-[#ff5c35] text-[10px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
+                  Companies
+                  <br />
+                  Participating
+                </h2>
+              </div>
 
-                {/* Top Row */}
-                {slice.primary.companies?.slice(0, 3).map((item, index) => (
-                  <div
-                    key={`top-${index}`}
-                    ref={(el) => {
-                      if (el) cellsRef.current.push(el);
-                    }}
-                    className="
+              {/* Top Row */}
+              {slice.primary.companies?.slice(0, 3).map((item, index) => (
+                <div
+                  key={`top-${index}`}
+                  ref={(el) => {
+                    if (el) cellsRef.current.push(el);
+                  }}
+                  className="
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
                     border-b border-r border-white/20
                     px-4 md:px-6
                     md:[&:nth-child(4)]:border-r-0
                   "
-                  >
-                    <PrismicNextLink field={item.link}>
-                      <PrismicNextImage
-                        field={item.logo}
-                        className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                      />
-                    </PrismicNextLink>
-                  </div>
-                ))}
+                >
+                  <PrismicNextLink field={item.link}>
+                    <PrismicNextImage
+                      field={item.logo}
+                      className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                    />
+                  </PrismicNextLink>
+                </div>
+              ))}
 
-                {/* Bottom Row */}
-                {bottomCompanies.map((item, index) => (
-                  <div
-                    key={`bottom-${index}`}
-                    ref={(el) => {
-                      if (el) cellsRef.current.push(el);
-                    }}
-                    className={`
+              {/* Bottom Row */}
+              {bottomCompanies.map((item, index) => (
+                <div
+                  key={`bottom-${index}`}
+                  ref={(el) => {
+                    if (el) cellsRef.current.push(el);
+                  }}
+                  className={`
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
                     border-r border-white/20
@@ -221,61 +220,60 @@ const Partners = ({ slice }) => {
                         : ""
                     }
                   `}
-                  >
-                    <PrismicNextLink field={item.link}>
-                      <PrismicNextImage
-                        field={item.logo}
-                        className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                      />
-                    </PrismicNextLink>
-                  </div>
-                ))}
-              </div>
+                >
+                  <PrismicNextLink field={item.link}>
+                    <PrismicNextImage
+                      field={item.logo}
+                      className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                    />
+                  </PrismicNextLink>
+                </div>
+              ))}
             </div>
-
-            {/* TOP LEFT */}
-            <img
-              ref={(el) => {
-                cornersRef.current[0] = el;
-              }}
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute top-0 left-0 -rotate-90"
-            />
-
-            {/* TOP RIGHT */}
-            <img
-              ref={(el) => {
-                cornersRef.current[1] = el;
-              }}
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute top-0 right-0"
-            />
-
-            {/* BOTTOM RIGHT */}
-            <img
-              ref={(el) => {
-                cornersRef.current[2] = el;
-              }}
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute bottom-0 right-0 rotate-90"
-            />
-
-            {/* BOTTOM LEFT */}
-            <img
-              ref={(el) => {
-                cornersRef.current[3] = el;
-              }}
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute bottom-0 left-0 rotate-180"
-            />
           </div>
-        </section>
+
+          {/* TOP LEFT */}
+          <img
+            ref={(el) => {
+              cornersRef.current[0] = el;
+            }}
+            src="/Rectangle 574056928.svg"
+            alt=""
+            className="absolute top-0 left-0 -rotate-90"
+          />
+
+          {/* TOP RIGHT */}
+          <img
+            ref={(el) => {
+              cornersRef.current[1] = el;
+            }}
+            src="/Rectangle 574056928.svg"
+            alt=""
+            className="absolute top-0 right-0"
+          />
+
+          {/* BOTTOM RIGHT */}
+          <img
+            ref={(el) => {
+              cornersRef.current[2] = el;
+            }}
+            src="/Rectangle 574056928.svg"
+            alt=""
+            className="absolute bottom-0 right-0 rotate-90"
+          />
+
+          {/* BOTTOM LEFT */}
+          <img
+            ref={(el) => {
+              cornersRef.current[3] = el;
+            }}
+            src="/Rectangle 574056928.svg"
+            alt=""
+            className="absolute bottom-0 left-0 rotate-180"
+          />
+        </div>
       </section>
-    </Bounded>
+    </section>
   );
 };
 
