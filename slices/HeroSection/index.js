@@ -24,7 +24,7 @@ const HeroSection = ({ slice }) => {
 
   return (
     <>
-      <Bounded innerClassName="pt-0 md:pt-0 lg:pt-0 pb-10 md:pb-14 lg:pb-30">
+      <Bounded innerClassName="pt-0 md:pt-0 lg:pt-0 pb-10  ">
         <section
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
@@ -139,17 +139,17 @@ const HeroSection = ({ slice }) => {
           />
         </section>
       </Bounded>
-
-      {/* Bottom Gradient */}
-      <div className="relative w-full inset-x-0 -mt-20 h-90 overflow-hidden">
+      <div className="inset-x-0 xl:-mt-60 h-30 xl:h-70 overflow-hidden blur-2xl">
         <div className="absolute h-65 top-0 w-full">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
         </div>
 
-        <div className="absolute h-137.5 -top-35 w-full">
+        {/* <div className="absolute h-137.5 -top-35 w-full">
           <img className="w-full h-full object-cover" src="/toplayer.svg" />
-        </div>
+        </div> */}
       </div>
+
+      {/* Bottom Gradient */}
     </>
   );
 };

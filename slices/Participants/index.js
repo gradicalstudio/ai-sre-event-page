@@ -138,7 +138,13 @@ const Partners = ({ slice }) => {
   const bottomCompanies = slice.primary.companies?.slice(3, 7) || [];
 
   return (
-    <Bounded className="bg-[#04050F] overflow-hidden">
+    <section
+      className="bg-[#04050F] mx-auto w-full
+          max-w-[1000px]
+          2xl:max-w-[1320px]
+          px-3 md:px-6 lg:px-8
+          pb-10 pt-10 md:pt-0 md:pb-14 lg:pb-30"
+    >
       <section
         ref={sectionRef}
         className="bg-[#04050F] overflow-hidden"
@@ -267,7 +273,7 @@ const Partners = ({ slice }) => {
           />
         </div>
       </section>
-    </Bounded>
+    </section>
   );
 };
 
