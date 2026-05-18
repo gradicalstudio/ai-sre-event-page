@@ -27,7 +27,7 @@ const HeroSection = ({ slice }) => {
         className=" min-h-screen w-full bg-[#04050F] flex flex-col  justify-center gap-6 px-6 lg:px-15 pt-24 lg:pt-28 text-white"
       >
         <div className="flex flex-col lg:flex-row gap-10 ">
-          <div className="lg:w-[46%]">
+          <div className="lg:w-[46%] flex flex-col justify-between">
             {/* Left Side */}
             <div className="flex flex-col gap-4">
               <div className="max-w-4xl text-4xl md:text-6xl lg:text-[67px] font-medium lg:leading-[1.1]">
@@ -57,26 +57,26 @@ const HeroSection = ({ slice }) => {
                 onClick={() => setIsSpeakerOpen(true)}
               />
             </div>
-            <div className="flex mt-10 flex-col w-full gap-4">
-              <div className="flex items-center lg:w-[90%]">
+            <div className="flex mt-10 flex-col w-full">
+              <div className="flex items-center w-full lg:w-[95%]">
                 <div className="flex w-full gap-2">
                   <img className="w-4 lg:w-5.5" src="/calender.svg" />
                   <PrismicNextLink
-                    className="text-xs md:text-base lg:text-[18.5px]"
+                    className="text-xs md:text-base lg:text-[14px]"
                     field={slice.primary.date}
                   />
                 </div>
-                <div className="flex w-full gap-2 text-xs md:text-base lg:text-[18.5px]">
+                <div className="flex w-full gap-2 text-xs md:text-base lg:text-[14px]">
                   <img className="w-4 lg:w-5.5" src="clock.svg" />
                   <p>{slice.primary.time}</p>
                 </div>
-              </div>
-              <div className="flex gap-2">
-                <img className="w-3.5 lg:w-4.5" src="/Location pin.svg" />
-                <PrismicNextLink
-                  className="text-xs md:text-base lg:text-[18.5px]"
-                  field={slice.primary.location}
-                />
+                <div className="flex w-full gap-2">
+                  <img className="w-4 lg:w-4.5" src="/Location pin.svg" />
+                  <PrismicNextLink
+                    className="text-xs md:text-base lg:text-[14px]"
+                    field={slice.primary.location}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -109,11 +109,11 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative w-full inset-x-0 -mt-20 -z-10  h-90 overflow-hidden">
+      <div className="relative w-full inset-x-0 -mt-20   h-90 overflow-hidden">
         <div className="absolute h-65  top-0  w-full">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
         </div>
-        <div className="absolute h-150 -top-40 w-full ">
+        <div className="absolute h-137.5  -top-35  w-full ">
           <img className="w-full h-full object-cover" src="/toplayer.svg" />
         </div>
       </div>

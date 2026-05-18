@@ -160,6 +160,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
               md:max-w-[500px]
               md:text-5xl
+              lg:text-6xl
             "
             >
               <PrismicRichText field={slice.primary.heading} />

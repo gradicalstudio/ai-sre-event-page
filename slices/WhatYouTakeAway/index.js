@@ -20,7 +20,7 @@ const WhatYouTakeAway = ({ slice }) => {
           {/* LEFT — Heading */}
           <div className="flex items-start gap-4 lg:gap-6 lg:w-[38%]  shrink-0">
             <img
-              className="w-3 md:w-4 lg:w-6 mt-2 object-contain"
+              className="w-3 md:w-4 h-auto lg:w-6 mt-2 object-contain"
               src="/arrow.svg"
             />
             <div className="text-white text-3xl md:text-6xl leading-[1.2] lg:leading-[0.95] font-medium">

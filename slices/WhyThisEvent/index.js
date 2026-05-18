@@ -122,7 +122,7 @@ const WhyThisEvent = ({ slice }) => {
               ref={arrowRef}
               src="/arrow.svg"
               alt=""
-              className="w-3 object-contain opacity-0 md:w-4 lg:w-10"
+              className="w-3 object-contain opacity-0 md:w-4 lg:w-6"
             />
 
             <div ref={headingRef} className="opacity-0">
@@ -136,7 +136,7 @@ const WhyThisEvent = ({ slice }) => {
                   ),
 
                   heading2: ({ children }) => (
-                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl">
+                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl lg:text-6xl">
                       {children}
                     </h2>
                   ),
