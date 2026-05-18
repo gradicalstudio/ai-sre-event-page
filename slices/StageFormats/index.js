@@ -123,14 +123,14 @@ const StageFormats = ({ slice }) => {
       >
         <div className="">
           {/* Top Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25 xl:mb-18">
             {/* Left Content */}
             <div>
-              <p className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-6 font-mono">
+              <p className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-1 font-mono">
                 {slice.primary.stage_format}
               </p>
 
-              <div className="flex items-center gap-3 lg:gap-6">
+              <div className="flex items-center gap-3 lg:gap-3">
                 {/* Arrow */}
                 <img
                   ref={arrowRef}

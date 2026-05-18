@@ -25,7 +25,7 @@ const FaQ = ({ slice }) => {
         relative
         bg-[#04050F]
         px-12 lg:px-20
-        py-16 lg:py-44
+        py-16 lg:pb-44
         z-10
       "
     >
@@ -62,8 +62,7 @@ const FaQ = ({ slice }) => {
         src="/rightside.svg"
         alt=""
         className="
-         hidden
-        md:block
+        
           absolute
           -right-16 lg:-right-24
           top-1/2

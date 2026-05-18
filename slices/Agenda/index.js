@@ -12,7 +12,7 @@ const Agenda = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       id="agenda"
-      className="relative bg-[#04050F] px-6 md:px-8 lg:px-20 py-16 md:py-20 lg:py-24"
+      className="relative bg-[#04050F] px-6 md:px-8 lg:px-20 pb-16 md:pb-20 lg:pb-43 "
     >
       <div className="grid grid-cols-[6%_1fr_6%] lg:grid-cols-[15%_1fr_15%] grid-rows-[auto_1fr_auto]">
         {/* Row 1 - top corners */}

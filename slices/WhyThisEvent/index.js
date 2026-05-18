@@ -117,7 +117,7 @@ const WhyThisEvent = ({ slice }) => {
       >
         <div className="">
           {/* Heading */}
-          <div className="mb-10 flex items-center gap-4 md:mb-20 md:gap-3">
+          <div className="mb-17 flex items-center gap-4 lg:mb-17 md:gap-3">
             <img
               ref={arrowRef}
               src="/arrow.svg"
@@ -161,9 +161,10 @@ const WhyThisEvent = ({ slice }) => {
                 }}
                 className={`
   relative
-  py-6
+  
   opacity-0
-  md:py-10
+${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
+
   md:pr-10
   ${index === 1 ? "md:-ml-10 lg:-ml-16" : ""}
   ${index === 2 ? "md:-ml-20 lg:-ml-32" : ""}
