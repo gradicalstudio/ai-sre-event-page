@@ -19,6 +19,9 @@ const FaQ = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="
+      
+      scrollbar-none
+       overflow-hidden
         relative
         bg-[#04050F]
         px-12 lg:px-20
@@ -31,6 +34,8 @@ const FaQ = ({ slice }) => {
         src="/left side.svg"
         alt=""
         className="
+        hidden
+        md:block
           absolute
           -left-30 lg:-left-24
           top-1/2
@@ -57,6 +62,8 @@ const FaQ = ({ slice }) => {
         src="/rightside.svg"
         alt=""
         className="
+         hidden
+        md:block
           absolute
           -right-16 lg:-right-24
           top-1/2
