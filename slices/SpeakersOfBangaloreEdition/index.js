@@ -169,11 +169,11 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           {/* SPEAKERS */}
 
           <div
-            className="
+            className=" 
             flex flex-wrap items-start justify-center
             gap-x-8 gap-y-14
             md:gap-x-10 md:gap-y-16
-            lg:gap-x-16 lg:gap-y-20
+            lg:gap-x-16 lg:gap-y-22
           "
           >
             {slice.primary.speaker.map((item, index) => (
@@ -182,9 +182,9 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
                 ref={(el) => (cardsRef.current[index] = el)}
                 className="
                 group relative
-                w-[140px]
-                md:w-[190px]
-                lg:w-[250px]
+              w-[160px]
+md:w-[220px]
+lg:w-[300px]
               "
               >
                 {/* IMAGE */}
@@ -192,9 +192,9 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
                 <div
                   className="
                   relative overflow-hidden rounded-full
-                  mt-0 h-[140px] w-[140px]
-                  md:mt-8 md:h-[190px] md:w-[190px]
-                  lg:mt-20 lg:h-[250px] lg:w-[250px]
+                  mt-0 h-[160px] w-[160px]
+md:mt-8 md:h-[220px] md:w-[220px]
+lg:mt-20 lg:h-[290px] lg:w-[290px]
                 "
                 >
                   <PrismicNextImage
