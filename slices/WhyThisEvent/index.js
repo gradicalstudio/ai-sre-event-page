@@ -111,16 +111,16 @@ const WhyThisEvent = ({ slice }) => {
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="overflow-hidden bg-[#04050F] px-6 py-24 text-white md:px-10 xl:px-20"
+      className="overflow-hidden bg-[#04050F] px-6 py-14 text-white md:px-14 xl:px-20"
     >
       <div className="mx-auto max-w-[1400px]">
         {/* Heading */}
-        <div className="mb-16 flex items-center gap-4 md:mb-20 md:gap-5">
+        <div className="mb-10 flex items-center gap-4 md:mb-20 md:gap-3">
           <img
             ref={arrowRef}
             src="/arrow.svg"
             alt=""
-            className="w-5 object-contain opacity-0 md:w-8 lg:w-10"
+            className="w-3 object-contain opacity-0 md:w-4 lg:w-10"
           />
 
           <div ref={headingRef} className="opacity-0">
@@ -134,13 +134,13 @@ const WhyThisEvent = ({ slice }) => {
                 ),
 
                 heading2: ({ children }) => (
-                  <h2 className="text-4xl font-medium leading-[0.95] md:text-6xl">
+                  <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl">
                     {children}
                   </h2>
                 ),
 
                 paragraph: ({ children }) => (
-                  <p className="text-4xl font-medium leading-[0.95] md:text-6xl">
+                  <p className="text-4xl font-medium leading-[0.95] md:text-5xl">
                     {children}
                   </p>
                 ),
@@ -150,7 +150,7 @@ const WhyThisEvent = ({ slice }) => {
         </div>
 
         {/* Features */}
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-0">
+        <div className="grid grid-cols-1 lg:gap-7 md:grid-cols-3 md:gap-0">
           {slice.primary.event_features.map((item, index) => (
             <div
               key={index}
@@ -267,7 +267,7 @@ const WhyThisEvent = ({ slice }) => {
               </h3>
 
               {/* Description */}
-              <p className="max-w-[320px] text-lg leading-relaxed text-white/60 md:text-xl">
+              <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-lg">
                 {item.description}
               </p>
             </div>

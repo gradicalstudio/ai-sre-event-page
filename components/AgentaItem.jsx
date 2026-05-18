@@ -56,7 +56,7 @@ export default function AgendaItem({ item }) {
 
   return (
     <div
-      className="border-t font-sans border-white/10 px-4 py-6 cursor-pointer"
+      className="border-t font-sans border-white/10 mx-4 py-6 cursor-pointer"
       onClick={handleToggle}
     >
       <div
@@ -69,7 +69,7 @@ export default function AgendaItem({ item }) {
         {/* TIME + ICON (mobile: stacked in col 1) */}
         <div className="flex flex-col items-start gap-2 row-start-1">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-white text-xs lg:text-base pt-1">
+            <span className="text-white text-[13px] lg:text-base pt-1">
               {item.time}
             </span>
             {item.icon?.url && (
@@ -104,7 +104,7 @@ export default function AgendaItem({ item }) {
           <div className="row-start-1 col-start-3 lg:col-start-3 lg:pt-1 flex items-center">
             <svg
               ref={chevronRef}
-              width="18"
+              width="14"
               height="10"
               viewBox="0 0 18 10"
               fill="none"
@@ -137,7 +137,7 @@ export default function AgendaItem({ item }) {
           >
             <div className="pt-3 flex flex-col gap-4">
               {hasDescription && (
-                <div className="text-white/60 text-sm leading-relaxed">
+                <div className="text-white/60 text-xs md:text-sm leading-relaxed">
                   <PrismicRichText field={item.short_description} />
                 </div>
               )}

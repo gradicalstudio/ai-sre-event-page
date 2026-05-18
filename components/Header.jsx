@@ -14,8 +14,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#04050F]/80 backdrop-blur-md border-b border-white/10">
-      <div className="px-6 lg:px-15 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#04050F]/80 backdrop-blur-md ">
+      <div className="px-6 lg:px-19 lg:py-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="shrink-0">
           <img src="/logo.svg" className="h-10 w-auto object-contain" />

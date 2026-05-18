@@ -12,7 +12,7 @@ const FaQ = ({ slice }) => {
       id="faq"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative bg-[#04050F] overflow-hidden px-18 lg:px-20 py-16  lg:py-44"
+      className="relative bg-[#04050F] overflow-hidden px-12 lg:px-20 py-16  lg:py-44"
     >
       {/* Left gradient SVG */}
       <img
@@ -39,7 +39,7 @@ const FaQ = ({ slice }) => {
       {/* Content above gradients */}
       <div className="relative z-10 lg:px-20">
         {/* Heading */}
-        <div className="text-white font-medium text-[32px] lg:text-[38px] mb-10 lg:mb-16">
+        <div className="text-white font-medium text-3xl lg:text-[38px] mb-10 lg:mb-16">
           <PrismicRichText field={slice.primary.heading} />
         </div>
 

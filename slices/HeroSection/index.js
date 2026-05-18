@@ -24,13 +24,13 @@ const HeroSection = ({ slice }) => {
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className=" min-h-screen w-full bg-[#04050F] flex flex-col  justify-center gap-6 px-6 lg:px-15 pt-20 lg:pt-24 text-white"
+        className=" min-h-screen w-full bg-[#04050F] flex flex-col  justify-center gap-6 px-6 lg:px-15 pt-24 lg:pt-28 text-white"
       >
         <div className="flex flex-col lg:flex-row gap-10 ">
           <div className="lg:w-[46%]">
             {/* Left Side */}
             <div className="flex flex-col gap-4">
-              <div className="max-w-4xl text-5xl lg:text-[67px] font-medium leading-[1.1]">
+              <div className="max-w-4xl text-4xl md:text-6xl lg:text-[67px] font-medium lg:leading-[1.1]">
                 <PrismicRichText
                   field={slice.primary.heading}
                   components={{
@@ -41,7 +41,7 @@ const HeroSection = ({ slice }) => {
                 />
               </div>
 
-              <div className="max-w-2xl text-balance lg:text-lg">
+              <div className="max-w-2xl text-sm md:text-lg text-balance lg:text-lg">
                 <PrismicRichText field={slice.primary.description} />
               </div>
             </div>
@@ -62,11 +62,11 @@ const HeroSection = ({ slice }) => {
                 <div className="flex w-full gap-2">
                   <img className="w-4 lg:w-5.5" src="/calender.svg" />
                   <PrismicNextLink
-                    className="text-xs md:text-sm lg:text-[18.5px]"
+                    className="text-xs md:text-base lg:text-[18.5px]"
                     field={slice.primary.date}
                   />
                 </div>
-                <div className="flex w-full gap-2 text-xs md:text-sm lg:text-[18.5px]">
+                <div className="flex w-full gap-2 text-xs md:text-base lg:text-[18.5px]">
                   <img className="w-4 lg:w-5.5" src="clock.svg" />
                   <p>{slice.primary.time}</p>
                 </div>
@@ -74,7 +74,7 @@ const HeroSection = ({ slice }) => {
               <div className="flex gap-2">
                 <img className="w-3.5 lg:w-4.5" src="/Location pin.svg" />
                 <PrismicNextLink
-                  className="text-xs md:text-sm lg:text-[18.5px]"
+                  className="text-xs md:text-base lg:text-[18.5px]"
                   field={slice.primary.location}
                 />
               </div>

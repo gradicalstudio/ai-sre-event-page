@@ -49,7 +49,7 @@ export default function InfoCard({ item, index }) {
       />
 
       {/* Number - sits ON the line */}
-      <span className="absolute -top-3 left-0 text-white/90 text-sm bg-[#04050F] pr-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+      <span className="absolute -top-3.5 left-0 text-white/90 text-sm bg-[#04050F] pr-2 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
         {String(index + 1).padStart(2, "0")}
       </span>
 

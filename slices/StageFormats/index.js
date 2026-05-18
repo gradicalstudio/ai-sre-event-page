@@ -116,24 +116,24 @@ const StageFormats = ({ slice }) => {
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-[#040516] text-white py-24 px-6 md:px-10 xl:px-20 overflow-hidden"
+      className="bg-[#04050F] text-white py-16 px-6 md:px-10 xl:px-20 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25">
           {/* Left Content */}
           <div>
-            <p className="text-[#FF6B4A] uppercase text-xl mb-6 font-mono">
+            <p className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-6 font-mono">
               {slice.primary.stage_format}
             </p>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 lg:gap-6">
               {/* Arrow */}
               <img
                 ref={arrowRef}
                 src="/arrow.svg"
                 alt=""
-                className="w-6 md:w-8 lg:w-10 object-contain flex-shrink-0"
+                className="w-4 md:w-5 lg:w-10 object-contain flex-shrink-0"
               />
 
               {/* Heading */}
@@ -152,7 +152,7 @@ const StageFormats = ({ slice }) => {
                       </h2>
                     ),
                     paragraph: ({ children }) => (
-                      <p className="text-5xl md:text-7xl leading-[0.95] font-medium">
+                      <p className="text-3xl md:text-5xl leading-[1.2] lg:leading-[0.95] font-medium">
                         {children}
                       </p>
                     ),
@@ -169,7 +169,7 @@ const StageFormats = ({ slice }) => {
                 field={slice.primary.short_description}
                 components={{
                   paragraph: ({ children }) => (
-                    <p className="text-white/60 text-lg leading-relaxed mb-8">
+                    <p className="text-white/60 text-base lg:text-lg leading-relaxed mb-10">
                       {children}
                     </p>
                   ),

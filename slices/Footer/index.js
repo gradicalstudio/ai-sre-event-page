@@ -18,7 +18,7 @@ const Footer = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-[#04050F] px-6 lg:px-35 py-16 lg:py-24 w-full text-white"
+      className="bg-[#04050F] px-6 md:px-13 lg:px-35 py-16 lg:py-24 w-full text-white"
     >
       <div className="flex flex-col w-full  lg:flex-row lg:justify-between gap-15 lg:gap-30 ">
         {/* LEFT — Logos + AI SRE NEXT image */}
@@ -44,25 +44,25 @@ const Footer = ({ slice }) => {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-10">
               {/* Date */}
-              <div className="flex lg:text-lg items-center gap-2">
+              <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
                 <img src="/calender.svg" className="w-4 lg:w-5" />
                 <PrismicNextLink field={slice.primary.date} />
               </div>
               {/* Location */}
-              <div className="flex lg:text-lg items-center gap-2">
+              <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
                 <img src="/Location pin.svg" className="w-3.5 lg:w-4" />
                 <PrismicNextLink field={slice.primary.location} />
               </div>
             </div>
             {/* Time */}
-            <div className="flex lg:text-lg items-center gap-2">
+            <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
               <img src="clock.svg" className="w-4 lg:w-5" />
               <PrismicNextLink field={slice.primary.time} />
             </div>
           </div>
 
           {/* Description with link */}
-          <div className="text-white font-mono text-lg leading-relaxed max-w-md">
+          <div className="text-white font-mono text-sm md:text-lg lg:text-lg leading-relaxed max-w-md">
             <PrismicRichText
               field={slice.primary.description_with_link}
               components={{
