@@ -54,18 +54,23 @@ const SpeakerTakeaway = ({ slice }) => {
               <div className="absolute left-0 top-0 h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
 
               {/* BOTTOM DASH */}
-              <div className="absolute bottom-0 left-0 h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
+              {/* BOTTOM DASH */}
+              <div className="absolute bottom-0 left-0 hidden h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)] lg:block" />
 
               {/* LEFT DASH */}
               <div className="absolute left-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
+              {/* LEFT DASH */}
+              <div className="absolute left-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
 
+              {/* RIGHT DASH - MOBILE ONLY */}
+              <div className="absolute right-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)] lg:hidden" />
               <div className="flex items-start gap-5">
                 {/* Arrow */}
                 <div className="mt-2 flex-shrink-0">
                   <img
                     src="/arrow.svg"
                     alt="Arrow"
-                    className="h-7 w-4 object-contain md:h-9 md:wa-5"
+                    className="h-7 w-4 object-contain md:h-9 md:w-5"
                   />
                 </div>
 
@@ -85,7 +90,7 @@ const SpeakerTakeaway = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-6xl">
+                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-[50px]">
                           {children}
                         </p>
                       ),
@@ -101,15 +106,17 @@ const SpeakerTakeaway = ({ slice }) => {
                 <div
                   key={index}
                   className="
-                  border-b border-l border-white/10
-                  p-3 md:p-4
-                  sm:[&:nth-last-child(-n+2)]:border-b-0
-                "
+  border-t border-white/10
+  sm:border-b-0
+  sm:border-l
+  p-3 md:p-4
+  first:border-t-0
+"
                 >
                   <div className="relative z-10">
                     {/* Icon */}
                     {item.icon?.url && (
-                      <div className="mb-2">
+                      <div className="">
                         <PrismicNextImage
                           field={item.icon}
                           className="h-20 w-20 object-contain"
@@ -118,12 +125,12 @@ const SpeakerTakeaway = ({ slice }) => {
                     )}
 
                     {/* Title */}
-                    <h3 className="mb-2 text-2xl font-medium  text-white ">
+                    <h3 className="mb-2 text-[16px] font-semibold  text-white ">
                       {item.heading}
                     </h3>
 
                     {/* Description */}
-                    <p className="max-w-[90%] text-lg text-white/60 ">
+                    <p className="max-w-[90%] text-[16px] text-white/60 ">
                       {item.description}
                     </p>
                   </div>

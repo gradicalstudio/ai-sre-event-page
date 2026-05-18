@@ -18,19 +18,19 @@ const WhatYouTakeAway = ({ slice }) => {
       >
         <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
           {/* LEFT — Heading */}
-          <div className="flex items-start gap-4 lg:gap-6 lg:w-[38%]  shrink-0">
+          <div className="flex items-start gap-4 lg:gap-6 lg:w-[45%]  shrink-0">
             <img
               className="w-3 md:w-4 h-auto lg:w-6 mt-2 object-contain"
               src="/arrow.svg"
             />
-            <div className="text-white text-3xl md:text-6xl leading-[1.2] lg:leading-[0.95] font-medium">
+            <div className="text-white text-3xl md:text-[50px] ">
               <PrismicRichText field={slice.primary.heading} />
             </div>
           </div>
 
           {/* RIGHT — Cards grid */}
           <div
-            className="
+            className="  
     grid
     grid-cols-1
     md:grid-cols-3
@@ -52,10 +52,12 @@ const WhatYouTakeAway = ({ slice }) => {
                 />
 
                 {/* Title */}
-                <p className="text-white text-xl font-medium ">{item.title}</p>
+                <p className="text-white text-[16px] font-medium ">
+                  {item.title}
+                </p>
 
                 {/* Short description */}
-                <p className="text-white/80 text-sm lg:text-[18px]">
+                <p className="text-white/80 text-sm lg:text-[16px]">
                   {item.short_description}
                 </p>
               </div>

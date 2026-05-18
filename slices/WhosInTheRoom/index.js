@@ -36,7 +36,7 @@ const WhosInTheRoom = ({ slice }) => {
             alt=""
             className="w-3 md:w-4 lg:w-6 object-contain"
           />
-          <div className="text-white text-3xl md:text-5xl lg:text-6xl font-normal">
+          <div className="text-white text-3xl md:text-[42px] lg:text-[42px] font-normal">
             <PrismicRichText field={slice.primary.heading} />
           </div>
         </div>

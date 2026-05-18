@@ -14,7 +14,7 @@ export default function InfoCard({ item, index, activeIndex }) {
       gsap.fromTo(
         lineRef.current,
         { scaleX: 0 },
-        { scaleX: 1, duration: 0.4, ease: "power2.out" }
+        { scaleX: 1, duration: 0.4, ease: "power2.out" },
       );
     } else {
       // Animate line out
@@ -49,8 +49,10 @@ export default function InfoCard({ item, index, activeIndex }) {
 
       {/* Info text */}
       <p
-        className="text-lg lg:text-xl leading-relaxed transition-colors duration-300"
-        style={{ color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)" }}
+        className="text-lg lg:text-[20px] leading-relaxed transition-colors duration-300"
+        style={{
+          color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
+        }}
       >
         {item.info}
       </p>

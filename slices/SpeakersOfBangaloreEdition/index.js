@@ -66,24 +66,6 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           },
         },
       );
-
-      // Floating Background Motion
-
-      gsap.to(".left-pattern", {
-        y: 30,
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      gsap.to(".right-pattern", {
-        y: -25,
-        duration: 6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -107,7 +89,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           pointer-events-none absolute opacity-60
           left-[-120px] top-[0px] w-[260px]
           md:left-[-90px] md:top-[-10px] md:w-[420px]
-          lg:left-[20px] lg:top-[-10px] lg:w-[820px]
+          lg:left-[-60px] lg:top-[-10px] lg:w-[820px]
         "
         />
 
@@ -121,7 +103,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           pointer-events-none absolute opacity-60
           right-[-10px] top-[-10px] w-[260px]
           md:right-[-220px] md:top-[-20px] md:w-[420px]
-          lg:right-[-200px] lg:top-[10px] lg:w-[620px]
+          lg:right-[-310px] lg:top-[-20px] lg:w-[620px]
         "
         />
 
@@ -159,8 +141,8 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
               text-left text-3xl leading-[1]
 
               md:max-w-[500px]
-              md:text-5xl
-              lg:text-6xl
+              md:text-[34px]
+              lg:text-[40px]
             "
             >
               <PrismicRichText field={slice.primary.heading} />
@@ -174,7 +156,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             flex flex-wrap items-start justify-center
             gap-x-8 gap-y-14
             md:gap-x-10 md:gap-y-16
-            lg:gap-x-16 lg:gap-y-22
+          
           "
           >
             {slice.primary.speaker.map((item, index) => (
@@ -185,7 +167,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
                 group relative
               w-[160px]
 md:w-[220px]
-lg:w-[300px]
+lg:w-[200px]
               "
               >
                 {/* IMAGE */}
@@ -194,8 +176,8 @@ lg:w-[300px]
                   className="
                   relative overflow-hidden rounded-full
                   mt-0 h-[160px] w-[160px]
-md:mt-8 md:h-[220px] md:w-[220px]
-lg:mt-20 lg:h-[290px] lg:w-[290px]
+md:mt-8 md:h-[186px] md:w-[186px]
+lg:mt-20 
                 "
                 >
                   <PrismicNextImage
@@ -212,24 +194,25 @@ lg:mt-20 lg:h-[290px] lg:w-[290px]
                   <h3
                     className="
                     text-base font-medium leading-none text-white
-                    md:text-xl
-                    lg:text-[28px]
+                    md:text-[15px]
+                    lg:text-[18px]
                   "
                   >
                     {item.name}
                   </h3>
 
                   {/* ROLE */}
-
-                  <p
-                    className="
-                    mt-2 text-sm leading-none text-[#8B90A7]
-                    md:text-base
-                    lg:mt-3 lg:text-[20px]
-                  "
-                  >
-                    {item.role}
-                  </p>
+                  {item.role && (
+                    <p
+                      className="
+    mt-2 text-sm leading-none text-[#8B90A7]
+    md:text-base
+    lg:mt-3 lg:text-[16px]
+  "
+                    >
+                      {item.role}
+                    </p>
+                  )}
 
                   {/* LINKEDIN */}
                   {item.linkedin?.url && (
