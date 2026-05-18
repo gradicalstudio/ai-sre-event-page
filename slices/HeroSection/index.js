@@ -24,7 +24,7 @@ const HeroSection = ({ slice }) => {
 
   return (
     <>
-      <Bounded innerClassName="pt-0 md:pt-0 lg:pt-0 pb-10  ">
+      <Bounded innerClassName="pt-10 md:pt-10 lg:pt-30 pb-10  ">
         <section
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
@@ -33,6 +33,9 @@ const HeroSection = ({ slice }) => {
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Left Side */}
             <div className="lg:w-[50%] flex flex-col justify-between">
+              <div className="block pb-5 lg:hidden">
+                <img className="w-14 self-start lg:w-80" src="/X logo.svg" />
+              </div>
               <div className="flex flex-col gap-4">
                 {/* Heading */}
                 <div className="max-w-4xl text-4xl md:text-6xl lg:text-[65px] font-medium lg:leading-[1.1]">
@@ -55,11 +58,13 @@ const HeroSection = ({ slice }) => {
               {/* Buttons */}
               <div className="mt-6 flex flex-wrap items-center gap-6">
                 <PrimaryButton
+                  className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-10!  lg:py-3!  "
                   buttonText="Request invite to attend"
                   onClick={() => setIsInviteOpen(true)}
                 />
 
                 <SecondaryButton
+                  className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-10!  lg:py-3!  "
                   buttonText="Speak at AI SRE Next"
                   onClick={() => setIsSpeakerOpen(true)}
                 />
@@ -110,8 +115,9 @@ const HeroSection = ({ slice }) => {
             </div>
 
             {/* Right Side Video */}
-            <div className="flex-1 flex items-center rounded-2xl justify-center">
-              <div className="w-full rounded-2xl">
+            <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
+              <img className="w-30 self-start lg:w-80" src="/X logo.svg" />
+              {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
                 ) : (
@@ -120,7 +126,7 @@ const HeroSection = ({ slice }) => {
                     className="w-full aspect-video rounded-2xl object-cover"
                   />
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
 

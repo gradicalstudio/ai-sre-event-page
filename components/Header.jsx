@@ -1,30 +1,32 @@
-  "use client";
+"use client";
 
-  import { useState } from "react";
+import { useState } from "react";
+import PrimaryButton from "@/components/PrimaryButton";
+import FormModal from "@/components/FormModal";
 
-  const navLinks = [
-    { label: "Agenda", href: "#agenda" },
-    { label: "For Attendees", href: "#for-attendees" },
-    { label: "Stage Formats", href: "#stage-formats" },
-    { label: "For Speakers", href: "#for-speakers" },
-    { label: "FAQ", href: "#faq" },
-  ];
+const navLinks = [
+  { label: "Agenda", href: "#agenda" },
+  { label: "For Attendees", href: "#for-attendees" },
+  { label: "Stage Formats", href: "#stage-formats" },
+  { label: "For Speakers", href: "#for-speakers" },
+  { label: "FAQ", href: "#faq" },
+];
 
-  export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false);
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isInviteOpen, setIsInviteOpen] = useState(false);
 
-    return (
+  return (
+    <>
       <nav className="fixed top-0 left-0 z-50 w-full bg-[#04050F]/80 backdrop-blur-md">
-        {/* Inner Container */}
-        <div className="mx-auto w-full max-w-[1000px] 2xl:max-w-[1320px]   px-4 md:px-6 lg:px-8">
-          {/* Navbar Row */}
-          <div className="flex items-center justify-between py-4 lg:py-6">
+        <div className="mx-auto w-full max-w-[1000px] 2xl:max-w-[1320px] px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <a href="#" className="shrink-0">
               <img
                 src="/new logo.svg"
                 alt="Logo"
-                className="h-10 w-auto object-contain"
+                className="h-auto w-30 xl:w-35 object-contain"
               />
             </a>
 
@@ -43,26 +45,11 @@
 
             {/* Desktop CTA */}
             <div className="hidden lg:block">
-              <button
-                className="  rounded-full
-          bg-white
-          px-7
-          py-2
-          text-sm
-          font-semibold
-          text-black
-
-          transition-all
-          duration-250
-
-          hover:bg-[#45C7F0]
-          hover:text-white
-          hover:cursor-pointer
-    
-        "
-              >
-                CTA
-              </button>
+              <PrimaryButton
+                className="px-4! py-2! text-sm"
+                buttonText="Get your invite"
+                onClick={() => setIsInviteOpen(true)}
+              />
             </div>
 
             {/* Mobile Hamburger */}
@@ -72,7 +59,6 @@
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                // X icon
                 <svg
                   width="24"
                   height="24"
@@ -85,7 +71,6 @@
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               ) : (
-                // Hamburger icon
                 <svg
                   width="24"
                   height="24"
@@ -104,9 +89,7 @@
 
           {/* Mobile Menu */}
           <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${
-              isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-            }`}
+            className={`overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
           >
             <div className="flex flex-col gap-6 border-t border-white/10 py-6">
               {navLinks.map((link) => (
@@ -119,14 +102,25 @@
                   {link.label}
                 </a>
               ))}
-
-              {/* Mobile CTA */}
-              <button className="mt-2 w-full rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-colors duration-200 hover:bg-white/90">
-                CTA
-              </button>
+              <div className="mt-2">
+                <div className="block w-full lg:hidden">
+                  <PrimaryButton
+                    className="w-full! py-2! text-sm"
+                    buttonText="Get your invite"
+                    onClick={() => setIsInviteOpen(true)}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </nav>
-    );
-  }
+
+      <FormModal
+        type="invite"
+        isOpen={isInviteOpen}
+        onClose={() => setIsInviteOpen(false)}
+      />
+    </>
+  );
+}
