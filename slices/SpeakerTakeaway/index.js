@@ -75,7 +75,7 @@ const SpeakerTakeaway = ({ slice }) => {
                     field={slice.primary.heading}
                     components={{
                       heading1: ({ children }) => (
-                        <h1 className="text-4xl font-light md:text-4xl lg:text-5xl">
+                        <h1 className="text-4xl font-light md:text-4xl lg:text-6xl">
                           {children}
                         </h1>
                       ),
@@ -85,7 +85,7 @@ const SpeakerTakeaway = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-4xl font-light md:text-4xl lg:text-5xl">
+                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-6xl">
                           {children}
                         </p>
                       ),
@@ -112,18 +112,18 @@ const SpeakerTakeaway = ({ slice }) => {
                       <div className="mb-2">
                         <PrismicNextImage
                           field={item.icon}
-                          className="h-16 w-16 object-contain"
+                          className="h-20 w-20 object-contain"
                         />
                       </div>
                     )}
 
                     {/* Title */}
-                    <h3 className="mb-2 text-lg font-medium text-white md:text-md">
+                    <h3 className="mb-2 text-2xl font-medium  text-white ">
                       {item.heading}
                     </h3>
 
                     {/* Description */}
-                    <p className="max-w-[90%] text-sm text-white/60 md:text-sm">
+                    <p className="max-w-[90%] text-lg text-white/60 ">
                       {item.description}
                     </p>
                   </div>
