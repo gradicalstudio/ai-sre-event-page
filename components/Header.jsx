@@ -19,14 +19,14 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 z-50 w-full bg-[#04050F]/80 backdrop-blur-md">
-        <div className="mx-auto w-full max-w-[1000px] 2xl:max-w-[1320px] px-4 md:px-6 lg:px-0">
+        <div className="mx-auto w-full max-w-[700px] lg:max-w-[900px] xl:max-w-[1120px] 2xl:max-w-[1320px]  px-6 md:px-6 lg:px-0">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <a href="#" className="shrink-0">
               <img
-                src="/new logo.svg"
+                src="/airsrelogo.svg"
                 alt="Logo"
-                className="h-auto w-30 xl:w-30 object-contain"
+                className="h-auto w-18 lg:w-20 xl:w-18 object-contain"
               />
             </a>
 
@@ -46,7 +46,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:block">
               <PrimaryButton
-                className="px-4! py-2! text-sm"
+                className="px-3! py-2! text-xs!"
                 buttonText="Get your invite"
                 onClick={() => setIsInviteOpen(true)}
               />

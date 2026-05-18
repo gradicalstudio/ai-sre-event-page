@@ -8,7 +8,10 @@ const PrimaryButton = ({ buttonText, onClick, className }) => {
           bg-white
           px-10
           py-3
-          text-lg
+          text-[12px]
+          md:text-xs
+          lg:text-sm
+          xl:text-base
           font-semibold
           text-black
 

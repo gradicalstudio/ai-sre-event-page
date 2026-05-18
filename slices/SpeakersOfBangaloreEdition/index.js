@@ -80,7 +80,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
           max-w-[1000px]
           2xl:max-w-[1320px]
           px-6 md:px-6 lg:px-8
-          py-10 md:py-14 lg:py-30 mt-0 lg:-mt-40  overflow-hidden  text-white"
+          py-10 md:py-14 lg:py-30 mt-0 lg:-mt-40 xl:mb-15  overflow-hidden  text-white"
     >
       {/* LEFT SVG */}
 

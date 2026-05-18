@@ -10,7 +10,10 @@ const SecondaryButton = ({ buttonText, onClick, className }) => {
         bg-transparent
         px-10
         py-3
-        text-lg
+         text-[12px]
+          md:text-xs
+          lg:text-sm
+          xl:text-base
         font-semibold
         text-white
         transition-all
