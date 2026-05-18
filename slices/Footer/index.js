@@ -25,7 +25,7 @@ const Footer = ({ slice }) => {
         <div className="flex flex-col w-full  lg:flex-row lg:justify-between gap-15 lg:gap-30 ">
           {/* LEFT — Logos + AI SRE NEXT image */}
           <div className="lg:w-[44%]">
-            <img className="w-full object-cover" src="/logo.svg" />
+            <PrismicNextImage field={slice.primary.logos} className="w-full object-cover"  />
           </div>
 
           {/* RIGHT — Buttons + Info + Description */}

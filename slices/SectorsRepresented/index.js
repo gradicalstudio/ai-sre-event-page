@@ -19,7 +19,7 @@ const SectorsRepresented = ({ slice }) => {
         {/* LEFT — Fixed heading */}
         <div className="flex items-center gap-3 shrink-0">
           <img className="w-3 md:w-4 lg:w-6 object-contain" src="/arrow.svg" />
-          <div className="text-white text-3xl md:text-5xl lg:text-6xl font-medium ">
+          <div className="text-white text-3xl md:text-5xl lg:text-6xl  font-medium ">
             <PrismicRichText field={slice.primary.heading} />
           </div>
         </div>
