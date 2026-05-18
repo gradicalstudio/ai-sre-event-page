@@ -14,7 +14,7 @@ const SectorsRepresented = ({ slice }) => {
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="bg-[#04050F] flex flex-col lg:flex-row lg:items-center gap-6 md:gap-10 lg:gap-8 "
+        className="bg-[#04050F] flex flex-col lg:flex-row lg:items-center gap-16 md:gap-10 lg:gap-8 "
       >
         {/* LEFT — Fixed heading */}
         <div className="flex items-center gap-3 shrink-0">

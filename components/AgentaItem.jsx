@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 
-export default function AgendaItem({ item,defaultOpen=false }) {
+export default function AgendaItem({ item, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
@@ -147,7 +147,23 @@ export default function AgendaItem({ item,defaultOpen=false }) {
             <div className="pt-3 flex flex-col gap-4">
               {hasDescription && (
                 <div className="text-white/60 text-xs md:text-sm leading-relaxed">
-                  <PrismicRichText field={item.short_description} />
+                  <PrismicRichText
+                    field={item.short_description}
+                    components={{
+                      list: ({ children }) => (
+                        <ul className="list-disc pl-5">{children}</ul>
+                      ),
+                      listItem: ({ children }) => (
+                        <li className="mb-1">{children}</li>
+                      ),
+                      oList: ({ children }) => (
+                        <ol className="list-decimal pl-5">{children}</ol>
+                      ),
+                      oListItem: ({ children }) => (
+                        <li className="mb-1">{children}</li>
+                      ),
+                    }}
+                  />
                 </div>
               )}
               {hasSpeakers && (
