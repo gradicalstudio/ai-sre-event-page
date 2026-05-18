@@ -5,6 +5,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Bounded from "@/components/Bounded";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,58 +90,58 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
   }, []);
 
   return (
-    <section
-    
-      ref={sectionRef}
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="relative mt-20 overflow-hidden bg-[#04050F] py-16 text-white md:py-20 lg:py-24"
-    >
-      {/* LEFT SVG */}
+    <Bounded className="bg-[#04050F] overflow-hidden text-white">
+      <section
+        ref={sectionRef}
+        data-slice-type={slice.slice_type}
+        data-slice-variation={slice.variation}
+        className="relative mt-20 overflow-hidden bg-[#04050F]  text-white"
+      >
+        {/* LEFT SVG */}
 
-      <img
-        src="/Mask group.svg"
-        alt=""
-        className="
+        <img
+          src="/Mask group.svg"
+          alt=""
+          className="
           left-pattern
           pointer-events-none absolute opacity-60
-          left-[-120px] top-[20px] w-[260px]
-          md:left-[-40px] md:top-[40px] md:w-[420px]
-          lg:left-[220px] lg:top-[60px] lg:w-[820px]
+          left-[-120px] top-[0px] w-[260px]
+          md:left-[-90px] md:top-[-10px] md:w-[420px]
+          lg:left-[20px] lg:top-[-10px] lg:w-[820px]
         "
-      />
+        />
 
-      {/* RIGHT SVG */}
+        {/* RIGHT SVG */}
 
-      <img
-        src="/Mask group (1).svg"
-        alt=""
-        className="
+        <img
+          src="/Mask group (1).svg"
+          alt=""
+          className="
           right-pattern
           pointer-events-none absolute opacity-60
-          right-[-80px] top-[10px] w-[260px]
-          md:right-[-20px] md:top-[30px] md:w-[420px]
-          lg:right-[100px] lg:top-[50px] lg:w-[620px]
+          right-[-10px] top-[-10px] w-[260px]
+          md:right-[-220px] md:top-[-20px] md:w-[420px]
+          lg:right-[-200px] lg:top-[10px] lg:w-[620px]
         "
-      />
+        />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-6">
-        {/* HEADING */}
+        <div className="relative z-10 ">
+          {/* HEADING */}
 
-        <div
-          ref={headingRef}
-          className="
+          <div
+            ref={headingRef}
+            className="
             mb-14 flex items-center justify-center gap-4
             md:mb-20 md:gap-6
             lg:mb-24 lg:gap-8
           "
-        >
-          {/* LEFT ICON */}
+          >
+            {/* LEFT ICON */}
 
-          <img
-            src="/speakers.svg"
-            alt=""
-            className="
+            <img
+              src="/speakers.svg"
+              alt=""
+              className="
               w-[45px]
               shrink-0
 
@@ -148,115 +149,116 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
               lg:w-[90px]
             "
-          />
+            />
 
-          {/* HEADING TEXT */}
+            {/* HEADING TEXT */}
 
-          <div
-            className="
+            <div
+              className="
               max-w-[320px]
               text-left text-3xl leading-[1]
 
               md:max-w-[500px]
               md:text-5xl
             "
-          >
-            <PrismicRichText field={slice.primary.heading} />
+            >
+              <PrismicRichText field={slice.primary.heading} />
+            </div>
           </div>
-        </div>
 
-        {/* SPEAKERS */}
+          {/* SPEAKERS */}
 
-        <div
-          className="
+          <div
+            className="
             flex flex-wrap items-start justify-center
             gap-x-8 gap-y-14
             md:gap-x-10 md:gap-y-16
             lg:gap-x-16 lg:gap-y-20
           "
-        >
-          {slice.primary.speaker.map((item, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="
+          >
+            {slice.primary.speaker.map((item, index) => (
+              <div
+                key={index}
+                ref={(el) => (cardsRef.current[index] = el)}
+                className="
                 group relative
                 w-[140px]
                 md:w-[190px]
                 lg:w-[250px]
               "
-            >
-              {/* IMAGE */}
+              >
+                {/* IMAGE */}
 
-              <div
-                className="
+                <div
+                  className="
                   relative overflow-hidden rounded-full
                   mt-0 h-[140px] w-[140px]
                   md:mt-8 md:h-[190px] md:w-[190px]
                   lg:mt-20 lg:h-[250px] lg:w-[250px]
                 "
-              >
-                <PrismicNextImage
-                  field={item.speaker_image}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+                >
+                  <PrismicNextImage
+                    field={item.speaker_image}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-              {/* CONTENT */}
+                {/* CONTENT */}
 
-              <div className="mt-4 md:mt-6 lg:mt-8">
-                {/* NAME */}
+                <div className="mt-4 md:mt-6 lg:mt-8">
+                  {/* NAME */}
 
-                <h3
-                  className="
+                  <h3
+                    className="
                     text-base font-medium leading-none text-white
                     md:text-xl
                     lg:text-[28px]
                   "
-                >
-                  {item.name}
-                </h3>
+                  >
+                    {item.name}
+                  </h3>
 
-                {/* ROLE */}
+                  {/* ROLE */}
 
-                <p
-                  className="
+                  <p
+                    className="
                     mt-2 text-sm leading-none text-[#8B90A7]
                     md:text-base
                     lg:mt-3 lg:text-[20px]
                   "
-                >
-                  {item.role}
-                </p>
+                  >
+                    {item.role}
+                  </p>
 
-                {/* LINKEDIN */}
-                {item.linkedin?.url && (
-                  <PrismicNextLink
-                    field={item.linkedin}
-                    className="
+                  {/* LINKEDIN */}
+                  {item.linkedin?.url && (
+                    <PrismicNextLink
+                      field={item.linkedin}
+                      className="
       mt-4 inline-flex
       transition-all duration-300
       hover:scale-110 hover:opacity-80
       lg:mt-6
     "
-                  >
-                    <img
-                      src="/Linkden.svg"
-                      alt="LinkedIn"
-                      className="
+                    >
+                      <img
+                        src="/Linkden.svg"
+                        alt="LinkedIn"
+                        className="
         h-5 w-5
         md:h-6 md:w-6
         lg:h-7 lg:w-7
       "
-                    />
-                  </PrismicNextLink>
-                )}
+                      />
+                    </PrismicNextLink>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Bounded>
   );
 };
 

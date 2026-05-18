@@ -7,6 +7,7 @@ import { PrismicNextImage } from "@prismicio/next";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Bounded from "@/components/Bounded";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,7 +52,7 @@ const WhyThisEvent = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 30%",
+          start: "top 75%",
           once: true,
         },
       });
@@ -92,12 +93,12 @@ const WhyThisEvent = ({ slice }) => {
       // QUICK DEPTH SEPARATION EFFECT
       gsap.to(iconRefs.current, {
         y: -15,
-
-        duration: 0.18,
+        delay: 0.4,
+        duration: 0.8,
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 25%",
+          start: "top 55%",
           toggleActions: "play reverse play reverse",
         },
       });
@@ -107,81 +108,82 @@ const WhyThisEvent = ({ slice }) => {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="overflow-hidden bg-[#04050F] px-6 py-14 text-white md:px-14 xl:px-20"
-    >
-      <div className="mx-auto max-w-[1400px]">
-        {/* Heading */}
-        <div className="mb-10 flex items-center gap-4 md:mb-20 md:gap-3">
-          <img
-            ref={arrowRef}
-            src="/arrow.svg"
-            alt=""
-            className="w-3 object-contain opacity-0 md:w-4 lg:w-10"
-          />
-
-          <div ref={headingRef} className="opacity-0">
-            <PrismicRichText
-              field={slice.primary.heading}
-              components={{
-                heading1: ({ children }) => (
-                  <h1 className="text-4xl font-medium leading-[0.95] md:text-6xl">
-                    {children}
-                  </h1>
-                ),
-
-                heading2: ({ children }) => (
-                  <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl">
-                    {children}
-                  </h2>
-                ),
-
-                paragraph: ({ children }) => (
-                  <p className="text-4xl font-medium leading-[0.95] md:text-5xl">
-                    {children}
-                  </p>
-                ),
-              }}
+    <Bounded className="bg-[#04050F] text-white overflow-hidden">
+      <section
+        ref={sectionRef}
+        data-slice-type={slice.slice_type}
+        data-slice-variation={slice.variation}
+        className="overflow-hidden bg-[#04050F] text-white"
+      >
+        <div className="">
+          {/* Heading */}
+          <div className="mb-10 flex items-center gap-4 md:mb-20 md:gap-3">
+            <img
+              ref={arrowRef}
+              src="/arrow.svg"
+              alt=""
+              className="w-3 object-contain opacity-0 md:w-4 lg:w-10"
             />
-          </div>
-        </div>
 
-        {/* Features */}
-        <div className="grid grid-cols-1 lg:gap-7 md:grid-cols-3 md:gap-0">
-          {slice.primary.event_features.map((item, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                cardsRef.current[index] = el;
-              }}
-              className="
+            <div ref={headingRef} className="opacity-0">
+              <PrismicRichText
+                field={slice.primary.heading}
+                components={{
+                  heading1: ({ children }) => (
+                    <h1 className="text-4xl font-medium leading-[0.95] md:text-6xl">
+                      {children}
+                    </h1>
+                  ),
+
+                  heading2: ({ children }) => (
+                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl">
+                      {children}
+                    </h2>
+                  ),
+
+                  paragraph: ({ children }) => (
+                    <p className="text-4xl font-medium leading-[0.95] md:text-5xl">
+                      {children}
+                    </p>
+                  ),
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-1 lg:gap-7 md:grid-cols-3 md:gap-0">
+            {slice.primary.event_features.map((item, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  cardsRef.current[index] = el;
+                }}
+                className="
                 relative
                 py-6
                 opacity-0
                 md:py-10
                 md:pr-10
               "
-            >
-              {/* Icon + Connected Lines */}
-              <div className="relative mb-8 h-[120px] w-[120px] md:mb-10 md:h-[140px] md:w-[140px]">
-                {/* TOP LEFT LINE */}
-                <div className="absolute left-0 right-full top-0 hidden h-px w-[500px] bg-white/10 md:block" />
+              >
+                {/* Icon + Connected Lines */}
+                <div className="relative mb-8 h-[120px] w-[120px] md:mb-10 md:h-[140px] md:w-[140px]">
+                  {/* TOP LEFT LINE */}
+                  <div className="absolute left-0 right-full top-0 hidden h-px w-[500px] bg-white/10 md:block" />
 
-                {/* TOP RIGHT LINE */}
-                <div className="absolute left-full top-0 hidden h-px w-[500px] bg-white/10 md:block" />
+                  {/* TOP RIGHT LINE */}
+                  <div className="absolute left-full top-0 hidden h-px w-[500px] bg-white/10 md:block" />
 
-                {/* BOTTOM LEFT LINE */}
-                <div className="absolute left-0 right-full bottom-0 hidden h-px w-[500px] bg-white/10 md:block" />
+                  {/* BOTTOM LEFT LINE */}
+                  <div className="absolute left-0 right-full bottom-0 hidden h-px w-[500px] bg-white/10 md:block" />
 
-                {/* BOTTOM RIGHT LINE */}
-                <div className="absolute left-full bottom-0 hidden h-px w-[500px] bg-white/10 md:block" />
+                  {/* BOTTOM RIGHT LINE */}
+                  <div className="absolute left-full bottom-0 hidden h-px w-[500px] bg-white/10 md:block" />
 
-                {/* Icon Box */}
-                <div
-                  className="
+                  {/* Icon Box */}
+                  <div
+                    className="
                     relative
                     z-10
                     flex
@@ -193,42 +195,42 @@ const WhyThisEvent = ({ slice }) => {
                     border-white/10
                     bg-[#0F101F]
                   "
-                >
-                  {/* TOP LEFT */}
-                  <img
-                    src="/Rectangle 574056928.svg"
-                    alt=""
-                    className="absolute left-0 top-0 z-20 -rotate-90"
-                  />
+                  >
+                    {/* TOP LEFT */}
+                    <img
+                      src="/Rectangle 574056928.svg"
+                      alt=""
+                      className="absolute left-0 top-0 z-20 -rotate-90"
+                    />
 
-                  {/* TOP RIGHT */}
-                  <img
-                    src="/Rectangle 574056928.svg"
-                    alt=""
-                    className="absolute right-0 top-0 z-20"
-                  />
+                    {/* TOP RIGHT */}
+                    <img
+                      src="/Rectangle 574056928.svg"
+                      alt=""
+                      className="absolute right-0 top-0 z-20"
+                    />
 
-                  {/* BOTTOM RIGHT */}
-                  <img
-                    src="/Rectangle 574056928.svg"
-                    alt=""
-                    className="absolute bottom-0 right-0 z-20 rotate-90"
-                  />
+                    {/* BOTTOM RIGHT */}
+                    <img
+                      src="/Rectangle 574056928.svg"
+                      alt=""
+                      className="absolute bottom-0 right-0 z-20 rotate-90"
+                    />
 
-                  {/* BOTTOM LEFT */}
-                  <img
-                    src="/Rectangle 574056928.svg"
-                    alt=""
-                    className="absolute bottom-0 left-0 z-20 rotate-180"
-                  />
+                    {/* BOTTOM LEFT */}
+                    <img
+                      src="/Rectangle 574056928.svg"
+                      alt=""
+                      className="absolute bottom-0 left-0 z-20 rotate-180"
+                    />
 
-                  {/* Icon Container */}
-                  <div className="relative h-[70px] w-[70px] md:h-[90px] md:w-[90px]">
-                    {/* Orange Shadow */}
-                    <PrismicNextImage
-                      field={item.icon_shadow}
-                      fallbackAlt=""
-                      className="
+                    {/* Icon Container */}
+                    <div className="relative h-[70px] w-[70px] md:h-[90px] md:w-[90px]">
+                      {/* Orange Shadow */}
+                      <PrismicNextImage
+                        field={item.icon_shadow}
+                        fallbackAlt=""
+                        className="
                         absolute
                         left-0
                         top-0
@@ -238,16 +240,16 @@ const WhyThisEvent = ({ slice }) => {
                         object-contain
                         opacity-100
                       "
-                    />
+                      />
 
-                    {/* Main Icon */}
-                    <PrismicNextImage
-                      ref={(el) => {
-                        iconRefs.current[index] = el;
-                      }}
-                      field={item.icon}
-                      fallbackAlt=""
-                      className="
+                      {/* Main Icon */}
+                      <PrismicNextImage
+                        ref={(el) => {
+                          iconRefs.current[index] = el;
+                        }}
+                        field={item.icon}
+                        fallbackAlt=""
+                        className="
                         absolute
                         left-0
                         top-0
@@ -256,25 +258,26 @@ const WhyThisEvent = ({ slice }) => {
                         w-full
                         object-contain
                       "
-                    />
+                      />
+                    </div>
                   </div>
                 </div>
+
+                {/* Title */}
+                <h3 className="mb-4 max-w-[280px] text-2xl font-medium leading-[1] md:mb-5 md:text-3xl">
+                  {item.heading}
+                </h3>
+
+                {/* Description */}
+                <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-lg">
+                  {item.description}
+                </p>
               </div>
-
-              {/* Title */}
-              <h3 className="mb-4 max-w-[280px] text-2xl font-medium leading-[1] md:mb-5 md:text-3xl">
-                {item.heading}
-              </h3>
-
-              {/* Description */}
-              <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-lg">
-                {item.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Bounded>
   );
 };
 
