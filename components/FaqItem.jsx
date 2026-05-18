@@ -69,7 +69,7 @@ export default function FaqItem({ item, defaultOpen = false }) {
 
           {/* Expandable description */}
           <div ref={contentRef} className="hidden overflow-hidden">
-            <p className="text-white/60 text-[12px] lg:text-[18px] leading-relaxed mt-3">
+            <p className="text-white/60 text-sm lg:text-[18px] leading-relaxed mt-3">
               {item.description}
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function FaqItem({ item, defaultOpen = false }) {
         <div className="shrink-0 mt-1">
           <svg
             ref={chevronRef}
-            width="18"
+            width="14"
             height="10"
             viewBox="0 0 18 10"
             fill="none"

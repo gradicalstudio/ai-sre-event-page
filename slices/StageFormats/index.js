@@ -7,8 +7,6 @@ import { PrismicNextImage } from "@prismicio/next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FormModal from "@/components/FormModal";
-import PrimaryButton from "@/components/PrimaryButton";
-
 gsap.registerPlugin(ScrollTrigger);
 
 /**
@@ -18,23 +16,21 @@ gsap.registerPlugin(ScrollTrigger);
  */
 const StageFormats = ({ slice }) => {
   const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
-
   const sectionRef = useRef(null);
 
   const cardsRef = useRef([]);
   const arrowRef = useRef(null);
   const headingRef = useRef(null);
   const topContentRef = useRef(null);
-  const stageFormatRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Initial States
       gsap.set(cardsRef.current, {
         opacity: 0,
-        y: 100,
-        x: 0,
-        scale: 1,
+        y: 80,
+        x: 45,
+        scale: 0.92,
       });
 
       gsap.set(arrowRef.current, {
@@ -44,19 +40,13 @@ const StageFormats = ({ slice }) => {
 
       gsap.set(headingRef.current, {
         opacity: 0,
-        y: 0,
-        x: 50,
+        y: 40,
+        x: 20,
       });
 
       gsap.set(topContentRef.current, {
         opacity: 0,
         y: 30,
-      });
-
-      gsap.set(stageFormatRef.current, {
-        opacity: 0,
-        y: 20,
-        x: -20,
       });
 
       // Timeline
@@ -68,26 +58,13 @@ const StageFormats = ({ slice }) => {
         },
       });
 
-      // Stage Format
-      tl.to(stageFormatRef.current, {
+      // Arrow
+      tl.to(arrowRef.current, {
         opacity: 1,
-        y: 0,
         x: 0,
-        duration: 0.6,
-        ease: "power3.out",
+        duration: 1,
+        ease: "power4.out",
       })
-
-        // Arrow
-        .to(
-          arrowRef.current,
-          {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power4.out",
-          },
-          "-=0.2",
-        )
 
         // Heading
         .to(
@@ -99,10 +76,10 @@ const StageFormats = ({ slice }) => {
             duration: 0.9,
             ease: "power4.out",
           },
-          "-=0.5",
+          "-=0.2",
         )
 
-        // Right Content
+        // Right content
         .to(
           topContentRef.current,
           {
@@ -111,7 +88,7 @@ const StageFormats = ({ slice }) => {
             duration: 0.7,
             ease: "power3.out",
           },
-          "-=0.7",
+          "-=0.6",
         )
 
         // Cards
@@ -122,9 +99,9 @@ const StageFormats = ({ slice }) => {
             y: 0,
             x: 0,
             scale: 1,
-            duration: 0.5,
+            duration: 0.3,
             stagger: 0.1,
-            ease: "power4.out",
+            ease: "power3.out",
           },
           "-=0.5",
         );
@@ -135,34 +112,32 @@ const StageFormats = ({ slice }) => {
 
   return (
     <section
+      id="stage-formats"
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-[#04050F] text-white py-24 px-6 md:px-10 xl:px-20 overflow-hidden"
+      className="bg-[#04050F] text-white py-16 px-6 md:px-10 xl:px-20 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25">
           {/* Left Content */}
           <div>
-            <p
-              ref={stageFormatRef}
-              className="text-[#FF6B4A] uppercase text-xl mb-6 font-mono opacity-0"
-            >
+            <p className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-6 font-mono">
               {slice.primary.stage_format}
             </p>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 lg:gap-6">
               {/* Arrow */}
               <img
                 ref={arrowRef}
                 src="/arrow.svg"
                 alt=""
-                className="w-6 md:w-8 lg:w-10 object-contain flex-shrink-0 opacity-0"
+                className="w-4 md:w-5 lg:w-10 object-contain flex-shrink-0"
               />
 
               {/* Heading */}
-              <div ref={headingRef} className="max-w-[520px] opacity-0">
+              <div ref={headingRef} className="max-w-[520px]">
                 <PrismicRichText
                   field={slice.primary.heading}
                   components={{
@@ -177,7 +152,7 @@ const StageFormats = ({ slice }) => {
                       </h2>
                     ),
                     paragraph: ({ children }) => (
-                      <p className="text-5xl md:text-7xl leading-[0.95] font-medium">
+                      <p className="text-3xl md:text-5xl leading-[1.2] lg:leading-[0.95] font-medium">
                         {children}
                       </p>
                     ),
@@ -188,26 +163,24 @@ const StageFormats = ({ slice }) => {
           </div>
 
           {/* Right Content */}
-          <div
-            ref={topContentRef}
-            className="lg:pt-8 flex lg:justify-end opacity-0"
-          >
+          <div ref={topContentRef} className="lg:pt-8 flex lg:justify-end">
             <div className="max-w-[420px]">
               <PrismicRichText
                 field={slice.primary.short_description}
                 components={{
                   paragraph: ({ children }) => (
-                    <p className="text-white/60 text-lg leading-relaxed mb-8">
+                    <p className="text-white/60 text-base lg:text-lg leading-relaxed mb-10">
                       {children}
                     </p>
                   ),
                 }}
               />
-
-              <PrimaryButton
-                buttonText="Interested to Speak"
+              <button
                 onClick={() => setIsSpeakerOpen(true)}
-              />
+                className="bg-[#57D9FF] text-black px-8 py-4 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(87,217,255,0.3)]"
+              >
+                Interested to Speak
+              </button>
             </div>
           </div>
         </div>
@@ -288,7 +261,6 @@ const StageFormats = ({ slice }) => {
           ))}
         </div>
       </div>
-
       <FormModal
         type="speaker"
         isOpen={isSpeakerOpen}

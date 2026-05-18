@@ -9,9 +9,10 @@ import { PrismicNextImage } from "@prismicio/next";
 const WhatYouTakeAway = ({ slice }) => {
   return (
     <section
+      id="for-attendees"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-[#04050F] px-8 lg:px-20 py-16 lg:py-24"
+      className="bg-[#04050F] px-8 md:px-10 lg:px-20 py-16 lg:py-24"
     >
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
         {/* LEFT — Heading */}
@@ -20,13 +21,13 @@ const WhatYouTakeAway = ({ slice }) => {
             className="w-3 md:w-4 lg:w-6 mt-2 object-contain"
             src="/arrow.svg"
           />
-          <div className="text-white font-medium text-3xl lg:text-[50px] leading-[1.1]">
+          <div className="text-white font-medium text-3xl md:text-5xl lg:text-[50px] leading-[1.1]">
             <PrismicRichText field={slice.primary.heading} />
           </div>
         </div>
 
         {/* RIGHT — Cards grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6 flex-1">
           {slice.primary.blocks.map((item, index) => (
             <div key={index} className="flex flex-col gap-3">
               {/* Icon */}

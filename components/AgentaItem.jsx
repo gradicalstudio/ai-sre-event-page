@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
@@ -9,6 +9,9 @@ export default function AgendaItem({ item }) {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
+  useEffect(() => {
+    gsap.set(chevronRef.current, { rotation: 180 });
+  }, []);
 
   const hasDescription =
     item.short_description?.length > 0 &&
@@ -29,7 +32,7 @@ export default function AgendaItem({ item }) {
         ease: "power2.out",
       });
       gsap.to(chevronRef.current, {
-        rotation: 180,
+        rotation: 0,
         duration: 0.3,
         ease: "power2.out",
       });
@@ -42,7 +45,7 @@ export default function AgendaItem({ item }) {
         onComplete: () => gsap.set(content, { display: "none" }),
       });
       gsap.to(chevronRef.current, {
-        rotation: 0,
+        rotation: 180,
         duration: 0.3,
         ease: "power2.in",
       });
@@ -52,13 +55,10 @@ export default function AgendaItem({ item }) {
   };
 
   return (
-    <div className="border-t font-sans border-white/10 px-4 py-6">
-      {/*
-        CSS Grid layout:
-        Mobile:  [time+icon] [title] [chevron]
-                 [expanded - spans full width  ]
-        Desktop: [time] [title+expanded below] [chevron] [icon]
-      */}
+    <div
+      className="border-t font-sans border-white/10 mx-4 py-6 cursor-pointer"
+      onClick={handleToggle}
+    >
       <div
         className="
           grid gap-x-4
@@ -69,7 +69,7 @@ export default function AgendaItem({ item }) {
         {/* TIME + ICON (mobile: stacked in col 1) */}
         <div className="flex flex-col items-start gap-2 row-start-1">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-white text-xs lg:text-base pt-1">
+            <span className="text-white text-[13px] lg:text-base pt-1">
               {item.time}
             </span>
             {item.icon?.url && (
@@ -99,28 +99,22 @@ export default function AgendaItem({ item }) {
           />
         </div>
 
-        {/* CHEVRON — col 3, row 1 */}
+        {/* CHEVRON — visual only, col 3, row 1 */}
         {isExpandable && (
-          <div className="row-start-1 col-start-3  lg:col-start-3 lg:pt-1 ">
-            <button
-              onClick={handleToggle}
-              className="text-cyan-400 h-full rotate-180"
-              aria-label="Toggle details"
+          <div className="row-start-1 col-start-3 lg:col-start-3 lg:pt-1 flex items-center">
+            <svg
+              ref={chevronRef}
+              width="14"
+              height="10"
+              viewBox="0 0 18 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                ref={chevronRef}
-                width="18"
-                height="10"
-                viewBox="0 0 18 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.349979 9.65005C-0.116798 9.18328 -0.116521 8.42634 0.349979 7.95939L7.95915 0.350187C8.42607 -0.11673 9.1829 -0.11673 9.64981 0.350187L17.2589 7.95939C17.7254 8.42633 17.7258 9.18327 17.2589 9.65005C16.7922 10.1168 16.0352 10.1165 15.5683 9.65005L8.80448 2.88622L2.04065 9.65005C1.57371 10.1165 0.816759 10.1168 0.349979 9.65005Z"
-                  fill="#3FD9FB"
-                />
-              </svg>
-            </button>
+              <path
+                d="M0.349979 9.65005C-0.116798 9.18328 -0.116521 8.42634 0.349979 7.95939L7.95915 0.350187C8.42607 -0.11673 9.1829 -0.11673 9.64981 0.350187L17.2589 7.95939C17.7254 8.42633 17.7258 9.18327 17.2589 9.65005C16.7922 10.1168 16.0352 10.1165 15.5683 9.65005L8.80448 2.88622L2.04065 9.65005C1.57371 10.1165 0.816759 10.1168 0.349979 9.65005Z"
+                fill="#3FD9FB"
+              />
+            </svg>
           </div>
         )}
 
@@ -131,10 +125,7 @@ export default function AgendaItem({ item }) {
           </div>
         )}
 
-        {/* EXPANDABLE CONTENT
-            Mobile:  row 2, spans all 3 cols → full width
-            Desktop: row 2, col 2 only → sits under title
-        */}
+        {/* EXPANDABLE CONTENT */}
         {isExpandable && (
           <div
             ref={contentRef}
@@ -146,7 +137,7 @@ export default function AgendaItem({ item }) {
           >
             <div className="pt-3 flex flex-col gap-4">
               {hasDescription && (
-                <div className="text-white/60 text-sm leading-relaxed">
+                <div className="text-white/60 text-xs md:text-sm leading-relaxed">
                   <PrismicRichText field={item.short_description} />
                 </div>
               )}

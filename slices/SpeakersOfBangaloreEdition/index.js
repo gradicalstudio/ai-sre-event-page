@@ -90,6 +90,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
   return (
     <section
+    
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -209,7 +210,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
                 <h3
                   className="
                     text-base font-medium leading-none text-white
-                    md:text-2xl
+                    md:text-xl
                     lg:text-[28px]
                   "
                 >
