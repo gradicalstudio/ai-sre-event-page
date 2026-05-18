@@ -31,7 +31,7 @@ const Agenda = ({ slice }) => {
           {/* Agenda Items */}
           <div>
             {slice.primary.blocks.map((item, index) => (
-              <AgendaItem key={index} item={item} />
+              <AgendaItem key={index} item={item} defaultOpen={index === 1} />
             ))}
           </div>
         </div>
