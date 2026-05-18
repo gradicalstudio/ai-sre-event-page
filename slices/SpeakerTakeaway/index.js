@@ -11,6 +11,7 @@ const SpeakerTakeaway = ({ slice }) => {
   return (
     <Bounded className="bg-[#04050F]">
       <section
+        id="for-speakers"
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className="bg-[#04050F] "

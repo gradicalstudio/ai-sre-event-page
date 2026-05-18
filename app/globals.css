@@ -10,7 +10,16 @@ body {
 html {
   scroll-behavior: smooth;
 }
+[id] {
+  scroll-margin-top: 100px;
+}
 /* Hide Scrollbar */
+#agenda {
+  scroll-margin-top: -90px;
+}
+#faq {
+  scroll-margin-top: -50px;
+}
 
 .scrollbar-none::-webkit-scrollbar {
   display: none;
