@@ -1,8 +1,9 @@
-const SecondaryButton = ({ buttonText, onClick }) => {
+const SecondaryButton = ({ buttonText, onClick, className }) => {
   return (
     <button
       onClick={onClick}
-      className="
+      className={`
+        ${className}
         rounded-full
          border-2
         border-white
@@ -19,7 +20,7 @@ const SecondaryButton = ({ buttonText, onClick }) => {
        
         hover:cursor-pointer
        hover:shadow-[0_0_20px_rgba(0,200,255,0.35)]
-      "
+      `}
     >
       {buttonText}
     </button>
