@@ -25,18 +25,24 @@ const Footer = ({ slice }) => {
         <div className="flex flex-col w-full  lg:flex-row lg:justify-between gap-15 lg:gap-30 ">
           {/* LEFT — Logos + AI SRE NEXT image */}
           <div className="lg:w-[44%]">
-            <PrismicNextImage field={slice.primary.logos} className="w-full object-cover"  />
+            <PrismicNextImage
+              field={slice.primary.logos}
+              className="w-full object-cover"
+            />
           </div>
 
           {/* RIGHT — Buttons + Info + Description */}
           <div className="flex flex-col gap-10 lg:justify-between">
             {/* Buttons */}
-            <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex flex-col lg:flex-col xl:flex-row gap-4">
               <PrimaryButton
+                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-8! lg:py-3!"
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
+
               <SecondaryButton
+                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-10! lg:py-3!"
                 buttonText="Apply to Speak"
                 onClick={() => setIsSpeakerOpen(true)}
               />

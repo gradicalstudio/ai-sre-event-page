@@ -21,7 +21,7 @@ const FaQ = ({ slice }) => {
       className="
       
       scrollbar-none
-       overflow-hidden
+    
         relative
         bg-[#04050F]
         px-12 lg:px-20
