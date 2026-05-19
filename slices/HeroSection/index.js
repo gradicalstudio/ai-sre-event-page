@@ -21,6 +21,12 @@ const HeroSection = ({ slice }) => {
   const [isInviteOpen, setIsInviteOpen] = useState(false);
 
   const showVideo = slice.primary.video_toggle;
+  const handleCalendar = () => {
+    window.open(
+      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+SRE+Next&dates=20260612T100000/20260612T153000&details=Join+AI+SRE+Next&location=Conrad+Bengaluru,+25/3,+Kensington+Rd,+Halasuru,+Someshwarpura,+Bengaluru,+Karnataka+560008,+India",
+      "_blank",
+    );
+  };
 
   return (
     <>
@@ -74,14 +80,18 @@ const HeroSection = ({ slice }) => {
             <div className="flex mt-10 flex-col w-full">
               <div className="flex flex-wrap items-center gap-5 lg:gap-8 w-full lg:w-[95%]">
                 {/* Date */}
-                <div className="flex items-center gap-2">
+                {/* Date */}
+                <div
+                  onClick={handleCalendar}
+                  className="flex items-center gap-2 cursor-pointer group"
+                >
                   <img
-                    className="w-4 h-4 lg:w-5 lg:h-5 object-contain shrink-0"
+                    className="w-4 h-4 lg:w-5 lg:h-5 object-contain shrink-0 transition-transform duration-300 group-hover:scale-110"
                     src="/calender.svg"
                   />
 
                   <PrismicNextLink
-                    className="text-xs md:text-base lg:text-[14px] leading-none flex items-center"
+                    className="text-xs md:text-base lg:text-[14px] leading-none flex items-center hover:text-[#3FD9FB] transition-colors"
                     field={slice.primary.date}
                   />
                 </div>
