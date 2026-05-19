@@ -267,12 +267,12 @@ ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
                 </div>
 
                 {/* Title */}
-                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] md:mb-5 md:text-[22px]">
+                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] md:mb-5 md:text-[22px] xl:max-w-[230px]">
                   {item.heading}
                 </h3>
 
                 {/* Description */}
-                <p className="max-w-[320px]  text-base leading-relaxed text-white/60 md:text-[16px]">
+                <p className="max-w-[320px] text-base leading-relaxed text-white/60 md:text-[16px] xl:max-w-[260px]">
                   {item.description}
                 </p>
               </div>
