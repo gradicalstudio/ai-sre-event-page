@@ -34,7 +34,7 @@ const HeroSection = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className="w-full bg-[#04050F]  px-6 md:px-6 lg:px-0
-          py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-[700px] lg:max-w-[900px] xl:max-w-[1120px] 2xl:max-w-[1320px]  mx-auto flex-col gap-6 text-white"
+          py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white"
       >
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Left Side */}
@@ -44,7 +44,7 @@ const HeroSection = ({ slice }) => {
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
-              <div className="max-w-4xl text-4xl md:text-5xl lg:text-[40px] xl:text-[65px] font-medium lg:leading-[1.1]">
+              <div className="max-w-4xl text-4xl md:text-5xl lg:text-[40px] xl:text-5xl 2xl:text-[65px] font-medium lg:leading-[1.1]">
                 <PrismicRichText
                   field={slice.primary.heading}
                   components={{
@@ -56,7 +56,7 @@ const HeroSection = ({ slice }) => {
               </div>
 
               {/* Description */}
-              <div className="max-w-2xl text-sm md:text-base lg:text-base xl:text-xl text-balance ">
+              <div className="max-w-2xl text-sm md:text-base lg:text-base xl:text-base 2xl:text-xl text-balance ">
                 <PrismicRichText field={slice.primary.description} />
               </div>
             </div>
@@ -64,13 +64,13 @@ const HeroSection = ({ slice }) => {
             {/* Buttons */}
             <div className="mt-6 flex flex-wrap items-center gap-6">
               <PrimaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-8!  lg:py-3!  "
+                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-8!  lg:py-3! xl:px-6!  "
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
 
               <SecondaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-10!  lg:py-3!  "
+                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-10!  lg:py-3! xl:px-6! "
                 buttonText="Speak at AI SRE Next"
                 onClick={() => setIsSpeakerOpen(true)}
               />
@@ -78,12 +78,12 @@ const HeroSection = ({ slice }) => {
 
             {/* Meta Info */}
             <div className="flex mt-10 flex-col w-full">
-              <div className="flex flex-wrap items-center gap-5 lg:gap-8 w-full lg:w-[95%]">
+              <div className="flex flex-wrap items-center gap-5 lg:gap-8 xl:gap-5 w-full lg:w-[95%] xl:w-full">
                 {/* Date */}
                 {/* Date */}
                 <div
                   onClick={handleCalendar}
-                  className="flex items-center gap-2 cursor-pointer group"
+                  className="flex text-center items-center gap-2 cursor-pointer group"
                 >
                   <img
                     className="w-4 h-4 lg:w-5 lg:h-5 object-contain shrink-0 transition-transform duration-300 group-hover:scale-110"
@@ -91,7 +91,7 @@ const HeroSection = ({ slice }) => {
                   />
 
                   <PrismicNextLink
-                    className="text-xs md:text-base lg:text-[14px] leading-none flex items-center hover:text-[#3FD9FB] transition-colors"
+                    className="text-xs md:text-base lg:text-[13px] leading-none flex items-center hover:text-[#3FD9FB] transition-colors"
                     field={slice.primary.date}
                   />
                 </div>
@@ -103,7 +103,7 @@ const HeroSection = ({ slice }) => {
                     src="/clock.svg"
                   />
 
-                  <p className="text-xs md:text-base lg:text-[14px] leading-none flex items-center">
+                  <p className="text-xs md:text-base lg:text-[13px] leading-none flex items-center">
                     {slice.primary.time}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ const HeroSection = ({ slice }) => {
                   />
 
                   <PrismicNextLink
-                    className="text-xs md:text-base lg:text-[14px] leading-none flex items-center"
+                    className="text-xs md:text-base lg:text-[13px] leading-none flex hover:text-[#3FD9FB] transition-colors items-center"
                     field={slice.primary.location}
                   />
                 </div>

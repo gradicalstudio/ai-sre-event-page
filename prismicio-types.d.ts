@@ -850,6 +850,57 @@ export interface SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem {
 }
 
 /**
+ * Item in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+ */
+export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem {
+  /**
+   * Speaker Image field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].speaker_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  speaker_image: prismic.ImageField<never>;
+
+  /**
+   * Name field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Role field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].role
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  role: prismic.KeyTextField;
+
+  /**
+   * LinkedIn field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
  * Primary content in *SpeakersOfBangaloreEdition → Default → Primary*
  */
 export interface SpeakersOfBangaloreEditionSliceDefaultPrimary {
@@ -891,10 +942,52 @@ export type SpeakersOfBangaloreEditionSliceDefault =
   >;
 
 /**
+ * Primary content in *SpeakersOfBangaloreEdition → secondaryVar → Primary*
+ */
+export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimary {
+  /**
+   * Heading field in *SpeakersOfBangaloreEdition → secondaryVar → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Speaker field in *SpeakersOfBangaloreEdition → secondaryVar → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  speaker: prismic.GroupField<
+    Simplify<SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem>
+  >;
+}
+
+/**
+ * secondaryVar variation for SpeakersOfBangaloreEdition Slice
+ *
+ * - **API ID**: `secondaryVar`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SpeakersOfBangaloreEditionSliceSecondaryVar =
+  prismic.SharedSliceVariation<
+    "secondaryVar",
+    Simplify<SpeakersOfBangaloreEditionSliceSecondaryVarPrimary>,
+    never
+  >;
+
+/**
  * Slice variation for *SpeakersOfBangaloreEdition*
  */
 type SpeakersOfBangaloreEditionSliceVariation =
-  SpeakersOfBangaloreEditionSliceDefault;
+  | SpeakersOfBangaloreEditionSliceDefault
+  | SpeakersOfBangaloreEditionSliceSecondaryVar;
 
 /**
  * SpeakersOfBangaloreEdition Shared Slice
@@ -1357,8 +1450,11 @@ declare module "@prismicio/client" {
       SpeakersOfBangaloreEditionSlice,
       SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem,
       SpeakersOfBangaloreEditionSliceDefaultPrimary,
+      SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem,
+      SpeakersOfBangaloreEditionSliceSecondaryVarPrimary,
       SpeakersOfBangaloreEditionSliceVariation,
       SpeakersOfBangaloreEditionSliceDefault,
+      SpeakersOfBangaloreEditionSliceSecondaryVar,
       StageFormatsSlice,
       StageFormatsSliceDefaultPrimaryBlocksItem,
       StageFormatsSliceDefaultPrimary,
