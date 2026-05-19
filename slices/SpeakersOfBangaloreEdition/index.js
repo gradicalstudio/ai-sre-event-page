@@ -254,7 +254,7 @@ lg:mt-20
       )}
       {slice.variation === "secondaryVar" && (
         <section ref={sectionRef} className="px-4 ">
-          <div className="flex items-center  w-full select-none px-2">
+          <div className="flex items-center 2xl:max-w-[1440px] mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">
               <div className="flex-1 hidden md:block">
                 <img className=" h-full object-cover" src="/left new.svg" />
@@ -294,13 +294,13 @@ lg:mt-20
                       <p className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
                         {item.name}
                       </p>
-                      <p className="lg:mt-3 mt-2  text-sm md:text-[15px] xl:text-base text-gray-400">
+                      <p className=" text-sm md:text-[15px] xl:text-base text-gray-400">
                         {item.role}
                       </p>
                     </div>
 
                     {item.linkedin?.url && (
-                      <div className="flex mt-3 items-center gap-2">
+                      <div className="flex mt-2 items-center gap-2">
                         <PrismicNextLink field={item.linkedin}>
                           <img src="Linkden.svg" className="w-5 h-5" />
                         </PrismicNextLink>

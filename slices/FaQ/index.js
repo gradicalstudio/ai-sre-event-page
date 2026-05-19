@@ -34,8 +34,7 @@ const FaQ = ({ slice }) => {
         src="/left side.svg"
         alt=""
         className="
-        hidden
-        md:block
+     
           absolute
           -left-30 lg:-left-24
           top-1/2
