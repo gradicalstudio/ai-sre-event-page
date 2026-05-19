@@ -166,8 +166,8 @@ const WhyThisEvent = ({ slice }) => {
 ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
 
   md:pr-10
-  ${index === 1 ? "md:-ml-10 lg:-ml-16" : ""}
-  ${index === 2 ? "md:-ml-20 lg:-ml-32" : ""}
+ ${index === 1 ? "xl:-ml-16" : ""}
+  ${index === 2 ? "xl:-ml-32" : ""}
 `}
               >
                 {/* Icon + Connected Lines */}

@@ -43,7 +43,14 @@ export default function FormModal({ isOpen, onClose, type }) {
   useEffect(() => {
     if (!isOpen) return;
 
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
 
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -54,7 +61,23 @@ export default function FormModal({ isOpen, onClose, type }) {
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
+
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+
+      const html = document.documentElement;
+
+      const previousScrollBehavior = html.style.scrollBehavior;
+
+      html.style.scrollBehavior = "auto";
+
+      window.scrollTo(0, scrollY);
+
+      html.style.scrollBehavior = previousScrollBehavior;
+
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
@@ -290,6 +313,9 @@ export default function FormModal({ isOpen, onClose, type }) {
         flex
         items-center
         justify-center
+           overflow-y-auto
+    overscroll-none
+   
         bg-black/80
         p-4
         backdrop-blur-sm
