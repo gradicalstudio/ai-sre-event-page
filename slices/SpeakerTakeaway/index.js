@@ -48,7 +48,7 @@ const SpeakerTakeaway = ({ slice }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.7fr]">
             {/* LEFT SIDE */}
             <div className="relative flex items-center p-6 md:p-8 lg:p-10">
               {/* TOP DASH */}
