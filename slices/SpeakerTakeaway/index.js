@@ -48,7 +48,7 @@ const SpeakerTakeaway = ({ slice }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.40fr]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr]">
             {/* LEFT SIDE */}
             <div className="relative flex items-center p-6 md:p-8 lg:p-10">
               {/* TOP DASH */}
@@ -91,7 +91,7 @@ const SpeakerTakeaway = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-[50px]">
+                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-[45px]">
                           {children}
                         </p>
                       ),
@@ -114,10 +114,10 @@ const SpeakerTakeaway = ({ slice }) => {
   first:border-t-0
 "
                 >
-                  <div className="relative z-10">
+                  <div className="relative grid grid-rows-[80px_auto_1fr] gap-2 z-10">
                     {/* Icon */}
                     {item.icon?.url && (
-                      <div className="">
+                      <div>
                         <PrismicNextImage
                           field={item.icon}
                           className="h-20 w-20 object-contain"
@@ -126,12 +126,12 @@ const SpeakerTakeaway = ({ slice }) => {
                     )}
 
                     {/* Title */}
-                    <h3 className="mb-2 text-[16px] font-semibold  text-white ">
+                    <h3 className="min-h-[3rem] text-[16px] lg:text-base font-semibold text-white">
                       {item.heading}
                     </h3>
 
                     {/* Description */}
-                    <p className="max-w-[90%] text-[16px] text-white/60 ">
+                    <p className="max-w-[90%] text-[16px] lg:text-[14px] mt-2 text-white/60">
                       {item.description}
                     </p>
                   </div>
