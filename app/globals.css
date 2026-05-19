@@ -23,7 +23,7 @@ body {
   scroll-margin-top: -90px;
 }
 #faq {
-  scroll-margin-top: -50px;
+  scroll-margin-top: 50px;
 }
 
 .scrollbar-none::-webkit-scrollbar {

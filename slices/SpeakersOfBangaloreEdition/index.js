@@ -76,6 +76,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
       {slice.variation === "default" && (
         <section
           ref={sectionRef}
+          id="speakers"
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
           className="relative   mx-auto w-full
@@ -253,7 +254,7 @@ lg:mt-20
         </section>
       )}
       {slice.variation === "secondaryVar" && (
-        <section ref={sectionRef} className="px-4 ">
+        <section id="speakers" ref={sectionRef} className="px-4 ">
           <div className="flex items-center 2xl:max-w-[1440px] mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">
               <div className="flex-1 hidden md:block">
