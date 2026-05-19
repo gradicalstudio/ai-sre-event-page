@@ -475,6 +475,16 @@ export interface HeroSectionSliceDefaultPrimary {
   description: prismic.RichTextField;
 
   /**
+   * Date text field in *HeroSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.default.primary.date_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  date_text: prismic.KeyTextField;
+
+  /**
    * Date field in *HeroSection → Default → Primary*
    *
    * - **Field Type**: Link

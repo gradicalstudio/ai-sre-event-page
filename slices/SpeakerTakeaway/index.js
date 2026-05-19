@@ -114,19 +114,19 @@ const SpeakerTakeaway = ({ slice }) => {
   first:border-t-0
 "
                 >
-                  <div className="relative grid grid-rows-[80px_auto_1fr] gap-2 z-10">
+                  <div className="relative grid grid-rows-[60px_auto_1fr] gap-2 z-10">
                     {/* Icon */}
                     {item.icon?.url && (
                       <div>
                         <PrismicNextImage
                           field={item.icon}
-                          className="h-20 w-20 object-contain"
+                          className="h-10 w-20 mt-3 object-contain"
                         />
                       </div>
                     )}
 
                     {/* Title */}
-                    <h3 className="min-h-[3rem] text-[16px] lg:text-base font-semibold text-white">
+                    <h3 className="min-h-[1rem] text-[16px] lg:text-base font-semibold text-white">
                       {item.heading}
                     </h3>
 

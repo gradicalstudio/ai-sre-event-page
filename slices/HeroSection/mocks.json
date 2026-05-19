@@ -74,6 +74,11 @@
 			"video_toggle": {
 				"__TYPE__": "BooleanContent",
 				"value": true
+			},
+			"date_text": {
+				"__TYPE__": "FieldContent",
+				"value": "already",
+				"type": "Text"
 			}
 		},
 		"items": []
