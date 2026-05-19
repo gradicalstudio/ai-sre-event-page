@@ -48,7 +48,7 @@ const SpeakerTakeaway = ({ slice }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr]">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.40fr]">
             {/* LEFT SIDE */}
             <div className="relative flex items-center p-6 md:p-8 lg:p-10">
               {/* TOP DASH */}
@@ -102,7 +102,7 @@ const SpeakerTakeaway = ({ slice }) => {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="grid grid-cols-1 border border-white/10 sm:grid-cols-2">
+            <div className="grid grid-cols-1 border border-white/10 sm:grid-cols-3">
               {slice.primary.blocks?.map((item, index) => (
                 <div
                   key={index}

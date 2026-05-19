@@ -65,6 +65,68 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "secondaryVar",
+      "name": "secondaryVar",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,heading3,heading4,heading5,heading6,paragraph,strong,em"
+          }
+        },
+        "speaker": {
+          "type": "Group",
+          "config": {
+            "label": "Speaker",
+            "repeat": true,
+            "fields": {
+              "speaker_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Speaker Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "name": {
+                "type": "Text",
+                "config": {
+                  "label": "Name",
+                  "placeholder": ""
+                }
+              },
+              "role": {
+                "type": "Text",
+                "config": {
+                  "label": "Role",
+                  "placeholder": ""
+                }
+              },
+              "linkedin": {
+                "type": "Link",
+                "config": {
+                  "label": "LinkedIn",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

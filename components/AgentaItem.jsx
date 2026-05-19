@@ -30,6 +30,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
   const isExpandable = hasDescription || hasSpeakers;
 
   const handleToggle = () => {
+    if (!isExpandable) return;
     const content = contentRef.current;
 
     if (!isOpen) {
