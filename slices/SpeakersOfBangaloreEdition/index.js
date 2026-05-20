@@ -44,6 +44,48 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
         },
       );
 
+      // LEFT SVG REVEAL
+
+      gsap.fromTo(
+        ".left-pattern",
+        {
+          scaleX: 0,
+          opacity: 0,
+          transformOrigin: "left center",
+        },
+        {
+          scaleX: 1,
+          opacity: 0.6,
+          duration: 1.8,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        },
+      );
+
+      // RIGHT SVG REVEAL
+
+      gsap.fromTo(
+        ".right-pattern",
+        {
+          scaleX: 0,
+          opacity: 0,
+          transformOrigin: "right center",
+        },
+        {
+          scaleX: 1,
+          opacity: 0.6,
+          duration: 1.8,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        },
+      );
+
       // Cards Animation
 
       gsap.fromTo(
@@ -91,14 +133,14 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             src="/Mask group.svg"
             alt=""
             className=" 
-        hidden lg:block
-          left-pattern
-          pointer-events-none absolute opacity-60
-          left-[0px] top-[0px] w-[260px]
-          md:left-[-90px] md:top-[-10px] md:w-[420px]
-          lg:left-[60px] lg:top-[75px] lg:w-[620px]
-          xl:left-[0px] xl:top-[100px] xl:w-[620px]
-        "
+    hidden lg:block
+    left-pattern
+    pointer-events-none absolute opacity-60
+    left-[0px] top-[0px] w-[260px]
+    md:left-[-90px] md:top-[-10px] md:w-[420px]
+    lg:left-[60px] lg:top-[75px] lg:w-[620px]
+    xl:left-[0px] xl:top-[100px] xl:w-[620px]
+  "
           />
 
           {/* RIGHT SVG */}
@@ -107,14 +149,14 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             src="/Mask group (1).svg"
             alt=""
             className="
-          right-pattern
-          hidden lg:block
-          pointer-events-none absolute opacity-60
-          right-[60px] top-[10px] w-[260px]
-          md:right-[-220px] md:top-[-20px] md:w-[420px]
-          lg:right-[-190px] lg:top-[80px] lg:w-[620px]
-          xl:right-[0px] xl:top-[100px] xl:w-[520px]
-        "
+    right-pattern
+    hidden lg:block
+    pointer-events-none absolute opacity-60
+    right-[60px] top-[10px] w-[260px]
+    md:right-[-220px] md:top-[-20px] md:w-[420px]
+    lg:right-[-190px] lg:top-[80px] lg:w-[620px]
+    xl:right-[0px] xl:top-[100px] xl:w-[520px]
+  "
           />
 
           <div className="relative z-10 ">
