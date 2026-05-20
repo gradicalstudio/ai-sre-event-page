@@ -385,7 +385,7 @@ export default function FormModal({ isOpen, onClose, type }) {
         {!submitted ? (
           <>
             <img
-              src="/logo.svg"
+              src="/AI SRE Latest.svg"
               alt="AI SRE Next"
               className="
                 mt-6
@@ -798,7 +798,7 @@ export default function FormModal({ isOpen, onClose, type }) {
             </div>
 
             <img
-              src="/logo.svg"
+              src="/AI SRE Latest.svg"
               alt="AI SRE Next"
               className="
                 mt-10
