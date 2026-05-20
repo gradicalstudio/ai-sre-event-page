@@ -738,7 +738,7 @@ export default function FormModal({ isOpen, onClose, type }) {
                 <p className="text-center text-sm text-[#45C7F0]">
                   Seats are confirmed within 48 hours.
                   <br />
-                  75 seats total — invite-only.
+                  50 seats total — invite-only.
                 </p>
               )}
             </form>
