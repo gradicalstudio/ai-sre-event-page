@@ -40,7 +40,10 @@ const HeroSection = ({ slice }) => {
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
-              <img className="w-50 self-start lg:w-80" src="/new logo.svg" />
+              <img
+                className="w-35 self-start lg:w-80"
+                src="/AI SRE Latest.svg"
+              />
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
@@ -121,7 +124,7 @@ const HeroSection = ({ slice }) => {
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            <img className="w-full self-center" src="/new logo.svg" />
+            <img className="w-[75%] self-center" src="/AI SRE Latest.svg" />
             {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
@@ -149,14 +152,20 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="inset-x-0 -mt-20  lg:mt-0 h-30 xl:h-70 overflow-hidden blur-2xl">
-        <div className="absolute z-999 h-65 top-0 max-w- w-full">
+      <div className="relative inset-x-0 -mt-20 lg:mt-5 xl:mt-0 h-30 lg:h-30 xl:h-70  ">
+        {/* Gradient */}
+        <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
         </div>
 
-        {/* <div className="absolute h-137.5 -top-35 w-full">
-          <img className="w-full h-full object-cover" src="/toplayer.svg" />
-        </div> */}
+        {/* Texture */}
+        <div className=" hidden md:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-35 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
+          <img
+            className="scale-[1.15] h-[130%]  md:w-[105%]  md:h-[130%] xl:h-full object-cover mask-image:linear-gradient(to_bottom,transparent_0%,transparent_60%,black_45%,black_100%)] md:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_0%,black_45%,black_100%)] lg:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_45%,black_55%,black_100%)] xl:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_30%,black_55%,black_100%)]"
+            src="/toplayer.svg"
+            alt="texture"
+          />
+        </div>
       </div>
     </>
   );

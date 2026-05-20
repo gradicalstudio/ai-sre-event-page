@@ -24,6 +24,7 @@ const WhyThisEvent = ({ slice }) => {
 
   const cardsRef = useRef([]);
   const iconRefs = useRef([]);
+  const boxRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -102,6 +103,71 @@ const WhyThisEvent = ({ slice }) => {
           toggleActions: "play reverse play reverse",
         },
       });
+
+      // GLASS SHINE EFFECT
+
+      boxRefs.current.forEach((box, index) => {
+        if (!box) return;
+
+        box.style.position = "relative";
+        box.style.overflow = "hidden";
+
+        const reflection = document.createElement("div");
+
+        reflection.className = `
+          absolute top-[-40%] left-[-150%]
+          h-[240%] w-[45%]
+          rotate-[25deg]
+          bg-gradient-to-r
+          from-transparent
+          via-white/25
+          to-transparent
+          blur-md
+          pointer-events-none
+          z-30
+          mix-blend-screen
+          opacity-0
+        `;
+
+        box.appendChild(reflection);
+
+        const animateReflection = () => {
+          const distance = box.offsetWidth * 3;
+
+          gsap.fromTo(
+            reflection,
+            {
+              x: 0,
+              opacity: 0,
+            },
+            {
+              x: distance,
+              opacity: 1,
+              duration: 1.2,
+              ease: "power2.inOut",
+              onComplete: () => {
+                gsap.set(reflection, {
+                  x: 0,
+                  opacity: 0,
+                });
+
+                gsap.delayedCall(Math.random() * 5 + 2, animateReflection);
+              },
+            },
+          );
+        };
+
+        // START ONLY WHEN IN VIEWPORT
+
+        ScrollTrigger.create({
+          trigger: box,
+          start: "top 85%",
+          once: true,
+          onEnter: () => {
+            gsap.delayedCall(index * 0.4, animateReflection);
+          },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -160,15 +226,13 @@ const WhyThisEvent = ({ slice }) => {
                   cardsRef.current[index] = el;
                 }}
                 className={`
-  relative
-  
-  opacity-0
-${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
-
-  md:pr-10
- ${index === 1 ? "xl:-ml-16" : ""}
-  ${index === 2 ? "xl:-ml-32" : ""}
-`}
+                  relative
+                  opacity-0
+                  ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
+                  md:pr-10
+                  ${index === 1 ? "xl:-ml-16" : ""}
+                  ${index === 2 ? "xl:-ml-32" : ""}
+                `}
               >
                 {/* Icon + Connected Lines */}
                 <div className="relative mb-8 h-[120px] w-[120px] md:mb-10 md:h-[140px] md:w-[140px]">
@@ -186,18 +250,21 @@ ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
 
                   {/* Icon Box */}
                   <div
+                    ref={(el) => {
+                      boxRefs.current[index] = el;
+                    }}
                     className="
-                    relative
-                    z-10
-                    flex
-                    h-full
-                    w-full
-                    items-center
-                    justify-center
-                    border
-                    border-white/10
-                    bg-[#0F101F]
-                  "
+                      relative
+                      z-10
+                      flex
+                      h-full
+                      w-full
+                      items-center
+                      justify-center
+                      border
+                      border-white/10
+                      bg-[#0F101F]
+                    "
                   >
                     {/* TOP LEFT */}
                     <img
@@ -234,15 +301,15 @@ ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
                         field={item.icon_shadow}
                         fallbackAlt=""
                         className="
-                        absolute
-                        left-0
-                        top-0
-                        z-0
-                        h-full
-                        w-full
-                        object-contain
-                        opacity-100
-                      "
+                          absolute
+                          left-0
+                          top-0
+                          z-0
+                          h-full
+                          w-full
+                          object-contain
+                          opacity-100
+                        "
                       />
 
                       {/* Main Icon */}
@@ -253,14 +320,14 @@ ${index === 0 ? "pt-0" : "pt-10 md:pt-0"}
                         field={item.icon}
                         fallbackAlt=""
                         className="
-                        absolute
-                        left-0
-                        top-0
-                        z-10
-                        h-full
-                        w-full
-                        object-contain
-                      "
+                          absolute
+                          left-0
+                          top-0
+                          z-10
+                          h-full
+                          w-full
+                          object-contain
+                        "
                       />
                     </div>
                   </div>
