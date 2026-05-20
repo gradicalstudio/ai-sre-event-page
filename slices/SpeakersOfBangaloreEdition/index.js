@@ -23,7 +23,6 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Heading Animation
-
       gsap.fromTo(
         headingRef.current,
         {
@@ -45,7 +44,6 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
       );
 
       // LEFT SVG REVEAL
-
       gsap.fromTo(
         ".left-pattern",
         {
@@ -66,7 +64,6 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
       );
 
       // RIGHT SVG REVEAL
-
       gsap.fromTo(
         ".right-pattern",
         {
@@ -86,28 +83,30 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
         },
       );
 
-      // Cards Animation
+      // Individual Cards Animation (Triggers when each card enters the viewport)
+      cardsRef.current.forEach((card) => {
+        if (!card) return;
 
-      gsap.fromTo(
-        cardsRef.current,
-        {
-          opacity: 0,
-          y: 120,
-          scale: 0.9,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 120,
+            scale: 0.9,
           },
-        },
-      );
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%", // Triggers individually when the top of each card hits 85% viewport height
+            },
+          },
+        );
+      });
     }, sectionRef);
 
     return () => ctx.revert();
