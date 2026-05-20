@@ -84,22 +84,22 @@ const WhyThisEvent = ({ slice }) => {
           {
             opacity: 1,
             x: 0,
-            duration: 0.9,
-            stagger: 0.18,
+            duration: 0.5,
+            stagger: 0.1,
             ease: "power4.out",
           },
-          "-=0.35",
+          "-=0.9",
         );
 
       // QUICK DEPTH SEPARATION EFFECT
       gsap.to(iconRefs.current, {
         y: -15,
         delay: 0.4,
-        duration: 0.8,
+        duration: 0.3,
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 55%",
+          start: "top 85%",
           toggleActions: "play reverse play reverse",
         },
       });

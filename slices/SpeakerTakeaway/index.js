@@ -1,46 +1,136 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Bounded from "@/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
-/**
- * @typedef {import("@prismicio/client").Content.SpeakerTakeawaySlice} SpeakerTakeawaySlice
- * @typedef {import("@prismicio/react").SliceComponentProps<SpeakerTakeawaySlice>} SpeakerTakeawayProps
- * @type {import("react").FC<SpeakerTakeawayProps>}
- */
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const SpeakerTakeaway = ({ slice }) => {
+  const sectionRef = useRef(null);
+  const arrowRef = useRef(null);
+  const headingRef = useRef(null);
+  const blocksRef = useRef([]);
+  const blockBoxRefs = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(arrowRef.current, { opacity: 0, x: -100 });
+      gsap.set(headingRef.current, { opacity: 0, x: 40 });
+      gsap.set(blocksRef.current, { opacity: 0, x: -120 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          once: true,
+        },
+      });
+
+      tl.to(arrowRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 0.9,
+        ease: "power4.out",
+      })
+        .to(
+          headingRef.current,
+          { opacity: 1, x: 0, duration: 0.8, ease: "power4.out" },
+          "-=0.55",
+        )
+        .to(
+          blocksRef.current,
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "power4.out" },
+          "-=0.9",
+        );
+
+      // GLASS SHINE EFFECT
+      blockBoxRefs.current.forEach((box, index) => {
+        if (!box) return;
+
+        box.style.position = "relative";
+        box.style.overflow = "hidden";
+
+        const reflection = document.createElement("div");
+        reflection.className = `
+          absolute top-[-40%] left-[-150%]
+          h-[240%] w-[45%]
+          rotate-[25deg]
+          bg-gradient-to-r
+          from-transparent
+          via-white/25
+          to-transparent
+          blur-md
+          pointer-events-none
+          z-30
+          mix-blend-screen
+          opacity-0
+        `;
+        box.appendChild(reflection);
+
+        const animateReflection = () => {
+          const distance = box.offsetWidth * 3;
+          gsap.fromTo(
+            reflection,
+            { x: 0, opacity: 0 },
+            {
+              x: distance,
+              opacity: 1,
+              duration: 1.2,
+              ease: "power2.inOut",
+              onComplete: () => {
+                gsap.set(reflection, { x: 0, opacity: 0 });
+                gsap.delayedCall(Math.random() * 5 + 2, animateReflection);
+              },
+            },
+          );
+        };
+
+        ScrollTrigger.create({
+          trigger: box,
+          start: "top 85%",
+          once: true,
+          onEnter: () => {
+            gsap.delayedCall(index * 0.4, animateReflection);
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <Bounded className="bg-[#04050F]">
+    <Bounded className="bg-[#04050F] overflow-hidden">
       <section
         id="for-speakers"
+        ref={sectionRef}
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="bg-[#04050F] "
+        className="bg-[#04050F] overflow-hidden"
       >
-        <div className="relative ">
+        <div className="relative">
           {/* Corner Decorations */}
           <div className="pointer-events-none absolute inset-0">
-            {/* TOP LEFT */}
             <img
               src="/Rectangle 574056928.svg"
               alt=""
               className="absolute top-0 left-0 -rotate-90 z-20 w-3 opacity-60 md:w-4"
             />
-
-            {/* TOP RIGHT */}
             <img
               src="/Rectangle 574056928.svg"
               alt=""
               className="absolute top-0 right-0 z-20 w-3 opacity-60 md:w-4"
             />
-
-            {/* BOTTOM RIGHT */}
             <img
               src="/Rectangle 574056928.svg"
               alt=""
               className="absolute bottom-0 right-0 rotate-90 z-20 w-3 opacity-60 md:w-4"
             />
-
-            {/* BOTTOM LEFT */}
             <img
               src="/Rectangle 574056928.svg"
               alt=""
@@ -51,32 +141,25 @@ const SpeakerTakeaway = ({ slice }) => {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.7fr]">
             {/* LEFT SIDE */}
             <div className="relative flex items-center p-6 md:p-8 lg:p-10">
-              {/* TOP DASH */}
               <div className="absolute left-0 top-0 h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
-
-              {/* BOTTOM DASH */}
-              {/* BOTTOM DASH */}
               <div className="absolute bottom-0 left-0 hidden h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)] lg:block" />
-
-              {/* LEFT DASH */}
               <div className="absolute left-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
-              {/* LEFT DASH */}
-              <div className="absolute left-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
-
-              {/* RIGHT DASH - MOBILE ONLY */}
               <div className="absolute right-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)] lg:hidden" />
+
               <div className="flex items-start gap-5">
-                {/* Arrow */}
                 <div className="mt-2 flex-shrink-0">
                   <img
+                    ref={arrowRef}
                     src="/arrow.svg"
                     alt="Arrow"
-                    className="h-7 w-4 object-contain md:h-9 md:w-5"
+                    className="h-7 w-4 object-contain md:h-9 md:w-5 opacity-0"
                   />
                 </div>
 
-                {/* Heading */}
-                <div className="max-w-[95%] text-white">
+                <div
+                  ref={headingRef}
+                  className="max-w-[95%] text-white opacity-0"
+                >
                   <PrismicRichText
                     field={slice.primary.heading}
                     components={{
@@ -106,16 +189,24 @@ const SpeakerTakeaway = ({ slice }) => {
               {slice.primary.blocks?.map((item, index) => (
                 <div
                   key={index}
+                  ref={(el) => {
+                    blocksRef.current[index] = el;
+                  }}
                   className="
-  border-t border-white/10
-  sm:border-b-0
-  sm:border-l
-  p-3 md:p-4
-  first:border-t-0
-"
+                    border-t border-white/10
+                    sm:border-b-0
+                    sm:border-l
+                    p-3 md:p-4
+                    first:border-t-0
+                    opacity-0
+                  "
                 >
-                  <div className="relative grid grid-rows-[60px_auto_1fr] gap-2 z-10">
-                    {/* Icon */}
+                  <div
+                    ref={(el) => {
+                      blockBoxRefs.current[index] = el;
+                    }}
+                    className="relative grid grid-rows-[60px_auto_1fr] gap-2 z-10"
+                  >
                     {item.icon?.url && (
                       <div>
                         <PrismicNextImage
@@ -124,13 +215,9 @@ const SpeakerTakeaway = ({ slice }) => {
                         />
                       </div>
                     )}
-
-                    {/* Title */}
                     <h3 className="min-h-[1rem] text-[16px] lg:text-base font-semibold text-white">
                       {item.heading}
                     </h3>
-
-                    {/* Description */}
                     <p className="max-w-[90%] text-[16px] lg:text-[14px] mt-2 text-white/60">
                       {item.description}
                     </p>

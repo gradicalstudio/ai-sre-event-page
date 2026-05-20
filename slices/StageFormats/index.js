@@ -19,6 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 const StageFormats = ({ slice }) => {
   const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const sectionRef = useRef(null);
+  const stageFormatRef = useRef(null);
 
   const cardsRef = useRef([]);
   const arrowRef = useRef(null);
@@ -27,23 +28,20 @@ const StageFormats = ({ slice }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Initial States
-      gsap.set(cardsRef.current, {
-        opacity: 0,
-        y: 80,
-
-        scale: 0.92,
-      });
-
+      // 1. Set Initial States (Using your reference style: clean, consistent offsets)
       gsap.set(arrowRef.current, {
         opacity: 0,
-        x: -120,
+        x: -100,
       });
 
       gsap.set(headingRef.current, {
         opacity: 0,
-        y: 40,
-        x: 20,
+        x: 40,
+      });
+
+      gsap.set(stageFormatRef.current, {
+        opacity: 0,
+        x: 40, // Match heading direction to prevent conflicting visual patterns
       });
 
       gsap.set(topContentRef.current, {
@@ -51,61 +49,61 @@ const StageFormats = ({ slice }) => {
         y: 30,
       });
 
-      // Timeline
+      gsap.set(cardsRef.current, {
+        opacity: 0,
+        x: -120, // Match the fast horizontal entry style from your reference
+      });
+
+      // 2. Build the ScrollTrigger Timeline (With tighter execution)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 90%",
+          start: "top 75%", // Triggers slightly earlier for a faster perceived load on scroll
           once: true,
         },
       });
 
-      // Arrow
-      tl.to(arrowRef.current, {
+      // Step A: Swiftly bring in the layout foundations
+      tl.to([stageFormatRef.current, arrowRef.current], {
         opacity: 1,
         x: 0,
-        duration: 1,
+        duration: 0.6, // Dropped down from 0.9s
+        stagger: 0.05,
         ease: "power4.out",
       })
-
-        // Heading
+        // Step B: Overlapping Heading drop-in
         .to(
           headingRef.current,
           {
             opacity: 1,
-            y: 0,
             x: 0,
-            duration: 0.9,
+            duration: 0.6,
             ease: "power4.out",
           },
-          "-=0.2",
+          "-=0.45", // Deep overlap
         )
-
-        // Right content
+        // Step C: Right content context fade
         .to(
           topContentRef.current,
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.5,
             ease: "power3.out",
           },
-          "-=0.6",
+          "-=0.45",
         )
-
-        // Cards
+        // Step D: High momentum staggered grid entry matching your blueprint
         .to(
           cardsRef.current,
           {
             opacity: 1,
-            y: 0,
-
-            scale: 1,
-            duration: 0.45,
-            stagger: 0.04,
-            ease: "power3.out",
+            x: 0,
+            duration: 0.5,
+            stagger: 0.08, // Rapid cascading grid fill
+            ease: "power4.out",
           },
-          "-=0.5",
+          "-=0.65", // Tight overlapping sync block
         );
     }, sectionRef);
 
@@ -126,7 +124,10 @@ const StageFormats = ({ slice }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25 xl:mb-17">
             {/* Left Content */}
             <div>
-              <p className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-1 font-mono">
+              <p
+                ref={stageFormatRef}
+                className="text-[#FF6B4A] uppercase text-xs md:text-sm lg:text-xl mb-3 lg:mb-1 font-mono opacity-0"
+              >
                 {slice.primary.stage_format}
               </p>
 
@@ -136,11 +137,11 @@ const StageFormats = ({ slice }) => {
                   ref={arrowRef}
                   src="/arrow.svg"
                   alt=""
-                  className="w-4 md:w-5 lg:w-6 object-contain flex-shrink-0"
+                  className="w-4 md:w-5 lg:w-6 object-contain flex-shrink-0 opacity-0"
                 />
 
                 {/* Heading */}
-                <div ref={headingRef} className="max-w-[520px]">
+                <div ref={headingRef} className="max-w-[520px] opacity-0">
                   <PrismicRichText
                     field={slice.primary.heading}
                     components={{
@@ -166,7 +167,10 @@ const StageFormats = ({ slice }) => {
             </div>
 
             {/* Right Content */}
-            <div ref={topContentRef} className="lg:pt-8 flex lg:justify-end">
+            <div
+              ref={topContentRef}
+              className="lg:pt-8 flex lg:justify-end opacity-0"
+            >
               <div className="max-w-[420px]">
                 <PrismicRichText
                   field={slice.primary.short_description}
