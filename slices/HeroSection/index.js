@@ -40,7 +40,7 @@ const HeroSection = ({ slice }) => {
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
-              <img className="w-31 self-start lg:w-80" src="/Final logo.svg" />
+              <img className="w-31 self-start lg:w-80" src="/Final Logo.svg" />
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
@@ -121,7 +121,7 @@ const HeroSection = ({ slice }) => {
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            <img className="w-[65%] self-center" src="/Final logo.svg" />
+            <img className="w-[65%] self-center" src="/Final Logo.svg" />
             {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
