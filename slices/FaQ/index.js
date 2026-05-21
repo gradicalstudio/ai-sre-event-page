@@ -36,7 +36,7 @@ const FaQ = ({ slice }) => {
         className="
      
           absolute
-          -left-30 lg:-left-24
+          -left-30 md:-left-24
           top-1/2
           -translate-y-1/2
           pointer-events-none
@@ -63,7 +63,7 @@ const FaQ = ({ slice }) => {
         className="
         
           absolute
-          -right-16 lg:-right-24
+          -right-16 md:-right-24
           top-1/2
           -translate-y-1/2
           pointer-events-none

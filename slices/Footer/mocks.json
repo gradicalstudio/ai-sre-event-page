@@ -26,15 +26,6 @@
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
-			"date": {
-				"key": "8c8f89ea-650d-4454-a5ab-6d66534dd853",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "out"
-				}
-			},
 			"location": {
 				"key": "02bb1544-37aa-489f-9fac-296bd5f2fdf1",
 				"__TYPE__": "LinkContent",
@@ -42,15 +33,6 @@
 					"__TYPE__": "ExternalLink",
 					"url": "https://slicemachine.dev",
 					"text": "remember"
-				}
-			},
-			"time": {
-				"key": "11590f30-9584-4181-9e99-1263124dc163",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "easy"
 				}
 			},
 			"description_with_link": {
@@ -63,6 +45,16 @@
 						}
 					}
 				]
+			},
+			"date_text": {
+				"__TYPE__": "FieldContent",
+				"value": "breathing",
+				"type": "Text"
+			},
+			"time_text": {
+				"__TYPE__": "FieldContent",
+				"value": "learn",
+				"type": "Text"
 			}
 		},
 		"items": []
