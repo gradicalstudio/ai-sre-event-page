@@ -53,7 +53,7 @@ const Agenda = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       id="agenda"
-      className="relative bg-[#04050F] px-6 md:px-8 lg:px-20 pb-16 md:pb-20 lg:pb-43"
+      className="relative bg-[#04050F] px-6 md:px-8 lg:px-20 pb-16 md:pb-27 lg:pb-43"
     >
       <div className="grid grid-cols-[6%_1fr_6%] lg:grid-cols-[15%_1fr_15%] grid-rows-[auto_1fr_auto]">
         {/* Row 1 - top corners */}
@@ -66,7 +66,7 @@ const Agenda = ({ slice }) => {
 
         <div className="lg:p-10">
           {/* Heading */}
-          <div className="text-white text-3xl md:text-5xl lg:text-4xl pl-2 pt-2 font-normal mb-12">
+          <div className="text-white text-3xl md:text-[32px] lg:text-[34px] xl:text-[38px] pl-2 pt-2 font-normal mb-12">
             <PrismicRichText field={slice.primary.heading} />
           </div>
 

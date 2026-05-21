@@ -115,7 +115,7 @@ const WhosInTheRoom = ({ slice }) => {
           />
           <div
             ref={headingRef}
-            className="text-white text-3xl md:text-[42px] lg:text-[42px] font-normal opacity-0"
+            className="text-white text-3xl md:text-[38px] xl:text-[42px] font-normal opacity-0"
           >
             <PrismicRichText field={slice.primary.heading} />
           </div>

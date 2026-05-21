@@ -49,7 +49,7 @@ export default function InfoCard({ item, index, activeIndex }) {
 
       {/* Info text */}
       <p
-        className="text-lg lg:text-[20px] leading-relaxed transition-colors duration-300"
+        className="text-base text-pretty md:text-base xl:text-[20px] leading-relaxed transition-colors duration-300"
         style={{
           color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.4)",
         }}

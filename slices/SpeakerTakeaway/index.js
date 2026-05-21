@@ -174,7 +174,7 @@ const SpeakerTakeaway = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-4xl font-semi-bold md:text-4xl lg:text-[45px]">
+                        <p className="text-4xl font-semi-bold md:text-[44px] lg:text-[40px] xl:text-[45px]">
                           {children}
                         </p>
                       ),
