@@ -36,13 +36,13 @@ const Footer = ({ slice }) => {
             {/* Buttons */}
             <div className="flex flex-col lg:flex-row xl:flex-row gap-4">
               <PrimaryButton
-                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-5! lg:py-1! lg:h-10! lg:text-[14px]! lg:text-nowrap xl:px-8! xl:h-12! xl:py-3!  xl:text-base!"
+                className="text-[14px]! xl:text-[16px]! w-full!  md:px-8!  lg:px-5! lg:py-1! lg:h-10! lg:text-[14px]! lg:text-nowrap xl:px-8! xl:h-12! xl:py-3!  xl:text-base!"
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
 
               <SecondaryButton
-                className="py-2.5! w-full! md:w-fit! md:px-8! md:py-2! lg:px-10! lg:py-1! flex justify-center items-center leading-none  lg:text-nowrap "
+                className="py-3.5! w-full!  md:px-8! md:py-3.5! lg:px-10! lg:py-1! flex justify-center items-center leading-none text-[14px]! xl:text-[16px]! lg:text-nowrap "
                 buttonText="Apply to Speak"
                 onClick={() => setIsSpeakerOpen(true)}
               />

@@ -64,13 +64,13 @@ const HeroSection = ({ slice }) => {
             {/* Buttons */}
             <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
               <PrimaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
+                className=" text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
 
               <SecondaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-7! "
+                className=" text-[14px]! xl:text-[16px]! w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-7! "
                 buttonText="Speak at AI SRE Next"
                 onClick={() => setIsSpeakerOpen(true)}
               />
@@ -121,7 +121,10 @@ const HeroSection = ({ slice }) => {
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            <img className=" lg:w-full xl:w-[75%] self-center" src="/Final Logo.svg" />
+            <img
+              className=" lg:w-full xl:w-[75%] self-center"
+              src="/Final Logo.svg"
+            />
             {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
