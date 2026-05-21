@@ -105,7 +105,7 @@ export default function Navbar() {
               <div className="mt-2">
                 <div className="block w-full lg:hidden">
                   <PrimaryButton
-                    className="w-full! py-2! text-sm"
+                    className="w-full!  text-sm!"
                     buttonText="Get your invite"
                     onClick={() => setIsInviteOpen(true)}
                   />
