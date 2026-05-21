@@ -7,7 +7,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import FormModal from "@/components/FormModal";
 import { PrismicNextLink } from "@prismicio/next";
-import VideoPlayer from "@/components/VideoPlayer";
+// import VideoPlayer from "@/components/VideoPlayer";
 import Bounded from "@/components/Bounded";
 
 /**
@@ -36,7 +36,7 @@ const HeroSection = ({ slice }) => {
         className="w-full bg-[#04050F]  px-6 md:px-6 lg:px-0
           py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white"
       >
-        <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-15">
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
@@ -44,7 +44,7 @@ const HeroSection = ({ slice }) => {
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
-              <div className="max-w-4xl text-4xl md:text-5xl lg:text-[40px] xl:text-5xl 2xl:text-[65px] font-medium lg:leading-[1.1] xl:leading-[1]">
+              <div className="max-w-4xl text-4xl md:text-5xl lg:text-[50px] xl:text-5xl 2xl:text-[65px] font-medium lg:leading-[1.1] xl:leading-[1]">
                 <PrismicRichText
                   field={slice.primary.heading}
                   components={{
@@ -56,21 +56,21 @@ const HeroSection = ({ slice }) => {
               </div>
 
               {/* Description */}
-              <div className="max-w-2xl text-sm font-medium md:text-base lg:text-base xl:text-lg 2xl:text-lg text-balance ">
+              <div className="max-w-2xl  font-medium text-base lg:text-lg xl:text-lg 2xl:text-lg text-balance ">
                 <PrismicRichText field={slice.primary.description} />
               </div>
             </div>
 
             {/* Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-6">
+            <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
               <PrimaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-8!  lg:py-3! xl:px-9!  "
+                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
 
               <SecondaryButton
-                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-10!  lg:py-3! xl:px-7! "
+                className=" py-2! w-full! md:w-fit!  md:px-8! md:py-2! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-7! "
                 buttonText="Speak at AI SRE Next"
                 onClick={() => setIsSpeakerOpen(true)}
               />
@@ -121,7 +121,7 @@ const HeroSection = ({ slice }) => {
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            <img className="w-[65%] self-center" src="/Final Logo.svg" />
+            <img className=" lg:w-full xl:w-[75%] self-center" src="/Final Logo.svg" />
             {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
@@ -149,7 +149,7 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative inset-x-0 -mt-20 lg:mt-5 xl:mt-0 h-30 lg:h-30 xl:h-70  ">
+      <div className="relative inset-x-0  lg:mt-5 xl:mt-0 h-30 lg:h-30 xl:h-70  ">
         {/* Gradient */}
         <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />

@@ -24,7 +24,7 @@ const FaQ = ({ slice }) => {
     
         relative
         bg-[#04050F]
-        px-12 lg:px-20
+        px-12 md:px-25 lg:px-20
         py-16 lg:pb-44
         z-10
       "
@@ -33,19 +33,17 @@ const FaQ = ({ slice }) => {
       <img
         src="/left side.svg"
         alt=""
-        className="
-     
-          absolute
-          -left-30 md:-left-24
-          top-1/2
-          -translate-y-1/2
-          pointer-events-none
-         z-[100]
-          select-none
-           md:  w-[320px]
-  md:h-[800px]
+        className="absolute 
+        left-0 
+        md:-left-24 
+        top-1/2 
+        -translate-y-1/2 
+        pointer-events-none 
+        z-[100] select-none 
+        md:w-[320px] md:h-[500px]
+          lg:h-[650px]
       h-[700px]
-      w-[120px]
+      w-[80px]
       
           opacity-90
         "
@@ -63,15 +61,19 @@ const FaQ = ({ slice }) => {
         className="
         
           absolute
-          -right-16 md:-right-24
+          right-0 md:-right-24
           top-1/2
           -translate-y-1/2
           pointer-events-none
           z-[100]
           select-none
             md:w-[320px]
-  md:h-[800px]
+            md:h-[500px]
+            lg:h-[650px]
           opacity-90
+             h-[700px]
+      w-[80px]
+      
         "
         style={{
           maskImage: "linear-gradient(to left, black 10%, transparent 100%)",
@@ -81,7 +83,7 @@ const FaQ = ({ slice }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 lg:px-20">
+      <div className="relative z-10 lg:px-30">
         {/* Heading */}
         <div className="text-white font-medium text-3xl lg:text-[38px] mb-10 lg:mb-16">
           <PrismicRichText field={slice.primary.heading} />

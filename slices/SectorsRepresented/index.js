@@ -89,7 +89,7 @@ const SectorsRepresented = ({ slice }) => {
         ref={sectionRef}
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="bg-[#04050F] flex flex-col lg:flex-row lg:items-center gap-16 md:gap-10 lg:gap-8 overflow-hidden"
+        className="bg-[#04050F] flex flex-col lg:flex-row lg:items-center gap-10 md:gap-10 lg:gap-8 overflow-hidden"
       >
         {/* LEFT — Fixed heading */}
         <div className="flex items-center gap-3 shrink-0">
@@ -100,7 +100,7 @@ const SectorsRepresented = ({ slice }) => {
           />
           <div
             ref={headingRef}
-            className="text-white text-3xl md:text-[38px] lg:text-[38px] font-medium opacity-0"
+            className="text-white text-3xl md:text-[32px] lg:text-[34px] xl:text-[38px] font-medium opacity-0"
           >
             <PrismicRichText field={slice.primary.heading} />
           </div>

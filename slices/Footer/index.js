@@ -16,7 +16,7 @@ const Footer = ({ slice }) => {
   const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
   return (
-    <Bounded className="bg-[#04050F] text-white">
+    <Bounded className="bg-[#04050F] mt-10 md:mt-40 text-white">
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
@@ -32,17 +32,17 @@ const Footer = ({ slice }) => {
           </div>
 
           {/* RIGHT — Buttons + Info + Description */}
-          <div className="flex flex-col gap-10 lg:justify-between">
+          <div className="flex flex-col gap-10 lg:gap-6.5  lg:justify-between">
             {/* Buttons */}
-            <div className="flex flex-col lg:flex-col xl:flex-row gap-4">
+            <div className="flex flex-col lg:flex-row xl:flex-row gap-4">
               <PrimaryButton
-                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-8! lg:py-3!"
+                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-5! lg:py-1! lg:h-10! lg:text-[14px]! lg:text-nowrap xl:px-8! xl:h-12! xl:py-3!  xl:text-base!"
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
 
               <SecondaryButton
-                className="py-2! w-full! md:w-fit! md:px-8! md:py-2! lg:px-10! lg:py-3!"
+                className="py-2.5! w-full! md:w-fit! md:px-8! md:py-2! lg:px-10! lg:py-1! flex justify-center items-center leading-none  lg:text-nowrap "
                 buttonText="Apply to Speak"
                 onClick={() => setIsSpeakerOpen(true)}
               />
@@ -52,25 +52,25 @@ const Footer = ({ slice }) => {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-10">
                 {/* Date */}
-                <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
+                <div className="flex text-xs md:text-base lg:text-sm xl:text-lg items-center gap-2">
                   <img src="/calender.svg" className="w-4 lg:w-5" />
                   <p>{slice.primary.date_text}</p>
                 </div>
                 {/* Location */}
-                <div className="flex text-xs md:text-base lg:text-lg items-center hover:text-[#3FD9FB] transition-colors  gap-2">
+                <div className="flex text-xs md:text-base lg:text-sm items-center xl:text-lg hover:text-[#3FD9FB] transition-colors  gap-2">
                   <img src="/Location pin.svg" className="w-3.5 lg:w-4" />
                   <PrismicNextLink field={slice.primary.location} />
                 </div>
               </div>
               {/* Time */}
-              <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
+              <div className="flex text-xs md:text-base lg:text-sm xl:text-lg items-center gap-2">
                 <img src="clock.svg" className="w-4 lg:w-5" />
                 <p>{slice.primary.time_text}</p>
               </div>
             </div>
 
             {/* Description with link */}
-            <div className="text-white font-mono text-sm md:text-lg lg:text-lg leading-relaxed max-w-md">
+            <div className="text-white font-mono text-sm md:text-lg lg:text-sm xl:text-lg leading-relaxed max-w-md">
               <PrismicRichText
                 field={slice.primary.description_with_link}
                 components={{

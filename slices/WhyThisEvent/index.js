@@ -196,13 +196,13 @@ const WhyThisEvent = ({ slice }) => {
                 field={slice.primary.heading}
                 components={{
                   heading1: ({ children }) => (
-                    <h1 className="text-4xl font-medium leading-[0.95] md:text-6xl">
+                    <h1 className="text-4xl font-medium leading-[0.95] md:text-[44px] lg:text-6xl">
                       {children}
                     </h1>
                   ),
 
                   heading2: ({ children }) => (
-                    <h2 className="text-3xl font-medium leading-[0.95] md:text-5xl lg:text-[50px]">
+                    <h2 className="text-3xl font-normal leading-[0.95] md:text-[44px] lg:text-[46px] xl:text-[50px]">
                       {children}
                     </h2>
                   ),
@@ -334,12 +334,12 @@ const WhyThisEvent = ({ slice }) => {
                 </div>
 
                 {/* Title */}
-                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] md:mb-5 md:text-[22px] xl:max-w-[230px]">
+                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] md:mb-5 md:text-[20px] xl:text-[22px] xl:max-w-[230px]">
                   {item.heading}
                 </h3>
 
                 {/* Description */}
-                <p className="max-w-[320px] text-base leading-relaxed text-white/60 md:text-[16px] xl:max-w-[260px]">
+                <p className="max-w-[320px] text-base leading-relaxed text-white/60 md:text-[15px] lg:text-[16px] xl:max-w-[260px]">
                   {item.description}
                 </p>
               </div>

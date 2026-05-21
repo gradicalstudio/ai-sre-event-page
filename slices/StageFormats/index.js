@@ -121,7 +121,7 @@ const StageFormats = ({ slice }) => {
       >
         <div className="">
           {/* Top Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-25 xl:mb-17">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-10 mb-10 md:mb-25 xl:mb-17">
             {/* Left Content */}
             <div>
               <p
@@ -156,7 +156,7 @@ const StageFormats = ({ slice }) => {
                         </h2>
                       ),
                       paragraph: ({ children }) => (
-                        <p className="text-3xl md:text-[55px] leading-[1.2] ">
+                        <p className="text-3xl md:text-[49px] xl:text-[55px] leading-[1.2] ">
                           {children}
                         </p>
                       ),
@@ -176,7 +176,7 @@ const StageFormats = ({ slice }) => {
                   field={slice.primary.short_description}
                   components={{
                     paragraph: ({ children }) => (
-                      <p className="text-white/60 text-base lg:text-[16.61px] leading-relaxed mb-10">
+                      <p className="text-white/60 text-base md:text-[16.61px] leading-relaxed mb-7 xl:mb-10">
                         {children}
                       </p>
                     ),
@@ -184,6 +184,7 @@ const StageFormats = ({ slice }) => {
                 />
                 <PrimaryButton
                   buttonText="Interested to Speak"
+                  className="text-sm! xl:text-base!"
                   onClick={() => setIsSpeakerOpen(true)}
                 />
               </div>
@@ -242,7 +243,7 @@ const StageFormats = ({ slice }) => {
                   <PrismicNextImage
                     field={item.icon}
                     fallbackAlt=""
-                    className="w-10 h-10 object-contain"
+                    className="xl:w-10 xl:h-10 object-contain"
                   />
                 </div>
 
