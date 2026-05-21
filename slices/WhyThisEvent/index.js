@@ -94,12 +94,12 @@ const WhyThisEvent = ({ slice }) => {
       // QUICK DEPTH SEPARATION EFFECT
       gsap.to(iconRefs.current, {
         y: -15,
-        delay: 0.4,
+        delay: 0.9,
         duration: 0.3,
-        ease: "power2.out",
+        ease: "power1.in",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 85%",
+          start: "top 60%",
           toggleActions: "play reverse play reverse",
         },
       });
@@ -295,7 +295,7 @@ const WhyThisEvent = ({ slice }) => {
                     />
 
                     {/* Icon Container */}
-                    <div className="relative h-[70px] w-[70px] md:h-[90px] md:w-[90px]">
+                    <div className="relative h-17.5 w-17.5 md:h-22.5 md:w-22.5">
                       {/* Orange Shadow */}
                       <PrismicNextImage
                         field={item.icon_shadow}

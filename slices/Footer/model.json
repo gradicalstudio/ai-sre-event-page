@@ -20,15 +20,11 @@
             "thumbnails": []
           }
         },
-        "date": {
-          "type": "Link",
+        "date_text": {
+          "type": "Text",
           "config": {
-            "label": "Date",
-            "placeholder": "",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
+            "label": "Date Text",
+            "placeholder": ""
           }
         },
         "location": {
@@ -42,15 +38,11 @@
             "repeat": false
           }
         },
-        "time": {
-          "type": "Link",
+        "time_text": {
+          "type": "Text",
           "config": {
-            "label": "Time",
-            "placeholder": "",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
+            "label": "Time Text",
+            "placeholder": ""
           }
         },
         "description_with_link": {

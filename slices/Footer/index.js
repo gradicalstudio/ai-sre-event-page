@@ -54,10 +54,10 @@ const Footer = ({ slice }) => {
                 {/* Date */}
                 <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
                   <img src="/calender.svg" className="w-4 lg:w-5" />
-                  <PrismicNextLink field={slice.primary.date} />
+                  <p>{slice.primary.date_text}</p>
                 </div>
                 {/* Location */}
-                <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
+                <div className="flex text-xs md:text-base lg:text-lg items-center hover:text-[#3FD9FB] transition-colors  gap-2">
                   <img src="/Location pin.svg" className="w-3.5 lg:w-4" />
                   <PrismicNextLink field={slice.primary.location} />
                 </div>
@@ -65,7 +65,7 @@ const Footer = ({ slice }) => {
               {/* Time */}
               <div className="flex text-xs md:text-base lg:text-lg items-center gap-2">
                 <img src="clock.svg" className="w-4 lg:w-5" />
-                <PrismicNextLink field={slice.primary.time} />
+                <p>{slice.primary.time_text}</p>
               </div>
             </div>
 

@@ -377,14 +377,14 @@ export interface FooterSliceDefaultPrimary {
   logos: prismic.ImageField<never>;
 
   /**
-   * Date field in *Footer → Default → Primary*
+   * Date Text field in *Footer → Default → Primary*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.date
-   * - **Documentation**: https://prismic.io/docs/fields/link
+   * - **API ID Path**: footer.default.primary.date_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  date: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+  date_text: prismic.KeyTextField;
 
   /**
    * Location field in *Footer → Default → Primary*
@@ -403,14 +403,14 @@ export interface FooterSliceDefaultPrimary {
   >;
 
   /**
-   * Time field in *Footer → Default → Primary*
+   * Time Text field in *Footer → Default → Primary*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.default.primary.time
-   * - **Documentation**: https://prismic.io/docs/fields/link
+   * - **API ID Path**: footer.default.primary.time_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  time: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+  time_text: prismic.KeyTextField;
 
   /**
    * Description with link field in *Footer → Default → Primary*
