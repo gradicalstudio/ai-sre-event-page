@@ -224,17 +224,26 @@ const Partners = ({ slice }) => {
                     px-4 md:px-4
                   "
                 >
-                  <PrismicNextLink
-                    field={item.link}
-                    className="flex items-center justify-center w-full h-full"
-                  >
+                  {item.link?.url ? (
+                    <PrismicNextLink
+                      field={item.link}
+                      className="flex items-center justify-center w-full h-full"
+                    >
+                      <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                        <PrismicNextImage
+                          field={item.logo}
+                          className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                        />
+                      </div>
+                    </PrismicNextLink>
+                  ) : (
                     <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
                       <PrismicNextImage
                         field={item.logo}
                         className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
                       />
                     </div>
-                  </PrismicNextLink>
+                  )}
                 </div>
               ))}
             </div>
@@ -263,12 +272,19 @@ const Partners = ({ slice }) => {
                       }
                     `}
                   >
-                    <PrismicNextLink field={item.link}>
+                    {item.link?.url ? (
+                      <PrismicNextLink field={item.link}>
+                        <PrismicNextImage
+                          field={item.logo}
+                          className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                        />
+                      </PrismicNextLink>
+                    ) : (
                       <PrismicNextImage
                         field={item.logo}
                         className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
                       />
-                    </PrismicNextLink>
+                    )}
                   </div>
                 ))}
               </div>

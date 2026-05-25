@@ -912,9 +912,18 @@ cursor-pointer
                   sm:text-xl
                 "
               >
-                {type === "invite"
-                  ? `Thanks for registering ${firstName}.Our team will review your request and confirm your seat over email. Keep an eye on your inbox, as seats are limited and confirmation is required for attendance.`
-                  : `We will reach out within 2 business days to confirm your slot. The Bangalore edition has 8 speaking slots.`}
+                {type === "invite" ? (
+                  <>
+                    Thanks for registering {firstName}.
+                    <br />
+                    <br />
+                    Our team will review your request and confirm your seat over
+                    email. Keep an eye on your inbox, as seats are limited and
+                    confirmation is required for attendance.
+                  </>
+                ) : (
+                  `We will reach out within 2 business days to confirm your slot. The Bangalore edition has 8 speaking slots.`
+                )}
               </p>
             </div>
 
