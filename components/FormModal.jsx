@@ -916,7 +916,6 @@ cursor-pointer
                   <>
                     Thanks for registering {firstName}.
                     <br />
-                    <br />
                     Our team will review your request and confirm your seat over
                     email. Keep an eye on your inbox, as seats are limited and
                     confirmation is required for attendance.
