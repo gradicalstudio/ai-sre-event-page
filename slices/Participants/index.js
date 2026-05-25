@@ -28,7 +28,7 @@ const Partners = ({ slice }) => {
   useEffect(() => {
     // 1. RESPONSIVE BREAKPOINT LISTENER
     const mediaQuery = window.matchMedia("(min-width: 768px)");
-    
+
     // Set initial layout state
     setIsDesktop(mediaQuery.matches);
 
@@ -159,12 +159,14 @@ const Partners = ({ slice }) => {
   const totalCols = topCompanies.length + 1;
 
   // Compute inline grids depending dynamically on screen properties
-  const topGridStyle = isDesktop 
+  const topGridStyle = isDesktop
     ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
 
   const bottomGridStyle = isDesktop
-    ? { gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))` }
+    ? {
+        gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
+      }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
 
   return (
@@ -173,7 +175,7 @@ const Partners = ({ slice }) => {
           max-w-[1000px]
           2xl:max-w-[1320px]
           px-3 md:px-6 lg:px-8
-          py-10 md:pb-14 lg:pb-30"
+          pb-20 md:pb-14 lg:pb-30"
     >
       <section
         ref={sectionRef}
@@ -184,7 +186,6 @@ const Partners = ({ slice }) => {
         <div ref={gridRef} className="group relative">
           {/* Main Border */}
           <div className="border border-white/20">
-
             {/* Top Row */}
             <div className="grid" style={topGridStyle}>
               {/* Title Cell */}
@@ -200,7 +201,10 @@ const Partners = ({ slice }) => {
                   px-4
                 "
               >
-                <h2 className="text-left uppercase text-[#ff5c35] text-[10px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
+                <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
+                  Companies Participating
+                </h2>
+                <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                   Companies
                   <br />
                   Participating
