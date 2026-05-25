@@ -152,7 +152,7 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative inset-x-0  lg:mt-5 xl:mt-0 h-30 lg:h-30 xl:h-70  ">
+      <div className="relative inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
         {/* Gradient */}
         <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
