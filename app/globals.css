@@ -15,6 +15,28 @@ html,
 body {
   overflow-x: clip;
 }
+/* Modal Scrollbar */
+
+.modal-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 90px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #45c7f0;
+  border-radius: 999px;
+
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #45c7f0;
+}
 [id] {
   scroll-margin-top: 100px;
 }

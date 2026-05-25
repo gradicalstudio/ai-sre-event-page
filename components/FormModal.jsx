@@ -12,7 +12,7 @@ const FORM_CONFIG = {
   },
 
   invite: {
-    title: "Request Invite to Attend (Delegate)",
+    title: "Request Invite to Attend",
     formId: "2fb70a38-3eb0-4688-ab17-b1625e5675f7",
     cta: "Request my seat",
   },
@@ -27,6 +27,10 @@ export default function FormModal({ isOpen, onClose, type }) {
   const [firstName, setFirstName] = useState("");
   const [pitchWordCount, setPitchWordCount] = useState(0);
   const [problemCharCount, setProblemCharCount] = useState(0);
+  const [companySizeOpen, setCompanySizeOpen] = useState(false);
+  const [hearAboutOpen, setHearAboutOpen] = useState(false);
+  const [bangaloreOpen, setBangaloreOpen] = useState(false);
+  const [formatOpen, setFormatOpen] = useState(false);
 
   const currentForm = FORM_CONFIG[type];
 
@@ -331,8 +335,8 @@ export default function FormModal({ isOpen, onClose, type }) {
           max-h-[92vh]
 
           overflow-y-auto
-          scrollbar-none
-
+         
+modal-scrollbar
           rounded-[24px]
           md:rounded-2xl
 
@@ -485,17 +489,22 @@ export default function FormModal({ isOpen, onClose, type }) {
               </div>
 
               {type === "invite" && (
-                <div>
+                <div className="relative">
                   <label className={labelStyles}>Company Size *</label>
 
                   <select
                     name="company_size_demo_form"
                     required
                     defaultValue=""
+                    onMouseDown={() => setCompanySizeOpen((prev) => !prev)}
+                    onBlur={() => setCompanySizeOpen(false)}
+                    onChange={() => setCompanySizeOpen(false)}
                     className={`
                       ${inputStyles}
                       bg-[#040516]
                       appearance-none
+                       pr-10
+                      cursor-pointer
                     `}
                   >
                     <option value="" hidden>
@@ -516,6 +525,32 @@ export default function FormModal({ isOpen, onClose, type }) {
 
                     <option value="5000+">5000+</option>
                   </select>
+                  <svg
+                    className={`
+      pointer-events-none
+      absolute
+      right-4
+     top-[66%]
+      h-4
+      w-4
+      -translate-y-1/2
+      text-white/60
+      transition-transform
+      duration-200
+
+      ${companySizeOpen ? "rotate-180" : ""}
+    `}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </div>
               )}
 
@@ -556,13 +591,16 @@ export default function FormModal({ isOpen, onClose, type }) {
                     </p>
                   </div>
 
-                  <div>
+                  <div className="relative">
                     <label className={labelStyles}>
                       How did you hear about AI SRE Next?
                     </label>
 
                     <select
                       name="hear_about_event"
+                      onMouseDown={() => setHearAboutOpen((prev) => !prev)}
+                      onBlur={() => setHearAboutOpen(false)}
+                      onChange={() => setHearAboutOpen(false)}
                       defaultValue=""
                       className={`
                         ${inputStyles}
@@ -584,18 +622,47 @@ export default function FormModal({ isOpen, onClose, type }) {
 
                       <option value="Other">Other</option>
                     </select>
+                    <svg
+                      className={`
+    pointer-events-none
+    absolute
+    right-4
+    top-[66%]
+    h-4
+    w-4
+    -translate-y-1/2
+    text-white/60
+    transition-transform
+    duration-200
+
+    ${hearAboutOpen ? "rotate-180" : ""}
+  `}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </div>
                 </>
               )}
 
               {type === "speaker" && (
                 <>
-                  <div>
+                  <div className="relative">
                     <label className={labelStyles}>
                       Can you be in Bangalore on Friday, 12 June 2026? *
                     </label>
 
                     <select
+                      onMouseDown={() => setBangaloreOpen((prev) => !prev)}
+                      onBlur={() => setBangaloreOpen(false)}
+                      onChange={() => setBangaloreOpen(false)}
                       name="can_you_be_in_bangalore"
                       required
                       defaultValue=""
@@ -613,18 +680,48 @@ export default function FormModal({ isOpen, onClose, type }) {
 
                       <option value="No">No</option>
                     </select>
+                    <svg
+                      className={`
+    pointer-events-none
+    absolute
+    right-4
+    top-[66%]
+    h-4
+    w-4
+    -translate-y-1/2
+    text-white/60
+    transition-transform
+    duration-200
+
+    ${bangaloreOpen ? "rotate-180" : ""}
+  `}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </div>
 
-                  <div>
+                  <div className="relative">
                     <label className={labelStyles}>
                       Format you're proposing *
                     </label>
 
                     <select
                       name="format_proposing"
+                      onMouseDown={() => setFormatOpen((prev) => !prev)}
+                      onBlur={() => setFormatOpen(false)}
+                      onChange={() => setFormatOpen(false)}
                       required
                       defaultValue=""
-                      className={`
+                      className={`pr-10
+cursor-pointer
                         ${inputStyles}
                         bg-[#040516]
                         appearance-none
@@ -646,6 +743,32 @@ export default function FormModal({ isOpen, onClose, type }) {
                         Fireside Conversation (30-45 min)
                       </option>
                     </select>
+                    <svg
+                      className={`
+    pointer-events-none
+    absolute
+    right-4
+    top-[66%]
+    h-4
+    w-4
+    -translate-y-1/2
+    text-white/60
+    transition-transform
+    duration-200
+
+    ${formatOpen ? "rotate-180" : ""}
+  `}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </div>
 
                   <div>
@@ -736,9 +859,9 @@ export default function FormModal({ isOpen, onClose, type }) {
 
               {type === "invite" && (
                 <p className="text-center text-sm text-[#45C7F0]">
-                  Seats are confirmed within 48 hours.
+                  Limited seats available — attendance is invite-only
                   <br />
-                  50 seats total — invite-only.
+                  and subject to confirmation via email.
                 </p>
               )}
             </form>
@@ -773,9 +896,7 @@ export default function FormModal({ isOpen, onClose, type }) {
                   sm:text-4xl
                 "
               >
-                {type === "invite"
-                  ? `Got it, ${firstName}. 🎉`
-                  : `Thanks, ${firstName}.`}
+                {type === "invite" ? `Form Submitted` : `Thanks, ${firstName}.`}
               </h2>
 
               <p
@@ -792,8 +913,8 @@ export default function FormModal({ isOpen, onClose, type }) {
                 "
               >
                 {type === "invite"
-                  ? `The AI SRE Next event is invite-only, so our team will reach out to you if your registration is approved.`
-                  : `Sanjeev from the StackGen team will reach out within 2 business days to confirm your slot. The Bangalore edition has 8 speaking slots.`}
+                  ? `Thanks for registering ${firstName}.Our team will review your request and confirm your seat over email. Keep an eye on your inbox, as seats are limited and confirmation is required for attendance.`
+                  : `We will reach out within 2 business days to confirm your slot. The Bangalore edition has 8 speaking slots.`}
               </p>
             </div>
 
