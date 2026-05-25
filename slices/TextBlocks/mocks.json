@@ -1,0 +1,77 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Incididunt cupidatat minim fugiat. Aliqua mollit occaecat dolore ullamco officia laborum cupidatat laboris ad. Cillum esse labore fugiat id occaecat dolore ipsum ex nulla."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "textOnMiddle",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Lorem incididunt pariatur consequat aute ipsum velit. Dolore ea dolore non est pariatur duis anim."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "headingAndDescription",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Velit aliquip excepteur sunt anim duis enim occaecat consequat reprehenderit. Lorem do anim elit pariatur reprehenderit anim. Ipsum ut deserunt nisi."
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do ut est ut duis in in. Anim aute qui dolore exercitation ea exercitation velit irure. Reprehenderit ut exercitation dolor commodo veniam nisi cillum amet proident ea occaecat commodo culpa."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

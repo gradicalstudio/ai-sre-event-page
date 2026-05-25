@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "text_blocks": {
+              "type": "SharedSlice"
+            },
             "footer": {
               "type": "SharedSlice"
             },

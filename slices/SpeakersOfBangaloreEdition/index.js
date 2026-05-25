@@ -299,7 +299,7 @@ lg:mt-20
           <div className="flex items-center 2xl:max-w-[1440px] mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">
               <div className="flex-1 hidden md:block">
-                <img className=" h-full object-cover" src="/left new.svg" />
+                <img className=" h-full object-cover" src="/Left side circuit.svg" />
               </div>
               <div className="text-white text-pretty">
                 <div ref={headingRef} className="flex flex-2 gap-3">
