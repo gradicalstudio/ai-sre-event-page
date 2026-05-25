@@ -159,7 +159,7 @@ const HeroSection = ({ slice }) => {
         </div>
 
         {/* Texture */}
-        <div className=" hidden md:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-35 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
+        <div className=" hidden lg:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-35 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
           <img
             className="scale-[1.15] h-[130%]  md:w-[105%]  md:h-[130%] xl:h-full object-cover mask-image:linear-gradient(to_bottom,transparent_0%,transparent_60%,black_45%,black_100%)] md:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_0%,black_45%,black_100%)] lg:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_45%,black_55%,black_100%)] xl:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_30%,black_55%,black_100%)]"
             src="/toplayer.svg"
