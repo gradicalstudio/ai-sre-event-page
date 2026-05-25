@@ -323,7 +323,7 @@ lg:mt-20
                 <div
                   ref={(el) => (cardsRef.current[index] = el)}
                   key={index}
-                  className="flex  flex-col items-center gap-3"
+                  className="flex  flex-col  text-left gap-3"
                 >
                   <div className=" overflow-hidden h-40 w-40  rounded-full">
                     <PrismicNextImage
@@ -331,7 +331,7 @@ lg:mt-20
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="self-start">
+                  <div className="self-start" >
                     <div>
                       <p className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
                         {item.name}

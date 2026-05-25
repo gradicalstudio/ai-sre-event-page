@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 import gsap from "gsap";
@@ -20,9 +20,25 @@ const Partners = ({ slice }) => {
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
+  // Responsive state tracker matching standard Tailwind md breakpoint (768px)
+  const [isDesktop, setIsDesktop] = useState(false);
+
   cellsRef.current = [];
 
   useEffect(() => {
+    // 1. RESPONSIVE BREAKPOINT LISTENER
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    
+    // Set initial layout state
+    setIsDesktop(mediaQuery.matches);
+
+    const handleMediaChange = (e) => {
+      setIsDesktop(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    // 2. GSAP INTERACTIVE GRAPHICS TIMELINE
     const ctx = gsap.context(() => {
       const validCells = cellsRef.current.filter(Boolean);
 
@@ -78,7 +94,7 @@ const Partners = ({ slice }) => {
           "-=0.3",
         );
 
-      // Glass reflection loop
+      // Glass reflection looping mechanics
       validCells.forEach((cell, index) => {
         if (!cell || index === 0) return;
 
@@ -121,7 +137,6 @@ const Partners = ({ slice }) => {
               ease: "power2.inOut",
               onComplete: () => {
                 gsap.set(reflection, { x: 0, opacity: 0 });
-
                 gsap.delayedCall(Math.random() * 6 + 2, animateReflection);
               },
             },
@@ -132,10 +147,25 @@ const Partners = ({ slice }) => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
   }, []);
 
-  const bottomCompanies = slice.primary.companies?.slice(3, 7) || [];
+  const companies = slice.primary.companies || [];
+  const topCompanies = companies.slice(0, 3);
+  const bottomCompanies = companies.slice(3, 7);
+  const totalCols = topCompanies.length + 1;
+
+  // Compute inline grids depending dynamically on screen properties
+  const topGridStyle = isDesktop 
+    ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
+    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
+
+  const bottomGridStyle = isDesktop
+    ? { gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))` }
+    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
 
   return (
     <section
@@ -154,7 +184,9 @@ const Partners = ({ slice }) => {
         <div ref={gridRef} className="group relative">
           {/* Main Border */}
           <div className="border border-white/20">
-            <div className="grid grid-cols-2 md:grid-cols-4">
+
+            {/* Top Row */}
+            <div className="grid" style={topGridStyle}>
               {/* Title Cell */}
               <div
                 ref={(el) => {
@@ -175,8 +207,7 @@ const Partners = ({ slice }) => {
                 </h2>
               </div>
 
-              {/* Top Row */}
-              {slice.primary.companies?.slice(0, 3).map((item, index) => (
+              {topCompanies.map((item, index) => (
                 <div
                   key={`top-${index}`}
                   ref={(el) => {
@@ -185,54 +216,62 @@ const Partners = ({ slice }) => {
                   className="
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
-                    border-b border-r border-white/20
-                    px-4 md:px-6
-                    md:[&:nth-child(4)]:border-r-0
+                    border-b border-r border-white/20 last:border-r-0
+                    px-4 md:px-4
                   "
                 >
-                  <PrismicNextLink field={item.link}>
-                    <PrismicNextImage
-                      field={item.logo}
-                      className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                    />
-                  </PrismicNextLink>
-                </div>
-              ))}
-
-              {/* Bottom Row */}
-              {bottomCompanies.map((item, index) => (
-                <div
-                  key={`bottom-${index}`}
-                  ref={(el) => {
-                    if (el) cellsRef.current.push(el);
-                  }}
-                  className={`
-                    flex min-h-[90px] md:min-h-[110px]
-                    items-center justify-center
-                    border-r border-white/20
-                    px-4 md:px-6
-                    md:[&:last-child]:border-r-0
-
-                    ${
-                      index === bottomCompanies.length - 1 &&
-                      bottomCompanies.length % 2 !== 0
-                        ? "border-r-0"
-                        : ""
-                    }
-                  `}
-                >
-                  <PrismicNextLink field={item.link}>
-                    <PrismicNextImage
-                      field={item.logo}
-                      className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                    />
+                  <PrismicNextLink
+                    field={item.link}
+                    className="flex items-center justify-center w-full h-full"
+                  >
+                    <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                      <PrismicNextImage
+                        field={item.logo}
+                        className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                      />
+                    </div>
                   </PrismicNextLink>
                 </div>
               ))}
             </div>
+
+            {/* Bottom Row */}
+            {bottomCompanies.length > 0 && (
+              <div className="grid" style={bottomGridStyle}>
+                {bottomCompanies.map((item, index) => (
+                  <div
+                    key={`bottom-${index}`}
+                    ref={(el) => {
+                      if (el) cellsRef.current.push(el);
+                    }}
+                    className={`
+                      flex min-h-[90px] md:min-h-[110px]
+                      items-center justify-center
+                      border-r border-white/20
+                      px-4 md:px-6
+                      md:[&:last-child]:border-r-0
+
+                      ${
+                        index === bottomCompanies.length - 1 &&
+                        bottomCompanies.length % 2 !== 0
+                          ? "border-r-0"
+                          : ""
+                      }
+                    `}
+                  >
+                    <PrismicNextLink field={item.link}>
+                      <PrismicNextImage
+                        field={item.logo}
+                        className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                      />
+                    </PrismicNextLink>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* TOP LEFT */}
+          {/* TOP LEFT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[0] = el;
@@ -242,7 +281,7 @@ const Partners = ({ slice }) => {
             className="absolute top-0 left-0 -rotate-90"
           />
 
-          {/* TOP RIGHT */}
+          {/* TOP RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[1] = el;
@@ -252,7 +291,7 @@ const Partners = ({ slice }) => {
             className="absolute top-0 right-0"
           />
 
-          {/* BOTTOM RIGHT */}
+          {/* BOTTOM RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[2] = el;
@@ -262,7 +301,7 @@ const Partners = ({ slice }) => {
             className="absolute bottom-0 right-0 rotate-90"
           />
 
-          {/* BOTTOM LEFT */}
+          {/* BOTTOM LEFT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[3] = el;
