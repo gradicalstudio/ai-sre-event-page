@@ -4,76 +4,102 @@ import { useRef, useState, useEffect } from "react";
 
 export default function VideoPlayer() {
   const videoRef = useRef(null);
-  const timerRef = useRef(null);
   const autoplayTimerRef = useRef(null);
+  const visibilityTimerRef = useRef(null);
 
+  // Note: We leave browser video element defaulted to muted, but control state toggles
   const [isMuted, setIsMuted] = useState(true);
-  const [showIcon, setShowIcon] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(true);
 
-  const flashIcon = () => {
-    setShowIcon(true);
+  const resetVisibilityTimer = () => {
+    setControlsVisible(true);
+    if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
 
-    if (timerRef.current) clearTimeout(timerRef.current);
-
-    timerRef.current = setTimeout(() => {
-      setShowIcon(false);
-    }, 2000);
+    if (videoRef.current && !videoRef.current.paused) {
+      visibilityTimerRef.current = setTimeout(() => {
+        setControlsVisible(false);
+      }, 2000);
+    }
   };
 
   useEffect(() => {
-    flashIcon();
+    resetVisibilityTimer();
 
-    // Start paused
     if (videoRef.current) {
       videoRef.current.pause();
     }
 
-    // Autoplay after 5s
+    // Autoplay silently after 5s (safe from browser blocks)
     autoplayTimerRef.current = setTimeout(() => {
       if (videoRef.current && videoRef.current.paused) {
-        videoRef.current.play();
+        videoRef.current.play().catch((err) => console.log("Autoplay blocked:", err));
         setIsPlaying(true);
+        resetVisibilityTimer();
       }
     }, 5000);
 
     return () => {
-      clearTimeout(timerRef.current);
       clearTimeout(autoplayTimerRef.current);
+      clearTimeout(visibilityTimerRef.current);
     };
   }, []);
 
   const toggleMute = (e) => {
     e.stopPropagation();
-
-    videoRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-
-    flashIcon();
+    if (videoRef.current) {
+      const nextMuteState = !isMuted;
+      videoRef.current.muted = nextMuteState;
+      setIsMuted(nextMuteState);
+      resetVisibilityTimer();
+    }
   };
 
   const togglePlay = () => {
     clearTimeout(autoplayTimerRef.current);
 
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        // CRITICAL FIX: Since the user explicitly clicked the video to play it, 
+        // we can now safely unmute the audio without the browser blocking it.
+        videoRef.current.muted = false;
+        setIsMuted(false);
+
+        videoRef.current.play();
+        setIsPlaying(true);
+        resetVisibilityTimer();
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+        setControlsVisible(true);
+        if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
+      }
+    }
+  };
+
+  const handleMouseMove = () => {
+    resetVisibilityTimer();
+  };
+
+  const handleMouseLeave = () => {
+    if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
+    if (isPlaying) {
+      setControlsVisible(false);
     }
   };
 
   return (
     <div
-      className="group relative w-full aspect-video cursor-pointer overflow-hidden rounded-2xl"
+      className="group relative w-full aspect-video cursor-pointer overflow-hidden rounded-2xl bg-black"
       onClick={togglePlay}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Video */}
+      {/* Video - Must render with 'muted' attribute initially for browser bypass */}
       <video
         ref={videoRef}
         src="/videos/Aws Datamato Final.mp4"
-        muted
+        muted 
         loop
         playsInline
         className="w-full h-full object-cover"
@@ -82,8 +108,8 @@ export default function VideoPlayer() {
       {/* Overlay */}
       <div
         className={`
-          absolute inset-0 transition-all duration-500
-          ${isPlaying ? "bg-black/10 group-hover:bg-black/20" : "bg-black/10"}
+          absolute inset-0 transition-all duration-500 pointer-events-none
+          ${isPlaying ? "bg-black/10" : "bg-black/20"}
         `}
       />
 
@@ -91,29 +117,17 @@ export default function VideoPlayer() {
       <div
         className={`
           absolute inset-0 flex items-center justify-center
-          transition-all duration-500
-          ${isPlaying ? "opacity-0 group-hover:opacity-100" : "opacity-100"}
+          transition-all duration-500 ease-in-out
+          ${controlsVisible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
         `}
       >
         <div className="relative">
           {/* Moving Border */}
           {!isPlaying && (
             <div className="absolute inset-0 rounded-full p-[2px] overflow-hidden">
-              {/* Background Border */}
               <div className="absolute inset-0 rounded-full border border-[#3FD9FB]/20" />
-
-              {/* Moving Glow */}
               <div className="absolute inset-0 rounded-full animate-[spin_5s_linear_forwards]">
-                <div
-                  className="
-                    absolute
-                    top-0 left-0
-                    h-full w-14
-                    bg-[#3FD9FB]
-                    blur-[10px]
-                    opacity-100
-                  "
-                />
+                <div className="absolute top-0 left-0 h-full w-14 bg-[#3FD9FB] blur-[10px]" />
               </div>
             </div>
           )}
@@ -130,34 +144,22 @@ export default function VideoPlayer() {
               border border-white/60
               shadow-[0_10px_40px_rgba(0,0,0,0.35)]
               transition-all duration-300
-              group-hover:scale-105
+              hover:scale-105
             "
           >
-            {/* Icon */}
             <div className="flex items-center justify-center">
               {isPlaying ? (
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <rect x="6" y="5" width="4" height="14" rx="1" />
                   <rect x="14" y="5" width="4" height="14" rx="1" />
                 </svg>
               ) : (
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               )}
             </div>
 
-            {/* Text */}
             <span className="text-sm lg:text-base font-semibold tracking-wide">
               {isPlaying ? "Pause Video" : "Watch Video"}
             </span>
@@ -176,33 +178,19 @@ export default function VideoPlayer() {
           backdrop-blur-md
           border border-white/10
           text-white
-          transition-opacity duration-500
+          transition-all duration-500 ease-in-out
           hover:scale-110
-          ${showIcon ? "opacity-100" : "opacity-0 group-hover:opacity-100"}
+          ${controlsVisible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
         `}
       >
         {isMuted ? (
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
             <line x1="23" y1="9" x2="17" y2="15" />
             <line x1="17" y1="9" x2="23" y2="15" />
           </svg>
         ) : (
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
             <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
             <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />

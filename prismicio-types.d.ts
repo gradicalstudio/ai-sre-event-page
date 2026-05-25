@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomePageDocumentDataSlicesSlice =
+  | TextBlocksSlice
   | FooterSlice
   | FaQSlice
   | SpeakerTakeawaySlice
@@ -1134,6 +1135,120 @@ export type StageFormatsSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *TextBlocks → Text on Left → Primary*
+ */
+export interface TextBlocksSliceDefaultPrimary {
+  /**
+   * Heading field in *TextBlocks → Text on Left → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_blocks.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Text on Left variation for TextBlocks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextBlocksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextBlocksSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextBlocks → Text on Middle → Primary*
+ */
+export interface TextBlocksSliceTextOnMiddlePrimary {
+  /**
+   * Heading field in *TextBlocks → Text on Middle → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_blocks.textOnMiddle.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Text on Middle variation for TextBlocks Slice
+ *
+ * - **API ID**: `textOnMiddle`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextBlocksSliceTextOnMiddle = prismic.SharedSliceVariation<
+  "textOnMiddle",
+  Simplify<TextBlocksSliceTextOnMiddlePrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextBlocks → Heading and Description → Primary*
+ */
+export interface TextBlocksSliceHeadingAndDescriptionPrimary {
+  /**
+   * Heading field in *TextBlocks → Heading and Description → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_blocks.headingAndDescription.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Description field in *TextBlocks → Heading and Description → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_blocks.headingAndDescription.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Heading and Description variation for TextBlocks Slice
+ *
+ * - **API ID**: `headingAndDescription`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextBlocksSliceHeadingAndDescription = prismic.SharedSliceVariation<
+  "headingAndDescription",
+  Simplify<TextBlocksSliceHeadingAndDescriptionPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextBlocks*
+ */
+type TextBlocksSliceVariation =
+  | TextBlocksSliceDefault
+  | TextBlocksSliceTextOnMiddle
+  | TextBlocksSliceHeadingAndDescription;
+
+/**
+ * TextBlocks Shared Slice
+ *
+ * - **API ID**: `text_blocks`
+ * - **Description**: TextBlocks
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextBlocksSlice = prismic.SharedSlice<
+  "text_blocks",
+  TextBlocksSliceVariation
+>;
+
+/**
  * Item in *WhatYouTakeAway → Default → Primary → Blocks*
  */
 export interface WhatYouTakeAwaySliceDefaultPrimaryBlocksItem {
@@ -1470,6 +1585,14 @@ declare module "@prismicio/client" {
       StageFormatsSliceDefaultPrimary,
       StageFormatsSliceVariation,
       StageFormatsSliceDefault,
+      TextBlocksSlice,
+      TextBlocksSliceDefaultPrimary,
+      TextBlocksSliceTextOnMiddlePrimary,
+      TextBlocksSliceHeadingAndDescriptionPrimary,
+      TextBlocksSliceVariation,
+      TextBlocksSliceDefault,
+      TextBlocksSliceTextOnMiddle,
+      TextBlocksSliceHeadingAndDescription,
       WhatYouTakeAwaySlice,
       WhatYouTakeAwaySliceDefaultPrimaryBlocksItem,
       WhatYouTakeAwaySliceDefaultPrimary,
