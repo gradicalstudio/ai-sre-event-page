@@ -175,7 +175,7 @@ const Partners = ({ slice }) => {
           max-w-[1000px]
           2xl:max-w-[1320px]
           px-3 md:px-6 lg:px-8
-          pb-20 md:pb-14 lg:pb-30"
+         pb-20 md:pb-27 lg:pb-43"
     >
       <section
         ref={sectionRef}

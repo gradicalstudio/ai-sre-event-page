@@ -102,7 +102,7 @@ export default function VideoPlayer() {
         muted 
         loop
         playsInline
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
 
       {/* Overlay */}
