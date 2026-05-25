@@ -9,7 +9,6 @@ import FormModal from "@/components/FormModal";
 import { PrismicNextLink } from "@prismicio/next";
 // import VideoPlayer from "@/components/VideoPlayer";
 import Bounded from "@/components/Bounded";
-import VideoPlayer from "@/components/VideoPlayer";
 
 /**
  * @typedef {import("@prismicio/client").Content.HeroSectionSlice} HeroSectionSlice
@@ -41,16 +40,7 @@ const HeroSection = ({ slice }) => {
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
-               <div className="w-full z-20 rounded-2xl">
-                {showVideo ? (
-                  <VideoPlayer />
-                ) : (
-                  <PrismicNextImage
-                    field={slice.primary.image_or_video}
-                    className="w-full aspect-video rounded-2xl object-cover"
-                  />
-                )}
-              </div>
+              <img className="w-31 self-start lg:w-80" src="/Final Logo.svg" />
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
@@ -131,11 +121,11 @@ const HeroSection = ({ slice }) => {
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            {/* <img
+            <img
               className=" lg:w-full xl:w-[75%] self-center"
               src="/Final Logo.svg"
-            /> */}
-            <div className="w-full z-20 rounded-2xl">
+            />
+            {/* <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
                 ) : (
@@ -144,7 +134,7 @@ const HeroSection = ({ slice }) => {
                     className="w-full aspect-video rounded-2xl object-cover"
                   />
                 )}
-              </div>
+              </div> */}
           </div>
         </div>
 
