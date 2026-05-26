@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { PrismicRichText, PrismicText } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import FormModal from "@/components/FormModal";
 import { PrismicNextLink } from "@prismicio/next";
-// import VideoPlayer from "@/components/VideoPlayer";
+import VideoPlayer from "@/components/VideoPlayer";
 import Bounded from "@/components/Bounded";
 
 /**
@@ -40,7 +40,16 @@ const HeroSection = ({ slice }) => {
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
-              <img className="w-31 self-start lg:w-80" src="/Final Logo.svg" />
+              <div className="w-full rounded-2xl">
+                {showVideo ? (
+                  <VideoPlayer />
+                ) : (
+                  <img
+                    className="w-full aspect-video rounded-2xl object-cover"
+                    src="/Final Logo.svg"
+                  />
+                )}
+              </div>
             </div>
             <div className="flex flex-col gap-4">
               {/* Heading */}
@@ -120,21 +129,17 @@ const HeroSection = ({ slice }) => {
           </div>
 
           {/* Right Side Video */}
-          <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            <img
-              className=" lg:w-full xl:w-[75%] self-center"
-              src="/Final Logo.svg"
-            />
-            {/* <div className="w-full rounded-2xl">
-                {showVideo ? (
-                  <VideoPlayer />
-                ) : (
-                  <PrismicNextImage
-                    field={slice.primary.image_or_video}
-                    className="w-full aspect-video rounded-2xl object-cover"
-                  />
-                )}
-              </div> */}
+          <div className="hidden lg:flex flex-1 items-center rounded-2xl lg:justify-center">
+            <div className="w-full z-40 rounded-2xl">
+              {showVideo ? (
+                <VideoPlayer />
+              ) : (
+                <img
+                  className="w-full aspect-video rounded-2xl object-contain"
+                  src="/Final Logo.svg"
+                />
+              )}
+            </div>
           </div>
         </div>
 
@@ -152,7 +157,7 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
+      <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
         {/* Gradient */}
         <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
