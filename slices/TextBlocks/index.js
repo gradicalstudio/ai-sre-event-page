@@ -49,7 +49,7 @@ const TextBlocks = ({ slice }) => {
               start: "top 90%",
               once: true,
             },
-          }
+          },
         );
       });
     }, containerRef); // Scopes GSAP selectors/actions to this component container
@@ -66,8 +66,8 @@ const TextBlocks = ({ slice }) => {
           data-slice-variation={slice.variation}
           className="font-sans flex items-center justify-center text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
-          <div className="flex items-center justify-center w-fit mx-auto">
-            <div className="text-left w-fit text-[28px] md:text-[32px] lg:text-[40px] leading-tight lg:max-w-[700px]">
+          <div className="flex items-center justify-center w-full mx-auto">
+            <div className="text-left w-full text-[28px] md:text-[32px] lg:text-[40px] leading-tight lg:max-w-[800px] text-balance ">
               <PrismicRichText field={slice.primary.heading} />
             </div>
           </div>
@@ -82,7 +82,7 @@ const TextBlocks = ({ slice }) => {
           className="font-sans text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
           <div className="flex gap-1 md:gap-3 items-center lg:max-w-3xl mx-auto">
-            <div className="flex md:gap-3 text-center text-[28px] md:text-[32px] lg:text-[40px] leading-tight mx-auto lg:max-w-[700px] text-balance">
+            <div className="flex md:gap-3 text-center text-[28px] md:text-[32px] lg:text-[40px] leading-tight mx-auto lg:max-w-[800px] text-balance">
               <PrismicRichText field={slice.primary.heading} />
             </div>
           </div>
@@ -96,22 +96,24 @@ const TextBlocks = ({ slice }) => {
           className="font-sans flex flex-col lg:flex-row lg:gap-20 lg:justify-between text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
           {/* Animate Heading block separately */}
-          <div 
+          <div
             ref={addToRefs}
-            className="flex gap-4 lg:gap-3 lg:mb-0 md:gap-3 mb-17 lg:w-[50%] xl:w-[40%] text-[30px] md:text-[32px] lg:text-[40px] xl:text-[40px] leading-tight text-pretty"
+            className="flex gap-4 lg:gap-3 lg:mb-0 md:gap-3 mb-17 lg:w-[50%] xl:w-[40%]  "
           >
             <img
               src="/arrow.svg"
               alt=""
               className="w-3 lg:self-start lg:mt-2 object-contain md:w-4 lg:w-6"
             />
-            <PrismicRichText field={slice.primary.heading} />
+            <div className="text-balance text-[30px] md:text-[32px] lg:text-[40px] xl:text-[40px] leading-tight">
+              <PrismicRichText field={slice.primary.heading} />
+            </div>
           </div>
 
           {/* Animate Description block separately */}
-          <div 
+          <div
             ref={addToRefs}
-            className="xl:text-lg lg:w-[50%] xl:w-[40%]"
+            className="xl:text-lg lg:w-[50%] xl:w-[40%] text-pretty"
           >
             <PrismicRichText field={slice.primary.description} />
           </div>

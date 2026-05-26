@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PrismicRichText, PrismicText } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
 
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
@@ -40,14 +40,13 @@ const HeroSection = ({ slice }) => {
           {/* Left Side */}
           <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
-              {/* <img className="w-31 self-start lg:w-80" src="/Final Logo.svg" /> */}
               <div className="w-full rounded-2xl">
                 {showVideo ? (
                   <VideoPlayer />
                 ) : (
-                  <PrismicNextImage
-                    field={slice.primary.image_or_video}
+                  <img
                     className="w-full aspect-video rounded-2xl object-cover"
+                    src="/Final Logo.svg"
                   />
                 )}
               </div>
@@ -130,18 +129,14 @@ const HeroSection = ({ slice }) => {
           </div>
 
           {/* Right Side Video */}
-          <div className="hidden lg:flex flex-1  items-center rounded-2xl lg:justify-center">
-            {/* <img
-              className=" lg:w-full xl:w-[75%] self-center"
-              src="/Final Logo.svg"
-            /> */}
+          <div className="hidden lg:flex flex-1 items-center rounded-2xl lg:justify-center">
             <div className="w-full z-40 rounded-2xl">
               {showVideo ? (
                 <VideoPlayer />
               ) : (
-                <PrismicNextImage
-                  field={slice.primary.image_or_video}
+                <img
                   className="w-full aspect-video rounded-2xl object-cover"
+                  src="/Final Logo.svg"
                 />
               )}
             </div>
