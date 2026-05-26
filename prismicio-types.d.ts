@@ -147,7 +147,85 @@ export type HomePageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomePageDocument;
+type PreviewDocumentDataSlicesSlice =
+  | WhosInTheRoomSlice
+  | WhatYouTakeAwaySlice
+  | WhyThisEventSlice
+  | TextBlocksSlice
+  | StageFormatsSlice
+  | SpeakersOfBangaloreEditionSlice
+  | SpeakerTakeawaySlice
+  | SectorsRepresentedSlice
+  | FaQSlice
+  | PartnersSlice
+  | HeroSectionSlice
+  | FooterSlice
+  | AgendaSlice;
+
+/**
+ * Content for preview documents
+ */
+interface PreviewDocumentData {
+  /**
+   * Slice Zone field in *preview*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: preview.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<PreviewDocumentDataSlicesSlice>; /**
+   * Meta Title field in *preview*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: preview.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *preview*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: preview.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *preview*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: preview.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * preview document from Prismic
+ *
+ * - **API ID**: `preview`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PreviewDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PreviewDocumentData>,
+    "preview",
+    Lang
+  >;
+
+export type AllDocumentTypes = HomePageDocument | PreviewDocument;
 
 /**
  * Item in *Agenda → Default → Primary → Blocks*
@@ -1582,6 +1660,9 @@ declare module "@prismicio/client" {
       HomePageDocument,
       HomePageDocumentData,
       HomePageDocumentDataSlicesSlice,
+      PreviewDocument,
+      PreviewDocumentData,
+      PreviewDocumentDataSlicesSlice,
       AllDocumentTypes,
       AgendaSlice,
       AgendaSliceDefaultPrimaryBlocksItem,
