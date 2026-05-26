@@ -22,5 +22,9 @@ export async function generateMetadata() {
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
     },
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
