@@ -135,7 +135,7 @@ const HeroSection = ({ slice }) => {
               className=" lg:w-full xl:w-[75%] self-center"
               src="/Final Logo.svg"
             /> */}
-            <div className="w-full rounded-2xl">
+            <div className="w-full z-40 rounded-2xl">
               {showVideo ? (
                 <VideoPlayer />
               ) : (
