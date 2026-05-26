@@ -135,7 +135,7 @@ const HeroSection = ({ slice }) => {
                 <VideoPlayer />
               ) : (
                 <img
-                  className="w-full aspect-video rounded-2xl object-cover"
+                  className="w-full aspect-video rounded-2xl object-contain"
                   src="/Final Logo.svg"
                 />
               )}
