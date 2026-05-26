@@ -45,7 +45,7 @@ const HeroSection = ({ slice }) => {
                   <VideoPlayer />
                 ) : (
                   <img
-                    className="w-full aspect-video rounded-2xl object-cover"
+                    className="w-31 self-start lg:w-80"
                     src="/Final Logo.svg"
                   />
                 )}
