@@ -328,7 +328,7 @@ lg:mt-20
               </div>
               <div className="text-white text-pretty">
                 <div ref={headingRef} className="flex flex-2 gap-3">
-                  <img className="w-7 md:w-9 xl:w-11" src="speakers.svg" />
+                  <img className="w-7 md:w-9 xl:w-11" src="/speakers.svg" />
                   <div className="leading-[1.1] text-3xl  md:text-[34px] lg:text-[36px] xl:text-[40px] font-medium">
                     <PrismicRichText field={slice.primary.heading} />
                   </div>

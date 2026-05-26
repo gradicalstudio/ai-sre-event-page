@@ -64,7 +64,7 @@ const Footer = ({ slice }) => {
               </div>
               {/* Time */}
               <div className="flex text-xs md:text-base lg:text-sm xl:text-lg items-center gap-2">
-                <img src="clock.svg" className="w-4 lg:w-5" />
+                <img src="/clock.svg" className="w-4 lg:w-5" />
                 <p>{slice.primary.time_text}</p>
               </div>
             </div>
