@@ -69,9 +69,16 @@ const TextBlocks = ({ slice }) => {
           data-slice-variation={slice.variation}
           className="font-sans flex items-center justify-center text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
-          <div className="flex items-center justify-center w-full mx-auto">
-            <div className="text-left w-full text-[28px] md:text-[32px] lg:text-[40px] leading-tight lg:max-w-[800px] text-balance ">
-              <PrismicRichText field={slice.primary.heading} />
+          <div className="flex  items-center w-full mx-auto">
+            <div className="text-[28px] flex self-center mx-auto max-w-90 md:max-w-140 md:text-[32px] lg:text-[40px] leading-tight lg:max-w-210 text-balance">
+              <PrismicRichText
+                field={slice.primary.heading}
+                components={{
+                  paragraph: ({ children }) => (
+                    <p className="text-left inline">{children}</p>
+                  ),
+                }}
+              />
             </div>
           </div>
         </section>
@@ -84,8 +91,8 @@ const TextBlocks = ({ slice }) => {
           data-slice-variation={slice.variation}
           className="font-sans text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
-          <div className="flex gap-1 md:gap-3 items-center lg:max-w-3xl mx-auto">
-            <div className="flex md:gap-3 text-center text-[28px] md:text-[32px] lg:text-[40px] leading-tight mx-auto lg:max-w-[800px] text-balance">
+          <div className="flex gap-1 md:gap-3 items-center justify-center w-full ">
+            <div className="flex md:gap-3 text-center text-[28px] md:text-[32px] lg:text-[40px] leading-tight  lg:max-w-210 text-balance">
               <PrismicRichText field={slice.primary.heading} />
             </div>
           </div>
@@ -96,7 +103,7 @@ const TextBlocks = ({ slice }) => {
         <section
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
-          className="font-sans flex flex-col lg:flex-row lg:gap-20 lg:justify-between text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
+          className="font-sans flex flex-col lg:flex-row lg:gap-20 lg:items-center lg:justify-between text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
         >
           {/* Animate Heading block separately */}
           <div
@@ -105,10 +112,10 @@ const TextBlocks = ({ slice }) => {
           >
             <img
               src="/arrow.svg"
-              alt=""
+              alt="icon"
               className="w-3 lg:self-start lg:mt-2 object-contain md:w-4 lg:w-6"
             />
-            <div className="text-balance text-[30px] md:text-[32px] lg:text-[40px] xl:text-[40px] leading-tight">
+            <div className="xl:text-balance w-full text-[34px] md:text-[42px] lg:text-[40px] xl:text-[60px] leading-[1.1]">
               <PrismicRichText field={slice.primary.heading} />
             </div>
           </div>
@@ -116,7 +123,7 @@ const TextBlocks = ({ slice }) => {
           {/* Animate Description block separately */}
           <div
             ref={addToRefs}
-            className="xl:text-lg lg:w-[50%] xl:w-[40%] text-pretty"
+            className="xl:text-xl lg:w-[50%] xl:w-[38%] text-balance"
           >
             <PrismicRichText field={slice.primary.description} />
           </div>
