@@ -603,6 +603,17 @@ export interface PartnersSliceDefaultPrimaryCompaniesItem {
  */
 export interface PartnersSliceDefaultPrimary {
   /**
+   * Show Slice field in *Participants → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: partners.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Companies field in *Participants → Default → Primary*
    *
    * - **Field Type**: Group

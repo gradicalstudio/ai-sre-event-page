@@ -15,6 +15,11 @@ gsap.registerPlugin(ScrollTrigger);
  * @type {import("react").FC<PartnersProps>}
  */
 const Partners = ({ slice }) => {
+  const showSlice = slice.primary.show_slice;
+  if (!showSlice) {
+    return null;
+  }
+
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const cellsRef = useRef([]);
