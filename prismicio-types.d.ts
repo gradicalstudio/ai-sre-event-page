@@ -1158,6 +1158,17 @@ export interface TextBlocksSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField;
+
+  /**
+   * showSlice field in *TextBlocks → Text on Left → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: text_blocks.default.primary.showslice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  showslice: prismic.BooleanField;
 }
 
 /**
@@ -1186,6 +1197,17 @@ export interface TextBlocksSliceTextOnMiddlePrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   heading: prismic.RichTextField;
+
+  /**
+   * showSlice field in *TextBlocks → Text on Middle → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: text_blocks.textOnMiddle.primary.showslice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  showslice: prismic.BooleanField;
 }
 
 /**
@@ -1224,6 +1246,17 @@ export interface TextBlocksSliceHeadingAndDescriptionPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   description: prismic.RichTextField;
+
+  /**
+   * showSlice field in *TextBlocks → Heading and Description → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: text_blocks.headingAndDescription.primary.showslice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  showslice: prismic.BooleanField;
 }
 
 /**
