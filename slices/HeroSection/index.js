@@ -6,7 +6,7 @@ import { PrismicRichText } from "@prismicio/react";
 import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import FormModal from "@/components/FormModal";
-import { PrismicNextLink } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import VideoPlayer from "@/components/VideoPlayer";
 import Bounded from "@/components/Bounded";
 
@@ -44,9 +44,9 @@ const HeroSection = ({ slice }) => {
                 {showVideo ? (
                   <VideoPlayer />
                 ) : (
-                  <img
+                  <PrismicNextImage
+                    field={slice.primary.image_or_video}
                     className="w-31 self-start lg:w-80"
-                    src="/Final Logo.svg"
                   />
                 )}
               </div>
@@ -134,10 +134,10 @@ const HeroSection = ({ slice }) => {
               {showVideo ? (
                 <VideoPlayer />
               ) : (
-                <img
-                  className="w-full aspect-video rounded-2xl object-contain"
-                  src="/Final Logo.svg"
-                />
+                  <PrismicNextImage
+                    field={slice.primary.image_or_video}
+                    className="w-full aspect-video rounded-2xl object-contain"
+                  />
               )}
             </div>
           </div>
