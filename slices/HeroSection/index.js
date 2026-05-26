@@ -47,6 +47,7 @@ const HeroSection = ({ slice }) => {
                   <PrismicNextImage
                     field={slice.primary.image_or_video}
                     className="w-31 self-start lg:w-80"
+                    loading="eager"
                   />
                 )}
               </div>
@@ -134,10 +135,11 @@ const HeroSection = ({ slice }) => {
               {showVideo ? (
                 <VideoPlayer />
               ) : (
-                  <PrismicNextImage
-                    field={slice.primary.image_or_video}
-                    className="w-full aspect-video rounded-2xl object-contain"
-                  />
+                <PrismicNextImage
+                  field={slice.primary.image_or_video}
+                  className="w-full aspect-video rounded-2xl object-contain"
+                  loading="eager"
+                />
               )}
             </div>
           </div>

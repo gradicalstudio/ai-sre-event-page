@@ -22,95 +22,117 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading Animation
-      gsap.fromTo(
-        headingRef.current,
-        {
-          opacity: 0,
-          y: 80,
-          filter: "blur(10px)",
-        },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 1.2,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
-        },
-      );
-
-      // LEFT SVG REVEAL
-      gsap.fromTo(
-        ".left-pattern",
-        {
-          scaleX: 0,
-          opacity: 0,
-          transformOrigin: "left center",
-        },
-        {
-          scaleX: 1,
-          opacity: 0.6,
-          duration: 1.8,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        },
-      );
-
-      // RIGHT SVG REVEAL
-      gsap.fromTo(
-        ".right-pattern",
-        {
-          scaleX: 0,
-          opacity: 0,
-          transformOrigin: "right center",
-        },
-        {
-          scaleX: 1,
-          opacity: 0.6,
-          duration: 1.8,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        },
-      );
-
-      // Individual Cards Animation (Triggers when each card enters the viewport)
-      cardsRef.current.forEach((card) => {
-        if (!card) return;
-
+      if (slice.variation === "default") {
+        // Heading
         gsap.fromTo(
-          card,
-          {
-            opacity: 0,
-            y: 120,
-            scale: 0.9,
-          },
+          headingRef.current,
+          { opacity: 0, y: 80, filter: "blur(10px)" },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 1,
+            filter: "blur(0px)",
+            duration: 1.2,
             ease: "power4.out",
             scrollTrigger: {
-              trigger: card,
-              start: "top 85%", // Triggers individually when the top of each card hits 85% viewport height
+              trigger: headingRef.current,
+              start: "top 85%",
+              once: true,
             },
           },
         );
-      });
+
+        // LEFT SVG
+        gsap.fromTo(
+          ".left-pattern",
+          { scaleX: 0, opacity: 0, transformOrigin: "left center" },
+          {
+            scaleX: 1,
+            opacity: 0.6,
+            duration: 1.8,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              once: true,
+            },
+          },
+        );
+
+        // RIGHT SVG
+        gsap.fromTo(
+          ".right-pattern",
+          { scaleX: 0, opacity: 0, transformOrigin: "right center" },
+          {
+            scaleX: 1,
+            opacity: 0.6,
+            duration: 1.8,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              once: true,
+            },
+          },
+        );
+
+        // Cards
+        cardsRef.current.forEach((card) => {
+          if (!card) return;
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 120, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1,
+              ease: "power4.out",
+              scrollTrigger: { trigger: card, start: "top 85%", once: true },
+            },
+          );
+        });
+      }
+
+      if (slice.variation === "secondaryVar") {
+        // Heading
+        gsap.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 80, filter: "blur(10px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          },
+        );
+
+        // Cards
+        cardsRef.current.forEach((card) => {
+          if (!card) return;
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 120, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1,
+              ease: "power4.out",
+              scrollTrigger: { trigger: card, start: "top 85%", once: true },
+            },
+          );
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [slice.variation]);
 
   return (
     <>
@@ -296,10 +318,13 @@ lg:mt-20
       )}
       {slice.variation === "secondaryVar" && (
         <section id="speakers" ref={sectionRef} className="px-4 ">
-          <div className="flex items-center 2xl:max-w-[1440px] mx-auto  w-full select-none px-2">
+          <div className="flex items-center 2xl:max-w-360 mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">
               <div className="flex-1 hidden md:block">
-                <img className=" h-full object-cover" src="/Left side circuit.svg" />
+                <img
+                  className=" h-full object-cover"
+                  src="/Left side circuit.svg"
+                />
               </div>
               <div className="text-white text-pretty">
                 <div ref={headingRef} className="flex flex-2 gap-3">
@@ -331,7 +356,7 @@ lg:mt-20
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="self-start" >
+                  <div className="self-start">
                     <div>
                       <p className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
                         {item.name}
