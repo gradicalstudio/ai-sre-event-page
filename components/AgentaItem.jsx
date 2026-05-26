@@ -10,7 +10,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
   useEffect(() => {
-    if (defaultOpen) {
+    if (defaultOpen && contentRef.current) {
       gsap.set(contentRef.current, {
         display: "block",
         height: "auto",
@@ -18,7 +18,9 @@ export default function AgendaItem({ item, defaultOpen = false }) {
       });
       gsap.set(chevronRef.current, { rotation: 0 });
     } else {
-      gsap.set(chevronRef.current, { rotation: 180 });
+      if (chevronRef.current) {
+        gsap.set(chevronRef.current, { rotation: 180 });
+      }
     }
   }, []);
 

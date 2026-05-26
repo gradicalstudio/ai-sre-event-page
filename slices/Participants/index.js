@@ -15,11 +15,6 @@ gsap.registerPlugin(ScrollTrigger);
  * @type {import("react").FC<PartnersProps>}
  */
 const Partners = ({ slice }) => {
-  const showSlice = slice.primary.show_slice;
-  if (!showSlice) {
-    return null;
-  }
-
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const cellsRef = useRef([]);
@@ -157,6 +152,10 @@ const Partners = ({ slice }) => {
       mediaQuery.removeEventListener("change", handleMediaChange);
     };
   }, []);
+  const showSlice = slice.primary.show_slice;
+  if (!showSlice) {
+    return null;
+  }
 
   const companies = slice.primary.companies || [];
   const topCompanies = companies.slice(0, 3);

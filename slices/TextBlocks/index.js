@@ -57,6 +57,9 @@ const TextBlocks = ({ slice }) => {
     return () => ctx.revert();
   }, [slice.variation]); // Re-run effect if variation changes to attach to new elements
 
+  const showSlice = slice.primary.showslice;
+  if (!showSlice) return null;
+
   return (
     <div ref={containerRef}>
       {slice.variation === "default" && (
