@@ -96,7 +96,7 @@ const SectorsRepresented = ({ slice }) => {
           <img
             ref={arrowRef}
             className="w-3 md:w-4 lg:w-6 object-contain opacity-0"
-            src="/arrow.svg"
+            src="/new-orange-arrow.svg"
           />
           <div
             ref={headingRef}

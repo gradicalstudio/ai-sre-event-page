@@ -150,7 +150,7 @@ const SpeakerTakeaway = ({ slice }) => {
                 <div className="mt-2 flex-shrink-0">
                   <img
                     ref={arrowRef}
-                    src="/arrow.svg"
+                    src="/new-orange-arrow.svg"
                     alt="Arrow"
                     className="h-7 w-4 object-contain md:h-9 md:w-5 opacity-0"
                   />

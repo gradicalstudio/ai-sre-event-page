@@ -186,7 +186,7 @@ const WhyThisEvent = ({ slice }) => {
           <div className="mb-17 flex items-center gap-4 lg:mb-17 md:gap-3">
             <img
               ref={arrowRef}
-              src="/arrow.svg"
+              src="/new-orange-arrow.svg"
               alt=""
               className="w-3 object-contain opacity-0 md:w-4 lg:w-6"
             />
@@ -254,44 +254,48 @@ const WhyThisEvent = ({ slice }) => {
                       boxRefs.current[index] = el;
                     }}
                     className="
-                      relative
-                      z-10
-                      flex
-                      h-full
-                      w-full
-                      items-center
-                      justify-center
-                      border
-                      border-white/10
-                      bg-[#0F101F]
-                    "
+  group
+  relative
+  z-10
+  flex
+  h-full
+  w-full
+  items-center
+  justify-center
+  border
+  border-white/10
+  bg-transparent
+transition-all
+duration-300
+hover:bg-[#0F101F]
+"
                   >
                     {/* TOP LEFT */}
                     <img
                       src="/Rectangle 574056928.svg"
                       alt=""
-                      className="absolute left-0 top-0 z-20 -rotate-90"
+                      className="absolute left-0 top-0 z-20 -rotate-90  transition-all  group-hover:[filter:brightness(0)_saturate(100%)_invert(58%)_sepia(79%)_saturate(1761%)_hue-rotate(330deg)_brightness(101%)_contrast(101%)]"
                     />
 
                     {/* TOP RIGHT */}
                     <img
                       src="/Rectangle 574056928.svg"
                       alt=""
-                      className="absolute right-0 top-0 z-20"
+                      className="absolute right-0 top-0 z-20  transition-all  group-hover:[filter:brightness(0)_saturate(100%)_invert(58%)_sepia(79%)_saturate(1761%)_hue-rotate(330deg)_brightness(101%)_contrast(101%)]"
                     />
 
                     {/* BOTTOM RIGHT */}
                     <img
                       src="/Rectangle 574056928.svg"
                       alt=""
-                      className="absolute bottom-0 right-0 z-20 rotate-90"
+                      className="absolute bottom-0 right-0 z-20 rotate-90  transition-all group-hover:[filter:brightness(0)_saturate(100%)_invert(58%)_sepia(79%)_saturate(1761%)_hue-rotate(330deg)_brightness(101%)_contrast(101%)]"
                     />
 
                     {/* BOTTOM LEFT */}
                     <img
                       src="/Rectangle 574056928.svg"
                       alt=""
-                      className="absolute bottom-0 left-0 z-20 rotate-180"
+                      className="absolute bottom-0 left-0 z-20 rotate-180  transition-all  group-hover:[filter:brightness(0)_saturate(100%)_invert(58%)_sepia(79%)_saturate(1761%)_hue-rotate(330deg)_brightness(101%)_contrast(101%)]"
                     />
 
                     {/* Icon Container */}

@@ -19,8 +19,8 @@ const PrimaryButton = ({ buttonText, onClick, className }) => {
           transition-all
           duration-250
 
-          hover:bg-[#45C7F0]
-          hover:text-white
+          hover:bg-[#FF6A50]
+          hover:text-[#04050F]
           hover:cursor-pointer
     
         `}

@@ -350,11 +350,27 @@ lg:mt-20
                   key={index}
                   className="flex  flex-col  text-left gap-3"
                 >
-                  <div className=" overflow-hidden h-40 w-40  rounded-full">
-                    <PrismicNextImage
-                      field={item.speaker_image}
-                      className="w-full h-full object-cover"
-                    />
+                  <div
+                    className="
+    group
+    h-41
+    w-41
+    rounded-full
+    bg-transparent
+    p-[2px]
+    transition-all
+    duration-300
+    hover:bg-gradient-to-b
+    hover:from-[#FA6D55]
+    hover:to-[#3FD9FB]
+  "
+                  >
+                    <div className="overflow-hidden rounded-full h-full w-full">
+                      <PrismicNextImage
+                        field={item.speaker_image}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
                   <div className="self-start">
                     <div>

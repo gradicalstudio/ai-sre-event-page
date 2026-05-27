@@ -19,10 +19,10 @@ const SecondaryButton = ({ buttonText, onClick, className }) => {
         transition-all
         duration-250
 
-        hover:border-[#00C8FF]
+        hover:border-[#FF6A50]
        
         hover:cursor-pointer
-       hover:shadow-[0_0_20px_rgba(0,200,255,0.35)]
+      hover:shadow-[0_0_25px_rgba(255,106,80,0.35)]
       `}
     >
       {buttonText}
