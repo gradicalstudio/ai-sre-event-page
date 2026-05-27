@@ -910,7 +910,8 @@ cursor-pointer
                   transition-all
                   duration-300
 
-                  hover:bg-[#45C7F0]
+                  hover:bg-[#FF6A50]
+                  hover: text-[#04050f]
                   hover:cursor-pointer
 
                   disabled:cursor-not-allowed
