@@ -853,6 +853,16 @@ export interface SpeakerTakeawaySliceDefaultPrimaryBlocksItem {
   icon: prismic.ImageField<never>;
 
   /**
+   * Icon Shadow field in *SpeakerTakeaway → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speaker_takeaway.default.primary.blocks[].icon_shadow
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon_shadow: prismic.ImageField<never>;
+
+  /**
    * Heading field in *SpeakerTakeaway → Default → Primary → Blocks*
    *
    * - **Field Type**: Text

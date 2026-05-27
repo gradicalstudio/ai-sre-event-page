@@ -205,14 +205,31 @@ const SpeakerTakeaway = ({ slice }) => {
                     ref={(el) => {
                       blockBoxRefs.current[index] = el;
                     }}
-                    className="relative grid grid-rows-[60px_auto_1fr] gap-2 z-10"
+                    className="group  relative grid grid-rows-[60px_auto_1fr] gap-2 z-10"
                   >
                     {item.icon?.url && (
-                      <div>
+                      <div className="relative h-10 w-20 mt-3">
+                        {/* Normal Icon */}
                         <PrismicNextImage
                           field={item.icon}
-                          className="h-10 w-20 mt-3 object-contain"
+                          className="
+        absolute inset-0 h-full w-full object-contain
+        transition-opacity duration-300
+        group-hover:opacity-0
+      "
                         />
+
+                        {/* Shadow Icon */}
+                        {item.icon_shadow?.url && (
+                          <PrismicNextImage
+                            field={item.icon_shadow}
+                            className="
+          absolute inset-0 h-full w-full object-contain
+          opacity-0 transition-opacity duration-300
+          group-hover:opacity-100
+        "
+                          />
+                        )}
                       </div>
                     )}
                     <h3 className="min-h-[1rem] text-[16px] lg:text-base font-semibold text-white">
