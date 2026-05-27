@@ -31,7 +31,7 @@ export default function FormModal({ isOpen, onClose, type }) {
   const [hearAboutOpen, setHearAboutOpen] = useState(false);
   const [bangaloreOpen, setBangaloreOpen] = useState(false);
   const [formatOpen, setFormatOpen] = useState(false);
-
+  const [dynamicFields, setDynamicFields] = useState([]);
   const currentForm = FORM_CONFIG[type];
 
   const handleClose = () => {
@@ -117,6 +117,21 @@ export default function FormModal({ isOpen, onClose, type }) {
       "-=0.1",
     );
   }, [isOpen]);
+  useEffect(() => {
+    async function fetchFormFields() {
+      try {
+        const res = await fetch(`/api/hubspot-form?type=${type}`);
+
+        const data = await res.json();
+
+        setDynamicFields(data.fieldGroups?.[0]?.fields || []);
+      } catch (error) {
+        console.error("Failed to fetch HubSpot fields:", error);
+      }
+    }
+
+    fetchFormFields();
+  }, [type]);
 
   if (!isOpen) return null;
 
@@ -435,7 +450,11 @@ modal-scrollbar
               onSubmit={handleSubmit}
             >
               <div>
-                <label className={labelStyles}>Full Name *</label>
+                <label className={labelStyles}>
+                  {dynamicFields.find((field) => field.name === "full_name")
+                    ?.label || "Full Name"}{" "}
+                  *
+                </label>
 
                 <input
                   type="text"
@@ -447,7 +466,11 @@ modal-scrollbar
               </div>
 
               <div>
-                <label className={labelStyles}>Work Email *</label>
+                <label className={labelStyles}>
+                  {dynamicFields.find((field) => field.name === "email")
+                    ?.label || "Work Email"}{" "}
+                  *
+                </label>
 
                 <input
                   type="email"
@@ -463,8 +486,11 @@ modal-scrollbar
               </div>
 
               <div>
-                <label className={labelStyles}>Job Title *</label>
-
+                <label className={labelStyles}>
+                  {dynamicFields.find((field) => field.name === "jobtitle")
+                    ?.label || "Job Title"}{" "}
+                  *
+                </label>
                 <input
                   type="text"
                   name="jobtitle"
@@ -476,7 +502,11 @@ modal-scrollbar
               </div>
 
               <div>
-                <label className={labelStyles}>Company *</label>
+                <label className={labelStyles}>
+                  {dynamicFields.find((field) => field.name === "company")
+                    ?.label || "Company"}{" "}
+                  *
+                </label>
 
                 <input
                   type="text"
@@ -490,7 +520,12 @@ modal-scrollbar
 
               {type === "invite" && (
                 <div className="relative">
-                  <label className={labelStyles}>Company Size *</label>
+                  <label className={labelStyles}>
+                    {dynamicFields.find(
+                      (field) => field.name === "company_size_demo_form",
+                    )?.label || "Company Size"}{" "}
+                    *
+                  </label>
 
                   <select
                     name="company_size_demo_form"
@@ -555,7 +590,12 @@ modal-scrollbar
               )}
 
               <div>
-                <label className={labelStyles}>LinkedIn URL *</label>
+                <label className={labelStyles}>
+                  {dynamicFields.find(
+                    (field) => field.name === "hs_linkedin_url",
+                  )?.label || "LinkedIn URL"}{" "}
+                  *
+                </label>
 
                 <input
                   type="url"
@@ -570,8 +610,12 @@ modal-scrollbar
                 <>
                   <div>
                     <label className={labelStyles}>
-                      What's the AI SRE problem you're trying to solve right
-                      now?
+                      {dynamicFields.find(
+                        (field) =>
+                          field.name ===
+                          "what_s_the_ai_sre_problem_you_re_trying_to_solve_right_now_",
+                      )?.label ||
+                        "What's the AI SRE problem you're trying to solve right now?"}
                     </label>
 
                     <textarea
@@ -593,9 +637,11 @@ modal-scrollbar
 
                   <div className="relative">
                     <label className={labelStyles}>
-                      How did you hear about AI SRE Next?
+                      {dynamicFields.find(
+                        (field) =>
+                          field.name === "how_did_you_hear_about_ai_sre_next_",
+                      )?.label || "How did you hear about AI SRE Next?"}
                     </label>
-
                     <select
                       name="hear_about_event"
                       onMouseDown={() => setHearAboutOpen((prev) => !prev)}
@@ -656,7 +702,11 @@ modal-scrollbar
                 <>
                   <div className="relative">
                     <label className={labelStyles}>
-                      Can you be in Bangalore on Friday, 12 June 2026? *
+                      {dynamicFields.find(
+                        (field) => field.name === "bangalore_attendance",
+                      )?.label ||
+                        "Can you be in Bangalore on Friday, 12 June 2026?"}{" "}
+                      *
                     </label>
 
                     <select
@@ -710,9 +760,11 @@ modal-scrollbar
 
                   <div className="relative">
                     <label className={labelStyles}>
-                      Format you're proposing *
+                      {dynamicFields.find(
+                        (field) => field.name === "session_format",
+                      )?.label || "Format you're proposing"}{" "}
+                      *
                     </label>
-
                     <select
                       name="format_proposing"
                       onMouseDown={() => setFormatOpen((prev) => !prev)}
@@ -773,7 +825,10 @@ cursor-pointer
 
                   <div>
                     <label className={labelStyles}>
-                      Working title of your talk *
+                      {dynamicFields.find(
+                        (field) => field.name === "talk_title",
+                      )?.label || "Working title of your talk"}{" "}
+                      *
                     </label>
 
                     <input
@@ -788,7 +843,11 @@ cursor-pointer
                   </div>
 
                   <div>
-                    <label className={labelStyles}>Your pitch *</label>
+                    <label className={labelStyles}>
+                      {dynamicFields.find((field) => field.name === "yourpitch")
+                        ?.label || "Your pitch"}{" "}
+                      *
+                    </label>
 
                     <textarea
                       name="your_pitch"
@@ -826,8 +885,12 @@ cursor-pointer
                   />
 
                   <span>
-                    I'd like StackGen to email me about future AI SRE Next
-                    editions (India + US).
+                    {dynamicFields.find(
+                      (field) =>
+                        field.name ===
+                        "i_d_like_stackgen_to_email_me_about_future_ai_sre_next_editions__india___us_",
+                    )?.label ||
+                      "I'd like StackGen to email me about future AI SRE Next editions (India + US)."}
                   </span>
                 </label>
               )}
