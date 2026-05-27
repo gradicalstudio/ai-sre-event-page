@@ -374,12 +374,12 @@ lg:mt-20
                   </div>
                   <div className="self-start">
                     <div>
-                      <p className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
-                        {item.name}
-                      </p>
-                      <p className=" text-sm md:text-[15px] xl:text-base text-gray-400">
-                        {item.role}
-                      </p>
+                      <div className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
+                        <PrismicRichText field={item.name_rich_text} />
+                      </div>
+                      <div className=" text-sm md:text-[15px] xl:text-base text-gray-400">
+                        <PrismicRichText field={item.role_rich_text} />
+                      </div>
                     </div>
 
                     {item.linkedin?.url && (
