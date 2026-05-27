@@ -955,7 +955,7 @@ export interface SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem {
   speaker_image: prismic.ImageField<never>;
 
   /**
-   * Name Rich-Text field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
+   * Name field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -965,17 +965,7 @@ export interface SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem {
   name_rich: prismic.RichTextField;
 
   /**
-   * Name field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: speakers_of_bangalore_edition.default.primary.speaker[].name
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Role Rich-Text field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
+   * Role field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -983,16 +973,6 @@ export interface SpeakersOfBangaloreEditionSliceDefaultPrimarySpeakerItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   role_rich: prismic.RichTextField;
-
-  /**
-   * Role field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: speakers_of_bangalore_edition.default.primary.speaker[].role
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  role: prismic.KeyTextField;
 
   /**
    * LinkedIn field in *SpeakersOfBangaloreEdition → Default → Primary → Speaker*
@@ -1026,7 +1006,7 @@ export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem {
   speaker_image: prismic.ImageField<never>;
 
   /**
-   * Name Rich-text field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   * Name field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1036,17 +1016,7 @@ export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem {
   name_rich_text: prismic.RichTextField;
 
   /**
-   * Name field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].name
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Role Rich-Text field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
+   * Role field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1054,16 +1024,6 @@ export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimarySpeakerItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   role_rich_text: prismic.RichTextField;
-
-  /**
-   * Role field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.speaker[].role
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  role: prismic.KeyTextField;
 
   /**
    * LinkedIn field in *SpeakersOfBangaloreEdition → secondaryVar → Primary → Speaker*

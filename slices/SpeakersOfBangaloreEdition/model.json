@@ -38,33 +38,19 @@
               "name_rich": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Name Rich-Text",
+                  "label": "Name",
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-                }
-              },
-              "name": {
-                "type": "Text",
-                "config": {
-                  "label": "Name",
-                  "placeholder": ""
                 }
               },
               "role_rich": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Role Rich-Text",
+                  "label": "Role",
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-                }
-              },
-              "role": {
-                "type": "Text",
-                "config": {
-                  "label": "Role",
-                  "placeholder": ""
                 }
               },
               "linkedin": {
@@ -118,33 +104,19 @@
               "name_rich_text": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Name Rich-text",
+                  "label": "Name",
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
                 }
               },
-              "name": {
-                "type": "Text",
-                "config": {
-                  "label": "Name",
-                  "placeholder": ""
-                }
-              },
               "role_rich_text": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Role Rich-Text",
+                  "label": "Role",
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-                }
-              },
-              "role": {
-                "type": "Text",
-                "config": {
-                  "label": "Role",
-                  "placeholder": ""
                 }
               },
               "linkedin": {
