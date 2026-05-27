@@ -105,7 +105,7 @@ const SpeakerTakeaway = ({ slice }) => {
   }, []);
 
   return (
-    <Bounded className="bg-[#04050F] overflow-hidden">
+    <section className="bg-[#04050F] overflow-hidden mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:mb-20 xl:mb-30 lg:mt-10 xl:mt-15">
       <section
         id="for-speakers"
         ref={sectionRef}
@@ -138,9 +138,9 @@ const SpeakerTakeaway = ({ slice }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.7fr]">
+          <div className="grid grid-cols-1  xl:grid-cols-[1fr_1.7fr]">
             {/* LEFT SIDE */}
-            <div className="relative flex items-center p-6 md:p-8 lg:p-10">
+            <div className="relative flex items-center p-6 md:p-8 lg:p-5 xl:p-10">
               <div className="absolute left-0 top-0 h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
               <div className="absolute bottom-0 left-0 hidden h-px w-full bg-[repeating-linear-gradient(to_right,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)] lg:block" />
               <div className="absolute left-0 top-0 h-full w-px bg-[repeating-linear-gradient(to_bottom,rgba(255,255,255,0.18)_0_8px,transparent_8px_18px)]" />
@@ -158,7 +158,7 @@ const SpeakerTakeaway = ({ slice }) => {
 
                 <div
                   ref={headingRef}
-                  className="max-w-[95%] text-white opacity-0"
+                  className="w-full xl:max-w-[95%] text-white opacity-0"
                 >
                   <PrismicRichText
                     field={slice.primary.heading}
@@ -235,7 +235,7 @@ const SpeakerTakeaway = ({ slice }) => {
                     <h3 className="min-h-[1rem] text-[16px] lg:text-base font-semibold text-white">
                       {item.heading}
                     </h3>
-                    <p className="max-w-[90%] text-[16px] lg:text-[14px] mt-2 text-white/60">
+                    <p className="max-w-[90%] text-[16px] md:text-sm lg:text-base mt-2 text-white/60">
                       {item.description}
                     </p>
                   </div>
@@ -245,7 +245,7 @@ const SpeakerTakeaway = ({ slice }) => {
           </div>
         </div>
       </section>
-    </Bounded>
+    </section>
   );
 };
 
