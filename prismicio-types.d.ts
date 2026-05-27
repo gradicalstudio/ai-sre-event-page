@@ -282,6 +282,22 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   speaker_name: prismic.KeyTextField;
 
   /**
+   * LinkedInOne field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].linkedinone
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  linkedinone: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Speaker two field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Image
@@ -302,14 +318,30 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   speaker_two_name: prismic.KeyTextField;
 
   /**
-   * Icon field in *Agenda → Default → Primary → Blocks*
+   * LinkedInTwo field in *Agenda → Default → Primary → Blocks*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: agenda.default.primary.blocks[].icon
-   * - **Documentation**: https://prismic.io/docs/fields/image
+   * - **API ID Path**: agenda.default.primary.blocks[].linkedintwo
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  icon: prismic.ImageField<never>;
+  linkedintwo: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Title or Images field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Add icons /img
+   * - **API ID Path**: agenda.default.primary.blocks[].title_or_images
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title_or_images: prismic.RichTextField;
 }
 
 /**

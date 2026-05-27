@@ -67,6 +67,17 @@
                   "placeholder": ""
                 }
               },
+              "linkedinone": {
+                "type": "Link",
+                "config": {
+                  "label": "LinkedInOne",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
               "speaker_two": {
                 "type": "Image",
                 "config": {
@@ -82,12 +93,24 @@
                   "placeholder": ""
                 }
               },
-              "icon": {
-                "type": "Image",
+              "linkedintwo": {
+                "type": "Link",
                 "config": {
-                  "label": "Icon",
-                  "constraint": {},
-                  "thumbnails": []
+                  "label": "LinkedInTwo",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "title_or_images": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title or Images",
+                  "placeholder": "Add icons /img",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
                 }
               }
             }

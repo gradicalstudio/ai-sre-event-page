@@ -3,12 +3,45 @@
 import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { PrismicRichText } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+
+const titleComponents = {
+  heading2: ({ children }) => (
+    <span className="text-white text-sm lg:text-lg font-medium">
+      {children}
+    </span>
+  ),
+  paragraph: ({ children }) => (
+    <p className="text-white/60 text-xs lg:text-sm leading-relaxed mt-1">
+      {children}
+    </p>
+  ),
+};
+
+const descriptionComponents = {
+  list: ({ children }) => <ul className="list-disc pl-5">{children}</ul>,
+  listItem: ({ children }) => <li className="mb-1">{children}</li>,
+  oList: ({ children }) => <ol className="list-decimal pl-5">{children}</ol>,
+  oListItem: ({ children }) => <li className="mb-1">{children}</li>,
+};
+
+const badgeComponents = {
+  paragraph: ({ children }) => (
+    <span className="text-[#3FD9FB] text-center text-[11px] lg:text-xs font-medium tracking-wide uppercase font-mono leading-none">
+      {children}
+    </span>
+  ),
+  image: ({ node }) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={node.url} alt={node.alt || ""} className="h-4 w-5 object-fill" />
+  ),
+};
 
 export default function AgendaItem({ item, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const contentRef = useRef(null);
   const chevronRef = useRef(null);
+
   useEffect(() => {
     if (defaultOpen && contentRef.current) {
       gsap.set(contentRef.current, {
@@ -29,6 +62,10 @@ export default function AgendaItem({ item, defaultOpen = false }) {
     item.short_description[0]?.text !== "";
   const hasSpeakers = item.speaker?.url;
   const hasSpeakerTwo = item.speaker_two?.url;
+  const hasLinkedInOne = item.linkedinone?.url;
+  const hasLinkedInTwo = item.linkedintwo?.url;
+  const hasTitleOrImages =
+    item.title_or_images?.length > 0 && item.title_or_images[0]?.text !== "";
   const isExpandable = hasDescription || hasSpeakers;
 
   const handleToggle = () => {
@@ -67,53 +104,52 @@ export default function AgendaItem({ item, defaultOpen = false }) {
   };
 
   return (
-    <div
-      className="border-t font-sans border-white/10 mx-4 py-6 cursor-pointer"
-      onClick={handleToggle}
-    >
+    <div className="border-t font-sans border-white/10 mx-4 py-6">
       <div
         className="
           grid gap-x-4
           grid-cols-[auto_1fr_auto]
           lg:grid-cols-[5rem_1fr_auto_auto]
+          items-center 
+      
         "
       >
-        {/* TIME + ICON (mobile: stacked in col 1) */}
-        <div className="flex flex-col items-start gap-2 row-start-1">
+        {/* TIME + BADGE (mobile: stacked in col 1) */}
+        <div className="flex flex-col items-start gap-2 row-start-1 ">
           <div className="flex flex-col items-center gap-2">
             <span className="text-white text-[13px] lg:text-base pt-1">
               {item.time}
             </span>
-            {item.icon?.url && (
+            {hasTitleOrImages && (
               <div className="lg:hidden">
-                <PrismicNextImage field={item.icon} className="h-6 w-auto" />
+                <div
+                  style={{ border: "2px solid #3FD9FB" }}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-1 w-[80px] text-[#3FD9FB] text-xs font-medium min-h-7.5"
+                >
+                  <PrismicRichText
+                    field={item.title_or_images}
+                    components={badgeComponents}
+                  />
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* TITLE — col 2, row 1 always */}
-        <div className="row-start-1 col-start-2">
-          <PrismicRichText
-            field={item.title}
-            components={{
-              heading2: ({ children }) => (
-                <span className="text-white text-sm lg:text-lg font-medium">
-                  {children}
-                </span>
-              ),
-              paragraph: ({ children }) => (
-                <p className="text-white/60 text-xs lg:text-sm leading-relaxed mt-1">
-                  {children}
-                </p>
-              ),
-            }}
-          />
+        {/* TITLE */}
+        <div
+          onClick={handleToggle}
+          className="row-start-1  col-start-2 cursor-pointer "
+        >
+          <PrismicRichText field={item.title} components={titleComponents} />
         </div>
 
-        {/* CHEVRON — visual only, col 3, row 1 */}
+        {/* CHEVRON */}
         {isExpandable && (
-          <div className="row-start-1 col-start-3 lg:col-start-3 lg:pt-1 flex items-center">
+          <div
+            onClick={handleToggle}
+            className="row-start-1 col-start-3 lg:col-start-3 lg:pt-1 flex items-center cursor-pointer"
+          >
             <svg
               ref={chevronRef}
               width="14"
@@ -130,10 +166,18 @@ export default function AgendaItem({ item, defaultOpen = false }) {
           </div>
         )}
 
-        {/* ICON desktop — col 4, row 1 */}
-        {item.icon?.url && (
-          <div className="hidden lg:block row-start-1 col-start-4 pt-1 shrink-0">
-            <PrismicNextImage field={item.icon} className="h-8 w-auto" />
+        {/* BADGE desktop */}
+        {hasTitleOrImages && (
+          <div className="hidden lg:flex row-start-1 col-start-4 pt-1 lg:pt-0 shrink-0 items-start">
+            <div
+              style={{ border: "2px solid #3FD9FB" }}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-1.5 w-[90px] text-[#3FD9FB] text-xs font-medium min-h-[2rem]"
+            >
+              <PrismicRichText
+                field={item.title_or_images}
+                components={badgeComponents}
+              />
+            </div>
           </div>
         )}
 
@@ -141,45 +185,52 @@ export default function AgendaItem({ item, defaultOpen = false }) {
         {isExpandable && (
           <div
             ref={contentRef}
-            className="
-              hidden overflow-hidden
-              row-start-2 col-start-1 col-end-4
-              lg:col-start-2 lg:col-end-3
-            "
+            className="hidden overflow-hidden row-start-2 col-start-1 col-end-4 lg:col-start-2 lg:col-end-3"
           >
             <div className="pt-3 flex flex-col gap-4">
               {hasDescription && (
                 <div className="text-white/60 text-xs md:text-sm leading-relaxed">
                   <PrismicRichText
                     field={item.short_description}
-                    components={{
-                      list: ({ children }) => (
-                        <ul className="list-disc pl-5">{children}</ul>
-                      ),
-                      listItem: ({ children }) => (
-                        <li className="mb-1">{children}</li>
-                      ),
-                      oList: ({ children }) => (
-                        <ol className="list-decimal pl-5">{children}</ol>
-                      ),
-                      oListItem: ({ children }) => (
-                        <li className="mb-1">{children}</li>
-                      ),
-                    }}
+                    components={descriptionComponents}
                   />
                 </div>
               )}
+
               {hasSpeakers && (
                 <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-6">
+                  {/* Speaker One */}
                   <div className="flex items-center gap-2">
                     <PrismicNextImage
                       field={item.speaker}
                       className="w-8 h-8 rounded-full object-cover"
                     />
-                    <span className="text-white/70 text-sm">
-                      {item.speaker_name}
-                    </span>
+                    <div className=" flex items-center gap-5 lg:gap-4">
+                      <span className="text-white/70 text-sm">
+                        {item.speaker_name}
+                      </span>
+                      {hasLinkedInOne && (
+                        <PrismicNextLink
+                          field={item.linkedinone}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-white "
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-label="LinkedIn"
+                          >
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </PrismicNextLink>
+                      )}
+                    </div>
                   </div>
+
+                  {/* Speaker Two */}
                   {hasSpeakerTwo && (
                     <div className="flex items-center gap-2">
                       <PrismicNextImage
@@ -189,6 +240,24 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                       <span className="text-white/70 text-sm">
                         {item.speaker_two_name}
                       </span>
+                      {hasLinkedInTwo && (
+                        <PrismicNextLink
+                          field={item.linkedintwo}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-white "
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-label="LinkedIn"
+                          >
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </PrismicNextLink>
+                      )}
                     </div>
                   )}
                 </div>
