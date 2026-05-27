@@ -205,7 +205,7 @@ const SpeakerTakeaway = ({ slice }) => {
                     ref={(el) => {
                       blockBoxRefs.current[index] = el;
                     }}
-                    className="group  relative grid grid-rows-[60px_auto_1fr] gap-2 z-10"
+                   className="group  h-full relative grid grid-rows-[60px_3rem_1fr] 2xl:grid-rows-[60px_2rem_1fr] gap-2 z-10"
                   >
                     {item.icon?.url && (
                       <div className="relative h-10 w-20 mt-3">
@@ -214,7 +214,7 @@ const SpeakerTakeaway = ({ slice }) => {
                           field={item.icon}
                           className="
         absolute inset-0 h-full w-full object-contain
-        transition-opacity duration-300
+        transition-opacity duration-300 
         group-hover:opacity-0
       "
                         />
@@ -232,10 +232,10 @@ const SpeakerTakeaway = ({ slice }) => {
                         )}
                       </div>
                     )}
-                    <h3 className="min-h-[1rem] text-[16px] lg:text-base font-semibold text-white">
+                    <h3 className="text-[16px] lg:text-base font-semibold text-white">
                       {item.heading}
                     </h3>
-                    <p className="max-w-[90%] text-[16px] md:text-sm lg:text-base mt-2 text-white/60">
+                    <p className=" text-[16px] md:text-sm lg:text-base md:mt-2 lg:mt-2 text-white/60">
                       {item.description}
                     </p>
                   </div>
