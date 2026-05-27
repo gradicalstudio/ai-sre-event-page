@@ -135,7 +135,7 @@ const StageFormats = ({ slice }) => {
                 {/* Arrow */}
                 <img
                   ref={arrowRef}
-                  src="/arrow.svg"
+                  src="/new-orange-arrow.svg"
                   alt=""
                   className="w-4 md:w-5 lg:w-6 object-contain flex-shrink-0 opacity-0"
                 />
@@ -213,28 +213,42 @@ const StageFormats = ({ slice }) => {
                   <img
                     src="/Rectangle 574056928.svg"
                     alt=""
-                    className="absolute top-0 left-0 -rotate-90 z-20"
+                    className="absolute top-0 left-0 -rotate-90 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(58%) sepia(79%) saturate(1761%) hue-rotate(330deg) brightness(101%) contrast(101%)",
+                    }}
                   />
 
                   {/* TOP RIGHT */}
                   <img
                     src="/Rectangle 574056928.svg"
                     alt=""
-                    className="absolute top-0 right-0 z-20"
+                    className="absolute top-0 right-0 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(58%) sepia(79%) saturate(1761%) hue-rotate(330deg) brightness(101%) contrast(101%)",
+                    }}
                   />
-
                   {/* BOTTOM RIGHT */}
                   <img
                     src="/Rectangle 574056928.svg"
                     alt=""
-                    className="absolute bottom-0 right-0 rotate-90 z-20"
+                    className="absolute bottom-0 right-0 rotate-90 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(58%) sepia(79%) saturate(1761%) hue-rotate(330deg) brightness(101%) contrast(101%)",
+                    }}
                   />
-
                   {/* BOTTOM LEFT */}
                   <img
                     src="/Rectangle 574056928.svg"
                     alt=""
-                    className="absolute bottom-0 left-0 rotate-180 z-20"
+                    className="absolute bottom-0 left-0 rotate-180 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      filter:
+                        "brightness(0) saturate(100%) invert(58%) sepia(79%) saturate(1761%) hue-rotate(330deg) brightness(101%) contrast(101%)",
+                    }}
                   />
                 </div>
 
@@ -249,7 +263,7 @@ const StageFormats = ({ slice }) => {
 
                 {/* Red Label */}
                 <div className="mb-5 relative z-10">
-                  <span className="font-mono border border-[#FF6B4A] text-[#FF6B4A] text-xs uppercase tracking-wider px-3 py-1 inline-block">
+                  <span className="font-mono border border-[#3FD9FB] text-[#3FD9FB] text-xs uppercase tracking-wider px-3 py-1 inline-block">
                     {item.red_block_text}
                   </span>
                 </div>
