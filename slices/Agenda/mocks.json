@@ -46,32 +46,6 @@
 								}
 							],
 							[
-								"icon",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
-										"width": 3500,
-										"height": 2338
-									},
-									"url": "https://images.unsplash.com/photo-1448932223592-d1fc686e76ea",
-									"width": 3500,
-									"height": 2338,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"alt": "hidden",
-									"credits": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
 								"speaker",
 								{
 									"origin": {
@@ -137,6 +111,44 @@
 									"__TYPE__": "FieldContent",
 									"value": "why",
 									"type": "Text"
+								}
+							],
+							[
+								"linkedinone",
+								{
+									"key": "c48e9734-23c8-4a46-ae13-1dcf6c3f42f6",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "weather"
+									}
+								}
+							],
+							[
+								"linkedintwo",
+								{
+									"key": "91d64bc9-ac05-4135-84c1-b3916975904d",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://twitter.com",
+										"text": "carry"
+									}
+								}
+							],
+							[
+								"title_or_images",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Magna velit occaecat minim amet ut esse cupidatat eu dolore."
+											}
+										}
+									]
 								}
 							]
 						]

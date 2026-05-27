@@ -109,7 +109,7 @@ const WhosInTheRoom = ({ slice }) => {
         <div className="flex items-center gap-4 lg:mb-17 md:gap-3 mb-17">
           <img
             ref={arrowRef}
-            src="/arrow.svg"
+            src="/new-orange-arrow.svg"
             alt=""
             className="w-3 md:w-4 lg:w-6 object-contain opacity-0"
           />

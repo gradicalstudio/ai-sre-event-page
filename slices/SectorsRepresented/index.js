@@ -96,7 +96,7 @@ const SectorsRepresented = ({ slice }) => {
           <img
             ref={arrowRef}
             className="w-3 md:w-4 lg:w-6 object-contain opacity-0"
-            src="/arrow.svg"
+            src="/new-orange-arrow.svg"
           />
           <div
             ref={headingRef}
@@ -113,7 +113,7 @@ const SectorsRepresented = ({ slice }) => {
         >
           <Marquee speed={105} gradient={false} className="overflow-hidden">
             {slice.primary.marquee.map((item, index) => (
-              <span key={index} className="flex items-center gap-4 px-4">
+              <span key={index} className="flex items-center gap-4 pr-4">
                 <span className="text-white/80 text-[18px] lg:text-[24.26px] whitespace-nowrap leading-none">
                   {item.partners}
                 </span>

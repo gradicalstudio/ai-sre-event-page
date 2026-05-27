@@ -114,7 +114,7 @@ const HeroSection = ({ slice }) => {
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center z-10 gap-2">
                   <img
                     className="w-4.5 h-4.5 lg:w-5 lg:h-5 object-contain shrink-0"
                     src="/Location pin.svg"
