@@ -5,9 +5,9 @@ import PrimaryButton from "@/components/PrimaryButton";
 import FormModal from "@/components/FormModal";
 
 const navLinks = [
+  { label: "Key Takeaways", href: "#for-speakers" },
   { label: "Speakers", href: "#speakers" },
   { label: "Agenda", href: "#agenda" },
-  { label: "Key Takeaways", href: "#for-speakers" },
   { label: "Stage Formats", href: "#stage-formats" },
   { label: "FAQ", href: "#faq" },
 ];
