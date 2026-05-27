@@ -35,6 +35,14 @@
                   "thumbnails": []
                 }
               },
+              "icon_shadow": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon Shadow",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
               "heading": {
                 "type": "Text",
                 "config": {
