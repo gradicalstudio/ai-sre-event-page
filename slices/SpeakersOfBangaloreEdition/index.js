@@ -343,12 +343,12 @@ lg:mt-20
             </div>
           </div>
           <Bounded className=" text-white mt-17">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-fit mx-auto gap-20">
+            <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 w-fit mx-auto gap-20">
               {slice.primary.speaker.map((item, index) => (
                 <div
                   ref={(el) => (cardsRef.current[index] = el)}
                   key={index}
-                  className="flex  flex-col  text-left gap-3"
+                  className="flex  max-w-60  flex-col  text-left gap-3"
                 >
                   <div
                     className="
@@ -374,7 +374,7 @@ lg:mt-20
                   </div>
                   <div className="self-start">
                     <div>
-                      <div className="font-medium text-base md:text-sm lg:text-base xl:text-lg">
+                      <div className="font-medium  text-base md:text-sm lg:text-base xl:text-lg">
                         <PrismicRichText field={item.name_rich_text} />
                       </div>
                       <div className=" text-sm md:text-[15px] xl:text-base text-gray-400">

@@ -198,15 +198,15 @@ export default function AgendaItem({ item, defaultOpen = false }) {
               )}
 
               {hasSpeakers && (
-                <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-6">
+                <div className="flex flex-col w-full xl:flex-row xl:items-center  gap-3 lg:gap-10">
                   {/* Speaker One */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center w-full  gap-2">
                     <PrismicNextImage
                       field={item.speaker}
                       className="w-8 h-8 rounded-full object-cover"
                     />
-                    <div className=" flex items-center gap-5 lg:gap-4">
-                      <span className="text-white/70 text-sm">
+                    <div className=" flex items-center  justify-between md:justify-normal gap-5 lg:gap-4">
+                      <span className="text-white text-sm">
                         {item.speaker_name}
                       </span>
                       {hasLinkedInOne && (
@@ -232,32 +232,34 @@ export default function AgendaItem({ item, defaultOpen = false }) {
 
                   {/* Speaker Two */}
                   {hasSpeakerTwo && (
-                    <div className="flex items-center gap-2">
+                    <div className="flex w-full items-center gap-2">
                       <PrismicNextImage
                         field={item.speaker_two}
                         className="w-8 h-8 rounded-full object-cover"
                       />
-                      <span className="text-white/70 text-sm">
-                        {item.speaker_two_name}
-                      </span>
-                      {hasLinkedInTwo && (
-                        <PrismicNextLink
-                          field={item.linkedintwo}
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-white "
-                        >
-                          <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-label="LinkedIn"
+                      <div className=" flex items-center w-full justify-between md:justify-normal lg:justify-between xl:justify-normal gap-5 lg:gap-4">
+                        <span className="text-white text-sm">
+                          {item.speaker_two_name}
+                        </span>
+                        {hasLinkedInTwo && (
+                          <PrismicNextLink
+                            field={item.linkedintwo}
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-white "
                           >
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                          </svg>
-                        </PrismicNextLink>
-                      )}
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg"
+                              aria-label="LinkedIn"
+                            >
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                          </PrismicNextLink>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>

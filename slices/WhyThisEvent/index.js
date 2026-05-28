@@ -339,7 +339,7 @@ hover:bg-[#0F101F]
 
                 {/* Title */}
                 {/* Title */}
-                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1] whitespace-pre-line md:mb-5 md:text-[20px] xl:text-[22px] xl:max-w-[230px]">
+                <h3 className="mb-4 max-w-[280px] text-[20px] font-medium leading-[1.2] whitespace-pre-line md:mb-5 md:text-[20px] xl:text-[22px] xl:max-w-[230px]">
                   {item.heading}
                 </h3>
                 {/* Description */}

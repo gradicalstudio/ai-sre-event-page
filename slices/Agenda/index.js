@@ -64,7 +64,7 @@ const Agenda = ({ slice }) => {
         {/* Row 2 - content */}
         <div className="border-r border-white/10" />
 
-        <div className="lg:p-10">
+        <div className="lg:p-5 xl:p-10">
           {/* Heading */}
           <div className="text-white text-3xl md:text-[32px] lg:text-[34px] xl:text-[38px] pl-2 pt-2 font-normal mb-12">
             <PrismicRichText field={slice.primary.heading} />
