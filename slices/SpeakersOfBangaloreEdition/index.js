@@ -348,7 +348,7 @@ lg:mt-20
                 <div
                   ref={(el) => (cardsRef.current[index] = el)}
                   key={index}
-                  className="flex  max-w-60  flex-col  text-left gap-3"
+                  className="flex  max-w-60 md:max-w-full  flex-col  text-left gap-3"
                 >
                   <div
                     className="
