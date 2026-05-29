@@ -104,7 +104,9 @@ const Partners = ({ slice }) => {
 
       // Glass reflection looping mechanics
       validCells.forEach((cell, index) => {
-        if (!cell) return;
+        // FIX: If this cell is part of the marquee, do NOT inject reflections dynamically
+        // This stops Safari on iPhones from recalculating positions and causing the loading flash/glitch
+        if (!cell || cell.dataset.marquee === "true") return;
 
         cell.style.position = "relative";
         cell.style.overflow = "hidden";
@@ -215,7 +217,10 @@ const Partners = ({ slice }) => {
                       <div
                         key={index}
                         ref={(el) => {
-                          if (el) cellsRef.current.push(el);
+                          if (el) {
+                            el.dataset.marquee = "true"; // Mark this cell to protect it from DOM mutation injection
+                            cellsRef.current.push(el);
+                          }
                         }}
                         className="mx-10 flex items-center justify-center"
                       >
