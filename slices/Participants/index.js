@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import Marquee from "react-fast-marquee";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -138,7 +137,6 @@ const Partners = ({ slice }) => {
       }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
 
-  // ── Shared logo wrapper — identical sizing for top and bottom rows ──
   const LogoItem = ({ item }) => {
     const inner = (
       <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
@@ -184,30 +182,41 @@ const Partners = ({ slice }) => {
               </h2>
             </div>
 
-            {/* Marquee row */}
-            <div
-              className="relative min-h-[90px] flex items-center overflow-hidden"
-              style={{
-                WebkitTransform: "translateZ(0)",
-                transform: "translateZ(0)",
-              }}
-            >
-              <Marquee
-                speed={60}
-                gradient={false}
-                pauseOnHover={false}
-                style={{ willChange: "transform" }}
-              >
-                {companies.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-center px-8 min-h-[90px]"
-                  >
-                    <LogoItem item={item} />
-                    <span className="ml-8 h-8 w-px bg-white/20 block" />
-                  </div>
-                ))}
-              </Marquee>
+            {/* Pure CSS marquee row — no JS library, iOS safe */}
+            <div className="relative min-h-[90px] flex items-center overflow-hidden">
+              <div className="flex w-full overflow-hidden">
+                {/* Set A */}
+                <div className="flex shrink-0 animate-partners-marquee">
+                  {companies.map((item, index) => (
+                    <div
+                      key={`a-${index}`}
+                      className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
+                    >
+                      <LogoItem item={item} />
+                      <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
+                    </div>
+                  ))}
+                </div>
+                {/* Set B — identical duplicate for seamless loop */}
+                <div
+                  className="flex shrink-0 animate-partners-marquee"
+                  aria-hidden="true"
+                  style={{
+                    animation: "partners-marquee 18s linear infinite",
+                    willChange: "transform",
+                  }}
+                >
+                  {companies.map((item, index) => (
+                    <div
+                      key={`b-${index}`}
+                      className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
+                    >
+                      <LogoItem item={item} />
+                      <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* LEFT FADE */}
               <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
@@ -247,18 +256,11 @@ const Partners = ({ slice }) => {
           <div className="border border-white/20">
             {/* Top Row */}
             <div className="grid" style={topGridStyle}>
-              {/* Title Cell */}
               <div
                 ref={(el) => {
                   if (el) cellsRef.current.push(el);
                 }}
-                className="
-                  font-mono
-                  flex min-h-[90px] md:min-h-[110px]
-                  items-center justify-center
-                  border-b border-r border-white/20
-                  px-4
-                "
+                className="font-mono flex min-h-[90px] md:min-h-[110px] items-center justify-center border-b border-r border-white/20 px-4"
               >
                 <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
                   Companies Participating
@@ -276,12 +278,7 @@ const Partners = ({ slice }) => {
                   ref={(el) => {
                     if (el) cellsRef.current.push(el);
                   }}
-                  className="
-                    flex min-h-[90px] md:min-h-[110px]
-                    items-center justify-center
-                    border-b border-r border-white/20 last:border-r-0
-                    px-4 md:px-4
-                  "
+                  className="flex min-h-[90px] md:min-h-[110px] items-center justify-center border-b border-r border-white/20 last:border-r-0 px-4"
                 >
                   <LogoItem item={item} />
                 </div>
@@ -303,12 +300,7 @@ const Partners = ({ slice }) => {
                       border-r border-white/20
                       px-4 md:px-6
                       md:[&:last-child]:border-r-0
-                      ${
-                        index === bottomCompanies.length - 1 &&
-                        bottomCompanies.length % 2 !== 0
-                          ? "border-r-0"
-                          : ""
-                      }
+                      ${index === bottomCompanies.length - 1 && bottomCompanies.length % 2 !== 0 ? "border-r-0" : ""}
                     `}
                   >
                     <LogoItem item={item} />
