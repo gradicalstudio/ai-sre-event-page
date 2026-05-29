@@ -19,26 +19,19 @@ const Partners = ({ slice }) => {
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
-  // Responsive state tracker matching standard Tailwind lg breakpoint (1024px)
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // FIX: Track mount state to prevent Safari from flashing the marquee
-  // before hydration/layout is complete
   const [isMounted, setIsMounted] = useState(false);
 
-  // Reset the cells array on every render pass so it doesn't infinitely accumulate elements
   cellsRef.current = [];
 
   useEffect(() => {
-    // Signal that the component has fully mounted on the client
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
-    // 1. RESPONSIVE BREAKPOINT LISTENER
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
-    // Set initial layout state
     setIsDesktop(mediaQuery.matches);
 
     const handleMediaChange = (e) => {
@@ -47,13 +40,7 @@ const Partners = ({ slice }) => {
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
-    // 2. GSAP INTERACTIVE GRAPHICS TIMELINE
     const ctx = gsap.context(() => {
-      // FIX: Exclude marquee-marked cells from GSAP initial opacity:0 set.
-      // Previously ALL cells (including marquee ones) were set to opacity:0,
-      // which caused Safari on iPhone to flash/overlap because the Marquee
-      // library clones tracks internally before GSAP's ScrollTrigger could
-      // animate them back in — creating a brief broken layout state.
       const validCells = cellsRef.current.filter(
         (el) => Boolean(el) && el.dataset.marquee !== "true",
       );
@@ -63,7 +50,6 @@ const Partners = ({ slice }) => {
         scale: 0.96,
       });
 
-      // Guard animation states in case no cells exist in certain slice configurations
       if (validCells.length > 0) {
         gsap.set(validCells, {
           opacity: 0,
@@ -81,6 +67,7 @@ const Partners = ({ slice }) => {
           trigger: sectionRef.current,
           start: "top 80%",
           once: true,
+          invalidateOnRefresh: true, // ✅ FIX: recalculates after iOS layout shifts/reflows
         },
       });
 
@@ -117,10 +104,21 @@ const Partners = ({ slice }) => {
         "-=0.3",
       );
 
-      // Glass reflection looping mechanics
+      // ✅ FIX: Safety fallback for iOS — if the section is already in the viewport
+      // on load, ScrollTrigger's "top 80%" may never fire (Safari reports scroll
+      // positions differently during initial paint). After 1.5s, if the grid is
+      // still invisible, force it fully visible so no layout gap appears.
+      gsap.delayedCall(1.5, () => {
+        if (!gridRef.current) return;
+        const opacity = Number(gsap.getProperty(gridRef.current, "opacity"));
+        if (opacity < 1) {
+          gsap.set(gridRef.current, { opacity: 1, scale: 1 });
+          if (validCells.length > 0) gsap.set(validCells, { opacity: 1, y: 0 });
+          gsap.set(cornersRef.current, { opacity: 1, scale: 1 });
+        }
+      });
+
       validCells.forEach((cell) => {
-        // FIX: If this cell is part of the marquee, do NOT inject reflections dynamically.
-        // This stops Safari on iPhones from recalculating positions and causing the loading flash/glitch.
         if (!cell || cell.dataset.marquee === "true") return;
 
         cell.style.position = "relative";
@@ -176,7 +174,7 @@ const Partners = ({ slice }) => {
       ctx.revert();
       mediaQuery.removeEventListener("change", handleMediaChange);
     };
-  }, [isDesktop]); // Added isDesktop dependency so refs recalculate on breakpoint swap
+  }, [isDesktop]);
 
   const showSlice = slice.primary.show_slice;
   if (!showSlice) {
@@ -189,7 +187,6 @@ const Partners = ({ slice }) => {
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
 
-  // Compute inline grids depending dynamically on screen properties
   const topGridStyle = isDesktop
     ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
@@ -226,18 +223,6 @@ const Partners = ({ slice }) => {
                   </h2>
                 </div>
 
-                {/*
-                  FIX: willChange="transform" forces Safari to composite the marquee
-                  on its own GPU layer, preventing the overlap flash on initial render.
-
-                  FIX: Visibility is gated on `isMounted` so the Marquee only becomes
-                  visible after the client has fully hydrated and the library has finished
-                  its internal track-cloning layout pass. This eliminates the Safari iOS
-                  flash where cloned tracks briefly overlap before snapping into position.
-
-                  The `key` prop ensures Marquee fully remounts if isDesktop toggles,
-                  preventing stale internal state from the library carrying over.
-                */}
                 <div
                   className="border-b border-white/20 py-6 overflow-hidden"
                   style={{ willChange: "transform" }}
@@ -255,14 +240,13 @@ const Partners = ({ slice }) => {
                       pauseOnHover
                       autoFill={true}
                       key="partners-marquee"
+                      delay={1}
                     >
                       {companies.map((item, index) => (
                         <div
                           key={index}
                           ref={(el) => {
                             if (el) {
-                              // Mark this cell so GSAP skips it in opacity:0 initial set
-                              // and skips DOM mutation (reflection injection)
                               el.dataset.marquee = "true";
                               cellsRef.current.push(el);
                             }
