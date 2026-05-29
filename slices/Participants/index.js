@@ -204,7 +204,7 @@ const Partners = ({ slice }) => {
             {shouldUseMarquee ? (
               <>
                 <div className="border-b border-white/20 px-4 py-6">
-                  <h2 className="text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
+                  <h2 className="text-center uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
                     Companies Participating
                   </h2>
                 </div>
