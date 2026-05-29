@@ -3,71 +3,34 @@
 import { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Marquee from "react-fast-marquee";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Bounded from "@/components/Bounded";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * @typedef {import("@prismicio/client").Content.PartnersSlice} PartnersSlice
- * @typedef {import("@prismicio/react").SliceComponentProps<PartnersSlice>} PartnersProps
- * @type {import("react").FC<PartnersProps>}
- */
 const Partners = ({ slice }) => {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  const [isMounted, setIsMounted] = useState(false);
-
   cellsRef.current = [];
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-
-    setIsDesktop(mediaQuery.matches);
-
-    const handleMediaChange = (e) => {
-      setIsDesktop(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleMediaChange);
-
     const ctx = gsap.context(() => {
-      const validCells = cellsRef.current.filter(
-        (el) => Boolean(el) && el.dataset.marquee !== "true",
-      );
+      const validCells = cellsRef.current.filter(Boolean);
 
-      gsap.set(gridRef.current, {
-        opacity: 0,
-        scale: 0.96,
-      });
-
-      if (validCells.length > 0) {
-        gsap.set(validCells, {
-          opacity: 0,
-          y: 20,
-        });
-      }
-
-      gsap.set(cornersRef.current, {
-        opacity: 0,
-        scale: 0.7,
-      });
+      gsap.set(gridRef.current, { opacity: 0, scale: 0.96 });
+      gsap.set(validCells, { opacity: 0, y: 20 });
+      gsap.set(cornersRef.current, { opacity: 0, scale: 0.7 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
           once: true,
-          invalidateOnRefresh: true,
         },
       });
 
@@ -76,10 +39,8 @@ const Partners = ({ slice }) => {
         scale: 1,
         duration: 0.6,
         ease: "power3.out",
-      });
-
-      if (validCells.length > 0) {
-        tl.to(
+      })
+        .to(
           validCells,
           {
             opacity: 1,
@@ -89,60 +50,35 @@ const Partners = ({ slice }) => {
             ease: "power3.out",
           },
           "-=0.4",
+        )
+        .to(
+          cornersRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            stagger: 0.04,
+            ease: "back.out(1.5)",
+          },
+          "-=0.3",
         );
-      }
 
-      tl.to(
-        cornersRef.current,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.3,
-          stagger: 0.04,
-          ease: "back.out(1.5)",
-        },
-        "-=0.3",
-      );
-
-      gsap.delayedCall(1.5, () => {
-        if (!gridRef.current) return;
-        const opacity = Number(gsap.getProperty(gridRef.current, "opacity"));
-        if (opacity < 1) {
-          gsap.set(gridRef.current, { opacity: 1, scale: 1 });
-          if (validCells.length > 0) gsap.set(validCells, { opacity: 1, y: 0 });
-          gsap.set(cornersRef.current, { opacity: 1, scale: 1 });
-        }
-      });
-
-      validCells.forEach((cell) => {
-        if (!cell || cell.dataset.marquee === "true") return;
+      validCells.forEach((cell, index) => {
+        if (!cell || index === 0) return;
 
         cell.style.position = "relative";
         cell.style.overflow = "hidden";
 
         const reflection = document.createElement("div");
-
         reflection.className = `
-          absolute top-[-40%] left-[-150%]
-          h-[240%] w-[45%]
-          rotate-[25deg]
-          bg-gradient-to-r
-          from-transparent
-          via-white/25
-          to-transparent
-          blur-md
-          pointer-events-none
-          z-30
-          mix-blend-screen
-          opacity-0
+          absolute top-[-40%] left-[-150%] h-[240%] w-[45%] rotate-[25deg]
+          bg-gradient-to-r from-transparent via-white/25 to-transparent
+          blur-md pointer-events-none z-30 mix-blend-screen opacity-0
         `;
-
         cell.appendChild(reflection);
 
         const animateReflection = () => {
-          const cellWidth = cell.offsetWidth;
-          const distance = cellWidth * 3;
-
+          const distance = cell.offsetWidth * 3;
           gsap.fromTo(
             reflection,
             { x: 0, opacity: 0 },
@@ -158,46 +94,51 @@ const Partners = ({ slice }) => {
             },
           );
         };
-
         gsap.delayedCall(1 + Math.random() * 4, animateReflection);
       });
     }, sectionRef);
 
-    return () => {
-      ctx.revert();
-      mediaQuery.removeEventListener("change", handleMediaChange);
-    };
-  }, [isDesktop]);
+    return () => ctx.revert();
+  }, []);
 
   const showSlice = slice.primary.show_slice;
-  if (!showSlice) {
-    return null;
-  }
+  if (!showSlice) return null;
 
   const companies = slice.primary.companies || [];
-  const shouldUseMarquee = !isDesktop && companies.length > 3;
   const topCompanies = companies.slice(0, 3);
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
 
-  // FIX: Always use the actual column count regardless of screen size.
-  // Previously mobile was forced to repeat(1, 1fr) which stacked all cells
-  // vertically — title + 3 logos = 4 rows of 90px each = huge empty-looking block.
-  const topGridStyle = {
-    gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))`,
-  };
+  const LogoItem = ({ item }) => {
+    const inner = (
+      <div className="flex items-center justify-center w-full">
+        <div className="w-[120px] h-[44px] md:w-[150px] md:h-[52px] flex items-center justify-center">
+          <PrismicNextImage
+            field={item.logo}
+            className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+          />
+        </div>
+      </div>
+    );
 
-  const bottomGridStyle = {
-    gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
+    return item.link?.url ? (
+      <PrismicNextLink
+        field={item.link}
+        className="flex items-center justify-center w-full h-full"
+      >
+        {inner}
+      </PrismicNextLink>
+    ) : (
+      inner
+    );
   };
 
   return (
     <section
       className="bg-[#04050F] mx-auto w-full
-          max-w-[1000px]
-          2xl:max-w-[1320px]
-          px-3 md:px-6 lg:px-8
-         pb-20 md:pb-27 lg:pb-43"
+        max-w-[1000px] 2xl:max-w-[1320px]
+        px-3 md:px-6 lg:px-8
+        pb-20 md:pb-27 lg:pb-43"
     >
       <section
         ref={sectionRef}
@@ -205,131 +146,140 @@ const Partners = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
       >
-        <div ref={gridRef} className="group relative">
-          {/* Main Border */}
-          <div className="border border-white/20">
-            {shouldUseMarquee ? (
-              <>
-                <div className="border-b border-white/20 px-4 py-6">
-                  <h2 className="text-center uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
-                    Companies Participating
-                  </h2>
-                </div>
+        {/* ─── MOBILE MARQUEE — only when > 3 logos ─── */}
+        {companies.length > 3 && (
+          <div className="md:hidden border border-white/20 relative">
+            {/* Title row */}
+            <div className="flex items-center justify-start border-b border-white/20 min-h-[70px] px-4">
+              <h2 className="font-mono uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
+                Companies Participating
+              </h2>
+            </div>
 
-                <div
-                  className="border-b border-white/20 py-6 overflow-hidden"
-                  style={{ willChange: "transform" }}
-                >
+            {/* Marquee row */}
+            <div
+              className="relative min-h-[90px] flex items-center overflow-hidden"
+              style={{
+                WebkitTransform: "translateZ(0)",
+                transform: "translateZ(0)",
+              }}
+            >
+              <Marquee
+                speed={60}
+                gradient={false}
+                pauseOnHover={false}
+                style={{ willChange: "transform" }}
+              >
+                {companies.map((item, index) => (
                   <div
-                    className="transition-opacity duration-300"
-                    style={{
-                      opacity: isMounted ? 1 : 0,
-                      visibility: isMounted ? "visible" : "hidden",
-                    }}
+                    key={index}
+                    className="flex items-center justify-center px-8 min-h-[90px]"
                   >
-                    <Marquee
-                      speed={90}
-                      gradient={false}
-                      pauseOnHover
-                      autoFill={true}
-                      key="partners-marquee"
-                      delay={1}
-                    >
-                      {companies.map((item, index) => (
-                        <div
-                          key={index}
-                          ref={(el) => {
-                            if (el) {
-                              el.dataset.marquee = "true";
-                              cellsRef.current.push(el);
-                            }
-                          }}
-                          className="mx-10 flex items-center justify-center"
-                        >
-                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                            <PrismicNextImage
-                              field={item.logo}
-                              className="w-full h-full object-contain opacity-90"
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </Marquee>
+                    <LogoItem item={item} />
+                    <span className="ml-8 h-8 w-px bg-white/20 block" />
                   </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="grid" style={topGridStyle}>
-                  {/* Title Cell */}
-                  <div
-                    ref={(el) => {
-                      if (el) cellsRef.current.push(el);
-                    }}
-                    className="
+                ))}
+              </Marquee>
+
+              {/* LEFT FADE */}
+              <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
+              {/* RIGHT FADE */}
+              <div className="pointer-events-none absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
+            </div>
+
+            {/* Corners */}
+            <img
+              src="/Rectangle 574056928.svg"
+              alt=""
+              className="absolute top-0 left-0 -rotate-90"
+            />
+            <img
+              src="/Rectangle 574056928.svg"
+              alt=""
+              className="absolute top-0 right-0"
+            />
+            <img
+              src="/Rectangle 574056928.svg"
+              alt=""
+              className="absolute bottom-0 right-0 rotate-90"
+            />
+            <img
+              src="/Rectangle 574056928.svg"
+              alt=""
+              className="absolute bottom-0 left-0 rotate-180"
+            />
+          </div>
+        )}
+
+        {/* ─── DESKTOP GRID (also mobile fallback when ≤ 3 logos) ─── */}
+        <div
+          ref={gridRef}
+          className={`group relative ${companies.length > 3 ? "hidden md:block" : "block"}`}
+        >
+          <div className="border border-white/20">
+            {/* Top Row */}
+            <div
+              className="grid"
+              style={{
+                gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))`,
+              }}
+            >
+              {/* Title Cell */}
+              <div
+                ref={(el) => {
+                  if (el) cellsRef.current.push(el);
+                }}
+                className="
                   font-mono
                   flex min-h-[90px] md:min-h-[110px]
                   items-center justify-center
                   border-b border-r border-white/20
                   px-4
                 "
-                  >
-                    <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                      Companies Participating
-                    </h2>
-                    <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                      Companies
-                      <br />
-                      Participating
-                    </h2>
-                  </div>
+              >
+                <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
+                  Companies Participating
+                </h2>
+                <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em]">
+                  Companies
+                  <br />
+                  Participating
+                </h2>
+              </div>
 
-                  {topCompanies.map((item, index) => (
-                    <div
-                      key={`top-${index}`}
-                      ref={(el) => {
-                        if (el) cellsRef.current.push(el);
-                      }}
-                      className="
+              {topCompanies.map((item, index) => (
+                <div
+                  key={`top-${index}`}
+                  ref={(el) => {
+                    if (el) cellsRef.current.push(el);
+                  }}
+                  className="
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
                     border-b border-r border-white/20 last:border-r-0
-                    px-4 md:px-4
+                    px-4
                   "
-                    >
-                      {item.link?.url ? (
-                        <PrismicNextLink
-                          field={item.link}
-                          className="flex items-center justify-center w-full h-full"
-                        >
-                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                            <PrismicNextImage
-                              field={item.logo}
-                              className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                            />
-                          </div>
-                        </PrismicNextLink>
-                      ) : (
-                        <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                          <PrismicNextImage
-                            field={item.logo}
-                            className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                >
+                  <LogoItem item={item} />
                 </div>
+              ))}
+            </div>
 
-                {bottomCompanies.length > 0 && (
-                  <div className="grid" style={bottomGridStyle}>
-                    {bottomCompanies.map((item, index) => (
-                      <div
-                        key={`bottom-${index}`}
-                        ref={(el) => {
-                          if (el) cellsRef.current.push(el);
-                        }}
-                        className={`
+            {/* Bottom Row */}
+            {bottomCompanies.length > 0 && (
+              <div
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
+                }}
+              >
+                {bottomCompanies.map((item, index) => (
+                  <div
+                    key={`bottom-${index}`}
+                    ref={(el) => {
+                      if (el) cellsRef.current.push(el);
+                    }}
+                    className={`
                       flex min-h-[90px] md:min-h-[110px]
                       items-center justify-center
                       border-r border-white/20
@@ -342,33 +292,15 @@ const Partners = ({ slice }) => {
                           : ""
                       }
                     `}
-                      >
-                        {item.link?.url ? (
-                          <PrismicNextLink field={item.link}>
-                            <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                              <PrismicNextImage
-                                field={item.logo}
-                                className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                              />
-                            </div>
-                          </PrismicNextLink>
-                        ) : (
-                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                            <PrismicNextImage
-                              field={item.logo}
-                              className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                  >
+                    <LogoItem item={item} />
                   </div>
-                )}
-              </>
+                ))}
+              </div>
             )}
           </div>
 
-          {/* Corner Images */}
+          {/* Corners */}
           <img
             ref={(el) => {
               cornersRef.current[0] = el;
