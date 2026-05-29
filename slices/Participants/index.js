@@ -9,28 +9,53 @@ import Bounded from "@/components/Bounded";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * @typedef {import("@prismicio/client").Content.PartnersSlice} PartnersSlice
+ * @typedef {import("@prismicio/react").SliceComponentProps<PartnersSlice>} PartnersProps
+ * @type {import("react").FC<PartnersProps>}
+ */
 const Partners = ({ slice }) => {
   const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
+
+  // Responsive state tracker matching standard Tailwind md breakpoint (768px)
   const [isDesktop, setIsDesktop] = useState(false);
 
   cellsRef.current = [];
 
   useEffect(() => {
+    // 1. RESPONSIVE BREAKPOINT LISTENER
     const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    // Set initial layout state
     setIsDesktop(mediaQuery.matches);
 
-    const handleMediaChange = (e) => setIsDesktop(e.matches);
+    const handleMediaChange = (e) => {
+      setIsDesktop(e.matches);
+    };
+
     mediaQuery.addEventListener("change", handleMediaChange);
 
+    // 2. GSAP INTERACTIVE GRAPHICS TIMELINE
     const ctx = gsap.context(() => {
       const validCells = cellsRef.current.filter(Boolean);
 
-      gsap.set(gridRef.current, { opacity: 0, scale: 0.96 });
-      gsap.set(validCells, { opacity: 0, y: 20 });
-      gsap.set(cornersRef.current, { opacity: 0, scale: 0.7 });
+      gsap.set(gridRef.current, {
+        opacity: 0,
+        scale: 0.96,
+      });
+
+      gsap.set(validCells, {
+        opacity: 0,
+        y: 20,
+      });
+
+      gsap.set(cornersRef.current, {
+        opacity: 0,
+        scale: 0.7,
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -69,6 +94,7 @@ const Partners = ({ slice }) => {
           "-=0.3",
         );
 
+      // Glass reflection looping mechanics
       validCells.forEach((cell, index) => {
         if (!cell || index === 0) return;
 
@@ -76,6 +102,7 @@ const Partners = ({ slice }) => {
         cell.style.overflow = "hidden";
 
         const reflection = document.createElement("div");
+
         reflection.className = `
           absolute top-[-40%] left-[-150%]
           h-[240%] w-[45%]
@@ -90,13 +117,19 @@ const Partners = ({ slice }) => {
           mix-blend-screen
           opacity-0
         `;
+
         cell.appendChild(reflection);
 
         const animateReflection = () => {
-          const distance = cell.offsetWidth * 3;
+          const cellWidth = cell.offsetWidth;
+          const distance = cellWidth * 3;
+
           gsap.fromTo(
             reflection,
-            { x: 0, opacity: 0 },
+            {
+              x: 0,
+              opacity: 0,
+            },
             {
               x: distance,
               opacity: 1,
@@ -109,6 +142,7 @@ const Partners = ({ slice }) => {
             },
           );
         };
+
         gsap.delayedCall(1 + Math.random() * 4, animateReflection);
       });
     }, sectionRef);
@@ -118,15 +152,17 @@ const Partners = ({ slice }) => {
       mediaQuery.removeEventListener("change", handleMediaChange);
     };
   }, []);
-
   const showSlice = slice.primary.show_slice;
-  if (!showSlice) return null;
+  if (!showSlice) {
+    return null;
+  }
 
   const companies = slice.primary.companies || [];
   const topCompanies = companies.slice(0, 3);
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
 
+  // Compute inline grids depending dynamically on screen properties
   const topGridStyle = isDesktop
     ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
@@ -137,34 +173,13 @@ const Partners = ({ slice }) => {
       }
     : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
 
-  const LogoItem = ({ item }) => {
-    const inner = (
-      <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-        <PrismicNextImage
-          field={item.logo}
-          className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-        />
-      </div>
-    );
-
-    return item.link?.url ? (
-      <PrismicNextLink
-        field={item.link}
-        className="flex items-center justify-center w-full h-full"
-      >
-        {inner}
-      </PrismicNextLink>
-    ) : (
-      inner
-    );
-  };
-
   return (
     <section
       className="bg-[#04050F] mx-auto w-full
-        max-w-[1000px] 2xl:max-w-[1320px]
-        px-3 md:px-6 lg:px-8
-        pb-20 md:pb-27 lg:pb-43"
+          max-w-[1000px]
+          2xl:max-w-[1320px]
+          px-3 md:px-6 lg:px-8
+         pb-20 md:pb-27 lg:pb-43"
     >
       <section
         ref={sectionRef}
@@ -172,83 +187,25 @@ const Partners = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
       >
-        {/* ─── MOBILE MARQUEE — only when > 3 logos ─── */}
-        {companies.length > 3 && (
-          <div className="md:hidden border border-white/20 relative">
-            {/* Title row */}
-            <div className="flex items-center justify-start border-b border-white/20 min-h-[70px] px-4">
-              <h2 className="font-mono uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
-                Companies Participating
-              </h2>
-            </div>
-
-            {/* Pure CSS marquee row — no JS library, iOS safe */}
-
-            <div className="relative min-h-[90px] flex items-center overflow-hidden">
-              <div
-                className="flex shrink-0"
-                style={{
-                  width: "max-content",
-                  animation: "partners-marquee 20s linear infinite",
-                  willChange: "transform",
-                }}
-              >
-                {[...companies, ...companies].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
-                  >
-                    <LogoItem item={item} />
-                    <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
-                  </div>
-                ))}
-              </div>
-
-              {/* LEFT FADE */}
-              <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
-
-              {/* RIGHT FADE */}
-              <div className="pointer-events-none absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
-            </div>
-            {/* Corners */}
-            <img
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute top-0 left-0 -rotate-90"
-            />
-            <img
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute top-0 right-0"
-            />
-            <img
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute bottom-0 right-0 rotate-90"
-            />
-            <img
-              src="/Rectangle 574056928.svg"
-              alt=""
-              className="absolute bottom-0 left-0 rotate-180"
-            />
-          </div>
-        )}
-
-        {/* ─── DESKTOP GRID (also mobile fallback when ≤ 3 logos) ─── */}
-        <div
-          ref={gridRef}
-          className={`group relative ${companies.length > 3 ? "hidden md:block" : "block"}`}
-        >
+        <div ref={gridRef} className="group relative">
+          {/* Main Border */}
           <div className="border border-white/20">
             {/* Top Row */}
             <div className="grid" style={topGridStyle}>
+              {/* Title Cell */}
               <div
                 ref={(el) => {
                   if (el) cellsRef.current.push(el);
                 }}
-                className="font-mono flex min-h-[90px] md:min-h-[110px] items-center justify-center border-b border-r border-white/20 px-4"
+                className="
+                  font-mono
+                  flex min-h-[90px] md:min-h-[110px]
+                  items-center justify-center
+                  border-b border-r border-white/20
+                  px-4
+                "
               >
-                <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
+                <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                   Companies Participating
                 </h2>
                 <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
@@ -264,9 +221,33 @@ const Partners = ({ slice }) => {
                   ref={(el) => {
                     if (el) cellsRef.current.push(el);
                   }}
-                  className="flex min-h-[90px] md:min-h-[110px] items-center justify-center border-b border-r border-white/20 last:border-r-0 px-4"
+                  className="
+                    flex min-h-[90px] md:min-h-[110px]
+                    items-center justify-center
+                    border-b border-r border-white/20 last:border-r-0
+                    px-4 md:px-4
+                  "
                 >
-                  <LogoItem item={item} />
+                  {item.link?.url ? (
+                    <PrismicNextLink
+                      field={item.link}
+                      className="flex items-center justify-center w-full h-full"
+                    >
+                      <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                        <PrismicNextImage
+                          field={item.logo}
+                          className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                        />
+                      </div>
+                    </PrismicNextLink>
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                      <PrismicNextImage
+                        field={item.logo}
+                        className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -286,17 +267,35 @@ const Partners = ({ slice }) => {
                       border-r border-white/20
                       px-4 md:px-6
                       md:[&:last-child]:border-r-0
-                      ${index === bottomCompanies.length - 1 && bottomCompanies.length % 2 !== 0 ? "border-r-0" : ""}
+
+                      ${
+                        index === bottomCompanies.length - 1 &&
+                        bottomCompanies.length % 2 !== 0
+                          ? "border-r-0"
+                          : ""
+                      }
                     `}
                   >
-                    <LogoItem item={item} />
+                    {item.link?.url ? (
+                      <PrismicNextLink field={item.link}>
+                        <PrismicNextImage
+                          field={item.logo}
+                          className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                        />
+                      </PrismicNextLink>
+                    ) : (
+                      <PrismicNextImage
+                        field={item.logo}
+                        className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Corners */}
+          {/* TOP LEFT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[0] = el;
@@ -305,6 +304,8 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute top-0 left-0 -rotate-90"
           />
+
+          {/* TOP RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[1] = el;
@@ -313,6 +314,8 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute top-0 right-0"
           />
+
+          {/* BOTTOM RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[2] = el;
@@ -321,6 +324,8 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute bottom-0 right-0 rotate-90"
           />
+
+          {/* BOTTOM LEFT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[3] = el;
