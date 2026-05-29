@@ -90,3 +90,15 @@ select option {
     transform: rotate(360deg);
   }
 }
+@keyframes partners-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-partners-marquee {
+  animation: partners-marquee 18s linear infinite;
+}
