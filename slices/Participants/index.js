@@ -67,7 +67,7 @@ const Partners = ({ slice }) => {
           trigger: sectionRef.current,
           start: "top 80%",
           once: true,
-          invalidateOnRefresh: true, // ✅ FIX: recalculates after iOS layout shifts/reflows
+          invalidateOnRefresh: true,
         },
       });
 
@@ -104,10 +104,6 @@ const Partners = ({ slice }) => {
         "-=0.3",
       );
 
-      // ✅ FIX: Safety fallback for iOS — if the section is already in the viewport
-      // on load, ScrollTrigger's "top 80%" may never fire (Safari reports scroll
-      // positions differently during initial paint). After 1.5s, if the grid is
-      // still invisible, force it fully visible so no layout gap appears.
       gsap.delayedCall(1.5, () => {
         if (!gridRef.current) return;
         const opacity = Number(gsap.getProperty(gridRef.current, "opacity"));
@@ -149,10 +145,7 @@ const Partners = ({ slice }) => {
 
           gsap.fromTo(
             reflection,
-            {
-              x: 0,
-              opacity: 0,
-            },
+            { x: 0, opacity: 0 },
             {
               x: distance,
               opacity: 1,
@@ -187,15 +180,16 @@ const Partners = ({ slice }) => {
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
 
-  const topGridStyle = isDesktop
-    ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
-    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
+  // FIX: Always use the actual column count regardless of screen size.
+  // Previously mobile was forced to repeat(1, 1fr) which stacked all cells
+  // vertically — title + 3 logos = 4 rows of 90px each = huge empty-looking block.
+  const topGridStyle = {
+    gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))`,
+  };
 
-  const bottomGridStyle = isDesktop
-    ? {
-        gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
-      }
-    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
+  const bottomGridStyle = {
+    gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
+  };
 
   return (
     <section
@@ -214,7 +208,6 @@ const Partners = ({ slice }) => {
         <div ref={gridRef} className="group relative">
           {/* Main Border */}
           <div className="border border-white/20">
-            {/* Top Row */}
             {shouldUseMarquee ? (
               <>
                 <div className="border-b border-white/20 px-4 py-6">
@@ -328,7 +321,6 @@ const Partners = ({ slice }) => {
                   ))}
                 </div>
 
-                {/* Bottom Row */}
                 {bottomCompanies.length > 0 && (
                   <div className="grid" style={bottomGridStyle}>
                     {bottomCompanies.map((item, index) => (
@@ -343,7 +335,6 @@ const Partners = ({ slice }) => {
                       border-r border-white/20
                       px-4 md:px-6
                       md:[&:last-child]:border-r-0
-
                       ${
                         index === bottomCompanies.length - 1 &&
                         bottomCompanies.length % 2 !== 0
