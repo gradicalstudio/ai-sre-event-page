@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-
+import Marquee from "react-fast-marquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Bounded from "@/components/Bounded";
@@ -23,11 +23,12 @@ const Partners = ({ slice }) => {
   // Responsive state tracker matching standard Tailwind md breakpoint (768px)
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // Reset the cells array on every render pass so it doesn't infinitely accumulate elements
   cellsRef.current = [];
 
   useEffect(() => {
     // 1. RESPONSIVE BREAKPOINT LISTENER
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
     // Set initial layout state
     setIsDesktop(mediaQuery.matches);
@@ -47,10 +48,13 @@ const Partners = ({ slice }) => {
         scale: 0.96,
       });
 
-      gsap.set(validCells, {
-        opacity: 0,
-        y: 20,
-      });
+      // Guard animation states in case no cells exist in certain slice configurations
+      if (validCells.length > 0) {
+        gsap.set(validCells, {
+          opacity: 0,
+          y: 20,
+        });
+      }
 
       gsap.set(cornersRef.current, {
         opacity: 0,
@@ -70,8 +74,10 @@ const Partners = ({ slice }) => {
         scale: 1,
         duration: 0.6,
         ease: "power3.out",
-      })
-        .to(
+      });
+
+      if (validCells.length > 0) {
+        tl.to(
           validCells,
           {
             opacity: 1,
@@ -81,22 +87,24 @@ const Partners = ({ slice }) => {
             ease: "power3.out",
           },
           "-=0.4",
-        )
-        .to(
-          cornersRef.current,
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.3,
-            stagger: 0.04,
-            ease: "back.out(1.5)",
-          },
-          "-=0.3",
         );
+      }
+
+      tl.to(
+        cornersRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.3,
+          stagger: 0.04,
+          ease: "back.out(1.5)",
+        },
+        "-=0.3",
+      );
 
       // Glass reflection looping mechanics
       validCells.forEach((cell, index) => {
-        if (!cell || index === 0) return;
+        if (!cell) return;
 
         cell.style.position = "relative";
         cell.style.overflow = "hidden";
@@ -151,13 +159,15 @@ const Partners = ({ slice }) => {
       ctx.revert();
       mediaQuery.removeEventListener("change", handleMediaChange);
     };
-  }, []);
+  }, [isDesktop]); // Added isDesktop dependency so refs recalculate on breakpoint swap
+
   const showSlice = slice.primary.show_slice;
   if (!showSlice) {
     return null;
   }
 
   const companies = slice.primary.companies || [];
+  const shouldUseMarquee = !isDesktop && companies.length > 3;
   const topCompanies = companies.slice(0, 3);
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
@@ -191,77 +201,108 @@ const Partners = ({ slice }) => {
           {/* Main Border */}
           <div className="border border-white/20">
             {/* Top Row */}
-            <div className="grid" style={topGridStyle}>
-              {/* Title Cell */}
-              <div
-                ref={(el) => {
-                  if (el) cellsRef.current.push(el);
-                }}
-                className="
+            {shouldUseMarquee ? (
+              <>
+                <div className="border-b border-white/20 px-4 py-6">
+                  <h2 className="text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
+                    Companies Participating
+                  </h2>
+                </div>
+
+                <div className="border-b border-white/20 py-6 overflow-hidden">
+                  <Marquee speed={90} gradient={false} pauseOnHover>
+                    {companies.map((item, index) => (
+                      <div
+                        key={index}
+                        ref={(el) => {
+                          if (el) cellsRef.current.push(el);
+                        }}
+                        className="mx-10 flex items-center justify-center"
+                      >
+                        <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                          <PrismicNextImage
+                            field={item.logo}
+                            className="w-full h-full object-contain opacity-90"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </Marquee>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="grid" style={topGridStyle}>
+                  {/* Title Cell */}
+                  <div
+                    ref={(el) => {
+                      if (el) cellsRef.current.push(el);
+                    }}
+                    className="
                   font-mono
                   flex min-h-[90px] md:min-h-[110px]
                   items-center justify-center
                   border-b border-r border-white/20
                   px-4
                 "
-              >
-                <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                  Companies Participating
-                </h2>
-                <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                  Companies
-                  <br />
-                  Participating
-                </h2>
-              </div>
+                  >
+                    <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
+                      Companies Participating
+                    </h2>
+                    <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
+                      Companies
+                      <br />
+                      Participating
+                    </h2>
+                  </div>
 
-              {topCompanies.map((item, index) => (
-                <div
-                  key={`top-${index}`}
-                  ref={(el) => {
-                    if (el) cellsRef.current.push(el);
-                  }}
-                  className="
+                  {topCompanies.map((item, index) => (
+                    <div
+                      key={`top-${index}`}
+                      ref={(el) => {
+                        if (el) cellsRef.current.push(el);
+                      }}
+                      className="
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
                     border-b border-r border-white/20 last:border-r-0
                     px-4 md:px-4
                   "
-                >
-                  {item.link?.url ? (
-                    <PrismicNextLink
-                      field={item.link}
-                      className="flex items-center justify-center w-full h-full"
                     >
-                      <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                        <PrismicNextImage
-                          field={item.logo}
-                          className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                        />
-                      </div>
-                    </PrismicNextLink>
-                  ) : (
-                    <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                      <PrismicNextImage
-                        field={item.logo}
-                        className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-                      />
+                      {item.link?.url ? (
+                        <PrismicNextLink
+                          field={item.link}
+                          className="flex items-center justify-center w-full h-full"
+                        >
+                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                            <PrismicNextImage
+                              field={item.logo}
+                              className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                            />
+                          </div>
+                        </PrismicNextLink>
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                          <PrismicNextImage
+                            field={item.logo}
+                            className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                          />
+                        </div>
+                      )}
                     </div>
-                  )}
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* Bottom Row */}
-            {bottomCompanies.length > 0 && (
-              <div className="grid" style={bottomGridStyle}>
-                {bottomCompanies.map((item, index) => (
-                  <div
-                    key={`bottom-${index}`}
-                    ref={(el) => {
-                      if (el) cellsRef.current.push(el);
-                    }}
-                    className={`
+                {/* Bottom Row */}
+                {bottomCompanies.length > 0 && (
+                  <div className="grid" style={bottomGridStyle}>
+                    {bottomCompanies.map((item, index) => (
+                      <div
+                        key={`bottom-${index}`}
+                        ref={(el) => {
+                          if (el) cellsRef.current.push(el);
+                        }}
+                        className={`
                       flex min-h-[90px] md:min-h-[110px]
                       items-center justify-center
                       border-r border-white/20
@@ -275,27 +316,33 @@ const Partners = ({ slice }) => {
                           : ""
                       }
                     `}
-                  >
-                    {item.link?.url ? (
-                      <PrismicNextLink field={item.link}>
-                        <PrismicNextImage
-                          field={item.logo}
-                          className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                        />
-                      </PrismicNextLink>
-                    ) : (
-                      <PrismicNextImage
-                        field={item.logo}
-                        className="h-auto w-[95px] object-contain opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-[150px]"
-                      />
-                    )}
+                      >
+                        {item.link?.url ? (
+                          <PrismicNextLink field={item.link}>
+                            <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                              <PrismicNextImage
+                                field={item.logo}
+                                className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                              />
+                            </div>
+                          </PrismicNextLink>
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                            <PrismicNextImage
+                              field={item.logo}
+                              className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )}
           </div>
 
-          {/* TOP LEFT CORNER */}
+          {/* CORNER IMAGES REMAIN UNCHANGED... */}
           <img
             ref={(el) => {
               cornersRef.current[0] = el;
@@ -304,8 +351,6 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute top-0 left-0 -rotate-90"
           />
-
-          {/* TOP RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[1] = el;
@@ -314,8 +359,6 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute top-0 right-0"
           />
-
-          {/* BOTTOM RIGHT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[2] = el;
@@ -324,8 +367,6 @@ const Partners = ({ slice }) => {
             alt=""
             className="absolute bottom-0 right-0 rotate-90"
           />
-
-          {/* BOTTOM LEFT CORNER */}
           <img
             ref={(el) => {
               cornersRef.current[3] = el;
