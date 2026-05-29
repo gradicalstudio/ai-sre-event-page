@@ -15,10 +15,17 @@ const Partners = ({ slice }) => {
   const gridRef = useRef(null);
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   cellsRef.current = [];
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mediaQuery.matches);
+
+    const handleMediaChange = (e) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
     const ctx = gsap.context(() => {
       const validCells = cellsRef.current.filter(Boolean);
 
@@ -71,9 +78,18 @@ const Partners = ({ slice }) => {
 
         const reflection = document.createElement("div");
         reflection.className = `
-          absolute top-[-40%] left-[-150%] h-[240%] w-[45%] rotate-[25deg]
-          bg-gradient-to-r from-transparent via-white/25 to-transparent
-          blur-md pointer-events-none z-30 mix-blend-screen opacity-0
+          absolute top-[-40%] left-[-150%]
+          h-[240%] w-[45%]
+          rotate-[25deg]
+          bg-gradient-to-r
+          from-transparent
+          via-white/25
+          to-transparent
+          blur-md
+          pointer-events-none
+          z-30
+          mix-blend-screen
+          opacity-0
         `;
         cell.appendChild(reflection);
 
@@ -98,7 +114,10 @@ const Partners = ({ slice }) => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
   }, []);
 
   const showSlice = slice.primary.show_slice;
@@ -109,15 +128,24 @@ const Partners = ({ slice }) => {
   const bottomCompanies = companies.slice(3, 7);
   const totalCols = topCompanies.length + 1;
 
+  const topGridStyle = isDesktop
+    ? { gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }
+    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
+
+  const bottomGridStyle = isDesktop
+    ? {
+        gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
+      }
+    : { gridTemplateColumns: "repeat(1, minmax(0, 1fr))" };
+
+  // ── Shared logo wrapper — identical sizing for top and bottom rows ──
   const LogoItem = ({ item }) => {
     const inner = (
-      <div className="flex items-center justify-center w-full">
-        <div className="w-[120px] h-[44px] md:w-[150px] md:h-[52px] flex items-center justify-center">
-          <PrismicNextImage
-            field={item.logo}
-            className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
-          />
-        </div>
+      <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+        <PrismicNextImage
+          field={item.logo}
+          className="w-full h-full object-contain opacity-90 transition-opacity duration-300 hover:opacity-100"
+        />
       </div>
     );
 
@@ -218,12 +246,7 @@ const Partners = ({ slice }) => {
         >
           <div className="border border-white/20">
             {/* Top Row */}
-            <div
-              className="grid"
-              style={{
-                gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))`,
-              }}
-            >
+            <div className="grid" style={topGridStyle}>
               {/* Title Cell */}
               <div
                 ref={(el) => {
@@ -240,7 +263,7 @@ const Partners = ({ slice }) => {
                 <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em]">
                   Companies Participating
                 </h2>
-                <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em]">
+                <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                   Companies
                   <br />
                   Participating
@@ -257,7 +280,7 @@ const Partners = ({ slice }) => {
                     flex min-h-[90px] md:min-h-[110px]
                     items-center justify-center
                     border-b border-r border-white/20 last:border-r-0
-                    px-4
+                    px-4 md:px-4
                   "
                 >
                   <LogoItem item={item} />
@@ -267,12 +290,7 @@ const Partners = ({ slice }) => {
 
             {/* Bottom Row */}
             {bottomCompanies.length > 0 && (
-              <div
-                className="grid"
-                style={{
-                  gridTemplateColumns: `repeat(${Math.min(bottomCompanies.length, 4)}, minmax(0, 1fr))`,
-                }}
-              >
+              <div className="grid" style={bottomGridStyle}>
                 {bottomCompanies.map((item, index) => (
                   <div
                     key={`bottom-${index}`}
