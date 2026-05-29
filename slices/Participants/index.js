@@ -5,7 +5,6 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Marquee from "react-fast-marquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Bounded from "@/components/Bounded";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,11 +19,20 @@ const Partners = ({ slice }) => {
   const cellsRef = useRef([]);
   const cornersRef = useRef([]);
 
-  // Responsive state tracker matching standard Tailwind md breakpoint (768px)
+  // Responsive state tracker matching standard Tailwind lg breakpoint (1024px)
   const [isDesktop, setIsDesktop] = useState(false);
+
+  // FIX: Track mount state to prevent Safari from flashing the marquee
+  // before hydration/layout is complete
+  const [isMounted, setIsMounted] = useState(false);
 
   // Reset the cells array on every render pass so it doesn't infinitely accumulate elements
   cellsRef.current = [];
+
+  useEffect(() => {
+    // Signal that the component has fully mounted on the client
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     // 1. RESPONSIVE BREAKPOINT LISTENER
@@ -41,7 +49,14 @@ const Partners = ({ slice }) => {
 
     // 2. GSAP INTERACTIVE GRAPHICS TIMELINE
     const ctx = gsap.context(() => {
-      const validCells = cellsRef.current.filter(Boolean);
+      // FIX: Exclude marquee-marked cells from GSAP initial opacity:0 set.
+      // Previously ALL cells (including marquee ones) were set to opacity:0,
+      // which caused Safari on iPhone to flash/overlap because the Marquee
+      // library clones tracks internally before GSAP's ScrollTrigger could
+      // animate them back in — creating a brief broken layout state.
+      const validCells = cellsRef.current.filter(
+        (el) => Boolean(el) && el.dataset.marquee !== "true",
+      );
 
       gsap.set(gridRef.current, {
         opacity: 0,
@@ -103,9 +118,9 @@ const Partners = ({ slice }) => {
       );
 
       // Glass reflection looping mechanics
-      validCells.forEach((cell, index) => {
-        // FIX: If this cell is part of the marquee, do NOT inject reflections dynamically
-        // This stops Safari on iPhones from recalculating positions and causing the loading flash/glitch
+      validCells.forEach((cell) => {
+        // FIX: If this cell is part of the marquee, do NOT inject reflections dynamically.
+        // This stops Safari on iPhones from recalculating positions and causing the loading flash/glitch.
         if (!cell || cell.dataset.marquee === "true") return;
 
         cell.style.position = "relative";
@@ -211,28 +226,55 @@ const Partners = ({ slice }) => {
                   </h2>
                 </div>
 
-                <div className="border-b border-white/20 py-6 overflow-hidden">
-                  <Marquee speed={90} gradient={false} pauseOnHover>
-                    {companies.map((item, index) => (
-                      <div
-                        key={index}
-                        ref={(el) => {
-                          if (el) {
-                            el.dataset.marquee = "true"; // Mark this cell to protect it from DOM mutation injection
-                            cellsRef.current.push(el);
-                          }
-                        }}
-                        className="mx-10 flex items-center justify-center"
-                      >
-                        <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
-                          <PrismicNextImage
-                            field={item.logo}
-                            className="w-full h-full object-contain opacity-90"
-                          />
+                {/*
+                  FIX: willChange="transform" forces Safari to composite the marquee
+                  on its own GPU layer, preventing the overlap flash on initial render.
+
+                  FIX: Visibility is gated on `isMounted` so the Marquee only becomes
+                  visible after the client has fully hydrated and the library has finished
+                  its internal track-cloning layout pass. This eliminates the Safari iOS
+                  flash where cloned tracks briefly overlap before snapping into position.
+
+                  The `key` prop ensures Marquee fully remounts if isDesktop toggles,
+                  preventing stale internal state from the library carrying over.
+                */}
+                <div
+                  className="border-b border-white/20 py-6 overflow-hidden"
+                  style={{ willChange: "transform" }}
+                >
+                  <div
+                    className="transition-opacity duration-300"
+                    style={{ opacity: isMounted ? 1 : 0 }}
+                  >
+                    <Marquee
+                      speed={90}
+                      gradient={false}
+                      pauseOnHover
+                      key="partners-marquee"
+                    >
+                      {companies.map((item, index) => (
+                        <div
+                          key={index}
+                          ref={(el) => {
+                            if (el) {
+                              // Mark this cell so GSAP skips it in opacity:0 initial set
+                              // and skips DOM mutation (reflection injection)
+                              el.dataset.marquee = "true";
+                              cellsRef.current.push(el);
+                            }
+                          }}
+                          className="mx-10 flex items-center justify-center"
+                        >
+                          <div className="flex items-center justify-center w-full h-9 md:w-full xl:w-50 xl:h-11">
+                            <PrismicNextImage
+                              field={item.logo}
+                              className="w-full h-full object-contain opacity-90"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </Marquee>
+                      ))}
+                    </Marquee>
+                  </div>
                 </div>
               </>
             ) : (
@@ -347,7 +389,7 @@ const Partners = ({ slice }) => {
             )}
           </div>
 
-          {/* CORNER IMAGES REMAIN UNCHANGED... */}
+          {/* Corner Images */}
           <img
             ref={(el) => {
               cornersRef.current[0] = el;
