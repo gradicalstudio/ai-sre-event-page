@@ -183,47 +183,33 @@ const Partners = ({ slice }) => {
             </div>
 
             {/* Pure CSS marquee row — no JS library, iOS safe */}
+
             <div className="relative min-h-[90px] flex items-center overflow-hidden">
-              <div className="flex w-full overflow-hidden">
-                {/* Set A */}
-                <div className="flex shrink-0 animate-partners-marquee">
-                  {companies.map((item, index) => (
-                    <div
-                      key={`a-${index}`}
-                      className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
-                    >
-                      <LogoItem item={item} />
-                      <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
-                    </div>
-                  ))}
-                </div>
-                {/* Set B — identical duplicate for seamless loop */}
-                <div
-                  className="flex shrink-0 animate-partners-marquee"
-                  aria-hidden="true"
-                  style={{
-                    animation: "partners-marquee 18s linear infinite",
-                    willChange: "transform",
-                  }}
-                >
-                  {companies.map((item, index) => (
-                    <div
-                      key={`b-${index}`}
-                      className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
-                    >
-                      <LogoItem item={item} />
-                      <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
-                    </div>
-                  ))}
-                </div>
+              <div
+                className="flex shrink-0"
+                style={{
+                  width: "max-content",
+                  animation: "partners-marquee 20s linear infinite",
+                  willChange: "transform",
+                }}
+              >
+                {[...companies, ...companies].map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-center px-8 min-h-[90px] shrink-0"
+                  >
+                    <LogoItem item={item} />
+                    <span className="ml-8 h-8 w-px bg-white/20 block shrink-0" />
+                  </div>
+                ))}
               </div>
 
               {/* LEFT FADE */}
               <div className="pointer-events-none absolute top-0 left-0 h-full w-20 bg-gradient-to-r from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
+
               {/* RIGHT FADE */}
               <div className="pointer-events-none absolute top-0 right-0 h-full w-20 bg-gradient-to-l from-[#04050F] via-[#04050F]/80 to-transparent z-10" />
             </div>
-
             {/* Corners */}
             <img
               src="/Rectangle 574056928.svg"
