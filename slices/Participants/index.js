@@ -244,12 +244,16 @@ const Partners = ({ slice }) => {
                 >
                   <div
                     className="transition-opacity duration-300"
-                    style={{ opacity: isMounted ? 1 : 0 }}
+                    style={{
+                      opacity: isMounted ? 1 : 0,
+                      visibility: isMounted ? "visible" : "hidden",
+                    }}
                   >
                     <Marquee
                       speed={90}
                       gradient={false}
                       pauseOnHover
+                      autoFill={true}
                       key="partners-marquee"
                     >
                       {companies.map((item, index) => (
