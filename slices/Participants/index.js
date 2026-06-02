@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Marquee from "react-fast-marquee";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * @typedef {import("@prismicio/client").Content.PartnersSlice} PartnersSlice
@@ -11,6 +16,11 @@ import Marquee from "react-fast-marquee";
 
 const Partners = ({ slice }) => {
   const [isMobile, setIsMobile] = useState(false);
+
+  const sectionRef = useRef(null);
+  const cellsRef = useRef([]);
+
+  cellsRef.current = [];
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
@@ -23,6 +33,102 @@ const Partners = ({ slice }) => {
 
     return () => media.removeEventListener("change", listener);
   }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cells = cellsRef.current.filter(Boolean);
+
+      gsap.set(cells, {
+        opacity: 0,
+        y: 20,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      tl.to(cells, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power3.out",
+      });
+
+      // Desktop shimmer only
+      if (!isMobile) {
+        cells.forEach((cell, index) => {
+          if (!cell || index === 0) return;
+
+          cell.style.position = "relative";
+
+          cell.style.overflow = "hidden";
+
+          const reflection = document.createElement("div");
+
+          reflection.className = `
+            absolute
+            top-[-40%]
+            left-[-150%]
+
+            h-[240%]
+            w-[45%]
+
+            rotate-[25deg]
+
+            bg-gradient-to-r
+            from-transparent
+            via-white/25
+            to-transparent
+
+            blur-md
+
+            pointer-events-none
+
+            opacity-0
+          `;
+
+          cell.appendChild(reflection);
+
+          const animate = () => {
+            gsap.fromTo(
+              reflection,
+              {
+                x: 0,
+                opacity: 0,
+              },
+              {
+                x: cell.offsetWidth * 3,
+
+                opacity: 1,
+
+                duration: 1.3,
+
+                ease: "power2.inOut",
+
+                onComplete: () => {
+                  gsap.set(reflection, {
+                    x: 0,
+                    opacity: 0,
+                  });
+
+                  gsap.delayedCall(Math.random() * 6 + 2, animate);
+                },
+              },
+            );
+          };
+
+          gsap.delayedCall(1 + Math.random() * 2, animate);
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [isMobile]);
 
   if (!slice.primary.show_slice) return null;
 
@@ -76,26 +182,36 @@ const Partners = ({ slice }) => {
         bg-[#04050F]
         mx-auto
         w-full
+
         max-w-[1000px]
         2xl:max-w-[1320px]
+
         px-3
         md:px-6
         lg:px-8
+
         pb-20
         md:pb-27
         lg:pb-43
       "
     >
       <section
-        className="bg-[#04050F] overflow-hidden"
+        className="
+          bg-[#04050F]
+          overflow-hidden
+        "
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
       >
-        <div className="relative">
+        <div ref={sectionRef} className="relative">
           <div className="border border-white/20">
             <div className="flex flex-wrap">
               {/* TITLE */}
+
               <div
+                ref={(el) => {
+                  if (el) cellsRef.current.push(el);
+                }}
                 className="
                   font-mono
                   flex
@@ -127,7 +243,6 @@ const Partners = ({ slice }) => {
                 </h2>
               </div>
 
-              {/* MOBILE MARQUEE */}
               {useMobileMarquee ? (
                 <div
                   className="
@@ -141,16 +256,16 @@ const Partners = ({ slice }) => {
                       <div
                         key={index}
                         className="
-                          flex
-                          items-center
-                          justify-center
+                            flex
+                            items-center
+                            justify-center
 
-                          w-[180px]
-                          h-[40px]
+                            w-[180px]
+                            h-[40px]
 
-                          px-8
-                          shrink-0
-                        "
+                            px-8
+                            shrink-0
+                          "
                       >
                         <Logo item={item} />
                       </div>
@@ -162,24 +277,27 @@ const Partners = ({ slice }) => {
                   {companies.map((item, index) => (
                     <div
                       key={index}
+                      ref={(el) => {
+                        if (el) cellsRef.current.push(el);
+                      }}
                       className="
-                        flex
-                        flex-[1_1_25%]
+                          flex
+                          flex-[1_1_25%]
 
-                        min-w-[220px]
+                          min-w-[220px]
 
-                        min-h-[90px]
-                        md:min-h-[110px]
+                          min-h-[90px]
+                          md:min-h-[110px]
 
-                        items-center
-                        justify-center
+                          items-center
+                          justify-center
 
-                        border-r
-                        border-b
-                        border-white/20
+                          border-r
+                          border-b
+                          border-white/20
 
-                        px-6
-                      "
+                          px-6
+                        "
                     >
                       <Logo item={item} />
                     </div>
@@ -188,8 +306,6 @@ const Partners = ({ slice }) => {
               )}
             </div>
           </div>
-
-          {/* CORNERS */}
 
           <img
             src="/Rectangle 574056928.svg"
