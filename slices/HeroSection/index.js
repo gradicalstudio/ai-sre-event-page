@@ -34,7 +34,7 @@ const HeroSection = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className="w-full bg-[#04050F]  px-6 md:px-6 lg:px-0
-          py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white"
+          py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white   "
       >
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-15">
           {/* Left Side */}
@@ -159,14 +159,14 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
+      <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-50  ">
         {/* Gradient */}
         <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
         </div>
 
         {/* Texture */}
-        <div className=" hidden lg:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-35 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
+        <div className=" hidden lg:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-28 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
           <img
             className="scale-[1.15] h-[130%]  md:w-[105%]  md:h-[130%] xl:h-full object-cover mask-image:linear-gradient(to_bottom,transparent_0%,transparent_60%,black_45%,black_100%)] md:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_0%,black_45%,black_100%)] lg:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_45%,black_55%,black_100%)] xl:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_30%,black_55%,black_100%)]"
             src="/toplayer.svg"
