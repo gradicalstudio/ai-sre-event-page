@@ -121,8 +121,8 @@ export default function AgendaItem({ item, defaultOpen = false }) {
     item.short_description[0]?.text !== "";
   const hasSpeakers = item.speaker?.url;
   const hasSpeakerTwo = item.speaker_two?.url;
-  const hasSpeakerThree = item.speaker_three?.url;
-  const hasSpeakerFour = item.speaker_four?.url;
+  const hasSpeakerThree = item.speaker_three_image?.url;
+  const hasSpeakerFour = item.speaker_four_image?.url;
   const hasLinkedInOne = item.linkedinone?.url;
   const hasLinkedInTwo = item.linkedintwo?.url;
   const hasLinkedInThree = item.linkedinthree?.url;
@@ -248,7 +248,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                 <div className="flex row-start-1 col-start-4  shrink-0 items-start">
                   <div
                     style={{ border: "2px solid #3FD9FB" }}
-                    className="inline-flex items-center mt-3 justify-center gap-2.5 rounded-full px-5 py-1.5  text-[#3FD9FB] text-xs font-medium min-h-[2rem]"
+                    className="inline-flex items-center mt-3 justify-center gap-2.5 rounded-full px-5 py-1.5  text-[#3FD9FB] text-xs font-medium min-h-8"
                   >
                     <PrismicRichText
                       field={item.title_or_images}
@@ -268,7 +268,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
 
               {/* Speakers */}
               {hasSpeakers && (
-                <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3 lg:gap-10">
+                <div className="flex flex-col w-full xl:grid xl:grid-cols-2 xl:items-center gap-3 lg:gap-4">
                   {hasSpeakers && (
                     <SpeakerRow
                       image={item.speaker}
@@ -286,16 +286,16 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                   )}
                   {hasSpeakerThree && (
                     <SpeakerRow
-                      image={item.speaker_three}
+                      image={item.speaker_three_image}
                       name={item.speaker_three_name}
-                      linkedin={item.linkedinthree}
+                      linkedin={item.speaker_three_linkedin}
                     />
                   )}
                   {hasSpeakerFour && (
                     <SpeakerRow
-                      image={item.speaker_four}
+                      image={item.speaker_four_image}
                       name={item.speaker_four_name}
-                      linkedin={item.linkedinfour}
+                      linkedin={item.speaker_four_linkedin}
                     />
                   )}
                 </div>
