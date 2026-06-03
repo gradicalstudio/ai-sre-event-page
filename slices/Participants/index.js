@@ -46,7 +46,7 @@ const Partners = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 90%",
+          start: "top 80%",
           once: true,
         },
       });
@@ -182,26 +182,25 @@ const Partners = ({ slice }) => {
         bg-[#04050F]
         mx-auto
         w-full
-mt-25
-        max-w-[1000px]
-        2xl:max-w-[1320px]
-
-        px-3
-        md:px-6
+        max-w-250
+        md:max-w-185
+        lg:max-w-243
+        xl:max-w-291
+        2xl:max-w-332.5
+        px-6
+        md:px-10.5
         lg:px-8
+        xl:px-0
+        my-10
+        md:my-15
+        xl:my-25
 
-        pb-20
-        md:pb-27
-        lg:pb-43
-        
-       
       "
     >
       <section
         className="
           bg-[#04050F]
           overflow-hidden
-        
         "
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
