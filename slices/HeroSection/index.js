@@ -33,8 +33,8 @@ const HeroSection = ({ slice }) => {
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="w-full bg-[#04050F]  px-6 md:px-6 lg:px-0
-           md:pt-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white   "
+        className="w-full bg-[#04050F]  px-6 md:px-6 
+           md:pt-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 overflow-hidden w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14  mx-auto flex-col gap-6 text-white   "
       >
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 xl:gap-15">
           {/* Left Side */}
