@@ -37,6 +37,65 @@ const badgeComponents = {
   ),
 };
 
+// Reusable speaker row
+function SpeakerRow({
+  image,
+  name,
+  linkedin,
+  label,
+  reserveLabelSpace = false,
+}) {
+  const hasLinkedIn = linkedin?.url;
+
+  const renderName = () => {
+    if (!name) return null;
+    if (typeof name === "string")
+      return <span className="text-white text-sm">{name}</span>;
+    if (Array.isArray(name))
+      return <span className="text-white text-sm">{name[0]?.text}</span>;
+    if (typeof name === "object" && name.text !== undefined)
+      return <span className="text-white text-sm">{name.text}</span>;
+    return null;
+  };
+
+  return (
+    <div className="flex items-center w-full gap-2">
+      <PrismicNextImage
+        field={image}
+        className={`w-12 h-12 rounded-full object-cover shrink-0 ${reserveLabelSpace && !label ? "mt-[14px]" : ""}`}
+      />
+      <div className="flex flex-col">
+        {reserveLabelSpace && (
+          <span className="text-[#C9A84C] text-[10px] font-medium uppercase tracking-wide leading-none mb-0.5 block min-h-[12px]">
+            {label || ""}
+          </span>
+        )}
+        <div className="flex items-center gap-4">
+          {renderName()}
+          {hasLinkedIn && (
+            <PrismicNextLink
+              field={linkedin}
+              onClick={(e) => e.stopPropagation()}
+              className="text-white shrink-0"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="LinkedIn"
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </PrismicNextLink>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AgendaItem({ item, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const contentRef = useRef(null);
@@ -62,11 +121,36 @@ export default function AgendaItem({ item, defaultOpen = false }) {
     item.short_description[0]?.text !== "";
   const hasSpeakers = item.speaker?.url;
   const hasSpeakerTwo = item.speaker_two?.url;
+  const hasSpeakerThree = item.speaker_three?.url;
+  const hasSpeakerFour = item.speaker_four?.url;
   const hasLinkedInOne = item.linkedinone?.url;
   const hasLinkedInTwo = item.linkedintwo?.url;
+  const hasLinkedInThree = item.linkedinthree?.url;
+  const hasLinkedInFour = item.linkedinfour?.url;
   const hasTitleOrImages =
     item.title_or_images?.length > 0 && item.title_or_images[0]?.text !== "";
-  const isExpandable = hasDescription || hasSpeakers;
+
+  // Moderators
+  const hasModeratorOne = item.moderator_one_image?.url;
+  const hasModeratorTwo = item.moderator_two_image?.url;
+  const hasModeratorThree = item.moderator_three_image?.url;
+  const hasModeratorFour = item.moderator_four_image?.url;
+  const hasAnyModerator =
+    hasModeratorOne || hasModeratorTwo || hasModeratorThree || hasModeratorFour;
+
+  // Facilitators
+  const hasFacilitatorOne = item.facilitator_one_image?.url;
+  const hasFacilitatorTwo = item.facilitator_two_image?.url;
+  const hasFacilitatorThree = item.facilitator_three_image?.url;
+  const hasFacilitatorFour = item.facilitator_four_image?.url;
+  const hasAnyFacilitator =
+    hasFacilitatorOne ||
+    hasFacilitatorTwo ||
+    hasFacilitatorThree ||
+    hasFacilitatorFour;
+
+  const isExpandable =
+    hasDescription || hasSpeakers || hasAnyModerator || hasAnyFacilitator;
 
   const handleToggle = () => {
     if (!isExpandable) return;
@@ -111,7 +195,6 @@ export default function AgendaItem({ item, defaultOpen = false }) {
           grid-cols-[auto_1fr_auto]
           lg:grid-cols-[5rem_1fr_auto_auto]
           items-center 
-      
         "
       >
         {/* TIME + BADGE (mobile: stacked in col 1) */}
@@ -120,26 +203,13 @@ export default function AgendaItem({ item, defaultOpen = false }) {
             <span className="text-white text-[13px] lg:text-base pt-1">
               {item.time}
             </span>
-            {hasTitleOrImages && (
-              <div className="lg:hidden">
-                <div
-                  style={{ border: "2px solid #3FD9FB" }}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-1 w-[80px] text-[#3FD9FB] text-xs font-medium min-h-7.5"
-                >
-                  <PrismicRichText
-                    field={item.title_or_images}
-                    components={badgeComponents}
-                  />
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
         {/* TITLE */}
         <div
           onClick={handleToggle}
-          className="row-start-1  col-start-2 cursor-pointer "
+          className="row-start-1 col-start-2 cursor-pointer"
         >
           <PrismicRichText field={item.title} components={titleComponents} />
         </div>
@@ -166,28 +236,27 @@ export default function AgendaItem({ item, defaultOpen = false }) {
           </div>
         )}
 
-        {/* BADGE desktop */}
-        {hasTitleOrImages && (
-          <div className="hidden lg:flex row-start-1 col-start-4 pt-1 lg:pt-0 shrink-0 items-start">
-            <div
-              style={{ border: "2px solid #3FD9FB" }}
-              className="inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-1.5 w-[90px] text-[#3FD9FB] text-xs font-medium min-h-[2rem]"
-            >
-              <PrismicRichText
-                field={item.title_or_images}
-                components={badgeComponents}
-              />
-            </div>
-          </div>
-        )}
-
         {/* EXPANDABLE CONTENT */}
         {isExpandable && (
           <div
             ref={contentRef}
             className="hidden overflow-hidden row-start-2 col-start-1 col-end-4 lg:col-start-2 lg:col-end-3"
           >
-            <div className="pt-3 flex flex-col gap-4">
+            <div className=" flex flex-col gap-4">
+              {/* Description */}
+              {hasTitleOrImages && (
+                <div className="flex row-start-1 col-start-4  shrink-0 items-start">
+                  <div
+                    style={{ border: "2px solid #3FD9FB" }}
+                    className="inline-flex items-center mt-3 justify-center gap-2.5 rounded-full px-5 py-1.5  text-[#3FD9FB] text-xs font-medium min-h-[2rem]"
+                  >
+                    <PrismicRichText
+                      field={item.title_or_images}
+                      components={badgeComponents}
+                    />
+                  </div>
+                </div>
+              )}
               {hasDescription && (
                 <div className="text-white/60 text-xs md:text-sm leading-relaxed">
                   <PrismicRichText
@@ -197,71 +266,122 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                 </div>
               )}
 
+              {/* Speakers */}
               {hasSpeakers && (
-                <div className="flex flex-col w-full xl:flex-row xl:items-center  gap-3 lg:gap-10">
-                  {/* Speaker One */}
-                  <div className="flex items-center w-full  gap-2">
-                    <PrismicNextImage
-                      field={item.speaker}
-                      className="w-8 h-8 rounded-full object-cover"
+                <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3 lg:gap-10">
+                  {hasSpeakers && (
+                    <SpeakerRow
+                      image={item.speaker}
+                      name={item.speaker_name}
+                      linkedin={item.linkedinone}
+                      label={""}
                     />
-                    <div className=" flex items-center  justify-between md:justify-normal gap-5 lg:gap-4">
-                      <span className="text-white text-sm">
-                        {item.speaker_name}
-                      </span>
-                      {hasLinkedInOne && (
-                        <PrismicNextLink
-                          field={item.linkedinone}
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-white "
-                        >
-                          <svg
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-label="LinkedIn"
-                          >
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                          </svg>
-                        </PrismicNextLink>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Speaker Two */}
-                  {hasSpeakerTwo && (
-                    <div className="flex w-full items-center gap-2">
-                      <PrismicNextImage
-                        field={item.speaker_two}
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
-                      <div className=" flex items-center w-full justify-between md:justify-normal lg:justify-between xl:justify-normal gap-5 lg:gap-4">
-                        <span className="text-white text-sm">
-                          {item.speaker_two_name}
-                        </span>
-                        {hasLinkedInTwo && (
-                          <PrismicNextLink
-                            field={item.linkedintwo}
-                            onClick={(e) => e.stopPropagation()}
-                            className="text-white "
-                          >
-                            <svg
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              xmlns="http://www.w3.org/2000/svg"
-                              aria-label="LinkedIn"
-                            >
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                          </PrismicNextLink>
-                        )}
-                      </div>
-                    </div>
                   )}
+                  {hasSpeakerTwo && (
+                    <SpeakerRow
+                      image={item.speaker_two}
+                      name={item.speaker_two_name}
+                      linkedin={item.linkedintwo}
+                    />
+                  )}
+                  {hasSpeakerThree && (
+                    <SpeakerRow
+                      image={item.speaker_three}
+                      name={item.speaker_three_name}
+                      linkedin={item.linkedinthree}
+                    />
+                  )}
+                  {hasSpeakerFour && (
+                    <SpeakerRow
+                      image={item.speaker_four}
+                      name={item.speaker_four_name}
+                      linkedin={item.linkedinfour}
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* Moderators */}
+              {hasAnyModerator && (
+                <div>
+                  <div className="w-46 h-[0.5px] bg-white/20 mb-4" />
+                  <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3  xl:gap-10">
+                    {hasModeratorOne && (
+                      <SpeakerRow
+                        image={item.moderator_one_image}
+                        name={item.moderator_one_name}
+                        linkedin={item.moderator_one_linkedin}
+                        label="Moderator"
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasModeratorTwo && (
+                      <SpeakerRow
+                        image={item.moderator_two_image}
+                        name={item.moderator_two_name}
+                        linkedin={item.moderator_two_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasModeratorThree && (
+                      <SpeakerRow
+                        image={item.moderator_three_image}
+                        name={item.moderator_three_name}
+                        linkedin={item.moderator_three_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasModeratorFour && (
+                      <SpeakerRow
+                        image={item.moderator_four_image}
+                        name={item.moderator_four_name}
+                        linkedin={item.moderator_four_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Facilitators */}
+              {hasAnyFacilitator && (
+                <div className="mt-3">
+                  {/* <div className="w-46 h-[0.5px] bg-white/20 mb-4" /> */}
+                  <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3 xl:gap-10">
+                    {hasFacilitatorOne && (
+                      <SpeakerRow
+                        image={item.facilitator_one_image}
+                        name={item.facilitator_one_name}
+                        linkedin={item.facilitator_one_linkedin}
+                        label="Facilitator"
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasFacilitatorTwo && (
+                      <SpeakerRow
+                        image={item.facilitator_two_image}
+                        name={item.facilitator_two_name}
+                        linkedin={item.facilitator_two_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasFacilitatorThree && (
+                      <SpeakerRow
+                        image={item.facilitator_three_image}
+                        name={item.facilitator_three_name}
+                        linkedin={item.facilitator_three_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                    {hasFacilitatorFour && (
+                      <SpeakerRow
+                        image={item.facilitator_four_image}
+                        name={item.facilitator_four_name}
+                        linkedin={item.facilitator_four_linkedin}
+                        reserveLabelSpace
+                      />
+                    )}
+                  </div>
                 </div>
               )}
             </div>

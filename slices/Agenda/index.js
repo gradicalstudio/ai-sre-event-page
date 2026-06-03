@@ -74,7 +74,7 @@ const Agenda = ({ slice }) => {
           <div>
             {slice.primary.blocks.map((item, index) => (
               <div key={index} ref={(el) => (itemsRef.current[index] = el)}>
-                <AgendaItem item={item} defaultOpen={index === 1} />
+                <AgendaItem item={item} defaultOpen={index === 0} />
               </div>
             ))}
           </div>

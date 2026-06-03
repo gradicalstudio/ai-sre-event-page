@@ -252,6 +252,16 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   title: prismic.RichTextField;
 
   /**
+   * Title or Images field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Add icons /img
+   * - **API ID Path**: agenda.default.primary.blocks[].title_or_images
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title_or_images: prismic.RichTextField;
+
+  /**
    * Short description field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Rich Text
@@ -262,7 +272,7 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   short_description: prismic.RichTextField;
 
   /**
-   * Speaker field in *Agenda → Default → Primary → Blocks*
+   * Speaker One field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -272,7 +282,7 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   speaker: prismic.ImageField<never>;
 
   /**
-   * Speaker name field in *Agenda → Default → Primary → Blocks*
+   * Speaker One Name field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -285,7 +295,7 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
    * LinkedInOne field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Link
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Speaker one's LinkedIn
    * - **API ID Path**: agenda.default.primary.blocks[].linkedinone
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
@@ -321,7 +331,7 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
    * LinkedInTwo field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Link
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Speaker two's LinkedIn
    * - **API ID Path**: agenda.default.primary.blocks[].linkedintwo
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
@@ -334,14 +344,364 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   >;
 
   /**
-   * Title or Images field in *Agenda → Default → Primary → Blocks*
+   * Speaker Three Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_three_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  speaker_three_image: prismic.ImageField<never>;
+
+  /**
+   * Speaker Three Name field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: Add icons /img
-   * - **API ID Path**: agenda.default.primary.blocks[].title_or_images
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_three_name
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  title_or_images: prismic.RichTextField;
+  speaker_three_name: prismic.RichTextField;
+
+  /**
+   * Speaker Three LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_three_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  speaker_three_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Speaker Four Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_four_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  speaker_four_image: prismic.ImageField<never>;
+
+  /**
+   * Speaker Four Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_four_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  speaker_four_name: prismic.RichTextField;
+
+  /**
+   * Speaker Four LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_four_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  speaker_four_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Moderator One Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_one_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  moderator_one_image: prismic.ImageField<never>;
+
+  /**
+   * Moderator One Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_one_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  moderator_one_name: prismic.RichTextField;
+
+  /**
+   * Moderator One LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_one_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  moderator_one_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Moderator Two Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_two_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  moderator_two_image: prismic.ImageField<never>;
+
+  /**
+   * Moderator Two Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_two_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  moderator_two_name: prismic.RichTextField;
+
+  /**
+   * Moderator Two LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_two_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  moderator_two_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Moderator Three Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_three_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  moderator_three_image: prismic.ImageField<never>;
+
+  /**
+   * Moderator Three Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_three_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  moderator_three_name: prismic.RichTextField;
+
+  /**
+   * Moderator Three LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_three_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  moderator_three_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Moderator Four Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_four_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  moderator_four_image: prismic.ImageField<never>;
+
+  /**
+   * Moderator Four Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_four_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  moderator_four_name: prismic.RichTextField;
+
+  /**
+   * Moderator Four LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].moderator_four_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  moderator_four_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facilitator One Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_one_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  facilitator_one_image: prismic.ImageField<never>;
+
+  /**
+   * Facilitator One Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_one_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  facilitator_one_name: prismic.RichTextField;
+
+  /**
+   * Facilitator One LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_one_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facilitator_one_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facilitator Two Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_two_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  facilitator_two_image: prismic.ImageField<never>;
+
+  /**
+   * Facilitator Two Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_two_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  facilitator_two_name: prismic.RichTextField;
+
+  /**
+   * Facilitator Two LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_two_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facilitator_two_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facilitator Three Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_three_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  facilitator_three_image: prismic.ImageField<never>;
+
+  /**
+   * Facilitator Three Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_three_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  facilitator_three_name: prismic.RichTextField;
+
+  /**
+   * Facilitator Three LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_three_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facilitator_three_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facilitator Four Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_four_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  facilitator_four_image: prismic.ImageField<never>;
+
+  /**
+   * Facilitator Four Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_four_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  facilitator_four_name: prismic.RichTextField;
+
+  /**
+   * Facilitator Four LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].facilitator_four_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facilitator_four_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**

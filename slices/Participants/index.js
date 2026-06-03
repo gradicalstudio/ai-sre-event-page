@@ -46,7 +46,7 @@ const Partners = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 90%",
           once: true,
         },
       });
@@ -182,7 +182,7 @@ const Partners = ({ slice }) => {
         bg-[#04050F]
         mx-auto
         w-full
-
+mt-25
         max-w-[1000px]
         2xl:max-w-[1320px]
 
@@ -193,12 +193,15 @@ const Partners = ({ slice }) => {
         pb-20
         md:pb-27
         lg:pb-43
+        
+       
       "
     >
       <section
         className="
           bg-[#04050F]
           overflow-hidden
+        
         "
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
