@@ -193,12 +193,15 @@ const Partners = ({ slice }) => {
         pb-20
         md:pb-27
         lg:pb-43
+        
+       
       "
     >
       <section
         className="
           bg-[#04050F]
           overflow-hidden
+        
         "
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
