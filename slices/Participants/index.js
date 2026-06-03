@@ -182,17 +182,10 @@ const Partners = ({ slice }) => {
         bg-[#04050F]
         mx-auto
         w-full
-        max-w-250
-        md:max-w-185
-        lg:max-w-243
-        xl:max-w-291
-        2xl:max-w-332.5
-        px-6
-        md:px-10.5
-        lg:px-8
-        xl:px-0
-        my-10
-        md:my-15
+      overflow-hidden mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14
+        my-13
+        md:my-20
+        md:pb-[15px]
         xl:my-25
 
       "
