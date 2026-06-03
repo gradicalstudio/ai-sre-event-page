@@ -59,7 +59,7 @@ function SpeakerRow({
   };
 
   return (
-    <div className="flex items-center w-full gap-2">
+    <div className="flex items-center w-full mt-2 lg:mt-4 gap-2">
       <PrismicNextImage
         field={image}
         className={`w-12 h-12 rounded-full object-cover shrink-0 ${reserveLabelSpace && !label ? "mt-[14px]" : ""}`}
