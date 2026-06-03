@@ -159,13 +159,13 @@ const HeroSection = ({ slice }) => {
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
-      <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
-        {/* Gradient */}
+      {/* <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
+       
         <div className="absolute inset-0 blur-2xl overflow-hidden scale-110">
           <img className="w-full h-full object-cover" src="/bg-gradient.svg" />
         </div>
 
-        {/* Texture */}
+       
         <div className=" hidden lg:block absolute  -top-10 md:-top-3 lg:-top-64 xl:-top-35 inset-x-0 bottom-0 z-10 opacity-65 pointer-events-none">
           <img
             className="scale-[1.15] h-[130%]  md:w-[105%]  md:h-[130%] xl:h-full object-cover mask-image:linear-gradient(to_bottom,transparent_0%,transparent_60%,black_45%,black_100%)] md:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_0%,black_45%,black_100%)] lg:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_45%,black_55%,black_100%)] xl:[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_30%,black_55%,black_100%)]"
@@ -173,7 +173,7 @@ const HeroSection = ({ slice }) => {
             alt="texture"
           />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
