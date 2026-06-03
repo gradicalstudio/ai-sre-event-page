@@ -34,11 +34,11 @@ const HeroSection = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className="w-full bg-[#04050F]  px-6 md:px-6 lg:px-0
-          py-10 md:py-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white   "
+           md:pt-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 max-w-175 lg:max-w-225 xl:max-w-280 2xl:max-w-330  mx-auto flex-col gap-6 text-white   "
       >
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-15">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 xl:gap-15">
           {/* Left Side */}
-          <div className="lg:w-[45%] xl:w-[50%] flex flex-col justify-between">
+          <div className="lg:w-[50%] xl:w-[50%] flex flex-col justify-between">
             <div className="block pb-5 lg:hidden">
               <div className="w-full rounded-2xl">
                 {showVideo ? (
