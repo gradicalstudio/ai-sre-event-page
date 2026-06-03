@@ -59,7 +59,7 @@ function SpeakerRow({
   };
 
   return (
-    <div className="flex items-center w-full mt-2 lg:mt-4 gap-2">
+    <div className="flex items-center w-full  gap-2">
       <PrismicNextImage
         field={image}
         className={`w-12 h-12 rounded-full object-cover shrink-0 ${reserveLabelSpace && !label ? "mt-[14px]" : ""}`}
@@ -125,8 +125,8 @@ export default function AgendaItem({ item, defaultOpen = false }) {
   const hasSpeakerFour = item.speaker_four_image?.url;
   const hasLinkedInOne = item.linkedinone?.url;
   const hasLinkedInTwo = item.linkedintwo?.url;
-  const hasLinkedInThree = item.linkedinthree?.url;
-  const hasLinkedInFour = item.linkedinfour?.url;
+  const hasLinkedInThree = item.speaker_three_linkedin?.url;
+  const hasLinkedInFour = item.speaker_four_linkedin?.url;
   const hasTitleOrImages =
     item.title_or_images?.length > 0 && item.title_or_images[0]?.text !== "";
 
@@ -242,7 +242,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
             ref={contentRef}
             className="hidden overflow-hidden row-start-2 col-start-1 col-end-4 lg:col-start-2 lg:col-end-3"
           >
-            <div className=" flex flex-col gap-4">
+            <div className=" flex flex-col gap-4 mt-2">
               {/* Description */}
               {hasTitleOrImages && (
                 <div className="flex row-start-1 col-start-4  shrink-0 items-start">
@@ -268,7 +268,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
 
               {/* Speakers */}
               {hasSpeakers && (
-                <div className="flex flex-col w-full xl:grid xl:grid-cols-2 xl:items-center gap-3 lg:gap-4">
+                <div className="flex flex-col w-full xl:grid xl:grid-cols-2 xl:items-center gap-4 lg:gap-4">
                   {hasSpeakers && (
                     <SpeakerRow
                       image={item.speaker}
@@ -300,12 +300,15 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                   )}
                 </div>
               )}
-
+              {/* Separator - only when speakers and moderator/facilitator both exist */}
+              {hasSpeakers && (hasAnyModerator || hasAnyFacilitator) && (
+                <div className="w-46 h-[0.5px] bg-white/20" />
+              )}
               {/* Moderators */}
               {hasAnyModerator && (
                 <div>
-                  <div className="w-46 h-[0.5px] bg-white/20 mb-4" />
-                  <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3  xl:gap-10">
+               
+                  <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3   xl:gap-10">
                     {hasModeratorOne && (
                       <SpeakerRow
                         image={item.moderator_one_image}
@@ -345,8 +348,8 @@ export default function AgendaItem({ item, defaultOpen = false }) {
 
               {/* Facilitators */}
               {hasAnyFacilitator && (
-                <div className="mt-3">
-                  {/* <div className="w-46 h-[0.5px] bg-white/20 mb-4" /> */}
+                <div className="">
+                 
                   <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3 xl:gap-10">
                     {hasFacilitatorOne && (
                       <SpeakerRow
