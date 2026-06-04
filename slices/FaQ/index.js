@@ -24,14 +24,14 @@ const FaQ = ({ slice }) => {
       <img
         src="/LeftGPng.png"
         alt=""
-        className="absolute  left-0 top-0  w-15 md:w-30 lg:w-50 xl:w-60 2xl:w-85  pointer-events-none  select-none h-full "
+        className="absolute  left-0 top-0  w-15 md:w-30 lg:w-50 xl:w-60 2xl:w-75  pointer-events-none  select-none h-full "
       />
 
       {/* Right Gradient */}
       <img
         src="/RightGPng.png"
         alt=""
-        className="absolute right-0 top-0   w-15 md:w-30 lg:w-50 xl:w-60  2xl:w-85 pointer-events-none  select-none h-full"
+        className="absolute right-0 top-0   w-15 md:w-30 lg:w-50 xl:w-60  2xl:w-75 pointer-events-none  select-none h-full"
       
       />
 

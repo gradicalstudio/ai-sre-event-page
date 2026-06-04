@@ -10,7 +10,7 @@ const SpeakerSlider = ({ speakers = [] }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const autoplayRef = useRef(
-    Autoplay({ delay: 3500, stopOnInteraction: true }),
+    Autoplay({ delay: 3500, stopOnInteraction: false }),
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -35,6 +35,7 @@ const SpeakerSlider = ({ speakers = [] }) => {
     slides.push(speakers.slice(i, i + 2));
   }
 
+  const loopSlides = slides.length === 1 ? [...slides, ...slides] : slides;
   return (
     <div className="block md:hidden mt-13 text-white w-full">
       <div className="relative  w-full">
@@ -62,7 +63,7 @@ const SpeakerSlider = ({ speakers = [] }) => {
         <div ref={emblaRef} className="overflow-hidden mx-8">
           {/* Embla container — no gap here, handle spacing inside slides */}
           <div className="flex">
-            {slides.map((pair, slideIndex) => (
+            {loopSlides.map((pair, slideIndex) => (
               <div
                 key={slideIndex}
                 // This is the critical Embla fix — flex: 0 0 100% + min-w-0
