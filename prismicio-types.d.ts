@@ -416,6 +416,42 @@ export interface AgendaSliceDefaultPrimaryBlocksItem {
   >;
 
   /**
+   * Speaker Five Image field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_five_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  speaker_five_image: prismic.ImageField<never>;
+
+  /**
+   * Speaker Five Name field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_five_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  speaker_five_name: prismic.RichTextField;
+
+  /**
+   * Speaker Five LinkedIn field in *Agenda → Default → Primary → Blocks*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: agenda.default.primary.blocks[].speaker_five_linkedin
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  speaker_five_linkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Moderator One Image field in *Agenda → Default → Primary → Blocks*
    *
    * - **Field Type**: Image

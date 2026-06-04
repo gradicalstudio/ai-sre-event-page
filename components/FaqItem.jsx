@@ -41,7 +41,7 @@ export default function FaqItem({ item, isOpen, onToggle }) {
 
   return (
     <div
-      className="border-t border-white/15 py-8 cursor-pointer"
+      className="border-t border-white/15 py-4 lg:py-8 cursor-pointer"
       onClick={onToggle}
     >
       <div className="flex items-start justify-between gap-8">

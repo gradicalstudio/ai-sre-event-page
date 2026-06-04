@@ -52,12 +52,12 @@ const WhosInTheRoom = ({ slice }) => {
         opacity: 0,
         x: -120,
       });
-
+      const isMobile = window.innerWidth < 767;
       // 2. Build the ScrollTrigger Timeline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%", // Triggers at standard viewport boundary
+          start: isMobile ? "-400px 95%" : "top 75%", // Triggers at standard viewport boundary
           once: true, // One-time execution
         },
       });

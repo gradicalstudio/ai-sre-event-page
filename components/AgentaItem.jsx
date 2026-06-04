@@ -123,6 +123,7 @@ export default function AgendaItem({ item, defaultOpen = false }) {
   const hasSpeakerTwo = item.speaker_two?.url;
   const hasSpeakerThree = item.speaker_three_image?.url;
   const hasSpeakerFour = item.speaker_four_image?.url;
+  const hasSpeakerFive = item.speaker_five_image?.url;
   const hasLinkedInOne = item.linkedinone?.url;
   const hasLinkedInTwo = item.linkedintwo?.url;
   const hasLinkedInThree = item.speaker_three_linkedin?.url;
@@ -298,6 +299,13 @@ export default function AgendaItem({ item, defaultOpen = false }) {
                       linkedin={item.speaker_four_linkedin}
                     />
                   )}
+                  {hasSpeakerFive && (
+                    <SpeakerRow
+                      image={item.speaker_five_image}
+                      name={item.speaker_five_name}
+                      linkedin={item.speaker_five_linkedin}
+                    />
+                  )}
                 </div>
               )}
               {/* Separator - only when speakers and moderator/facilitator both exist */}
@@ -307,7 +315,6 @@ export default function AgendaItem({ item, defaultOpen = false }) {
               {/* Moderators */}
               {hasAnyModerator && (
                 <div>
-               
                   <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3   xl:gap-10">
                     {hasModeratorOne && (
                       <SpeakerRow
@@ -349,7 +356,6 @@ export default function AgendaItem({ item, defaultOpen = false }) {
               {/* Facilitators */}
               {hasAnyFacilitator && (
                 <div className="">
-                 
                   <div className="flex flex-col w-full xl:flex-row xl:items-center gap-3 xl:gap-10">
                     {hasFacilitatorOne && (
                       <SpeakerRow

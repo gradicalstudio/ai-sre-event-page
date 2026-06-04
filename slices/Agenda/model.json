@@ -169,6 +169,34 @@
                   "repeat": false
                 }
               },
+              "speaker_five_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Speaker Five Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "speaker_five_name": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Speaker Five Name",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "speaker_five_linkedin": {
+                "type": "Link",
+                "config": {
+                  "label": "Speaker Five LinkedIn",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
               "moderator_one_image": {
                 "type": "Image",
                 "config": {
