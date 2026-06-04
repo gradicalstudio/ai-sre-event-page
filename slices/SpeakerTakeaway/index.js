@@ -22,11 +22,11 @@ const SpeakerTakeaway = ({ slice }) => {
       gsap.set(arrowRef.current, { opacity: 0, x: -100 });
       gsap.set(headingRef.current, { opacity: 0, x: 40 });
       gsap.set(blocksRef.current, { opacity: 0, x: -120 });
-
+      const isMobile = window.innerWidth < 767;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+         start: isMobile ? "-400px 95%" : "top 75%",
           once: true,
         },
       });
@@ -205,7 +205,7 @@ const SpeakerTakeaway = ({ slice }) => {
                     ref={(el) => {
                       blockBoxRefs.current[index] = el;
                     }}
-                   className="group  h-full relative grid grid-rows-[60px_3rem_1fr] 2xl:grid-rows-[60px_2rem_1fr] gap-2 z-10"
+                    className="group  h-full relative grid grid-rows-[60px_3rem_1fr] 2xl:grid-rows-[60px_2rem_1fr] gap-2 z-10"
                   >
                     {item.icon?.url && (
                       <div className="relative h-10 w-20 mt-3">

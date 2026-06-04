@@ -111,7 +111,12 @@ const StageFormats = ({ slice }) => {
   }, []);
 
   return (
-    <Bounded className="bg-[#04050F] text-white overflow-hidden ">
+    <section className="bg-[#04050F] text-white overflow-hidden mx-auto w-full
+       max-w-[1000px]
+xl:max-w-[1280px]
+2xl:max-w-[1440px]
+ px-6 md:px-14 
+         ">
       <section
         id="stage-formats"
         ref={sectionRef}
@@ -287,7 +292,7 @@ const StageFormats = ({ slice }) => {
           onClose={() => setIsSpeakerOpen(false)}
         />
       </section>
-    </Bounded>
+    </section>
   );
 };
 
