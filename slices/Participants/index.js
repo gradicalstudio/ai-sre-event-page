@@ -165,13 +165,17 @@ const Partners = ({ slice }) => {
       <PrismicNextImage
         field={item.logo}
         className="
+          md:max-h-[40px]
+          md:max-w-[180px]
+
+          md:w-auto
+          md:h-auto
           max-h-[40px]
-          max-w-[180px]
-
-          w-auto
-          h-auto
-
-          object-contain
+  h-[30px]
+  w-full
+  max-w-[300px]
+  object-center
+          md:object-contain
         "
       />
     );
@@ -246,20 +250,23 @@ const Partners = ({ slice }) => {
                     py-4
                   "
                 >
-                  <Marquee speed={55} gradient={false}>
+                  <Marquee speed={65} gradient={false}>
                     {companies.map((item, index) => (
                       <div
                         key={index}
                         className="
                             flex
+                    
                             items-center
                             justify-center
 
-                            w-[180px]
-                            h-[40px]
-
-                            px-8
+                            md:w-[180px]
+                            md:h-[40px]
+h-[42px]
+w-[auto]
+          px-6
                             shrink-0
+                            
                           "
                       >
                         <Logo item={item} />

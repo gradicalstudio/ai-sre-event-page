@@ -39,12 +39,12 @@ const SectorsRepresented = ({ slice }) => {
         opacity: 0,
         x: -120,
       });
-
+      const isMobile = window.innerWidth < 767;
       // 2. Build the ScrollTrigger Timeline matching your standard
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: isMobile ? "-700px 95%" : "top 75%",
           once: true,
         },
       });
