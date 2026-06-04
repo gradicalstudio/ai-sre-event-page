@@ -57,7 +57,7 @@ const WhosInTheRoom = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: isMobile ? "-400px 95%" : "top 75%", // Triggers at standard viewport boundary
+          start: isMobile ? "-600px 95%" : "top 75%", // Triggers at standard viewport boundary
           once: true, // One-time execution
         },
       });
@@ -129,7 +129,7 @@ const WhosInTheRoom = ({ slice }) => {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="opacity-0"
+              className="md:opacity-0"
             >
               <InfoCard item={item} index={index} activeIndex={activeIndex} />
             </div>

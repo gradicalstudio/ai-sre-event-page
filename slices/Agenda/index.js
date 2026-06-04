@@ -20,6 +20,7 @@ const Agenda = ({ slice }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 767;
       itemsRef.current.forEach((item) => {
         gsap.fromTo(
           item,
@@ -36,8 +37,9 @@ const Agenda = ({ slice }) => {
             ease: "power4.out",
             scrollTrigger: {
               trigger: item,
-              start: "top 90%",
+              start: isMobile ? "-700px 95%" : "top 90%",
               once: true,
+           
             },
           },
         );
