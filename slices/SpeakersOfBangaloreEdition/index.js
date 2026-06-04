@@ -6,6 +6,7 @@ import { PrismicRichText } from "@prismicio/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Bounded from "@/components/Bounded";
+import SpeakerSlider from "@/components/SpeakrSlider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
     const ctx = gsap.context(() => {
       if (slice.variation === "default") {
         // Heading
+       
         gsap.fromTo(
           headingRef.current,
           { opacity: 0, y: 80, filter: "blur(10px)" },
@@ -35,7 +37,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             ease: "power4.out",
             scrollTrigger: {
               trigger: headingRef.current,
-              start: "top 85%",
+              start: isMobile ? "-400px 99%" : "top 75%",
               once: true,
             },
           },
@@ -95,6 +97,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
       if (slice.variation === "secondaryVar") {
         // Heading
+         const isMobile = window.innerWidth < 767;
         gsap.fromTo(
           headingRef.current,
           { opacity: 0, y: 80, filter: "blur(10px)" },
@@ -106,8 +109,9 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             ease: "power4.out",
             scrollTrigger: {
               trigger: headingRef.current,
-              start: "top 85%",
+              start: isMobile ? "-500px 99%" : "top 85%",
               once: true,
+             
             },
           },
         );
@@ -342,8 +346,11 @@ lg:mt-20
               </div>
             </div>
           </div>
-          <Bounded className=" text-white mt-17">
-            <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 w-fit mx-auto gap-20">
+          <div className="md:hidden pb-20">
+            <SpeakerSlider speakers={slice.primary.speaker} />
+          </div>
+          <Bounded className=" hidden md:block text-white mt-17">
+            <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 xl:grid-cols-5 w-fit mx-auto gap-20">
               {slice.primary.speaker.map((item, index) => (
                 <div
                   ref={(el) => (cardsRef.current[index] = el)}
@@ -351,8 +358,7 @@ lg:mt-20
                   className="flex  max-w-60 md:max-w-full  flex-col  text-left gap-3"
                 >
                   <div
-                    className="
-    group
+                    className=" group
     h-41
     w-41
     rounded-full

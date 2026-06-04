@@ -50,10 +50,11 @@ const WhyThisEvent = ({ slice }) => {
       });
 
       // ONE TIME INTRO ANIMATION
+      const isMobile = window.innerWidth < 767;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: isMobile ? "-400px 95%" : "top 75%",
           once: true,
         },
       });

@@ -18,72 +18,25 @@ const FaQ = ({ slice }) => {
       id="faq"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="
-      
-      scrollbar-none
-    
-        relative
-        bg-[#04050F]
-        px-12 md:px-25 lg:px-20
-        py-16 lg:pb-44
-        z-10
-      "
+      className="scrollbar-none relative flex my-3 md:my-10 lg:my-12 items-center justify-center h-175 md:h-150  lg:h-300  "
     >
       {/* Left Gradient */}
       <img
-        src="/left side.svg"
+        src="/LeftGPng.png"
         alt=""
-        className="absolute 
-        left-0 
-        md:-left-24 
-        top-1/2 
-        -translate-y-1/2 
-        pointer-events-none 
-        z-[100] select-none 
-        md:w-[320px] md:h-[500px]
-          lg:h-[650px]
-      h-[700px]
-      w-[80px]
-      
-          opacity-90
-        "
-        style={{
-          maskImage: "linear-gradient(to right, black 10%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, black 10%, transparent 100%)",
-        }}
+        className="absolute  left-0 top-0  w-15 md:w-30 lg:w-50 xl:w-60 2xl:w-85  pointer-events-none  select-none h-full "
       />
 
       {/* Right Gradient */}
       <img
-        src="/rightside.svg"
+        src="/RightGPng.png"
         alt=""
-        className="
-        
-          absolute
-          right-0 md:-right-24
-          top-1/2
-          -translate-y-1/2
-          pointer-events-none
-          z-[100]
-          select-none
-            md:w-[320px]
-            md:h-[500px]
-            lg:h-[650px]
-          opacity-90
-             h-[700px]
-      w-[80px]
+        className="absolute right-0 top-0   w-15 md:w-30 lg:w-50 xl:w-60  2xl:w-85 pointer-events-none  select-none h-full"
       
-        "
-        style={{
-          maskImage: "linear-gradient(to left, black 10%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to left, black 10%, transparent 100%)",
-        }}
       />
 
       {/* Content */}
-      <div className="relative z-10 lg:px-30">
+      <div className=" relative z-10 px-15 2xl:max-w-360  md:px-30 lg:px-50 w-full xl:h-170  ">
         {/* Heading */}
         <div className="text-white font-medium text-3xl lg:text-[38px] mb-10 lg:mb-16">
           <PrismicRichText field={slice.primary.heading} />

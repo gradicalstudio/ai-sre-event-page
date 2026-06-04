@@ -16,7 +16,7 @@ const Footer = ({ slice }) => {
   const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
   return (
-    <Bounded className="bg-[#04050F] mt-10 md:mt-40 text-white">
+    <Bounded className="bg-[#04050F]  text-white">
       <section
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
