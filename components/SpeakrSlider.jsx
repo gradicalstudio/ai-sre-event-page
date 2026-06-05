@@ -8,6 +8,7 @@ import { PrismicRichText } from "@prismicio/react";
 
 const SpeakerSlider = ({ speakers = [] }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const carouselRef = useRef(null);
 
   const autoplayRef = useRef(
     Autoplay({ delay: 3500, stopOnInteraction: false }),
@@ -23,10 +24,35 @@ const SpeakerSlider = ({ speakers = [] }) => {
 
   useEffect(() => {
     if (!emblaApi) return;
+
+    // Stop autoplay until visible
+    autoplayRef.current.stop();
+
+    // Select logic
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
     onSelect();
-    return () => emblaApi.off("select", onSelect);
+
+    // IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            autoplayRef.current.play();
+          } else {
+            autoplayRef.current.stop();
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    if (carouselRef.current) observer.observe(carouselRef.current);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+      observer.disconnect();
+    };
   }, [emblaApi]);
 
   // Group into pairs
@@ -37,7 +63,7 @@ const SpeakerSlider = ({ speakers = [] }) => {
 
   const loopSlides = slides.length === 1 ? [...slides, ...slides] : slides;
   return (
-    <div className="block md:hidden mt-13 text-white w-full">
+    <div ref={carouselRef} className="block md:hidden mt-13 text-white w-full">
       <div className="relative  w-full">
         {/* Prev */}
         <button

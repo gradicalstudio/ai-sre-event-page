@@ -57,8 +57,9 @@ const WhosInTheRoom = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: isMobile ? "-600px 95%" : "top 75%", // Triggers at standard viewport boundary
+          start: isMobile ? "top 95%" : "top 75%", // Triggers at standard viewport boundary
           once: true, // One-time execution
+          
         },
       });
 
