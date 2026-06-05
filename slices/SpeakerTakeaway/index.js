@@ -26,9 +26,8 @@ const SpeakerTakeaway = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: isMobile ? "-1000px 95%" : "top 75%",
+          start: isMobile ? "top 90%" : "top 75%",
           once: true,
- 
         },
       });
 
@@ -101,20 +100,23 @@ const SpeakerTakeaway = ({ slice }) => {
         });
       });
     }, sectionRef);
-
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+    setTimeout(() => ScrollTrigger.refresh(), 300);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="bg-[#04050F] overflow-hidden mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:mb-20 xl:mb-30 lg:mt-10 xl:mt-15">
+    <section
+      ref={sectionRef}
+      className="bg-[#04050F]   mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 mb-20 md:mb-27 lg:mb-20 xl:mb-30 lg:mt-10 xl:mt-15"
+    >
       <section
         id="for-speakers"
-        ref={sectionRef}
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className="bg-[#04050F] overflow-hidden"
+        className="bg-[#04050F] "
       >
-        <div className="relative">
+        <div className="relative ">
           {/* Corner Decorations */}
           <div className="pointer-events-none absolute inset-0">
             <img
