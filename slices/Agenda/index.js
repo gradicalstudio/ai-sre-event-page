@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Agenda = ({ slice }) => {
   const sectionRef = useRef(null);
   const itemsRef = useRef([]);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,13 +38,28 @@ const Agenda = ({ slice }) => {
             ease: "power4.out",
             scrollTrigger: {
               trigger: item,
-              start: isMobile ? "-700px 95%" : "top 90%",
+              start: isMobile ? "top 95%" : "top 90%",
               once: true,
-           
             },
           },
         );
       });
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 80, filter: "blur(10px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: isMobile ? "top 90%" : "top 75%",
+            once: true,
+          },
+        },
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -68,7 +84,10 @@ const Agenda = ({ slice }) => {
 
         <div className="lg:p-5 xl:p-10">
           {/* Heading */}
-          <div className="text-white text-3xl md:text-[32px] lg:text-[34px] xl:text-[38px] pl-2 pt-2 font-normal mb-12">
+          <div
+            ref={headingRef}
+            className="text-white text-3xl md:text-[32px] lg:text-[34px] xl:text-[38px] pl-2 pt-2 font-normal mb-12"
+          >
             <PrismicRichText field={slice.primary.heading} />
           </div>
 

@@ -20,12 +20,13 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardsRef = useRef([]);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (slice.variation === "default") {
         // Heading
-       
+
         gsap.fromTo(
           headingRef.current,
           { opacity: 0, y: 80, filter: "blur(10px)" },
@@ -97,7 +98,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
       if (slice.variation === "secondaryVar") {
         // Heading
-         const isMobile = window.innerWidth < 767;
+        const isMobile = window.innerWidth < 767;
         gsap.fromTo(
           headingRef.current,
           { opacity: 0, y: 80, filter: "blur(10px)" },
@@ -109,13 +110,27 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
             ease: "power4.out",
             scrollTrigger: {
               trigger: headingRef.current,
-              start: isMobile ? "-500px 99%" : "top 85%",
+              start: isMobile ? "top 90%" : "top 85%",
               once: true,
-             
             },
           },
         );
-
+        gsap.fromTo(
+          sliderRef.current,
+          { opacity: 0, y: 80, filter: "blur(10px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: sliderRef.current,
+              start: "top 90%",
+              once: true,
+            },
+          },
+        );
         // Cards
         cardsRef.current.forEach((card) => {
           if (!card) return;
@@ -346,7 +361,7 @@ lg:mt-20
               </div>
             </div>
           </div>
-          <div className="md:hidden pb-20">
+          <div ref={sliderRef} className="md:hidden pb-20">
             <SpeakerSlider speakers={slice.primary.speaker} />
           </div>
           <Bounded className=" hidden md:block text-white mt-17">

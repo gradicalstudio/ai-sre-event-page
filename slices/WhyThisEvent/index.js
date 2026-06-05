@@ -54,7 +54,7 @@ const WhyThisEvent = ({ slice }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: isMobile ? "-600px 95%" : "top 75%",
+          start: isMobile ? "top 95%" : "top 75%",
           once: true,
         },
       });
