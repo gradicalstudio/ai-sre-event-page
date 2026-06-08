@@ -34,5 +34,46 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withInfinity",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur nisi adipisicing commodo fugiat aliquip consectetur. Dolore ea laboris incididunt ad nostrud veniam velit laborum exercitation ad reprehenderit Lorem. Irure occaecat tempor ipsum est laboris laborum."
+						}
+					}
+				]
+			},
+			"info_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"info",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "sport",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]
