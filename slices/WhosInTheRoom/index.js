@@ -43,15 +43,26 @@ const WhosInTheRoom = ({ slice }) => {
         },
       });
 
-      tl.to(arrowRef.current, { opacity: 1, x: 0, duration: 0.9, ease: "power4.out" })
-        .to(headingRef.current, { opacity: 1, x: 0, duration: 0.8, ease: "power4.out" }, "-=0.55")
-        .to(cardsRef.current, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "power4.out" }, "-=0.9");
-
+      tl.to(arrowRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 0.9,
+        ease: "power4.out",
+      })
+        .to(
+          headingRef.current,
+          { opacity: 1, x: 0, duration: 0.8, ease: "power4.out" },
+          "-=0.55",
+        )
+        .to(
+          cardsRef.current,
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, ease: "power4.out" },
+          "-=0.9",
+        );
     }, activeSectionRef);
 
     return () => ctx.revert();
   }, [slice.variation]);
-
 
   return (
     <>
@@ -82,7 +93,9 @@ const WhosInTheRoom = ({ slice }) => {
               {items.map((item, index) => (
                 <div
                   key={index}
-                  ref={(el) => { cardsRef.current[index] = el; }}
+                  ref={(el) => {
+                    cardsRef.current[index] = el;
+                  }}
                   className="opacity-0" // ✅ fixed from md:opacity-0
                 >
                   <InfoCard
@@ -100,7 +113,9 @@ const WhosInTheRoom = ({ slice }) => {
       )}
 
       {slice.variation === "withInfinity" && (
-        <Bounded className="bg-[#04050F] overflow-visible"> {/* ✅ fixed overflow */}
+        <Bounded className="bg-[#04050F] overflow-visible">
+          {" "}
+          {/* ✅ fixed overflow */}
           <section
             ref={sectionRefInfinity}
             data-slice-type={slice.slice_type}
@@ -125,15 +140,29 @@ const WhosInTheRoom = ({ slice }) => {
             <div className="flex flex-col lg:flex-row lg:items-stretch w-full">
               {/* Left panel */}
               <div className="flex relative flex-col lg:w-[55%] border border-gray-600">
-                <img src="/cross-orange.svg" className="absolute top-0 left-0 w-4 h-4 -translate-x-1/2 -translate-y-1/2" />
-                <img src="/cross-orange.svg" className="absolute bottom-0 left-0 w-4 h-4 -translate-x-1/2 translate-y-1/2" />
-                <img src="/cross-orange.svg" className="absolute top-0 right-0 w-4 h-4 translate-x-1/2 -translate-y-1/2" />
-                <img src="/cross-orange.svg" className="absolute bottom-0 right-0 w-4 h-4 translate-x-1/2 translate-y-1/2" />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute top-0 left-0 w-4 h-4 -translate-x-1/2 -translate-y-1/2"
+                />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute bottom-0 left-0 w-4 h-4 -translate-x-1/2 translate-y-1/2"
+                />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute top-0 right-0 w-4 h-4 translate-x-1/2 -translate-y-1/2"
+                />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute bottom-0 right-0 w-4 h-4 translate-x-1/2 translate-y-1/2"
+                />
 
                 {items.map((item, index) => (
                   <div
                     key={index}
-                    ref={(el) => { cardsRef.current[index] = el; }}
+                    ref={(el) => {
+                      cardsRef.current[index] = el;
+                    }}
                     className="opacity-0"
                   >
                     <InfoCard
@@ -150,8 +179,14 @@ const WhosInTheRoom = ({ slice }) => {
               {/* Right panel — iframe */}
               <div className="lg:w-[45%] relative border-b border-x lg:border-y lg:border-r border-white/20">
                 {/* ✅ simplified cross positions — only the ones this panel owns */}
-                <img src="/cross-orange.svg" className="absolute top-0 right-0 w-4 h-4 translate-x-1/2 -translate-y-1/2" />
-                <img src="/cross-orange.svg" className="absolute bottom-0 right-0 w-4 h-4 translate-x-1/2 translate-y-1/2" />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute bottom-0 left-0 lg:bottom-auto lg:left-auto lg:top-0 lg:right-0 w-4 h-4 -translate-x-1/2 translate-y-1/2 lg:translate-x-1/2 lg:-translate-y-1/2"
+                />
+                <img
+                  src="/cross-orange.svg"
+                  className="absolute bottom-0 right-0 w-4 h-4 translate-x-1/2 translate-y-1/2"
+                />
 
                 <div className="relative w-full h-0 pb-[56.25%] lg:h-full lg:pb-0">
                   <div
