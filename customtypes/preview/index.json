@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "video_component": {
+              "type": "SharedSlice"
+            },
             "whos_in_the_room": {
               "type": "SharedSlice"
             },

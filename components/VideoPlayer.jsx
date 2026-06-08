@@ -2,7 +2,9 @@
 
 import { useRef, useState, useEffect } from "react";
 
-export default function VideoPlayer() {
+export default function VideoPlayer({
+  src = "/videos/Aws Datamato Final.mp4",
+}) {
   const videoRef = useRef(null);
   const autoplayTimerRef = useRef(null);
   const visibilityTimerRef = useRef(null);
@@ -33,7 +35,9 @@ export default function VideoPlayer() {
     // Autoplay silently after 5s (safe from browser blocks)
     autoplayTimerRef.current = setTimeout(() => {
       if (videoRef.current && videoRef.current.paused) {
-        videoRef.current.play().catch((err) => console.log("Autoplay blocked:", err));
+        videoRef.current
+          .play()
+          .catch((err) => console.log("Autoplay blocked:", err));
         setIsPlaying(true);
         resetVisibilityTimer();
       }
@@ -60,7 +64,7 @@ export default function VideoPlayer() {
 
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        // CRITICAL FIX: Since the user explicitly clicked the video to play it, 
+        // CRITICAL FIX: Since the user explicitly clicked the video to play it,
         // we can now safely unmute the audio without the browser blocking it.
         videoRef.current.muted = false;
         setIsMuted(false);
@@ -72,7 +76,8 @@ export default function VideoPlayer() {
         videoRef.current.pause();
         setIsPlaying(false);
         setControlsVisible(true);
-        if (visibilityTimerRef.current) clearTimeout(visibilityTimerRef.current);
+        if (visibilityTimerRef.current)
+          clearTimeout(visibilityTimerRef.current);
       }
     }
   };
@@ -98,8 +103,8 @@ export default function VideoPlayer() {
       {/* Video - Must render with 'muted' attribute initially for browser bypass */}
       <video
         ref={videoRef}
-        src="/videos/Aws Datamato Final.mp4"
-        muted 
+        src={src}
+        muted
         loop
         playsInline
         className="w-full h-full object-contain"
@@ -149,12 +154,22 @@ export default function VideoPlayer() {
           >
             <div className="flex items-center justify-center">
               {isPlaying ? (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <rect x="6" y="5" width="4" height="14" rx="1" />
                   <rect x="14" y="5" width="4" height="14" rx="1" />
                 </svg>
               ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <path d="M8 5v14l11-7z" />
                 </svg>
               )}
@@ -184,13 +199,27 @@ export default function VideoPlayer() {
         `}
       >
         {isMuted ? (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
             <line x1="23" y1="9" x2="17" y2="15" />
             <line x1="17" y1="9" x2="23" y2="15" />
           </svg>
         ) : (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
             <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
             <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />

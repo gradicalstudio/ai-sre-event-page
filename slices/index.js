@@ -15,6 +15,7 @@ export const components = {
   ),
   stage_formats: dynamic(() => import("./StageFormats")),
   text_blocks: dynamic(() => import("./TextBlocks")),
+  video_component: dynamic(() => import("./VideoComponent")),
   what_you_take_away: dynamic(() => import("./WhatYouTakeAway")),
   whos_in_the_room: dynamic(() => import("./WhosInTheRoom")),
   why_this_event: dynamic(() => import("./WhyThisEvent")),
