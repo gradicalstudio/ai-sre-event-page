@@ -1,0 +1,39 @@
+{
+  "id": "video_component",
+  "type": "SharedSlice",
+  "name": "VideoComponent",
+  "description": "VideoComponent",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video_link": {
+          "type": "Link",
+          "config": {
+            "label": "Video link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "link_or_default": {
+          "type": "Boolean",
+          "config": {
+            "label": "Link or Default",
+            "placeholder_false": "Default",
+            "placeholder_true": "Link",
+            "default_value": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

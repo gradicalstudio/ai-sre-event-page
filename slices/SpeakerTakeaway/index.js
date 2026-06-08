@@ -188,7 +188,7 @@ const SpeakerTakeaway = ({ slice }) => {
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="grid grid-cols-1 border border-white/10 sm:grid-cols-3">
+            <div className="grid grid-cols-1 border border-white/10 sm:grid-cols-2">
               {slice.primary.blocks?.map((item, index) => (
                 <div
                   key={index}

@@ -148,6 +148,7 @@ export type HomePageDocument<Lang extends string = string> =
   >;
 
 type PreviewDocumentDataSlicesSlice =
+  | VideoComponentSlice
   | WhosInTheRoomSlice
   | WhatYouTakeAwaySlice
   | WhyThisEventSlice
@@ -1809,6 +1810,68 @@ export type TextBlocksSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *VideoComponent → Default → Primary*
+ */
+export interface VideoComponentSliceDefaultPrimary {
+  /**
+   * Video link field in *VideoComponent → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_component.default.primary.video_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  video_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Link or Default field in *VideoComponent → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: video_component.default.primary.link_or_default
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  link_or_default: prismic.BooleanField;
+}
+
+/**
+ * Default variation for VideoComponent Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoComponentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoComponentSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideoComponent*
+ */
+type VideoComponentSliceVariation = VideoComponentSliceDefault;
+
+/**
+ * VideoComponent Shared Slice
+ *
+ * - **API ID**: `video_component`
+ * - **Description**: VideoComponent
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideoComponentSlice = prismic.SharedSlice<
+  "video_component",
+  VideoComponentSliceVariation
+>;
+
+/**
  * Item in *WhatYouTakeAway → Default → Primary → Blocks*
  */
 export interface WhatYouTakeAwaySliceDefaultPrimaryBlocksItem {
@@ -1916,6 +1979,21 @@ export interface WhosInTheRoomSliceDefaultPrimaryInfoGroupItem {
 }
 
 /**
+ * Item in *WhosInTheRoom → withInfinity → Primary → Info group*
+ */
+export interface WhosInTheRoomSliceWithInfinityPrimaryInfoGroupItem {
+  /**
+   * Info field in *WhosInTheRoom → withInfinity → Primary → Info group*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: whos_in_the_room.withInfinity.primary.info_group[].info
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  info: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *WhosInTheRoom → Default → Primary*
  */
 export interface WhosInTheRoomSliceDefaultPrimary {
@@ -1956,9 +2034,51 @@ export type WhosInTheRoomSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *WhosInTheRoom → withInfinity → Primary*
+ */
+export interface WhosInTheRoomSliceWithInfinityPrimary {
+  /**
+   * Heading field in *WhosInTheRoom → withInfinity → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: whos_in_the_room.withInfinity.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Info group field in *WhosInTheRoom → withInfinity → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: whos_in_the_room.withInfinity.primary.info_group[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  info_group: prismic.GroupField<
+    Simplify<WhosInTheRoomSliceWithInfinityPrimaryInfoGroupItem>
+  >;
+}
+
+/**
+ * withInfinity variation for WhosInTheRoom Slice
+ *
+ * - **API ID**: `withInfinity`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WhosInTheRoomSliceWithInfinity = prismic.SharedSliceVariation<
+  "withInfinity",
+  Simplify<WhosInTheRoomSliceWithInfinityPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *WhosInTheRoom*
  */
-type WhosInTheRoomSliceVariation = WhosInTheRoomSliceDefault;
+type WhosInTheRoomSliceVariation =
+  | WhosInTheRoomSliceDefault
+  | WhosInTheRoomSliceWithInfinity;
 
 /**
  * WhosInTheRoom Shared Slice
@@ -2156,6 +2276,10 @@ declare module "@prismicio/client" {
       TextBlocksSliceDefault,
       TextBlocksSliceTextOnMiddle,
       TextBlocksSliceHeadingAndDescription,
+      VideoComponentSlice,
+      VideoComponentSliceDefaultPrimary,
+      VideoComponentSliceVariation,
+      VideoComponentSliceDefault,
       WhatYouTakeAwaySlice,
       WhatYouTakeAwaySliceDefaultPrimaryBlocksItem,
       WhatYouTakeAwaySliceDefaultPrimary,
@@ -2164,8 +2288,11 @@ declare module "@prismicio/client" {
       WhosInTheRoomSlice,
       WhosInTheRoomSliceDefaultPrimaryInfoGroupItem,
       WhosInTheRoomSliceDefaultPrimary,
+      WhosInTheRoomSliceWithInfinityPrimaryInfoGroupItem,
+      WhosInTheRoomSliceWithInfinityPrimary,
       WhosInTheRoomSliceVariation,
       WhosInTheRoomSliceDefault,
+      WhosInTheRoomSliceWithInfinity,
       WhyThisEventSlice,
       WhyThisEventSliceDefaultPrimaryEventFeaturesItem,
       WhyThisEventSliceDefaultPrimary,
