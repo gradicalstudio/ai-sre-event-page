@@ -107,7 +107,7 @@ export default function Navbar() {
               <div className="mt-2">
                 <div className="block w-full lg:hidden">
                   <PrimaryButton
-                    className="w-full!  text-sm!"
+                    className="w-full! bg-[#FF6A50]! text-sm!"
                     buttonText="Register for Upcoming AI SRE Event"
                     onClick={() => setIsInviteOpen(true)}
                   />
