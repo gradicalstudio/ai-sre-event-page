@@ -6,7 +6,7 @@ import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import FormModal from "@/components/FormModal";
+
 import Bounded from "@/components/Bounded";
 import PrimaryButton from "@/components/PrimaryButton";
 gsap.registerPlugin(ScrollTrigger);
@@ -187,11 +187,7 @@ xl:max-w-[1280px]
                     ),
                   }}
                 />
-                {/* <PrimaryButton
-                  buttonText="Interested to Speak"
-                  className="text-sm! xl:text-base!"
-                  onClick={() => setIsSpeakerOpen(true)}
-                /> */}
+              
               </div>
             </div>
           </div>
@@ -286,11 +282,7 @@ xl:max-w-[1280px]
             ))}
           </div>
         </div>
-        {/* <FormModal
-          type="speaker"
-          isOpen={isSpeakerOpen}
-          onClose={() => setIsSpeakerOpen(false)}
-        /> */}
+      
       </section>
     </section>
   );

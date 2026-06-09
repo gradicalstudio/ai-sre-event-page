@@ -4,11 +4,11 @@ import { useState } from "react";
 import { PrismicRichText } from "@prismicio/react";
 
 import PrimaryButton from "@/components/PrimaryButton";
-import SecondaryButton from "@/components/SecondaryButton";
-import FormModal from "@/components/FormModal";
+// import SecondaryButton from "@/components/SecondaryButton";
+// import FormModal from "@/components/FormModal";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import VideoPlayer from "@/components/VideoPlayer";
-import Bounded from "@/components/Bounded";
+// import Bounded from "@/components/Bounded";
 import PageModal from "@/components/PageModal";
 
 /**
@@ -18,16 +18,16 @@ import PageModal from "@/components/PageModal";
  */
 
 const HeroSection = ({ slice }) => {
-  const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
+  // const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
 
   const showVideo = slice.primary.video_toggle;
-  const handleCalendar = () => {
-    window.open(
-      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+SRE+Next&dates=20260612T100000/20260612T153000&details=Join+AI+SRE+Next&location=Conrad+Bengaluru,+25/3,+Kensington+Rd,+Halasuru,+Someshwarpura,+Bengaluru,+Karnataka+560008,+India",
-      "_blank",
-    );
-  };
+  // const handleCalendar = () => {
+  //   window.open(
+  //     "https://calendar.google.com/calendar/render?action=TEMPLATE&text=AI+SRE+Next&dates=20260612T100000/20260612T153000&details=Join+AI+SRE+Next&location=Conrad+Bengaluru,+25/3,+Kensington+Rd,+Halasuru,+Someshwarpura,+Bengaluru,+Karnataka+560008,+India",
+  //     "_blank",
+  //   );
+  // };
 
   return (
     <>
