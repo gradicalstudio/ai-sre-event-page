@@ -8,10 +8,15 @@ const isIOS =
   /iPad|iPhone|iPod/.test(navigator.userAgent) &&
   !window.MSStream;
 
-// Detect if fullscreen API is available (iOS Safari doesn't support it)
+// Detect if standard Fullscreen API is available (iOS Safari doesn't support it)
 const supportsFullscreen =
   typeof document !== "undefined" &&
   !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+
+// Detect if iOS native video fullscreen is available
+const supportsVideoFullscreen =
+  typeof HTMLVideoElement !== "undefined" &&
+  "webkitEnterFullscreen" in HTMLVideoElement.prototype;
 
 export default function VideoPlayerFramed({
   src = "/videos/Aws Datamato Final.mp4",
@@ -58,7 +63,6 @@ export default function VideoPlayerFramed({
       autoplayTimerRef.current = setTimeout(() => {
         if (video.paused) {
           video.muted = true;
-          // FIX: properly handle the play() promise (iOS may reject silently)
           const playPromise = video.play();
           if (playPromise !== undefined) {
             playPromise
@@ -69,7 +73,6 @@ export default function VideoPlayerFramed({
                 resetVisibilityTimer();
               })
               .catch((err) => {
-                // Autoplay blocked (e.g. iOS Low Power Mode) — reset to paused state cleanly
                 console.log("Autoplay blocked:", err);
                 setIsPlaying(false);
                 setControlsVisible(true);
@@ -107,18 +110,30 @@ export default function VideoPlayerFramed({
     return () => observer.disconnect();
   }, []);
 
-  // Fullscreen sync — listen for both standard and webkit events (iOS)
+  // Fullscreen sync — standard API + iOS native video fullscreen events
   useEffect(() => {
+    const video = videoRef.current;
+
     const handleFullscreenChange = () => {
       setIsFullscreen(
         !!(document.fullscreenElement || document.webkitFullscreenElement)
       );
     };
+
+    // iOS native video fullscreen events
+    const handleWebkitBegin = () => setIsFullscreen(true);
+    const handleWebkitEnd = () => setIsFullscreen(false);
+
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange); // iOS Safari
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    video?.addEventListener("webkitbeginfullscreen", handleWebkitBegin);
+    video?.addEventListener("webkitendfullscreen", handleWebkitEnd);
+
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      video?.removeEventListener("webkitbeginfullscreen", handleWebkitBegin);
+      video?.removeEventListener("webkitendfullscreen", handleWebkitEnd);
     };
   }, []);
 
@@ -128,11 +143,17 @@ export default function VideoPlayerFramed({
       const isLandscape = window.matchMedia("(orientation: landscape)").matches;
       const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
       if (isLandscape && isPlaying && !fsElement) {
-        const el = containerRef.current;
-        if (el) {
-          // FIX: try webkit fallback for iOS
-          const req = el.requestFullscreen || el.webkitRequestFullscreen;
-          if (req) req.call(el, { navigationUI: "hide" }).catch(() => {});
+        if (isIOS) {
+          const video = videoRef.current;
+          if (video && video.webkitEnterFullscreen) {
+            video.webkitEnterFullscreen();
+          }
+        } else {
+          const el = videoRef.current || containerRef.current;
+          if (el) {
+            const req = el.requestFullscreen || el.webkitRequestFullscreen;
+            if (req) req.call(el).catch(() => {});
+          }
         }
       } else if (!isLandscape && (document.fullscreenElement || document.webkitFullscreenElement)) {
         const exit = document.exitFullscreen || document.webkitExitFullscreen;
@@ -144,7 +165,7 @@ export default function VideoPlayerFramed({
     return () => window.removeEventListener("orientationchange", handleOrientationChange);
   }, [isPlaying]);
 
-  // Progress + duration tracking — added 'canplay' for iOS which fires late loadedmetadata
+  // Progress + duration tracking
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -157,7 +178,7 @@ export default function VideoPlayerFramed({
     const handleLoadedMetadata = () => {
       if (!isNaN(video.duration)) setDuration(video.duration);
     };
-    // FIX: iOS Safari sometimes skips loadedmetadata; canplay is more reliable
+    // iOS Safari sometimes skips loadedmetadata; canplay is more reliable
     const handleCanPlay = () => {
       if (!isNaN(video.duration)) setDuration(video.duration);
     };
@@ -167,7 +188,7 @@ export default function VideoPlayerFramed({
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("loadedmetadata", handleLoadedMetadata);
     video.addEventListener("durationchange", handleLoadedMetadata);
-    video.addEventListener("canplay", handleCanPlay); // FIX: iOS fallback
+    video.addEventListener("canplay", handleCanPlay);
     return () => {
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
@@ -213,7 +234,7 @@ export default function VideoPlayerFramed({
     isDraggingRef.current = false;
   };
 
-  // Double-tap to seek ±10s on iOS only; PC/Android use original togglePlay behaviour
+  // Double-tap to seek ±10s on iOS; single tap toggles play on all platforms
   const handleTap = (e) => {
     clearTimeout(autoplayTimerRef.current);
 
@@ -222,7 +243,6 @@ export default function VideoPlayerFramed({
       const rect = containerRef.current?.getBoundingClientRect();
 
       if (now - lastTapRef.current < 300 && rect) {
-        // Double tap — seek ±10s
         const x = e.clientX - rect.left;
         const isRightSide = x > rect.width / 2;
         const video = videoRef.current;
@@ -231,13 +251,12 @@ export default function VideoPlayerFramed({
           resetVisibilityTimer();
         }
         lastTapRef.current = now;
-        return; // don't toggle play on double tap
+        return;
       }
 
       lastTapRef.current = now;
     }
 
-    // Original togglePlay logic — always runs on non-iOS, runs on single tap on iOS
     const video = videoRef.current;
     if (!video) return;
     if (video.paused) {
@@ -278,36 +297,60 @@ export default function VideoPlayerFramed({
     resetVisibilityTimer();
   };
 
-  // FIX: webkit fullscreen fallback for iOS
+  // Fullscreen toggle — iOS uses native video fullscreen, others use standard API on <video> element
   const toggleFullscreen = async (e) => {
     e.stopPropagation();
+
+    // iOS Safari: use native video fullscreen API
+    if (isIOS) {
+      const video = videoRef.current;
+      if (!video) return;
+      if (video.webkitDisplayingFullscreen) {
+        video.webkitExitFullscreen();
+      } else {
+        video.webkitEnterFullscreen();
+      }
+      resetVisibilityTimer();
+      return;
+    }
+
     const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+
     if (!fsElement) {
       try {
-        const el = containerRef.current;
+        // Use <video> element — more reliable than <div> on Android
+        const el = videoRef.current || containerRef.current;
         if (el.requestFullscreen) {
-          await el.requestFullscreen({ navigationUI: "hide" });
+          await el.requestFullscreen(); // no navigationUI option — better compat
         } else if (el.webkitRequestFullscreen) {
-          await el.webkitRequestFullscreen(); // iOS Safari fallback
+          await el.webkitRequestFullscreen();
         }
       } catch (err) {
         console.log("Fullscreen request failed:", err);
       }
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen(); // iOS Safari fallback
+      try {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      } catch (err) {
+        console.log("Fullscreen exit failed:", err);
       }
     }
+
     resetVisibilityTimer();
   };
+
+  // Show fullscreen button if standard API or iOS native video fullscreen is available
+  const showFullscreenButton = supportsFullscreen || (isIOS && supportsVideoFullscreen);
 
   return (
     <div
       ref={containerRef}
       className="relative w-full h-full cursor-pointer overflow-hidden bg-black"
-      onClick={handleTap} // FIX: was onClick={togglePlay}, now handles double-tap too
+      onClick={handleTap}
       onMouseMove={resetVisibilityTimer}
       onMouseLeave={() => {
         clearTimeout(visibilityTimerRef.current);
@@ -321,8 +364,8 @@ export default function VideoPlayerFramed({
         loop
         playsInline
         preload="metadata"
-        webkit-playsinline="true" // FIX: covers iOS < 10
-        x-webkit-airplay="allow"  // FIX: optional AirPlay support
+        webkit-playsinline="true"
+        x-webkit-airplay="allow"
         className="w-full h-full object-cover"
       />
 
@@ -369,7 +412,7 @@ export default function VideoPlayerFramed({
       {/* Bottom controls bar — hidden until video has been played at least once */}
       {hasPlayed && (
         <div
-          className={` absolute bottom-0 left-0 right-0 px-3 pb-1 md:pb-3 lg:pt-8 flex flex-col md:gap-2 transition-all duration-500 ease-in-out
+          className={`absolute bottom-0 left-0 right-0 px-3 pb-1 md:pb-3 lg:pt-8 flex flex-col md:gap-2 transition-all duration-500 ease-in-out
             bg-gradient-to-t from-black/60 to-transparent
             ${controlsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}
           onClick={(e) => e.stopPropagation()}
@@ -377,7 +420,7 @@ export default function VideoPlayerFramed({
           {/* Seeker */}
           <div
             ref={seekerRef}
-            className="relative  py-1.5 md:py-2.5 w-full cursor-pointer group"
+            className="relative py-1.5 md:py-2.5 w-full cursor-pointer group"
             onPointerDown={handleSeekerPointerDown}
             onPointerMove={handleSeekerPointerMove}
             onPointerUp={handleSeekerPointerUp}
@@ -402,7 +445,7 @@ export default function VideoPlayerFramed({
             </span>
 
             <div className="flex items-center gap-2">
-              {/* FIX: hide volume controls on iOS — they have no effect on that platform */}
+              {/* Volume controls — hidden on iOS (no effect on that platform) */}
               {!isIOS && (
                 <div className="flex items-center gap-2">
                   <button
@@ -441,8 +484,8 @@ export default function VideoPlayerFramed({
                 </div>
               )}
 
-              {/* FIX: hide fullscreen button if the API isn't available (iOS Safari) */}
-              {supportsFullscreen && (
+              {/* Fullscreen button — shown if standard API or iOS native video fullscreen is available */}
+              {showFullscreenButton && (
                 <button
                   onClick={toggleFullscreen}
                   className="p-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white hover:scale-110 active:scale-95 transition-transform duration-200"
