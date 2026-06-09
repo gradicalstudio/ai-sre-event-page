@@ -202,7 +202,7 @@ const WhosInTheRoom = ({ slice }) => {
                     src="https://www.unicorn.studio/embed/DTcrFZq8midd4tbCz7YK"
                     allow="autoplay"
                     loading="eager"
-                    fetchpriority="high"
+                    fetchPriority="high"
                   />
                 </div>
               </div>
