@@ -14,7 +14,7 @@ import PageModal from "@/components/PageModal";
  * @type {import("react").FC<FooterProps>}
  */
 const Footer = ({ slice }) => {
-  const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
+  // const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
   return (
     <Bounded className="bg-[#04050F]  text-white">
@@ -86,16 +86,7 @@ const Footer = ({ slice }) => {
         </div>
 
         {/* Modals */}
-        {/* <FormModal
-          type="speaker"
-          isOpen={isSpeakerOpen}
-          onClose={() => setIsSpeakerOpen(false)}
-        />
-        <FormModal
-          type="invite"
-          isOpen={isInviteOpen}
-          onClose={() => setIsInviteOpen(false)}
-        /> */}
+ 
 
         {/* Speaker Form Modal */}
         <PageModal
