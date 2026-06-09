@@ -7,6 +7,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import SecondaryButton from "@/components/SecondaryButton";
 import FormModal from "@/components/FormModal";
 import Bounded from "@/components/Bounded";
+import PageModal from "@/components/PageModal";
 /**
  * @typedef {import("@prismicio/client").Content.FooterSlice} FooterSlice
  * @typedef {import("@prismicio/react").SliceComponentProps<FooterSlice>} FooterProps
@@ -41,11 +42,7 @@ const Footer = ({ slice }) => {
                 onClick={() => setIsInviteOpen(true)}
               />
 
-              <SecondaryButton
-                className="py-3.5! w-full!  md:px-8! md:py-3.5! lg:px-10! lg:py-1! flex justify-center items-center leading-none text-[14px]! xl:text-[16px]! lg:text-nowrap "
-                buttonText="Apply to Speak"
-                onClick={() => setIsSpeakerOpen(true)}
-              />
+           
             </div>
 
             {/* Date, Location, Time */}
@@ -89,13 +86,19 @@ const Footer = ({ slice }) => {
         </div>
 
         {/* Modals */}
-        <FormModal
+        {/* <FormModal
           type="speaker"
           isOpen={isSpeakerOpen}
           onClose={() => setIsSpeakerOpen(false)}
         />
         <FormModal
           type="invite"
+          isOpen={isInviteOpen}
+          onClose={() => setIsInviteOpen(false)}
+        /> */}
+
+        {/* Speaker Form Modal */}
+        <PageModal
           isOpen={isInviteOpen}
           onClose={() => setIsInviteOpen(false)}
         />

@@ -176,7 +176,7 @@ xl:max-w-[1280px]
               ref={topContentRef}
               className="lg:pt-8 flex lg:justify-end opacity-0"
             >
-              <div className="max-w-[420px]">
+              <div className="max-w-105">
                 <PrismicRichText
                   field={slice.primary.short_description}
                   components={{
@@ -187,11 +187,11 @@ xl:max-w-[1280px]
                     ),
                   }}
                 />
-                <PrimaryButton
+                {/* <PrimaryButton
                   buttonText="Interested to Speak"
                   className="text-sm! xl:text-base!"
                   onClick={() => setIsSpeakerOpen(true)}
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -286,11 +286,11 @@ xl:max-w-[1280px]
             ))}
           </div>
         </div>
-        <FormModal
+        {/* <FormModal
           type="speaker"
           isOpen={isSpeakerOpen}
           onClose={() => setIsSpeakerOpen(false)}
-        />
+        /> */}
       </section>
     </section>
   );
