@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import PrimaryButton from "@/components/PrimaryButton";
-import FormModal from "@/components/FormModal";
+
+import NavModal from "./NavModal";
 
 const navLinks = [
   { label: "Key Takeaways", href: "#for-speakers" },
@@ -19,7 +20,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 z-50 w-full bg-[#04050F]/80 backdrop-blur-md">
-        <div className="mx-auto w-full overflow-hidden mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14">
+        <div className=" w-full overflow-hidden mx-auto  max-w-250 xl:max-w-7xl 2xl:max-w-360 px-6 md:px-14">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <a href="#" className="shrink-0">
@@ -45,9 +46,10 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden lg:block">
+             
               <PrimaryButton
                 className="px-3! py-2! text-xs!"
-                buttonText="Get your invite"
+                buttonText="Register for Upcoming AI SRE Event"
                 onClick={() => setIsInviteOpen(true)}
               />
             </div>
@@ -106,7 +108,7 @@ export default function Navbar() {
                 <div className="block w-full lg:hidden">
                   <PrimaryButton
                     className="w-full!  text-sm!"
-                    buttonText="Get your invite"
+                    buttonText="Register for Upcoming AI SRE Event"
                     onClick={() => setIsInviteOpen(true)}
                   />
                 </div>
@@ -116,11 +118,12 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <FormModal
+      <NavModal isOpen={isInviteOpen} onClose={() => setIsInviteOpen(false)} />
+      {/* <FormModal
         type="invite"
         isOpen={isInviteOpen}
         onClose={() => setIsInviteOpen(false)}
-      />
+      /> */}
     </>
   );
 }
