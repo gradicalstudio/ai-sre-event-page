@@ -101,16 +101,20 @@ export default function NavModal({ isOpen, onClose }) {
                 />
               </div>
               <div className="flex gap-3 mt-4">
-                <div>
+                <div>  
                   <PrismicNextImage field={data.data.item_one_icon} />
-                </div>
-                <div className="text-sm lg:text-lg">
+                </div>  
+                <div className="text-sm lg:text-lg">  
                   <PrismicRichText field={data.data.icon_one_text} />
-                </div>
+                </div>   
               </div>
-              <div className="flex gap-3 mt-2 ">
-                <div><PrismicNextImage field={data.data.item_two_icon} /></div>
-                <div><PrismicNextLink className="text-sm lg:text-lg" field={data.data.item_two_text} /></div>
+              <div className="flex gap-4 mt-2 ">
+                <div className="">
+                  <PrismicNextImage field={data.data.item_two_icon} />
+                </div>
+                <div className="text-sm  lg:text-lg">
+                  <PrismicRichText field={data.data.item_two_rich_text} />
+                </div>
               </div>
               <div className="mt-7">
                 <ModalButtons

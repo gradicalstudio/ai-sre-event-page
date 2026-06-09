@@ -197,6 +197,17 @@ interface NavModalDocumentData {
   item_two_icon: prismic.ImageField<never>;
 
   /**
+   * Item Two Rich Text field in *Nav Modal*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav_modal.item_two_rich_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  item_two_rich_text: prismic.RichTextField;
+
+  /**
    * Item Two Text field in *Nav Modal*
    *
    * - **Field Type**: Link
