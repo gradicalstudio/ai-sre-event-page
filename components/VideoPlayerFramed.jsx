@@ -137,33 +137,7 @@ export default function VideoPlayerFramed({
     };
   }, []);
 
-  // Auto fullscreen on rotate
-  useEffect(() => {
-    const handleOrientationChange = () => {
-      const isLandscape = window.matchMedia("(orientation: landscape)").matches;
-      const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
-      if (isLandscape && isPlaying && !fsElement) {
-        if (isIOS) {
-          const video = videoRef.current;
-          if (video && video.webkitEnterFullscreen) {
-            video.webkitEnterFullscreen();
-          }
-        } else {
-          const el = videoRef.current || containerRef.current;
-          if (el) {
-            const req = el.requestFullscreen || el.webkitRequestFullscreen;
-            if (req) req.call(el).catch(() => {});
-          }
-        }
-      } else if (!isLandscape && (document.fullscreenElement || document.webkitFullscreenElement)) {
-        const exit = document.exitFullscreen || document.webkitExitFullscreen;
-        if (exit) exit.call(document);
-      }
-    };
 
-    window.addEventListener("orientationchange", handleOrientationChange);
-    return () => window.removeEventListener("orientationchange", handleOrientationChange);
-  }, [isPlaying]);
 
   // Progress + duration tracking
   useEffect(() => {
@@ -314,14 +288,15 @@ export default function VideoPlayerFramed({
       return;
     }
 
+    const video = videoRef.current;
+    const wasPlaying = video && !video.paused;
     const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
 
     if (!fsElement) {
       try {
-        // Use <video> element — more reliable than <div> on Android
-        const el = videoRef.current || containerRef.current;
+        const el = video || containerRef.current;
         if (el.requestFullscreen) {
-          await el.requestFullscreen(); // no navigationUI option — better compat
+          await el.requestFullscreen();
         } else if (el.webkitRequestFullscreen) {
           await el.webkitRequestFullscreen();
         }
@@ -338,6 +313,16 @@ export default function VideoPlayerFramed({
       } catch (err) {
         console.log("Fullscreen exit failed:", err);
       }
+    }
+
+    // Android Chrome pauses video on fullscreen enter/exit — resume if it was playing
+    if (wasPlaying && video) {
+      setTimeout(() => {
+        if (video.paused) {
+          video.play().catch(() => {});
+          setIsPlaying(true);
+        }
+      }, 300);
     }
 
     resetVisibilityTimer();
