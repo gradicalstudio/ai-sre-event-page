@@ -9,6 +9,7 @@ import FormModal from "@/components/FormModal";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import VideoPlayer from "@/components/VideoPlayer";
 import Bounded from "@/components/Bounded";
+import PageModal from "@/components/PageModal";
 
 /**
  * @typedef {import("@prismicio/client").Content.HeroSectionSlice} HeroSectionSlice
@@ -78,12 +79,6 @@ const HeroSection = ({ slice }) => {
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
-
-              <SecondaryButton
-                className=" text-[14px]! xl:text-[16px]! w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-7! "
-                buttonText="Speak at AI SRE Next"
-                onClick={() => setIsSpeakerOpen(true)}
-              />
             </div>
 
             {/* Meta Info */}
@@ -146,16 +141,8 @@ const HeroSection = ({ slice }) => {
         </div>
 
         {/* Speaker Form Modal */}
-        <FormModal
-          type="speaker"
-          isOpen={isSpeakerOpen}
-          onClose={() => setIsSpeakerOpen(false)}
-        />
-
-        {/* Invite Form Modal */}
-        <FormModal
-          type="invite"
-          isOpen={isInviteOpen}
+        <PageModal
+          isOpen={isInviteOpen} 
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
