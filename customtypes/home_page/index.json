@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "video_component": {
+              "type": "SharedSlice"
+            },
             "text_blocks": {
               "type": "SharedSlice"
             },

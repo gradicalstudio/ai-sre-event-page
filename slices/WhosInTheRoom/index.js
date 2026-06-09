@@ -197,9 +197,12 @@ const WhosInTheRoom = ({ slice }) => {
                     }}
                   />
                   <iframe
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute lg:py-15 2xl:py-0 inset-0 w-full h-full"
+                    
                     src="https://www.unicorn.studio/embed/DTcrFZq8midd4tbCz7YK"
                     allow="autoplay"
+                    loading="eager"
+                    fetchpriority="high"
                   />
                 </div>
               </div>
