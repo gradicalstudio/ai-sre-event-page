@@ -67,7 +67,7 @@ const TextBlocks = ({ slice }) => {
           ref={addToRefs}
           data-slice-type={slice.slice_type}
           data-slice-variation={slice.variation}
-          className="font-sans flex items-center justify-center text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 pb-20 md:pb-27 lg:pb-43"
+          className="font-sans flex items-center justify-center text-white mx-auto w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14 py-20 md:py-27 lg:py-43"
         >
           <div className="flex  items-center w-full mx-auto">
             <div className="text-[28px] flex self-center mx-auto max-w-90 md:max-w-140 md:text-[32px] lg:text-[40px] leading-tight lg:max-w-210 text-balance">
