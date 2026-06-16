@@ -10,6 +10,7 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import VideoPlayer from "@/components/VideoPlayer";
 // import Bounded from "@/components/Bounded";
 import PageModal from "@/components/PageModal";
+import NavModal from "@/components/NavModal";
 
 /**
  * @typedef {import("@prismicio/client").Content.HeroSectionSlice} HeroSectionSlice
@@ -37,23 +38,15 @@ const HeroSection = ({ slice }) => {
         className="w-full bg-[#04050F]  px-6 md:px-6 
            md:pt-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 overflow-hidden w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14  mx-auto flex-col gap-6 text-white   "
       >
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 xl:gap-15">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 xl:gap-15 ">
           {/* Left Side */}
-          <div className="lg:w-[50%] xl:w-[50%] flex flex-col justify-between">
-            <div className="block pb-5 lg:hidden">
+          <div className="lg:w-[50%] xl:w-[50%] flex flex-col justify-between ">
+            <div className="block pb-5 lg:hidden ">
               <div className="w-full rounded-2xl">
-                {showVideo ? (
-                  <VideoPlayer />
-                ) : (
-                  <PrismicNextImage
-                    field={slice.primary.image_or_video}
-                    className="w-31 self-start lg:w-80"
-                    loading="eager"
-                  />
-                )}
+                <VideoPlayer />
               </div>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 ">
               {/* Heading */}
               <div className="max-w-4xl text-4xl md:text-5xl lg:text-[50px] xl:text-5xl 2xl:text-[65px] font-medium lg:leading-[1.1] xl:leading-[1]">
                 <PrismicRichText
@@ -76,73 +69,47 @@ const HeroSection = ({ slice }) => {
             <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
               <PrimaryButton
                 className=" text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
-                buttonText="Request invite to attend"
+                buttonText="Register For Upcoming AI SRE Event Meet Up"
                 onClick={() => setIsInviteOpen(true)}
               />
             </div>
 
             {/* Meta Info */}
-            <div className="flex mt-10 flex-col w-full">
-              <div className="flex flex-wrap items-center gap-5 lg:gap-3   xl:gap-5 w-full lg:w-[95%] xl:w-full">
-                {/* Date */}
-                <div className="flex text-center items-center gap-2 group">
-                  <img
-                    className="w-4 h-4 lg:w-5 lg:h-5 object-contain shrink-0 "
-                    src="/calender.svg"
-                  />
+            {/*
+<div className="flex mt-10 flex-col w-full">
+  <div className="flex flex-wrap items-center gap-5 lg:gap-3 xl:gap-5 w-full lg:w-[95%] xl:w-full">
 
-                  <p className="text-xs md:text-base lg:text-[13px] leading-none">
-                    {slice.primary.date_text}
-                  </p>
-                </div>
+    <div className="flex text-center items-center gap-2 group">
+      <img src="/calender.svg" />
+      <p>{slice.primary.date_text}</p>
+    </div>
 
-                {/* Time */}
-                <div className="flex items-center gap-2">
-                  <img
-                    className="w-4 h-4 lg:w-5 lg:h-5 object-contain shrink-0"
-                    src="/clock.svg"
-                  />
+    <div className="flex items-center gap-2">
+      <img src="/clock.svg" />
+      <p>{slice.primary.time}</p>
+    </div>
 
-                  <p className="text-xs md:text-base lg:text-[13px] leading-none flex items-center">
-                    {slice.primary.time}
-                  </p>
-                </div>
+    <div className="flex items-center z-10 gap-2">
+      <img src="/Location pin.svg" />
+      <PrismicNextLink field={slice.primary.location} />
+    </div>
 
-                {/* Location */}
-                <div className="flex items-center z-10 gap-2">
-                  <img
-                    className="w-4.5 h-4.5 lg:w-5 lg:h-5 object-contain shrink-0"
-                    src="/Location pin.svg"
-                  />
-
-                  <PrismicNextLink
-                    className="text-xs md:text-base lg:text-[13px] leading-none flex hover:text-[#3FD9FB] transition-colors items-center"
-                    field={slice.primary.location}
-                  />
-                </div>
-              </div>
-            </div>
+  </div>
+</div>
+*/}
           </div>
 
           {/* Right Side Video */}
           <div className="hidden lg:flex flex-1 items-center rounded-2xl lg:justify-center">
             <div className="w-full z-40 rounded-2xl">
-              {showVideo ? (
-                <VideoPlayer />
-              ) : (
-                <PrismicNextImage
-                  field={slice.primary.image_or_video}
-                  className="w-full aspect-video rounded-2xl object-contain"
-                  loading="eager"
-                />
-              )}
+              <VideoPlayer />
             </div>
           </div>
         </div>
 
         {/* Speaker Form Modal */}
-        <PageModal
-          isOpen={isInviteOpen} 
+        <NavModal
+          isOpen={isInviteOpen}
           onClose={() => setIsInviteOpen(false)}
         />
       </section>
