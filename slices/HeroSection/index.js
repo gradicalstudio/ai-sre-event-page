@@ -20,7 +20,6 @@ import NavModal from "@/components/NavModal";
 
 const HeroSection = ({ slice }) => {
   // const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
-  const [isInviteOpen, setIsInviteOpen] = useState(false);
 
   const showVideo = slice.primary.video_toggle;
   // const handleCalendar = () => {
@@ -36,12 +35,18 @@ const HeroSection = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className="w-full bg-[#04050F]  px-6 md:px-6 
-           md:pt-14 lg:pb-0  flex pt-25 md:pt-30 lg:pt-40 xl:pt-40 overflow-hidden w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14  mx-auto flex-col gap-6 text-white   "
+          pt-4 md:pt-10 lg:pb-0  flex  overflow-hidden w-full max-w-[1000px] xl:max-w-[1280px] 2xl:max-w-[1440px] px-6 md:px-14  mx-auto flex-col gap-6 text-white   "
       >
+        <img
+          src="/Final Logo.svg"
+          alt="Logo"
+          className="h-auto w-18 md:w-24 xl:w-44 object-contain"
+        />
+
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-8 xl:gap-15 ">
           {/* Left Side */}
           <div className="lg:w-[50%] xl:w-[50%] flex flex-col justify-between ">
-            <div className="block pb-5 lg:hidden ">
+            <div className="block pb-5 md:hidden ">
               <div className="w-full rounded-2xl">
                 <VideoPlayer />
               </div>
@@ -63,16 +68,22 @@ const HeroSection = ({ slice }) => {
               <div className="max-w-2xl  font-medium text-base lg:text-lg xl:text-lg 2xl:text-lg text-balance ">
                 <PrismicRichText field={slice.primary.description} />
               </div>
+              <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
+                <PrismicNextLink field={slice.primary.cta_link}>
+                  <PrimaryButton
+                    className=" text-[10px]! md:text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
+                    buttonText="Register For Upcoming AI SRE Meet Up"
+                  />
+                </PrismicNextLink>
+              </div>
+              <div className="hidden md:block lg:hidden pb-5 mt-4">
+                <div className="w-full rounded-2xl">
+                  <VideoPlayer />
+                </div>
+              </div>
             </div>
 
             {/* Buttons */}
-            <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
-              <PrimaryButton
-                className=" text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
-                buttonText="Register For Upcoming AI SRE Event Meet Up"
-                onClick={() => setIsInviteOpen(true)}
-              />
-            </div>
 
             {/* Meta Info */}
             {/*
@@ -106,12 +117,6 @@ const HeroSection = ({ slice }) => {
             </div>
           </div>
         </div>
-
-        {/* Speaker Form Modal */}
-        <NavModal
-          isOpen={isInviteOpen}
-          onClose={() => setIsInviteOpen(false)}
-        />
       </section>
       {/* <div className="relative  inset-x-0  lg:mt-5 xl:mt-0 h-8 lg:h-30 xl:h-70  ">
        

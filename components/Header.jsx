@@ -18,15 +18,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 z-50 w-full bg-[#04050F]/80 backdrop-blur-md">
+      <nav className="fixed top-0 left-0 z-50 w-full bg-[#04050F]/80 backdrop-blur-md  ">
         <div className=" w-full overflow-hidden mx-auto  max-w-250 xl:max-w-7xl 2xl:max-w-360 px-6 md:px-14">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <a href="#" className="shrink-0">
               <img
-                src="/airsrelogo.svg"
+                src="/Final Logo.svg"
                 alt="Logo"
-                className="h-auto w-18 lg:w-20 xl:w-18 object-contain"
+                className="h-auto w-18 lg:w-100 object-contain"
               />
             </a>
 
