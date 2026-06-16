@@ -1,4 +1,3 @@
-
 import VideoFrame from "@/components/VideoFrame";
 import VideoPlayerFramed from "@/components/VideoPlayerFramed";
 
@@ -8,7 +7,9 @@ import VideoPlayerFramed from "@/components/VideoPlayerFramed";
  * @type {import("react").FC<VideoComponentProps>}
  */
 const VideoComponent = ({ slice }) => {
-
+  if (!slice.primary.show_slice) {
+    return null;
+  }
 
   return (
     <section

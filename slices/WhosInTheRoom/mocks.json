@@ -31,6 +31,10 @@
 						}
 					}
 				]
+			},
+			"show_slice": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []

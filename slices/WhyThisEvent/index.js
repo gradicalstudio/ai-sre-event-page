@@ -26,7 +26,11 @@ const WhyThisEvent = ({ slice }) => {
   const iconRefs = useRef([]);
   const boxRefs = useRef([]);
 
+  const showSlice = slice?.primary?.show_slice ?? true;
+
   useEffect(() => {
+    if (!showSlice) return;
+
     const ctx = gsap.context(() => {
       // Initial States
       gsap.set(arrowRef.current, {
@@ -172,8 +176,10 @@ const WhyThisEvent = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
+  }, [showSlice]);
+  if (!showSlice) {
+    return null;
+  }
   return (
     <Bounded className="bg-[#04050F] text-white overflow-hidden">
       <section

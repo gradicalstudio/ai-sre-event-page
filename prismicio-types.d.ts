@@ -972,6 +972,17 @@ export interface AgendaSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   blocks: prismic.GroupField<Simplify<AgendaSliceDefaultPrimaryBlocksItem>>;
+
+  /**
+   * Show Slice field in *Agenda → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: agenda.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
 }
 
 /**
@@ -1031,6 +1042,17 @@ export interface FaQSliceDefaultPrimaryFaqItem {
  */
 export interface FaQSliceDefaultPrimary {
   /**
+   * Show Slice field in *FaQ → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: fa_q.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Heading field in *FaQ → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -1082,6 +1104,17 @@ export type FaQSlice = prismic.SharedSlice<"fa_q", FaQSliceVariation>;
  * Primary content in *Footer → Default → Primary*
  */
 export interface FooterSliceDefaultPrimary {
+  /**
+   * Show Slice field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: footer.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
   /**
    * Logos field in *Footer → Default → Primary*
    *
@@ -1391,6 +1424,17 @@ export interface SectorsRepresentedSliceDefaultPrimaryMarqueeItem {
  */
 export interface SectorsRepresentedSliceDefaultPrimary {
   /**
+   * Show Slice field in *SectorsRepresented → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: sectors_represented.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Heading field in *SectorsRepresented → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -1492,6 +1536,17 @@ export interface SpeakerTakeawaySliceDefaultPrimaryBlocksItem {
  * Primary content in *SpeakerTakeaway → Default → Primary*
  */
 export interface SpeakerTakeawaySliceDefaultPrimary {
+  /**
+   * Show Slice field in *SpeakerTakeaway → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: speaker_takeaway.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
   /**
    * Heading field in *SpeakerTakeaway → Default → Primary*
    *
@@ -1693,6 +1748,17 @@ export type SpeakersOfBangaloreEditionSliceDefault =
  */
 export interface SpeakersOfBangaloreEditionSliceSecondaryVarPrimary {
   /**
+   * Show Slice field in *SpeakersOfBangaloreEdition → secondaryVar → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: speakers_of_bangalore_edition.secondaryVar.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Heading field in *SpeakersOfBangaloreEdition → secondaryVar → Primary*
    *
    * - **Field Type**: Rich Text
@@ -1797,6 +1863,17 @@ export interface StageFormatsSliceDefaultPrimaryBlocksItem {
  * Primary content in *StageFormats → Default → Primary*
  */
 export interface StageFormatsSliceDefaultPrimary {
+  /**
+   * Show Slice field in *StageFormats → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: stage_formats.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
   /**
    * Stage format field in *StageFormats → Default → Primary*
    *
@@ -2022,6 +2099,17 @@ export type TextBlocksSlice = prismic.SharedSlice<
  */
 export interface VideoComponentSliceDefaultPrimary {
   /**
+   * Show Slice field in *VideoComponent → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: video_component.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Video link field in *VideoComponent → Default → Primary*
    *
    * - **Field Type**: Link
@@ -2206,6 +2294,17 @@ export interface WhosInTheRoomSliceWithInfinityPrimaryInfoGroupItem {
  */
 export interface WhosInTheRoomSliceDefaultPrimary {
   /**
+   * Show Slice field in *WhosInTheRoom → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: whos_in_the_room.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
+  /**
    * Heading field in *WhosInTheRoom → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -2349,6 +2448,17 @@ export interface WhyThisEventSliceDefaultPrimaryEventFeaturesItem {
  * Primary content in *WhyThisEvent → Default → Primary*
  */
 export interface WhyThisEventSliceDefaultPrimary {
+  /**
+   * Show Slice field in *WhyThisEvent → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: why_this_event.default.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
+
   /**
    * Heading field in *WhyThisEvent → Default → Primary*
    *

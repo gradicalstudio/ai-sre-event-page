@@ -335,7 +335,7 @@ lg:mt-20
           </div>
         </section>
       )}
-      {slice.variation === "secondaryVar" && (
+      {slice.variation === "secondaryVar" && slice.primary.show_slice && (
         <section id="speakers" ref={sectionRef} className="px-4 ">
           <div className="flex items-center 2xl:max-w-360 mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">

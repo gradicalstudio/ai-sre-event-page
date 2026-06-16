@@ -23,8 +23,10 @@ const WhosInTheRoom = ({ slice }) => {
   const arrowRef = useRef(null);
   const headingRef = useRef(null);
   const cardsRef = useRef([]);
+  const showSlice = slice?.primary?.show_slice ?? true;
 
   useEffect(() => {
+    if (!showSlice) return;
     const activeSectionRef =
       slice.variation === "default" ? sectionRefDefault : sectionRefInfinity;
 
@@ -62,8 +64,10 @@ const WhosInTheRoom = ({ slice }) => {
     }, activeSectionRef);
 
     return () => ctx.revert();
-  }, [slice.variation]);
-
+  }, [slice.variation, showSlice]);
+  if (!showSlice) {
+    return null;
+  }
   return (
     <>
       {slice.variation === "default" && (
@@ -198,7 +202,6 @@ const WhosInTheRoom = ({ slice }) => {
                   />
                   <iframe
                     className="absolute lg:py-15 2xl:py-0 inset-0 w-full h-full"
-                    
                     src="https://www.unicorn.studio/embed/DTcrFZq8midd4tbCz7YK"
                     allow="autoplay"
                     loading="eager"

@@ -25,9 +25,11 @@ const StageFormats = ({ slice }) => {
   const arrowRef = useRef(null);
   const headingRef = useRef(null);
   const topContentRef = useRef(null);
+  const showSlice = slice?.primary?.show_slice ?? true;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (!showSlice) return;
       // 1. Set Initial States (Using your reference style: clean, consistent offsets)
       gsap.set(arrowRef.current, {
         opacity: 0,
@@ -108,15 +110,19 @@ const StageFormats = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
+  }, [showSlice]);
+  if (!showSlice) {
+    return null;
+  }
   return (
-    <section className="bg-[#04050F] text-white overflow-hidden mx-auto w-full
+    <section
+      className="bg-[#04050F] text-white overflow-hidden mx-auto w-full
        max-w-[1000px]
 xl:max-w-[1280px]
 2xl:max-w-[1440px]
  px-6 md:px-14 
-         ">
+         "
+    >
       <section
         id="stage-formats"
         ref={sectionRef}
@@ -187,7 +193,6 @@ xl:max-w-[1280px]
                     ),
                   }}
                 />
-              
               </div>
             </div>
           </div>
@@ -282,7 +287,6 @@ xl:max-w-[1280px]
             ))}
           </div>
         </div>
-      
       </section>
     </section>
   );
