@@ -85,11 +85,20 @@ export default function PageModal({ isOpen, onClose }) {
 
         {data && (
           <div className="relative h-full w-full">
-            <img className="-z-10 absolute w-full rounded-2xl h-full" src="/pagemodalgradient.png" />
-            <img className="absolute -z-10 h-full rounded-l-2xl" src="/pagemodalgradienttwo.png" />
+            <img
+              className="-z-10 absolute w-full rounded-2xl h-full"
+              src="/pagemodalgradient.png"
+            />
+            <img
+              className="absolute -z-10 h-full rounded-l-2xl"
+              src="/pagemodalgradienttwo.png"
+            />
             <div className="w-full p-8 lg:p-12">
               <div className="w-30 h-30 md:w-42 md:h-42">
-                <PrismicNextImage field={data.data.logo} className="w-full h-full object-contain" />
+                <PrismicNextImage
+                  field={data.data.logo}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="text-2xl lg:text-[36.5px] mt-4 mb-2">
                 <PrismicRichText field={data.data.heading} />
@@ -99,13 +108,19 @@ export default function PageModal({ isOpen, onClose }) {
                   field={data.data.description}
                   components={{
                     strong: ({ children }) => (
-                      <strong className="text-[#3FD8FA] font-medium">{children}</strong>
+                      <strong className="text-[#3FD8FA] font-medium">
+                        {children}
+                      </strong>
                     ),
                   }}
                 />
               </div>
               <div className="mt-7">
-                <ModalButtons className={"text-sm!"} field={data.data.cta_link} buttonText={data.data.button_text} />
+                <ModalButtons
+                  className={"text-sm!"}
+                  field={data.data.cta_link}
+                  buttonText={data.data.button_text}
+                />
               </div>
             </div>
           </div>

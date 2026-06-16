@@ -236,13 +236,13 @@ const Partners = ({ slice }) => {
                 "
               >
                 <h2 className="md:hidden text-left uppercase text-[#ff5c35] text-[16px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
-                  Companies Participating
+                  Companies Participated
                 </h2>
 
                 <h2 className="hidden md:block text-left uppercase text-[#ff5c35] text-[15px] leading-[1.3] tracking-[0.22em] md:text-[16px]">
                   Companies
                   <br />
-                  Participating
+                  Participated
                 </h2>
               </div>
 

@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 
 export default function VideoPlayer({
-  src = "/videos/Aws Datamato Final.mp4",
+  src = "/videos/AI SRE Next Highlights.mp4",
 }) {
   const videoRef = useRef(null);
   const autoplayTimerRef = useRef(null);
