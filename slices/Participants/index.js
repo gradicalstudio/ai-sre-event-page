@@ -194,7 +194,7 @@ const Partners = ({ slice }) => {
         my-13
         md:my-20
         md:pb-[15px]
-        xl:my-25
+        xl:my-20
 
       "
     >
