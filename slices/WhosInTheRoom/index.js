@@ -23,7 +23,7 @@ const WhosInTheRoom = ({ slice }) => {
   const arrowRef = useRef(null);
   const headingRef = useRef(null);
   const cardsRef = useRef([]);
-  const showSlice = slice?.primary?.show_slice ?? true;
+  const showSlice = slice.primary?.show_slice;
 
   useEffect(() => {
     if (!showSlice) return;

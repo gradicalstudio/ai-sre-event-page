@@ -21,9 +21,14 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
   const headingRef = useRef(null);
   const cardsRef = useRef([]);
   const sliderRef = useRef(null);
-
+  const showSlice =
+    slice.variation === "secondaryVar"
+      ? Boolean(slice?.primary?.show_slice)
+      : true;
   useEffect(() => {
+    if (!showSlice || !sectionRef.current) return;
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 767;
       if (slice.variation === "default") {
         // Heading
 
@@ -98,7 +103,7 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
 
       if (slice.variation === "secondaryVar") {
         // Heading
-        const isMobile = window.innerWidth < 767;
+
         gsap.fromTo(
           headingRef.current,
           { opacity: 0, y: 80, filter: "blur(10px)" },
@@ -151,8 +156,10 @@ const SpeakersOfBangaloreEdition = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [slice.variation]);
-
+  }, [slice.variation, showSlice]);
+  if (!showSlice) {
+    return null;
+  }
   return (
     <>
       {slice.variation === "default" && (
@@ -335,7 +342,7 @@ lg:mt-20
           </div>
         </section>
       )}
-      {slice.variation === "secondaryVar" && slice.primary.show_slice && (
+      {slice.variation === "secondaryVar" && (
         <section id="speakers" ref={sectionRef} className="px-4 ">
           <div className="flex items-center 2xl:max-w-360 mx-auto  w-full select-none px-2">
             <div className="w-full flex items-center gap-2 md:gap-6 2xl:gap-15 xl:mb-17">

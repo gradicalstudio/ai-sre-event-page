@@ -2365,6 +2365,17 @@ export interface WhosInTheRoomSliceWithInfinityPrimary {
   info_group: prismic.GroupField<
     Simplify<WhosInTheRoomSliceWithInfinityPrimaryInfoGroupItem>
   >;
+
+  /**
+   * Show Slice field in *WhosInTheRoom → withInfinity → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: whos_in_the_room.withInfinity.primary.show_slice
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  show_slice: prismic.BooleanField;
 }
 
 /**
