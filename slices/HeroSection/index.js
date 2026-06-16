@@ -71,7 +71,7 @@ const HeroSection = ({ slice }) => {
               <div className="mt-6 flex flex-wrap lg:flex-nowrap items-center gap-6 lg:gap-3 xl:gap-6">
                 <PrismicNextLink field={slice.primary.cta_link}>
                   <PrimaryButton
-                    className=" text-[10px]! md:text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
+                    className=" text-[12px]! md:text-[14px]! xl:text-[16px]!  w-full! md:w-fit!  md:px-8! md:py-3! lg:px-5! text-nowrap  lg:py-3! xl:py-3! xl:px-9!  "
                     buttonText="Register For Upcoming AI SRE Meet Up"
                   />
                 </PrismicNextLink>
