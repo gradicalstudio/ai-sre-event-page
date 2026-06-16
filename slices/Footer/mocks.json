@@ -55,6 +55,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "learn",
 				"type": "Text"
+			},
+			"show_slice": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

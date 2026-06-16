@@ -15,6 +15,10 @@
 			"link_or_default": {
 				"__TYPE__": "BooleanContent",
 				"value": true
+			},
+			"show_slice": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

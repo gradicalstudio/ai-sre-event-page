@@ -16,8 +16,9 @@ const SpeakerTakeaway = ({ slice }) => {
   const headingRef = useRef(null);
   const blocksRef = useRef([]);
   const blockBoxRefs = useRef([]);
-
+  const showSlice = slice?.primary?.show_slice ?? true;
   useEffect(() => {
+    if (!showSlice) return;
     const ctx = gsap.context(() => {
       gsap.set(arrowRef.current, { opacity: 0, x: -100 });
       gsap.set(headingRef.current, { opacity: 0, x: 40 });
@@ -103,8 +104,11 @@ const SpeakerTakeaway = ({ slice }) => {
     window.addEventListener("load", () => ScrollTrigger.refresh());
     setTimeout(() => ScrollTrigger.refresh(), 300);
     return () => ctx.revert();
-  }, []);
+  }, [showSlice]);
 
+  if (!showSlice) {
+    return null;
+  }
   return (
     <section
       ref={sectionRef}

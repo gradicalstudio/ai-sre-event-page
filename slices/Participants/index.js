@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Partners = ({ slice }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const showSlice = slice?.primary?.show_slice ?? true;
 
   const sectionRef = useRef(null);
   const cellsRef = useRef([]);
@@ -35,6 +36,7 @@ const Partners = ({ slice }) => {
   }, []);
 
   useEffect(() => {
+    if (!showSlice) return;
     const ctx = gsap.context(() => {
       const cells = cellsRef.current.filter(Boolean);
 
@@ -128,9 +130,11 @@ const Partners = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile]);
+  }, [isMobile, showSlice]);
 
-  if (!slice.primary.show_slice) return null;
+  if (!showSlice) {
+    return null;
+  }
 
   const companies = slice.primary.companies || [];
 

@@ -423,6 +423,15 @@
               }
             }
           }
+        },
+        "show_slice": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Slice",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

@@ -21,8 +21,9 @@ const SectorsRepresented = ({ slice }) => {
   const arrowRef = useRef(null);
   const headingRef = useRef(null);
   const marqueeContainerRef = useRef(null);
-
+  const showSlice = slice?.primary?.show_slice ?? true;
   useEffect(() => {
+    if (!showSlice) return;
     const ctx = gsap.context(() => {
       // 1. Set Initial States (Hidden off-screen elements)
       gsap.set(arrowRef.current, {
@@ -81,8 +82,10 @@ const SectorsRepresented = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
+  }, [showSlice]);
+  if (!showSlice) {
+    return null;
+  }
   return (
     <Bounded className="bg-[#04050F] overflow-hidden">
       <section

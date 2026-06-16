@@ -16,6 +16,10 @@ import PageModal from "@/components/PageModal";
 const Footer = ({ slice }) => {
   // const [isSpeakerOpen, setIsSpeakerOpen] = useState(false);
   const [isInviteOpen, setIsInviteOpen] = useState(false);
+  const showSlice = slice?.primary?.show_slice ?? true;
+  if (!showSlice) {
+    return null;
+  }
   return (
     <Bounded className="bg-[#04050F]  text-white">
       <section
@@ -41,8 +45,6 @@ const Footer = ({ slice }) => {
                 buttonText="Request invite to attend"
                 onClick={() => setIsInviteOpen(true)}
               />
-
-           
             </div>
 
             {/* Date, Location, Time */}
@@ -86,7 +88,6 @@ const Footer = ({ slice }) => {
         </div>
 
         {/* Modals */}
- 
 
         {/* Speaker Form Modal */}
         <PageModal

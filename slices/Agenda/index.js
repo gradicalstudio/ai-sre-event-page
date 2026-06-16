@@ -18,8 +18,11 @@ const Agenda = ({ slice }) => {
   const sectionRef = useRef(null);
   const itemsRef = useRef([]);
   const headingRef = useRef(null);
+  const showSlice = slice?.primary?.show_slice ?? true;
 
   useEffect(() => {
+    if (!showSlice) return;
+
     const ctx = gsap.context(() => {
       const isMobile = window.innerWidth < 767;
       itemsRef.current.forEach((item) => {
@@ -63,8 +66,11 @@ const Agenda = ({ slice }) => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showSlice]);
 
+  if (!showSlice) {
+    return null;
+  }
   return (
     <section
       ref={sectionRef}
